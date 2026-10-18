@@ -20,6 +20,7 @@ export async function errorDetail(res: Response): Promise<string> {
   try {
     const body = (await res.json()) as { detail?: unknown };
     if (typeof body.detail === 'string') return body.detail;
+    if (Array.isArray(body.detail)) return '입력한 내용을 다시 확인해 주세요.';
   } catch {
     // 본문이 JSON이 아니면 상태 코드로만 알린다
   }
@@ -35,4 +36,19 @@ export async function request<T>(path: string, init?: RequestInit): Promise<T> {
   }
   if (!res.ok) throw new ApiError(res.status, await errorDetail(res));
   return (await res.json()) as T;
+}
+
+/** 본문이 없는(204) 응답을 돌려주는 요청. 상태 코드만 확인한다. */
+export async function requestNoContent(method: 'POST' | 'DELETE', path: string, body?: unknown): Promise<void> {
+  let res: Response;
+  try {
+    res = await fetch(`${API_BASE}${path}`, {
+      method,
+      headers: body === undefined ? undefined : { 'Content-Type': 'application/json' },
+      body: body === undefined ? undefined : JSON.stringify(body),
+    });
+  } catch {
+    throw new ApiError(0, NETWORK_ERROR_MESSAGE);
+  }
+  if (!res.ok) throw new ApiError(res.status, await errorDetail(res));
 }

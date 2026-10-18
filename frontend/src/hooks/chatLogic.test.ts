@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { mockItinerary } from '../mocks';
 import type { AgentStep, StepEvent } from '../types';
-import { applyStep, itineraryMessage } from './useChatSession';
+import { applyStep, describeApplied, itineraryMessage } from './useChatSession';
 import { pickEvidence } from './usePlaceReviews';
 
 const ev = (node: string, status: StepEvent['status'], extra: Partial<StepEvent> = {}): StepEvent => ({
@@ -74,5 +74,21 @@ describe('pickEvidence', () => {
     });
     expect(pickEvidence([r('a'), r('b'), r('c')], ['c', 'a']).map((x) => x.review_id)).toEqual(['a', 'c']);
     expect(pickEvidence([r('a')], [])).toEqual([]);
+  });
+});
+
+describe('설정 반영 안내', () => {
+  it('설정에서 가져온 항목만 한 줄로 설명하고, 없으면 null', () => {
+    expect(describeApplied(undefined)).toBeNull();
+    expect(describeApplied({ preferences: [] })).toBeNull();
+    expect(describeApplied({ companions: '가족', budget: 2, preferences: ['실내 위주', '맛집'] })).toBe(
+      '저장된 설정을 반영했어요: 동행 가족 · 예산 보통 · 취향 실내 위주, 맛집',
+    );
+  });
+
+  it('일정 안내 문구 둘째 줄에 반영 내용을 넣는다', () => {
+    const text = itineraryMessage(mockItinerary, [], { companions: '커플' });
+    expect(text.split('\n')[1]).toBe('저장된 설정을 반영했어요: 동행 커플');
+    expect(itineraryMessage(mockItinerary, [])).not.toContain('저장된 설정');
   });
 });

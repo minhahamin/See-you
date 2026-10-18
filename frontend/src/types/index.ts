@@ -185,12 +185,20 @@ export interface QuestionEvent {
   missing_fields: string[];
 }
 
+/** 이번 일정에 저장된 설정에서 가져와 반영한 항목 (말로 직접 지정한 것은 제외) */
+export interface AppliedSettings {
+  companions?: string | null;
+  budget?: number | null;
+  preferences?: string[];
+}
+
 /** SSE `itinerary` 이벤트: 일정에 등장하는 장소 목록을 함께 준다 */
 export interface ItineraryEvent {
   itinerary: Itinerary;
   places: Place[];
   /** 검증을 통과하지 못한 항목 설명 */
   issues: string[];
+  applied_settings: AppliedSettings;
 }
 
 /** SSE `error` 이벤트 */
@@ -216,4 +224,22 @@ export interface RunsResponse {
   nodes: NodeMetric[];
   runs: RunMetrics | null;
   source: string | null;
+}
+
+// ---- 계정·기록: backend/api/schemas.py와 같은 구조 ----
+
+export interface User {
+  id: string;
+  email: string;
+  display_name: string | null;
+}
+
+/** '내 일정' 목록의 한 줄 */
+export interface SessionListItem {
+  session_id: string;
+  title: string | null;
+  trip_days: number | null;
+  companions: string | null;
+  created_at: string;
+  updated_at: string;
 }

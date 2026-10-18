@@ -93,6 +93,7 @@ export default function PlannerPage({ view, onViewChange, chat }: Props) {
           chatRunning={chat.running}
           onChatToggle={() => setChatOpen((open) => !open)}
           onExport={handleExport}
+          onNew={chat.newSession}
           exporting={exporting}
         />
         {exportError && (

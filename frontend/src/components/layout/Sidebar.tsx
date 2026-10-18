@@ -1,4 +1,5 @@
 import { Luggage } from 'lucide-react';
+import AccountButton from './AccountButton';
 import { NAV_ITEMS, type NavKey } from './nav';
 
 interface Props {
@@ -30,6 +31,9 @@ export default function Sidebar({ active, onChange }: Props) {
           </button>
         ))}
       </nav>
+      <div className="mt-auto">
+        <AccountButton />
+      </div>
     </aside>
   );
 }

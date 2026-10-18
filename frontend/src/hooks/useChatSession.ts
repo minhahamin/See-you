@@ -1,7 +1,9 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { claimSession } from '../api/history';
+import { readLocalSettings } from '../api/settings';
 import { ApiError, createSession, getSession, streamMessage, type StreamHandlers } from '../api/sessions';
 import { mockItinerary, mockPlaces } from '../mocks';
-import type { AgentStep, ChatMessage, Itinerary, Place, StepEvent } from '../types';
+import type { AgentStep, AppliedSettings, ChatMessage, Itinerary, Place, SessionSummary, StepEvent } from '../types';
 
 export interface ChatSession {
   messages: ChatMessage[];
@@ -14,12 +16,19 @@ export interface ChatSession {
   awaiting: 'question' | 'feedback' | null;
   /** 서버 없이 보여 주는 예시 일정인지 */
   isDemo: boolean;
+  /** 지금 열려 있는 대화의 id (없으면 다음 메시지에서 새로 만든다) */
+  sessionId: string | null;
   send: (text: string) => void;
   loadDemo: () => void;
+  /** 기록에서 지난 대화를 연다. 실패하면 false */
+  openSession: (id: string) => Promise<boolean>;
+  /** 빈 상태에서 새 대화를 시작한다 */
+  newSession: () => void;
 }
 
 const SESSION_KEY = 'session:v1';
 const MAX_ISSUES_SHOWN = 5;
+const BUDGET_LABEL: Record<number, string> = { 1: '가성비', 2: '보통', 3: '여유롭게' };
 
 /** step 이벤트를 진행 단계 목록에 반영한다. running은 새 항목을 추가하고, done은 가장 최근의 같은 노드를 완료로 바꾼다. */
 export function applyStep(steps: AgentStep[], event: StepEvent): AgentStep[] {
@@ -41,9 +50,21 @@ export function applyStep(steps: AgentStep[], event: StepEvent): AgentStep[] {
   return steps.map((s, i) => (i === index ? done : s));
 }
 
-/** 일정이 나왔을 때 대화에 남길 안내 문구. 검증에서 남은 문제가 있으면 함께 알린다. */
-export function itineraryMessage(itinerary: Itinerary, issues: string[]): string {
+/** 설정에서 가져와 반영한 항목을 한 줄로 설명한다. 반영한 것이 없으면 null. */
+export function describeApplied(applied?: AppliedSettings): string | null {
+  if (!applied) return null;
+  const parts: string[] = [];
+  if (applied.companions) parts.push(`동행 ${applied.companions}`);
+  if (applied.budget) parts.push(`예산 ${BUDGET_LABEL[applied.budget] ?? applied.budget}`);
+  if (applied.preferences?.length) parts.push(`취향 ${applied.preferences.join(', ')}`);
+  return parts.length ? `저장된 설정을 반영했어요: ${parts.join(' · ')}` : null;
+}
+
+/** 일정이 나왔을 때 대화에 남길 안내 문구. 설정을 반영했으면 알리고, 검증에서 남은 문제가 있으면 함께 알린다. */
+export function itineraryMessage(itinerary: Itinerary, issues: string[], applied?: AppliedSettings): string {
   const lines = [`${itinerary.title} 일정을 만들었어요. 바꾸고 싶은 부분이 있으면 말해 주세요.`];
+  const appliedLine = describeApplied(applied);
+  if (appliedLine) lines.push(appliedLine);
   if (issues.length > 0) {
     lines.push('', `검증에서 아직 해결하지 못한 문제가 ${issues.length}건 있어요.`);
     lines.push(...issues.slice(0, MAX_ISSUES_SHOWN).map((m) => `- ${m}`));
@@ -71,8 +92,11 @@ function storeSessionId(id: string | null): void {
 
 const toPlaceMap = (places: Place[]): Record<string, Place> => Object.fromEntries(places.map((p) => [p.id, p]));
 
-/** 대화·진행 단계·일정 상태. 백엔드 세션(SSE)과 연결되며, 화면을 오가도 유지되도록 App에서 한 번만 만든다. */
-export function useChatSession(): ChatSession {
+/**
+ * 대화·진행 단계·일정 상태. 백엔드 세션(SSE)과 연결되며, 화면을 오가도 유지되도록 App에서 한 번만 만든다.
+ * userId가 바뀌면(로그인·로그아웃) 대화를 계정에 맞게 정리한다.
+ */
+export function useChatSession(userId: string | null, authReady: boolean): ChatSession {
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [steps, setSteps] = useState<AgentStep[]>([]);
   const [running, setRunning] = useState(false);
@@ -80,40 +104,75 @@ export function useChatSession(): ChatSession {
   const [places, setPlaces] = useState<Record<string, Place>>({});
   const [awaiting, setAwaiting] = useState<ChatSession['awaiting']>(null);
   const [isDemo, setIsDemo] = useState(false);
+  const [sessionId, setSessionId] = useState<string | null>(storedSessionId());
 
-  const sessionId = useRef<string | null>(storedSessionId());
+  const sessionRef = useRef<string | null>(sessionId);
   const runningRef = useRef(false);
   const demoRef = useRef(false);
   const counter = useRef(0);
+  const userIdRef = useRef(userId);
+  userIdRef.current = userId;
+
+  const changeSession = useCallback((id: string | null) => {
+    sessionRef.current = id;
+    setSessionId(id);
+    storeSessionId(id);
+  }, []);
 
   const addMessage = useCallback((role: ChatMessage['role'], text: string) => {
     counter.current += 1;
     setMessages((prev) => [...prev, { id: `${role[0]}${Date.now()}-${counter.current}`, role, text }]);
   }, []);
 
+  const applySummary = useCallback((summary: SessionSummary) => {
+    setMessages(summary.messages);
+    setItinerary(summary.itinerary);
+    setPlaces(toPlaceMap(summary.places));
+    setAwaiting(summary.awaiting);
+  }, []);
+
+  /** 화면의 대화 상태를 모두 비우고 세션을 놓는다 (서버의 대화는 지우지 않는다) */
+  const resetConversation = useCallback(() => {
+    demoRef.current = false;
+    setIsDemo(false);
+    setMessages([]);
+    setSteps([]);
+    setItinerary(null);
+    setPlaces({});
+    setAwaiting(null);
+    changeSession(null);
+  }, [changeSession]);
+
   // 새로고침해도 같은 세션이 이어지도록 서버에서 상태를 복원한다. 서버가 없거나 세션이 사라졌으면 조용히 새로 시작한다.
   useEffect(() => {
-    const id = sessionId.current;
+    const id = sessionRef.current;
     if (!id) return;
     let cancelled = false;
     getSession(id)
       .then((summary) => {
-        if (cancelled) return;
-        setMessages(summary.messages);
-        setItinerary(summary.itinerary);
-        setPlaces(toPlaceMap(summary.places));
-        setAwaiting(summary.awaiting);
+        if (!cancelled) applySummary(summary);
       })
       .catch((e: unknown) => {
-        if (e instanceof ApiError && e.status === 404) {
-          sessionId.current = null;
-          storeSessionId(null);
-        }
+        if (e instanceof ApiError && e.status === 404) changeSession(null);
       });
     return () => {
       cancelled = true;
     };
-  }, []);
+  }, [applySummary, changeSession]);
+
+  // 로그인 상태가 바뀌면: 로그인하면 지금 하던 게스트 대화를 계정으로 가져오고, 로그아웃하면 이전 계정의 내용을 화면에서 치운다
+  const previousUser = useRef<string | null | undefined>(undefined);
+  useEffect(() => {
+    if (!authReady) return;
+    const before = previousUser.current;
+    previousUser.current = userId;
+    if (before === undefined || before === userId) return; // 첫 확인이거나 변화 없음
+    if (before === null && userId !== null) {
+      if (sessionRef.current) void claimSession(sessionRef.current).catch(() => undefined);
+    } else {
+      resetConversation();
+    }
+  }, [userId, authReady, resetConversation]);
 
   const handlers: StreamHandlers = {
     onStep: (event) => setSteps((prev) => applyStep(prev, event)),
@@ -125,7 +184,7 @@ export function useChatSession(): ChatSession {
       setItinerary(event.itinerary);
       setPlaces(toPlaceMap(event.places));
       setAwaiting('feedback');
-      addMessage('assistant', itineraryMessage(event.itinerary, event.issues));
+      addMessage('assistant', itineraryMessage(event.itinerary, event.issues, event.applied_settings));
     },
     onError: (message) => addMessage('assistant', `오류: ${message}`),
   };
@@ -149,17 +208,15 @@ export function useChatSession(): ChatSession {
       const run = async (): Promise<void> => {
         for (let attempt = 0; attempt < 2; attempt += 1) {
           try {
-            if (!sessionId.current) {
-              sessionId.current = await createSession();
-              storeSessionId(sessionId.current);
-            }
-            await streamMessage(sessionId.current, text, handlers);
+            if (!sessionRef.current) changeSession(await createSession());
+            // 로그인하지 않았으면 이 브라우저의 설정을 함께 보낸다. 로그인했으면 서버가 계정 설정을 쓴다.
+            const guestSettings = userIdRef.current ? undefined : readLocalSettings();
+            await streamMessage(sessionRef.current as string, text, handlers, undefined, guestSettings);
             return;
           } catch (e) {
-            // 서버가 재시작돼 세션이 사라졌으면 새 세션으로 한 번 더 시도한다
+            // 세션이 사라졌거나(서버 정리) 접근할 수 없으면 새 세션으로 한 번 더 시도한다
             if (e instanceof ApiError && e.status === 404 && attempt === 0) {
-              sessionId.current = null;
-              storeSessionId(null);
+              changeSession(null);
               continue;
             }
             addMessage('assistant', `오류: ${e instanceof Error ? e.message : '알 수 없는 오류가 발생했어요.'}`);
@@ -173,7 +230,7 @@ export function useChatSession(): ChatSession {
       });
     },
     // handlers는 매 렌더에 새로 만들어지지만 setter와 addMessage만 쓰므로 send를 다시 만들 필요가 없다
-    [addMessage],
+    [addMessage, changeSession],
   );
 
   const loadDemo = useCallback(() => {
@@ -184,5 +241,34 @@ export function useChatSession(): ChatSession {
     setAwaiting(null);
   }, []);
 
-  return { messages, steps, running, itinerary, places, awaiting, isDemo, send, loadDemo };
+  const openSession = useCallback(
+    async (id: string): Promise<boolean> => {
+      if (runningRef.current) return false;
+      try {
+        const summary = await getSession(id);
+        resetConversation();
+        changeSession(id);
+        applySummary(summary);
+        return true;
+      } catch {
+        return false;
+      }
+    },
+    [applySummary, changeSession, resetConversation],
+  );
+
+  return {
+    messages,
+    steps,
+    running,
+    itinerary,
+    places,
+    awaiting,
+    isDemo,
+    sessionId,
+    send,
+    loadDemo,
+    openSession,
+    newSession: resetConversation,
+  };
 }

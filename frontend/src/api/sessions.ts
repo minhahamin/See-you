@@ -5,6 +5,7 @@ import type {
   QuestionEvent,
   SessionSummary,
   StepEvent,
+  UserSettings,
 } from '../types';
 import { API_BASE, ApiError, NETWORK_ERROR_MESSAGE, errorDetail, request } from './client';
 import { readSse, type SseMessage } from './sse';
@@ -62,13 +63,15 @@ export async function streamMessage(
   text: string,
   handlers: StreamHandlers,
   signal?: AbortSignal,
+  guestSettings?: UserSettings,
 ): Promise<void> {
   let res: Response;
   try {
     res = await fetch(`${API_BASE}/api/sessions/${sessionId}/messages`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ text }),
+      // 로그인하지 않은 사용자는 브라우저에 저장된 설정을 실어 보낸다 (로그인했으면 서버가 계정 설정을 쓴다)
+      body: JSON.stringify({ text, settings: guestSettings ?? null }),
       signal,
     });
   } catch (e) {
