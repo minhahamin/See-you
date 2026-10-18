@@ -14,6 +14,7 @@ LLM_TARGETS = [
     "agent.review_tools.structured_call",
     "agent.planning.structured_call",
     "agent.nodes.apply_feedback.structured_call",
+    "eval.faithfulness.structured_call",
 ]
 SEARCH_TARGETS = ["agent.nodes.search_places.hybrid_search", "agent.nodes.apply_feedback.hybrid_search"]
 
@@ -109,3 +110,13 @@ def no_real_weather_calls(monkeypatch: pytest.MonkeyPatch) -> None:
         raise WeatherUnavailable("테스트에서는 외부 호출을 하지 않습니다")
 
     monkeypatch.setattr("tools.weather._fetch_items", blocked)
+
+
+@pytest.fixture(autouse=True)
+def no_real_llm_calls(monkeypatch: pytest.MonkeyPatch) -> None:
+    """테스트가 실제 LLM을 호출하지 못하게 막는다. 가짜(fake_llm)를 등록하지 않은 호출은 여기서 실패한다."""
+
+    def blocked(*args: Any, **kwargs: Any) -> Any:
+        raise AssertionError("테스트에서 실제 LLM을 호출했습니다. fake_llm으로 대체하세요.")
+
+    monkeypatch.setattr("llm.get_chat_model", blocked)

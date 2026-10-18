@@ -76,13 +76,13 @@ def _itinerary(visits: list[Visit], weather: Weather | None = None) -> Itinerary
     return Itinerary(title="t", region="제주", companions="커플", days=[DayPlan(day=1, date="2026-11-14", weather=weather, visits=visits)])
 
 
-def test_validate_generated_plan_only_flags_travel(fake_llm) -> None:
-    """테스트용 계획은 장소를 지리적으로 묶지 않으므로 이동 과다 외의 문제(근거·영업시간·중복)는 없어야 한다."""
+def test_validate_generated_plan_only_flags_travel_and_hours(fake_llm) -> None:
+    """테스트용 계획은 장소를 지리적으로 묶지도 영업시간을 보지도 않으므로, 이동 과다와 영업시간 외의 문제(근거·중복·식사)는 없어야 한다."""
     fake_llm[LLMPlan] = plan_from_prompt
     state = _state(days=1)
     state["itinerary"] = build_itinerary(state)["itinerary"]
     out = validate_itinerary(state)
-    assert all("이동이 과합니다" in i for i in out["validation_issues"])
+    assert all(("이동이 과합니다" in i) or ("영업시간" in i) for i in out["validation_issues"])
     v = out["itinerary"].validation
     assert v.total > 0 and v.passed == v.total - len(out["validation_issues"])
 

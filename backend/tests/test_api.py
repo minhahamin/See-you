@@ -146,3 +146,58 @@ def test_classify_issue() -> None:
     assert classify_issue("2일차 X: 예산(가격대)을 넘습니다.") == "예산 초과"
     assert classify_issue("3일차에 관광지가 없습니다. 관광지를 1곳 이상 넣으세요.") == "관광지 누락"
     assert classify_issue("알 수 없는 문장") == "기타"
+
+
+def test_serves_built_frontend_without_hiding_api(wired, tmp_path, monkeypatch) -> None:
+    """빌드된 프론트(dist)가 있으면 /에서 서빙하고, /api 라우트는 그대로 동작한다. 없으면 / 는 404."""
+    from api import main as api_main
+
+    dist = tmp_path / "dist"
+    dist.mkdir()
+    (dist / "index.html").write_text("<html><body>seeyou-app</body></html>", encoding="utf-8")
+    real = api_main.get_settings()
+    monkeypatch.setattr(
+        api_main, "get_settings",
+        lambda: SimpleNamespace(cors_origins=real.cors_origins, runs_log_path=tmp_path / "r.jsonl", frontend_dist=dist),
+    )
+    graph = build_graph(make_checkpointer())
+    with TestClient(create_app(graph=graph, store=MetricsStore())) as c:
+        assert "seeyou-app" in c.get("/").text
+        assert c.get("/api/health").json() == {"status": "ok"}
+
+    monkeypatch.setattr(
+        api_main, "get_settings",
+        lambda: SimpleNamespace(cors_origins=real.cors_origins, runs_log_path=tmp_path / "r.jsonl", frontend_dist=tmp_path / "missing"),
+    )
+    with TestClient(create_app(graph=graph, store=MetricsStore())) as c:
+        assert c.get("/").status_code == 404
+        assert c.get("/api/health").status_code == 200
+
+
+def test_experiments_merge_itinerary_summary(tmp_path, monkeypatch) -> None:
+    """일정 평가 결과가 있으면 v3 행에는 루프 없음, v5 행에는 루프 적용 지표가 붙고 v5 검색 지표는 v3와 같다."""
+    from api import metrics as M
+
+    summary_rows = [
+        "date,version,embedding_model,n_trait,recall@5_trait,mrr_trait,n_keyword,recall@5_keyword,mrr_keyword,n_all,recall@5_all,mrr_all",
+        "2026-10-19,v1,m,19,0.5,0.7,18,0.9,0.9,37,0.7,0.8",
+        "2026-10-19,v3,m,19,0.9,0.9,18,0.9,0.9,37,0.9,0.95",
+    ]
+    itinerary_rows = [
+        "date,config,model,n,violation_itinerary_rate,violation_check_rate,faithfulness",
+        "2026-10-19,no_loop,m,10,0.9,0.12,0.8",
+        "2026-10-19,loop,m,10,0.5,0.04,0.85",
+    ]
+    (tmp_path / "summary.csv").write_text("\n".join(summary_rows) + "\n", encoding="utf-8-sig")
+    (tmp_path / "itinerary_summary.csv").write_text("\n".join(itinerary_rows) + "\n", encoding="utf-8-sig")
+    monkeypatch.setattr(M, "get_settings", lambda: SimpleNamespace(eval_results_dir=tmp_path))
+    results, source = M.load_experiments()
+    by = {r.version: r for r in results}
+    assert [r.version for r in results] == ["v1", "v3", "v5"]
+    assert (by["v3"].violation_rate, by["v3"].faithfulness) == (0.12, 0.8)
+    assert (by["v5"].violation_rate, by["v5"].faithfulness) == (0.04, 0.85)
+    assert (by["v5"].recall_at_5, by["v5"].mrr) == (by["v3"].recall_at_5, by["v3"].mrr)
+    assert by["v1"].violation_rate is None and source.endswith("itinerary_summary.csv")
+
+    (tmp_path / "itinerary_summary.csv").unlink()  # 일정 평가가 없으면 v5 행도 만들지 않는다
+    assert [r.version for r in M.load_experiments()[0]] == ["v1", "v3"]
