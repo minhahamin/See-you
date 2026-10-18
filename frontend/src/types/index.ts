@@ -3,6 +3,8 @@
 export type Category = 'sight' | 'food' | 'cafe' | 'stay' | 'activity';
 export type AuthorType = '가족' | '커플' | '혼자' | '친구';
 export type WeatherCondition = 'sunny' | 'cloudy' | 'rain';
+/** 하루 중 방문의 역할. 일정 재배치에 쓰이며 화면에는 쓰지 않는다 */
+export type Slot = 'morning' | 'lunch' | 'afternoon' | 'cafe' | 'dinner' | 'stay';
 
 export interface Place {
   id: string;
@@ -46,13 +48,15 @@ export interface Visit {
   evidence_review_ids: string[];
   /** 피드백으로 바뀐 블록 */
   changed: boolean;
+  slot?: Slot | null;
 }
 
 export interface DayPlan {
   day: number;
   /** "YYYY-MM-DD" */
   date: string;
-  weather: Weather;
+  /** 날씨를 가져올 수 없으면 null */
+  weather: Weather | null;
   visits: Visit[];
 }
 
@@ -128,7 +132,8 @@ export interface NodeMetric {
 export interface RecentRun {
   run_id: string;
   response_sec: number;
-  cost_usd: number;
+  /** 토큰 단가가 설정되지 않으면 null */
+  cost_usd: number | null;
 }
 
 export interface FailureReason {
@@ -152,4 +157,61 @@ export interface MetricsSnapshot {
   sources: { experiments: string | null; nodes: string | null; runs: string | null };
   /** 화면 개발용 샘플이면 true */
   is_sample: boolean;
+}
+
+// ---- API 응답: backend/api/schemas.py와 같은 구조 ----
+
+export interface PlaceDetail {
+  place: Place;
+  reviews: Review[];
+  /** "후기는 합성 데이터입니다." */
+  disclaimer: string;
+}
+
+/** SSE `step` 이벤트 */
+export interface StepEvent {
+  node: string;
+  label: string;
+  status: 'running' | 'done';
+  duration_ms: number | null;
+  tokens: number | null;
+}
+
+/** SSE `question` 이벤트 */
+export interface QuestionEvent {
+  question: string;
+  missing_fields: string[];
+}
+
+/** SSE `itinerary` 이벤트: 일정에 등장하는 장소 목록을 함께 준다 */
+export interface ItineraryEvent {
+  itinerary: Itinerary;
+  places: Place[];
+  /** 검증을 통과하지 못한 항목 설명 */
+  issues: string[];
+}
+
+/** SSE `error` 이벤트 */
+export interface ErrorEvent {
+  message: string;
+}
+
+export interface SessionSummary {
+  session_id: string;
+  messages: ChatMessage[];
+  itinerary: Itinerary | null;
+  places: Place[];
+  /** 사용자 응답을 기다리는 중이면 어떤 응답인지 */
+  awaiting: 'question' | 'feedback' | null;
+}
+
+export interface ExperimentsResponse {
+  experiments: ExperimentResult[];
+  source: string | null;
+}
+
+export interface RunsResponse {
+  nodes: NodeMetric[];
+  runs: RunMetrics | null;
+  source: string | null;
 }

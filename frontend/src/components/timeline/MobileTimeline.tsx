@@ -16,8 +16,8 @@ interface Props {
 export default function MobileTimeline({ itinerary, places, selection, onSelect }: Props) {
   const [dayNo, setDayNo] = useState(selection.day);
   const day = itinerary.days.find((d) => d.day === dayNo) ?? itinerary.days[0];
-  const weather = WEATHER_META[day.weather.condition];
-  const WeatherIcon = weather.icon;
+  const forecast = day.weather;
+  const weather = forecast ? WEATHER_META[forecast.condition] : null;
 
   return (
     <div className="flex flex-col gap-4">
@@ -39,13 +39,19 @@ export default function MobileTimeline({ itinerary, places, selection, onSelect 
       </div>
 
       <div
-        className={`flex flex-col gap-2 rounded-3xl p-4 ${day.weather.condition === 'rain' ? 'bg-rain' : 'bg-surface'}`}
+        className={`flex flex-col gap-2 rounded-3xl p-4 ${forecast?.condition === 'rain' ? 'bg-rain' : 'bg-surface'}`}
       >
         <p className="flex items-center gap-2 text-sm text-text-sub">
           {formatDate(day.date)}
           <span className="flex items-center gap-1 font-medium text-text-main">
-            <WeatherIcon size={14} className={weather.color} />
-            {day.weather.temp_max}° / {day.weather.temp_min}°
+            {forecast && weather ? (
+              <>
+                <weather.icon size={14} className={weather.color} />
+                {forecast.temp_max}° / {forecast.temp_min}°
+              </>
+            ) : (
+              <span className="text-text-sub">날씨 정보 없음</span>
+            )}
           </span>
         </p>
 

@@ -21,9 +21,9 @@ interface Props {
 
 /** 타임라인의 한 행 = 여행 하루 */
 export default function DayRow({ day, places, selection, onSelect }: Props) {
-  const weather = WEATHER_META[day.weather.condition];
-  const WeatherIcon = weather.icon;
-  const rainy = day.weather.condition === 'rain';
+  const forecast = day.weather;
+  const weather = forecast ? WEATHER_META[forecast.condition] : null;
+  const rainy = forecast?.condition === 'rain';
 
   return (
     <div className={`flex rounded-3xl ${rainy ? 'bg-rain' : 'bg-row'}`}>
@@ -34,8 +34,14 @@ export default function DayRow({ day, places, selection, onSelect }: Props) {
         <span className="text-lg font-bold">{day.day}일차</span>
         <span className="text-xs text-text-sub">{formatDate(day.date)}</span>
         <span className="flex items-center gap-1.5 text-xs font-medium">
-          <WeatherIcon size={14} className={weather.color} aria-label={weather.label} />
-          {day.weather.temp_max}° / {day.weather.temp_min}°
+          {forecast && weather ? (
+            <>
+              <weather.icon size={14} className={weather.color} aria-label={weather.label} />
+              {forecast.temp_max}° / {forecast.temp_min}°
+            </>
+          ) : (
+            <span className="text-text-sub">날씨 정보 없음</span>
+          )}
         </span>
       </div>
 

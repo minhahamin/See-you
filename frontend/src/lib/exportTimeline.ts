@@ -142,12 +142,13 @@ async function drawDay(
 ): Promise<void> {
   const rowW = ROW_HEADER_W + TRACK_W;
   const trackX = x0 + ROW_HEADER_W;
-  const weather = WEATHER_META[day.weather.condition];
+  const forecast = day.weather;
+  const weather = forecast ? WEATHER_META[forecast.condition] : null;
 
   // 행 배경 + 30분 단위 세로선
   ctx.save();
   roundRectPath(ctx, x0, rowY, rowW, ROW_H, 24);
-  ctx.fillStyle = day.weather.condition === 'rain' ? C.rain : C.row;
+  ctx.fillStyle = forecast?.condition === 'rain' ? C.rain : C.row;
   ctx.fill();
   ctx.clip();
   ctx.strokeStyle = C.grid;
@@ -170,10 +171,16 @@ async function drawDay(
   ctx.fillStyle = C.sub;
   ctx.font = `400 12px ${FONT}`;
   ctx.fillText(formatDate(day.date), x0 + 20, rowY + 60);
-  ctx.drawImage(await loadIcon(weather.icon, weather.hex, 14, SCALE), x0 + 20, rowY + 70, 14, 14);
-  ctx.fillStyle = C.main;
-  ctx.font = `500 12px ${FONT}`;
-  ctx.fillText(`${day.weather.temp_max}° / ${day.weather.temp_min}°`, x0 + 40, rowY + 82);
+  if (forecast && weather) {
+    ctx.drawImage(await loadIcon(weather.icon, weather.hex, 14, SCALE), x0 + 20, rowY + 70, 14, 14);
+    ctx.fillStyle = C.main;
+    ctx.font = `500 12px ${FONT}`;
+    ctx.fillText(`${forecast.temp_max}° / ${forecast.temp_min}°`, x0 + 40, rowY + 82);
+  } else {
+    ctx.fillStyle = C.sub;
+    ctx.font = `400 12px ${FONT}`;
+    ctx.fillText('날씨 정보 없음', x0 + 20, rowY + 82);
+  }
 
   for (let i = 0; i < day.visits.length; i += 1) {
     const visit = day.visits[i];
