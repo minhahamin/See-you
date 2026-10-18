@@ -1,8 +1,10 @@
 """TourAPI(KorService2)에서 제주 장소를 가져와 data/places.json을 만든다."""
+import argparse
 import json
 import logging
 import re
 import time
+from dataclasses import dataclass
 from typing import Any
 from urllib.parse import unquote
 
@@ -17,15 +19,29 @@ BASE_URL = "https://apis.data.go.kr/B551011/KorService2/"
 JEJU_REGION_CODE = "50"  # ldongCode2 조회 결과: 제주특별자치도
 CAFE_CLS1, CAFE_CLS2 = "FD", "FD05"  # lclsSystmCode2 조회 결과: 음식 > 카페/찻집
 
-# 카테고리별 (contentTypeId, 목표 개수). 카페는 음식점(39) 중 분류체계 FD05.
-PLAN: dict[Category, tuple[str, int]] = {
-    "관광지": ("12", 12),
-    "음식점": ("39", 8),
-    "카페": ("39", 5),
-    "숙소": ("32", 5),
-}
+@dataclass(frozen=True)
+class PlanItem:
+    """수집 계획 한 줄: 어떤 콘텐츠타입에서 몇 곳을 어떤 분류로 담을지."""
+
+    label: str
+    category: Category
+    content_type: str
+    target: int
+    title_keywords: tuple[str, ...] = ()  # 비어 있지 않으면 제목에 이 중 하나가 들어간 곳만 고른다
+
+
+# 카페는 음식점(39) 중 분류체계 FD05. 문화시설(14)은 비 오는 날 갈 실내 관광지를 늘리려고 추가했고,
+# 박물관·미술관·뮤지엄·아쿠아리움 계열만 '관광지' 분류로 담는다 (도서관·공연장 등은 제외).
+PLAN: list[PlanItem] = [
+    PlanItem("관광지", "관광지", "12", 12),
+    PlanItem("음식점", "음식점", "39", 8),
+    PlanItem("카페", "카페", "39", 5),
+    PlanItem("숙소", "숙소", "32", 5),
+    PlanItem("문화시설", "관광지", "14", 10, ("박물관", "미술관", "뮤지엄", "아쿠아")),
+]
+INDOOR_CULTURE_LABEL = "문화시설"
 # detailIntro2에서 영업시간으로 쓰는 필드 (타입별로 다름). 숙박은 해당 필드가 없어 None.
-OPEN_FIELD: dict[str, str] = {"12": "usetime", "39": "opentimefood"}
+OPEN_FIELD: dict[str, str] = {"12": "usetime", "14": "usetimeculture", "39": "opentimefood"}
 
 MIN_OVERVIEW_LEN = 40
 CANDIDATES_PER_CATEGORY = 60
@@ -78,21 +94,22 @@ class TourApiClient:
         return items["item"]
 
 
-def fetch_candidates(client: TourApiClient, category: Category) -> list[dict[str, Any]]:
-    """카테고리의 후보 목록(지역기반 조회)을 가져온다. 대표 이미지가 있는 것을 우선한다."""
-    content_type, _ = PLAN[category]
+def fetch_candidates(client: TourApiClient, item: PlanItem) -> list[dict[str, Any]]:
+    """계획 한 줄의 후보 목록(지역기반 조회)을 가져온다. 대표 이미지가 있는 것을 우선한다."""
     params: dict[str, Any] = {
         "numOfRows": CANDIDATES_PER_CATEGORY,
         "pageNo": 1,
         "arrange": "Q",  # 수정일순, 대표 이미지가 있는 것만
-        "contentTypeId": content_type,
+        "contentTypeId": item.content_type,
         "lDongRegnCd": JEJU_REGION_CODE,
     }
-    if category == "카페":
+    if item.category == "카페":
         params.update(lclsSystm1=CAFE_CLS1, lclsSystm2=CAFE_CLS2)
     items = client.call("areaBasedList2", **params)
-    if category == "음식점":  # 카페는 별도 카테고리이므로 제외
+    if item.category == "음식점":  # 카페는 별도 카테고리이므로 제외
         items = [it for it in items if it.get("lclsSystm2") != CAFE_CLS2]
+    if item.title_keywords:
+        items = [it for it in items if any(k in it["title"] for k in item.title_keywords)]
     return items
 
 
@@ -126,45 +143,54 @@ def build_place(
     )
 
 
-def fetch_places() -> list[Place]:
-    """PLAN에 따라 카테고리별로 장소를 수집한다."""
+def fetch_places(only: set[str] | None = None, skip_ids: set[str] = frozenset()) -> list[Place]:  # type: ignore[assignment]
+    """PLAN에 따라 장소를 수집한다. only로 계획 이름을 제한하고, skip_ids에 있는 장소는 건너뛴다."""
     client = TourApiClient()
     raw_dump: dict[str, list[dict[str, Any]]] = {}
     places: list[Place] = []
-    for category, (_, target) in PLAN.items():
-        candidates = fetch_candidates(client, category)
-        raw_dump[category] = candidates
+    for plan in PLAN:
+        if only and plan.label not in only:
+            continue
+        candidates = fetch_candidates(client, plan)
+        raw_dump[plan.label] = candidates
         picked = 0
         for item in candidates:
-            if picked >= target:
+            if picked >= plan.target:
                 break
-            if not item.get("mapx") or not item.get("mapy"):
+            if item["contentid"] in skip_ids or not item.get("mapx") or not item.get("mapy"):
                 continue
-            place = build_place(client, category, item)
+            place = build_place(client, plan.category, item)
             if place:
                 places.append(place)
                 picked += 1
-        logger.info("%s: 후보 %d개 중 %d/%d개 선정", category, len(candidates), picked, target)
-    settings = get_settings()
-    raw_dir = settings.data_dir / "raw"
+        logger.info("%s: 후보 %d개 중 %d/%d개 선정", plan.label, len(candidates), picked, plan.target)
+    raw_dir = get_settings().data_dir / "raw"
     raw_dir.mkdir(parents=True, exist_ok=True)
-    (raw_dir / "places_raw.json").write_text(
-        json.dumps(raw_dump, ensure_ascii=False, indent=2), encoding="utf-8"
-    )
+    suffix = "_" + "_".join(sorted(only)) if only else ""
+    (raw_dir / f"places_raw{suffix}.json").write_text(json.dumps(raw_dump, ensure_ascii=False, indent=2), encoding="utf-8")
     return places
 
 
 def main() -> None:
-    """장소를 수집해 data/places.json으로 저장한다."""
+    """장소를 수집해 data/places.json으로 저장한다.
+
+    기본은 전체 수집. `--only 문화시설`처럼 계획 이름을 주면 그 계획만 수집해 기존 파일에 덧붙이고,
+    이미 있는 장소(id)는 그대로 둔다 (기존 특성·후기와 id가 어긋나지 않게 한다).
+    """
     setup_logging()
-    places = fetch_places()
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--only", nargs="+", choices=[p.label for p in PLAN], help="이 계획만 수집해 기존 파일에 추가")
+    args = parser.parse_args()
+
     out = get_settings().data_dir / "places.json"
+    existing: list[Place] = []
+    if args.only and out.exists():
+        existing = [Place(**p) for p in json.loads(out.read_text(encoding="utf-8"))]
+    fetched = fetch_places(set(args.only) if args.only else None, {p.id for p in existing})
+    places = [*existing, *fetched]
     out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(
-        json.dumps([p.model_dump() for p in places], ensure_ascii=False, indent=2),
-        encoding="utf-8",
-    )
-    logger.info("총 %d곳 저장: %s", len(places), out)
+    out.write_text(json.dumps([p.model_dump() for p in places], ensure_ascii=False, indent=2), encoding="utf-8")
+    logger.info("총 %d곳 저장 (이번에 추가 %d곳): %s", len(places), len(fetched), out)
 
 
 if __name__ == "__main__":
