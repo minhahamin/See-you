@@ -13,6 +13,30 @@ COMPANION_PHRASE = {"가족": "가족과", "커플": "연인과", "친구": "친
 CATEGORY_PHRASE = {"관광지": "가기 좋은 관광지", "음식점": "가기 좋은 음식점", "카페": "가기 좋은 카페", "숙소": "묵기 좋은 숙소"}
 
 
+# 키워드형 질문: (질문, 정답 판정 키워드). 정답은 장소 소개문·특성(장단점)에 키워드가 있는 장소다.
+# 후기 본문은 합성 후기에 지어낸 내용이 섞일 수 있어 정답 판정에서 제외한다.
+KEYWORD_QUERIES: list[tuple[str, str]] = [
+    ("전복돌솥밥 먹을 수 있는 식당", "전복돌솥밥"),
+    ("알파카 만날 수 있는 곳", "알파카"),
+    ("안도 다다오 건축물", "안도 다다오"),
+    ("멜조림 맛집", "멜조림"),
+    ("계곡 옆에서 먹는 백숙", "백숙"),
+    ("일본군 어뢰정 동굴", "어뢰"),
+    ("귤 따기 체험", "귤"),
+    ("흑돼지 맛집", "흑돼지"),
+    ("올레길 걷기 좋은 곳", "올레"),
+    ("물놀이 할 수 있는 곳", "물놀이"),
+    ("일출 보기 좋은 곳", "일출"),
+    ("오름 근처 가볼 만한 곳", "오름"),
+    ("독채로 묵을 수 있는 숙소", "독채"),
+    ("현무암 돌담이 있는 감성 공간", "돌담"),
+    ("베이커리로 유명한 곳", "베이커리"),
+    ("한라산이 보이는 곳", "한라산"),
+    ("노을 명소", "노을"),
+    ("고등어구이 식당", "고등어구이"),
+]
+
+
 def load_pairs() -> list[tuple[Place, PlaceTraits]]:
     """장소와 특성을 짝지어 읽는다."""
     d = get_settings().data_dir
@@ -22,11 +46,17 @@ def load_pairs() -> list[tuple[Place, PlaceTraits]]:
 
 
 def make_question(
-    qid: str, qtype: str, text: str, pairs: list[tuple[Place, PlaceTraits]], cond: Any, filters: dict[str, Any]
+    qid: str,
+    qtype: str,
+    text: str,
+    pairs: list[tuple[Place, PlaceTraits]],
+    cond: Any,
+    filters: dict[str, Any],
+    min_relevant: int = MIN_RELEVANT,
 ) -> dict[str, Any] | None:
     """조건에 맞는 장소를 정답으로 하는 질문을 만든다. 정답 수가 범위를 벗어나면 None."""
     relevant = [p.id for p, t in pairs if cond(p, t)]
-    if not MIN_RELEVANT <= len(relevant) <= MAX_RELEVANT:
+    if not min_relevant <= len(relevant) <= MAX_RELEVANT:
         return None
     return {"id": qid, "type": qtype, "question": text, "relevant_place_ids": relevant, "filters": filters}
 
@@ -66,6 +96,14 @@ def build_testset() -> list[dict[str, Any]]:
         out.append(make_question(
             f"pricey-{cat}", "price", f"가격대가 높은 고급스러운 {cat}", pairs,
             lambda p, t, k=cat: p.category == k and t.price_level == 3, {"category": cat},
+        ))
+
+    for i, (text, keyword) in enumerate(KEYWORD_QUERIES):
+        out.append(make_question(
+            f"keyword-{i:02d}-{keyword}", "keyword", text, pairs,
+            lambda p, t, k=keyword: k in p.description or any(k in x for x in t.pros + t.cons),
+            {},
+            min_relevant=1,
         ))
 
     return [q for q in out if q]

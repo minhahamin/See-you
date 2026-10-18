@@ -353,5 +353,182 @@
     "filters": {
       "category": "음식점"
     }
+  },
+  {
+    "id": "keyword-00-전복돌솥밥",
+    "type": "keyword",
+    "question": "전복돌솥밥 먹을 수 있는 식당",
+    "relevant_place_ids": [
+      "2678751",
+      "2781324"
+    ],
+    "filters": {}
+  },
+  {
+    "id": "keyword-01-알파카",
+    "type": "keyword",
+    "question": "알파카 만날 수 있는 곳",
+    "relevant_place_ids": [
+      "2751854",
+      "2742344"
+    ],
+    "filters": {}
+  },
+  {
+    "id": "keyword-02-안도 다다오",
+    "type": "keyword",
+    "question": "안도 다다오 건축물",
+    "relevant_place_ids": [
+      "2778809"
+    ],
+    "filters": {}
+  },
+  {
+    "id": "keyword-03-멜조림",
+    "type": "keyword",
+    "question": "멜조림 맛집",
+    "relevant_place_ids": [
+      "2678768"
+    ],
+    "filters": {}
+  },
+  {
+    "id": "keyword-04-백숙",
+    "type": "keyword",
+    "question": "계곡 옆에서 먹는 백숙",
+    "relevant_place_ids": [
+      "3071744"
+    ],
+    "filters": {}
+  },
+  {
+    "id": "keyword-05-어뢰",
+    "type": "keyword",
+    "question": "일본군 어뢰정 동굴",
+    "relevant_place_ids": [
+      "2767778"
+    ],
+    "filters": {}
+  },
+  {
+    "id": "keyword-06-귤",
+    "type": "keyword",
+    "question": "귤 따기 체험",
+    "relevant_place_ids": [
+      "2723689",
+      "2704242",
+      "2753082",
+      "3027466"
+    ],
+    "filters": {}
+  },
+  {
+    "id": "keyword-07-흑돼지",
+    "type": "keyword",
+    "question": "흑돼지 맛집",
+    "relevant_place_ids": [
+      "404165"
+    ],
+    "filters": {}
+  },
+  {
+    "id": "keyword-08-올레",
+    "type": "keyword",
+    "question": "올레길 걷기 좋은 곳",
+    "relevant_place_ids": [
+      "3071744",
+      "2781401",
+      "1348840"
+    ],
+    "filters": {}
+  },
+  {
+    "id": "keyword-09-물놀이",
+    "type": "keyword",
+    "question": "물놀이 할 수 있는 곳",
+    "relevant_place_ids": [
+      "3071744",
+      "2781401"
+    ],
+    "filters": {}
+  },
+  {
+    "id": "keyword-10-일출",
+    "type": "keyword",
+    "question": "일출 보기 좋은 곳",
+    "relevant_place_ids": [
+      "134980",
+      "2021434"
+    ],
+    "filters": {}
+  },
+  {
+    "id": "keyword-11-오름",
+    "type": "keyword",
+    "question": "오름 근처 가볼 만한 곳",
+    "relevant_place_ids": [
+      "2742344",
+      "3027466",
+      "1869305"
+    ],
+    "filters": {}
+  },
+  {
+    "id": "keyword-12-독채",
+    "type": "keyword",
+    "question": "독채로 묵을 수 있는 숙소",
+    "relevant_place_ids": [
+      "1869305",
+      "2358196"
+    ],
+    "filters": {}
+  },
+  {
+    "id": "keyword-13-돌담",
+    "type": "keyword",
+    "question": "현무암 돌담이 있는 감성 공간",
+    "relevant_place_ids": [
+      "4128339",
+      "2358196"
+    ],
+    "filters": {}
+  },
+  {
+    "id": "keyword-14-베이커리",
+    "type": "keyword",
+    "question": "베이커리로 유명한 곳",
+    "relevant_place_ids": [
+      "2778809",
+      "2831920"
+    ],
+    "filters": {}
+  },
+  {
+    "id": "keyword-15-한라산",
+    "type": "keyword",
+    "question": "한라산이 보이는 곳",
+    "relevant_place_ids": [
+      "2723689",
+      "1348840"
+    ],
+    "filters": {}
+  },
+  {
+    "id": "keyword-16-노을",
+    "type": "keyword",
+    "question": "노을 명소",
+    "relevant_place_ids": [
+      "2778809"
+    ],
+    "filters": {}
+  },
+  {
+    "id": "keyword-17-고등어구이",
+    "type": "keyword",
+    "question": "고등어구이 식당",
+    "relevant_place_ids": [
+      "2678751"
+    ],
+    "filters": {}
   }
 ]
