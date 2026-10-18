@@ -10,7 +10,7 @@ from langchain_core.messages import HumanMessage, SystemMessage
 from agent.prompts import REVIEWS_SYSTEM, REVIEWS_USER
 from config import get_settings, setup_logging
 from ingest.generate_traits import load_places
-from llm import get_chat_model
+from llm import get_chat_model, is_daily_quota_error
 from models import GeneratedReviews, Place, PlaceTraits, Review
 
 logger = logging.getLogger(__name__)
@@ -54,7 +54,7 @@ def generate_reviews_for(place: Place, traits: PlaceTraits, count: int) -> list[
             break
         except Exception as exc:
             logger.warning("%s 생성 실패(%d/%d): %s", place.name, attempt, MAX_ATTEMPTS, type(exc).__name__)
-            if attempt == MAX_ATTEMPTS:
+            if attempt == MAX_ATTEMPTS or is_daily_quota_error(exc):
                 raise
             time.sleep(BACKOFF_SEC * attempt)
 

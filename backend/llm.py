@@ -20,6 +20,11 @@ def _provider() -> str:
     return provider
 
 
+def is_daily_quota_error(exc: Exception) -> bool:
+    """일일 호출 한도 초과 오류인지 판별한다. 재시도해도 의미가 없다."""
+    return "PerDay" in str(exc)
+
+
 def get_chat_model(temperature: float = 0.0) -> BaseChatModel:
     """설정된 프로바이더의 채팅 모델을 생성한다."""
     settings = get_settings()
