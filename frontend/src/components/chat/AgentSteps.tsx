@@ -1,0 +1,23 @@
+import { Check, Circle, Loader2 } from 'lucide-react';
+import type { AgentStep } from '../../types';
+
+/** 에이전트(LangGraph 노드)별 진행 단계 */
+export default function AgentSteps({ steps }: { steps: AgentStep[] }) {
+  return (
+    <ol className="flex flex-col gap-2 rounded-2xl bg-bg/70 p-4">
+      {steps.map((step) => (
+        <li key={step.node} className="flex items-center gap-3 text-sm">
+          <span className="grid size-5 shrink-0 place-items-center">
+            {step.status === 'done' && <Check size={16} className="text-primary-ink" />}
+            {step.status === 'running' && <Loader2 size={16} className="animate-spin text-primary" />}
+            {step.status === 'pending' && <Circle size={10} className="text-text-sub/60" />}
+          </span>
+          <span className={step.status === 'pending' ? 'text-text-sub' : 'font-medium'}>{step.label}</span>
+          <span className="ml-auto font-mono text-[11px] text-text-sub">
+            {step.duration_ms !== null ? `${(step.duration_ms / 1000).toFixed(1)}s` : ''}
+          </span>
+        </li>
+      ))}
+    </ol>
+  );
+}
