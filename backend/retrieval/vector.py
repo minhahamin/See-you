@@ -6,7 +6,7 @@ import chromadb
 
 from config import get_settings
 from ingest.build_index import COLLECTION_NAME
-from llm import get_embeddings
+from llm import embed_query_cached
 
 logger = logging.getLogger(__name__)
 
@@ -55,7 +55,7 @@ def search_chunks(
     query: str, n_chunks: int = 30, where: dict[str, Any] | None = None
 ) -> list[dict[str, Any]]:
     """질문과 가까운 청크를 거리순으로 반환한다. where로 메타데이터 필터를 건다."""
-    vector = get_embeddings().embed_query(query)
+    vector = embed_query_cached(query)
     res = get_collection().query(query_embeddings=[vector], n_results=n_chunks, where=where)
     return [
         {"id": i, "text": d, "meta": m, "distance": dist}

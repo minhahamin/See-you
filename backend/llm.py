@@ -1,6 +1,8 @@
 """LLM·임베딩 생성 함수. 프로바이더는 환경변수로 교체한다."""
+import json
 import logging
 import time
+from threading import Lock
 from typing import TypeVar
 
 from langchain_core.embeddings import Embeddings
@@ -92,3 +94,33 @@ def structured_call(schema: type[T], messages: list, temperature: float = 0.0) -
             logger.warning("LLM 호출 실패(%d/%d): %s", attempt, RETRY_ATTEMPTS, type(exc).__name__)
             time.sleep(RETRY_BACKOFF_SEC * attempt)
     raise RuntimeError("unreachable")
+
+
+_query_cache_lock = Lock()
+_query_cache: dict[str, list[float]] | None = None
+
+
+def _query_cache_path():  # noqa: ANN202
+    return get_settings().data_dir / "cache" / "query_embeddings.json"
+
+
+def embed_query_cached(query: str) -> list[float]:
+    """질문 임베딩을 디스크에 캐시한다. 같은 질문을 다시 임베딩하지 않아 무료 한도를 아끼고 평가를 빠르게 한다.
+
+    캐시 키에 임베딩 모델명을 넣어, 모델을 바꾸면 이전 벡터를 쓰지 않는다.
+    """
+    global _query_cache
+    key = f"{get_settings().embedding_model}|{query}"
+    with _query_cache_lock:
+        if _query_cache is None:
+            path = _query_cache_path()
+            _query_cache = json.loads(path.read_text(encoding="utf-8")) if path.exists() else {}
+        if key in _query_cache:
+            return _query_cache[key]
+    vector = get_embeddings().embed_query(query)
+    with _query_cache_lock:
+        _query_cache[key] = vector
+        path = _query_cache_path()
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(json.dumps(_query_cache), encoding="utf-8")
+    return vector
