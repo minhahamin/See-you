@@ -97,6 +97,12 @@ graph TD;
 ## API
 | Method | Path | 설명 |
 |---|---|---|
+| POST | `/api/auth/signup` · `/login` · `/logout` · `/delete-account` | 이메일·비밀번호 계정 (게스트로도 사용 가능) |
+| GET | `/api/auth/me` | 현재 로그인 사용자 (게스트면 `user: null`) |
+| GET·PUT | `/api/settings` | 계정 설정(동행·취향·예산) 조회·저장 |
+| GET | `/api/sessions` | 내 대화 기록 목록 |
+| POST | `/api/sessions/{id}/claim` | 게스트로 만든 세션을 로그인한 계정으로 옮김 |
+| DELETE | `/api/sessions/{id}` | 대화 기록 삭제 |
 | POST | `/api/sessions` | 새 세션 생성 (`session_id` = LangGraph `thread_id`) |
 | POST | `/api/sessions/{id}/messages` | 메시지 전송. SSE로 진행 단계와 결과를 스트리밍 |
 | GET | `/api/sessions/{id}` | 현재 대화·조건·일정 요약 (`awaiting`: 되묻기/피드백 대기 여부) |
@@ -111,6 +117,14 @@ SSE 이벤트: `step`(노드 시작/완료, 지연·토큰), `question`(되묻�
 
 지표는 실행할 때마다 `backend/data/metrics/runs.jsonl`에 쌓이고(git 제외), 값이 없는 항목은 `null`로 둔다.
 비용은 `.env`의 `LLM_PRICE_IN_PER_1M`, `LLM_PRICE_OUT_PER_1M`을 설정했을 때만 계산한다.
+
+## 계정 · 기록 · 맞춤 설정
+- **저장소는 PostgreSQL**: 계정, 로그인 세션, 대화 기록 목록, 설정, LangGraph 체크포인트(`AsyncPostgresSaver`)가 모두 한 DB에 들어간다. 서버를 재시작해도 대화를 이어갈 수 있다.
+- **인증**: 비밀번호는 Argon2id로 해시하고, 로그인 토큰은 무작위 값의 sha256만 저장한다(쿠키는 httpOnly, SameSite=Lax, 배포에서는 Secure). 없는 이메일에도 같은 시간·같은 문구로 응답하고, 이메일별 로그인 시도 제한(15분 10회)과 IP별 가입 제한을 둔다. 쓰기 요청은 Origin 검사로 CSRF를 막는다.
+- **게스트 모드 유지**: 가입 없이 쓸 수 있고, 게스트 세션은 세션 id를 아는 사람만 접근하며 14일 뒤 정리된다. 로그인하면 현재 게스트 세션이 계정으로 옮겨진다. 남의 세션은 404로 응답한다.
+- **기록**: 계정별로 대화 목록(제목·일수·동행)이 저장되고, 열면 일정과 대화가 복원된다. 삭제하거나 계정을 지우면 체크포인트까지 함께 삭제된다.
+- **맞춤 일정**: 설정(동행·취향·예산)은 로그인하면 서버에, 게스트는 브라우저에 저장된다. `parse_request`가 **사용자가 말하지 않은 항목만** 설정으로 채운다(이번 메시지 > 이전 요청 > 저장 설정, 취향은 합집합). 어떤 설정이 반영됐는지는 일정 안내 문구와 SSE `itinerary.applied_settings`에 표시된다.
+- 맞춤 효과의 정량 평가는 아직 하지 않았다 (동작 확인은 단위·통합 테스트와 브라우저 실행까지).
 
 ## 프론트엔드
 React + TypeScript + Vite + Tailwind. 타임라인, 지도(카카오맵), 장소 상세, 여행 요약, 대화 패널로 구성된다.
@@ -205,7 +219,7 @@ React + TypeScript + Vite + Tailwind. 타임라인, 지도(카카오맵), 장소
 | Backend | FastAPI, SSE(sse-starlette), Pydantic |
 | Frontend | React 18, TypeScript, Vite, Tailwind, Recharts, 카카오맵 |
 | 외부 API | 한국관광공사 TourAPI, 기상청 단기예보 |
-| Eval / Test | 자체 평가셋·평가 스크립트, 자체 LLM 판정, pytest(68), vitest(21) |
+| Eval / Test | 자체 평가셋·평가 스크립트, 자체 LLM 판정, pytest(91), vitest(43) |
 | 배포 | Docker, Railway |
 
 ## 실행 방법
@@ -225,8 +239,11 @@ python -m eval.build_testset
 python -m eval.run_eval --version v1    # v1~v4 (v4는 RERANKER_MODEL 환경변수로 모델 지정)
 python -m eval.run_itinerary_eval       # 일정 평가(v5). LLM 호출이 약 70회 든다
 
-# API 서버 (http://localhost:8000/docs)
-uvicorn api.main:app --reload
+# API 서버 (http://localhost:8000/docs) — PostgreSQL이 필요하다 (DATABASE_URL)
+# 로컬에서는 내장 PostgreSQL을 함께 띄우는 스크립트를 쓰면 된다 (데이터는 ~/.seeyou/pgdata에 유지)
+python -m scripts.dev_server --port 8000
+# 직접 DB를 쓸 때: DATABASE_URL=postgresql://... uvicorn api.main:app --reload
+# (Windows에서 uvicorn을 직접 실행하면 psycopg 비동기와 이벤트 루프가 맞지 않으니 --loop agent.checkpoint:selector_loop_factory 를 붙인다)
 
 # 테스트
 python -m pytest tests -q
@@ -244,11 +261,12 @@ Gemini 무료 티어는 채팅 모델 일일 호출 한도(모델별 상이), �
 ```bash
 railway init --name seeyou
 railway add --service seeyou
-# 환경변수: LLM_PROVIDER, LLM_MODEL, LLM_API_KEY, EMBEDDING_MODEL, KMA_API_KEY, VITE_KAKAO_MAP_KEY
+railway add --database postgres      # Postgres 추가
+# 환경변수: DATABASE_URL=${{Postgres.DATABASE_URL}}, COOKIE_SECURE=true, LLM_PROVIDER, LLM_MODEL, LLM_API_KEY, EMBEDDING_MODEL, KMA_API_KEY, VITE_KAKAO_MAP_KEY
 railway up --service seeyou
 ```
 - 카카오맵 JavaScript 키는 빌드 때 번들에 들어가는 공개 키다. 카카오 디벨로퍼스에서 배포 도메인을 웹 플랫폼으로 등록해야 지도가 뜬다.
-- 실행 지표(`runs.jsonl`)와 세션은 컨테이너 안에 저장돼 재배포하면 사라진다. 유지하려면 Railway 볼륨을 붙이고 `RUNS_LOG_PATH`를 볼륨 경로로 지정한다.
+- 계정·대화는 Postgres에 저장돼 재배포해도 남는다. 실행 지표(`runs.jsonl`)는 컨테이너 안에 저장돼 재배포하면 사라진다. 유지하려면 Railway 볼륨을 붙이고 `RUNS_LOG_PATH`를 볼륨 경로로 지정한다.
 
 ## 한계 및 개선 방향
 - **후기는 합성 데이터**라 실제 후기의 다양성을 반영하지 못한다. 실제 후기는 쓸 수 없었다: Google Places API는 장소당 최대 5개만 주고 `place_id` 외 저장·캐시를 금지하며, 네이버 검색 API는 개정 약관이 복사·저장과 AI 입력 활용을 막는다(2차 보도 기준, 원문 미확인). 공공데이터포털의 제주관광공사 '제주 관광지 평점리뷰 감성분석 데이터'는 6개월 단위 평점·긍부정 **집계**라 원문이 아니다. 이 집계로 합성 특성을 검증·보정하는 것이 다음 후보다.
@@ -256,7 +274,8 @@ railway up --service seeyou
 - 데이터상 만족할 수 없는 제약(예: 가격대 1인 식당이 없는데 "최대한 저렴하게")을 사전에 알아채지 못한다.
 - 지역이 제주 40곳으로 한정이고, 평가셋(질문 37개, 일정 시나리오 10개)이 작아 작은 차이는 유의미하지 않다.
 - 날씨는 제주시 한 지점 기준이고 예보가 발표일 기준 +4~5일까지만 제공돼 먼 여행은 날씨 없이 일정을 만든다.
-- 세션은 인메모리 체크포인터라 서버가 재시작되면 사라진다 (프론트는 새 세션으로 복구한다). SQLite 영속화는 하지 않았다.
+- 계정 기능은 이메일 인증·비밀번호 재설정이 없다 (가입 시 이메일 소유 확인 안 함). 로그인 시도 제한은 서버 메모리라 인스턴스를 늘리면 공유되지 않는다.
+- 사용자가 직접 쓰는 후기와 맞춤 일정 효과의 정량 평가는 아직 없다.
 
 ## 폴더 구조
 ```
