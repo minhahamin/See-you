@@ -98,3 +98,14 @@ def wired(fake_llm, fake_search):
     fake_llm[ReviewAnalysis] = lambda m: ReviewAnalysis(summaries=[])
     fake_llm[LLMPlan] = build
     return calls
+
+
+@pytest.fixture(autouse=True)
+def no_real_weather_calls(monkeypatch: pytest.MonkeyPatch) -> None:
+    """테스트가 기상청 API를 실제로 호출하지 않게 막는다. 날씨 테스트는 이 fixture를 덮어써서 쓴다."""
+    from tools.weather import WeatherUnavailable
+
+    def blocked(*args: Any, **kwargs: Any) -> Any:
+        raise WeatherUnavailable("테스트에서는 외부 호출을 하지 않습니다")
+
+    monkeypatch.setattr("tools.weather._fetch_items", blocked)
