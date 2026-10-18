@@ -2,7 +2,7 @@
 > 여행 조건을 말하면 장소·후기를 검색하고 날씨와 동선을 고려해
 > 일정을 짜고, 피드백에 맞춰 수정하는 LangGraph 기반 Agentic RAG 서비스
 
-> 개발 진행 중 (6단계 완료: FastAPI + SSE, 다음은 프론트엔드 API 연결)
+> 개발 진행 중 (6단계 완료: FastAPI + SSE, 기상청 날씨 연동. 다음은 프론트엔드 API 연결)
 
 ## LangGraph 설계
 ```mermaid
@@ -46,7 +46,7 @@ graph TD;
 | `ask_clarification` | 부족한 조건을 묻고 사용자 응답 대기(interrupt) | missing_fields → messages |
 | `search_places` | 분류별 하이브리드 검색(v3) + 동행 유형 필터 | request → candidates |
 | `analyze_reviews` | 후보별 장단점 요약 + 근거 후기 id, 부적합 장소 제외 (LLM 1회) | candidates → review_summaries, candidates |
-| `check_weather` | 날짜별 날씨 조회, 실패하면 날씨 없이 진행 | request → weather |
+| `check_weather` | 기상청 단기예보로 날짜별 날씨 조회, 범위 밖·실패면 날씨 없이 진행 | request → weather |
 | `build_itinerary` | LLM이 일자·시간대별 장소를 정하고 route 도구로 이동시간·시간표 계산 | candidates, summaries, weather → itinerary |
 | `validate_itinerary` | 규칙 검증: 이동 과다, 영업시간, 예산·동행, 식사 누락, 중복, 근거 없는 추천 | itinerary → validation, validation_issues |
 | `present_itinerary` | 일정을 사용자에게 제시하고 피드백 대기(interrupt) | itinerary → feedback |
@@ -58,7 +58,11 @@ graph TD;
 - 피드백: 없으면 종료. 있으면 `apply_feedback` 후 확정이면 종료, 조건 변경이면 `search_places`부터, 부분 수정이면 `validate_itinerary`로
 - 부분 수정 뒤에는 재생성 루프를 타지 않는다. 재생성하면 사용자가 요청한 수정이 사라지기 때문이다
 
-**한계**: 날씨 도구(`tools/weather.py`)는 기상청 API 명세를 받기 전이라 연동 전이다. 이동시간은 직선거리 기반 근사치다(보정 계수·평균 속도는 가정값).
+**날씨**: 기상청 단기예보(`getVilageFcst`)를 제주시 격자(53, 38)로 조회해 일자별 날씨(맑음/흐림/비, 최고·최저기온)를 만든다. 낮 시간대(09~21시)에 강수가 있으면 '비', 아니면 하늘상태로 정한다. 하루치 기온 근거가 부족한 날(예보의 마지막 날은 일부 시각만 제공)은 값을 만들지 않는다.
+- 예보는 발표일 기준 +4~5일까지만 제공돼서 그보다 먼 여행은 날씨 없이 일정을 만든다 (화면에는 '날씨 정보 없음').
+- 가이드의 서비스 URL(`apihub.kma.go.kr`)은 API허브 전용 키가 필요하고, 공공데이터포털 키는 `apis.data.go.kr` 주소에서 동작했다. 직접 호출로 확인한 사실이며 `tools/weather.py` 주석에 남겼다.
+
+**한계**: 이동시간은 직선거리 기반 근사치다(보정 계수·평균 속도는 가정값). 날씨는 제주시 한 지점 기준이라 서귀포 등 지역 차이는 반영하지 않는다.
 
 ## API
 | Method | Path | 설명 |
