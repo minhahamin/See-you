@@ -110,3 +110,5 @@ class PlannerState(TypedDict, total=False):
     retry_count: int
     rerun_search: bool  # 피드백이 전체 재검색을 요구하는지
     accepted: bool  # 사용자가 일정을 확정했는지
+    profile: dict | None  # 저장된 사용자 설정 {companion, preferences, budget}. 맞춤 일정의 기본 조건
+    applied_settings: dict  # 설정에서 가져와 반영한 항목 {companions, budget, preferences}

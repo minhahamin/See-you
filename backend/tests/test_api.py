@@ -24,10 +24,10 @@ def parse_sse(text: str) -> list[tuple[str, dict]]:
 
 
 @pytest.fixture
-def client(wired, tmp_path):
-    """가짜 LLM·검색으로 그래프를 구성한 테스트 클라이언트 (지표는 임시 파일에 저장)."""
+def client(wired, tmp_path, db_url):
+    """가짜 LLM·검색으로 그래프를 구성한 테스트 클라이언트 (지표는 임시 파일, 계정·대화는 실제 Postgres)."""
     store = MetricsStore(tmp_path / "runs.jsonl")
-    app = create_app(graph=build_graph(make_checkpointer()), store=store)
+    app = create_app(graph=build_graph(make_checkpointer()), store=store, database_url=db_url)
     with TestClient(app) as c:
         c.store = store  # type: ignore[attr-defined]
         yield c
@@ -148,28 +148,21 @@ def test_classify_issue() -> None:
     assert classify_issue("알 수 없는 문장") == "기타"
 
 
-def test_serves_built_frontend_without_hiding_api(wired, tmp_path, monkeypatch) -> None:
+def test_serves_built_frontend_without_hiding_api(wired, tmp_path, db_url) -> None:
     """빌드된 프론트(dist)가 있으면 /에서 서빙하고, /api 라우트는 그대로 동작한다. 없으면 / 는 404."""
-    from api import main as api_main
+    from config import get_settings
 
     dist = tmp_path / "dist"
     dist.mkdir()
     (dist / "index.html").write_text("<html><body>seeyou-app</body></html>", encoding="utf-8")
-    real = api_main.get_settings()
-    monkeypatch.setattr(
-        api_main, "get_settings",
-        lambda: SimpleNamespace(cors_origins=real.cors_origins, runs_log_path=tmp_path / "r.jsonl", frontend_dist=dist),
-    )
     graph = build_graph(make_checkpointer())
-    with TestClient(create_app(graph=graph, store=MetricsStore())) as c:
+    base = get_settings()
+
+    with TestClient(create_app(graph=graph, store=MetricsStore(), database_url=db_url, settings=base.model_copy(update={"frontend_dist": dist}))) as c:
         assert "seeyou-app" in c.get("/").text
         assert c.get("/api/health").json() == {"status": "ok"}
 
-    monkeypatch.setattr(
-        api_main, "get_settings",
-        lambda: SimpleNamespace(cors_origins=real.cors_origins, runs_log_path=tmp_path / "r.jsonl", frontend_dist=tmp_path / "missing"),
-    )
-    with TestClient(create_app(graph=graph, store=MetricsStore())) as c:
+    with TestClient(create_app(graph=graph, store=MetricsStore(), database_url=db_url, settings=base.model_copy(update={"frontend_dist": tmp_path / "missing"}))) as c:
         assert c.get("/").status_code == 404
         assert c.get("/api/health").status_code == 200
 

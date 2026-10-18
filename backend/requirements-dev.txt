@@ -2,3 +2,4 @@
 -r requirements.txt
 pytest>=8.0
 sentence-transformers>=3.0  # v4 리랭커 실험 (torch 포함, 무겁다)
+pgserver>=0.1  # 로컬·테스트용 내장 PostgreSQL

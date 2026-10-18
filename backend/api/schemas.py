@@ -1,7 +1,7 @@
 """API 요청/응답 Pydantic 모델. 프론트 src/types/index.ts와 같은 구조로 유지한다 (한쪽을 바꾸면 같이 수정)."""
 from typing import Literal
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, EmailStr, Field, field_validator
 
 from agent import catalog
 from agent.state import Itinerary, TripRequest
@@ -53,10 +53,33 @@ class SessionCreated(BaseModel):
     session_id: str
 
 
+Companion = Literal["혼자", "커플", "친구", "가족"]
+MAX_PREFERENCES = 10
+MAX_PREFERENCE_LEN = 30
+
+
+class SettingsModel(BaseModel):
+    """사용자 설정 (프론트 UserSettings). 에이전트가 일정을 맞춤으로 만들 때 기본 조건으로 쓴다."""
+
+    companion: Companion | None = None
+    preferences: list[str] = Field(default_factory=list, max_length=MAX_PREFERENCES)
+    budget: int | None = Field(default=None, ge=1, le=3)
+
+    @field_validator("preferences")
+    @classmethod
+    def clean_preferences(cls, values: list[str]) -> list[str]:
+        """공백을 정리하고 빈 값·중복을 없앤다. 항목은 짧아야 한다."""
+        cleaned = list(dict.fromkeys(v.strip() for v in values if v.strip()))
+        if any(len(v) > MAX_PREFERENCE_LEN for v in cleaned):
+            raise ValueError(f"취향은 {MAX_PREFERENCE_LEN}자 이하여야 합니다.")
+        return cleaned
+
+
 class MessageIn(BaseModel):
-    """POST /api/sessions/{id}/messages 요청."""
+    """POST /api/sessions/{id}/messages 요청. 로그인하지 않은 사용자는 브라우저에 저장된 설정을 settings로 보낸다."""
 
     text: str = Field(min_length=1, max_length=2000)
+    settings: SettingsModel | None = None
 
 
 # ---- SSE 이벤트 payload ----
@@ -79,12 +102,21 @@ class QuestionEvent(BaseModel):
     missing_fields: list[str]
 
 
+class AppliedSettings(BaseModel):
+    """이번 일정에 설정에서 가져와 반영한 항목 (사용자가 말로 직접 지정한 것은 제외)."""
+
+    companions: str | None = None
+    budget: int | None = None
+    preferences: list[str] = Field(default_factory=list)
+
+
 class ItineraryEvent(BaseModel):
     """`itinerary`: 일정 결과. places는 일정에 등장하는 장소의 프론트 Place 목록."""
 
     itinerary: Itinerary
     places: list[PlaceOut]
     issues: list[str]
+    applied_settings: AppliedSettings = Field(default_factory=AppliedSettings)
 
 
 class ErrorEvent(BaseModel):
@@ -110,6 +142,55 @@ class SessionSummary(BaseModel):
     itinerary: Itinerary | None = None
     places: list[PlaceOut] = Field(default_factory=list)
     awaiting: Literal["question", "feedback"] | None = None
+
+
+# ---- 계정·기록 ----
+
+
+class SignupIn(BaseModel):
+    """회원가입 요청."""
+
+    email: EmailStr
+    password: str = Field(min_length=8, max_length=128)
+    display_name: str | None = Field(default=None, max_length=40)
+
+
+class LoginIn(BaseModel):
+    """로그인 요청."""
+
+    email: EmailStr
+    password: str = Field(min_length=1, max_length=128)
+
+
+class DeleteAccountIn(BaseModel):
+    """계정 삭제 확인용 비밀번호."""
+
+    password: str = Field(min_length=1, max_length=128)
+
+
+class UserOut(BaseModel):
+    """로그인한 사용자 정보. 비밀번호 해시는 절대 내보내지 않는다."""
+
+    id: str
+    email: str
+    display_name: str | None = None
+
+
+class MeOut(BaseModel):
+    """GET /api/auth/me 응답. 로그인하지 않았으면 user가 null이다 (오류가 아니다)."""
+
+    user: UserOut | None = None
+
+
+class SessionListItem(BaseModel):
+    """'내 일정' 목록의 한 줄."""
+
+    session_id: str
+    title: str | None = None
+    trip_days: int | None = None
+    companions: str | None = None
+    created_at: str
+    updated_at: str
 
 
 # ---- 성능 지표 (프론트 MetricsSnapshot 구성 요소). null = 데이터 없음 ----

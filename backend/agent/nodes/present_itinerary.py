@@ -12,6 +12,7 @@ def present_itinerary(state: PlannerState) -> dict:
             "type": "itinerary",
             "itinerary": state["itinerary"].model_dump(),
             "issues": state.get("validation_issues", []),
+            "applied_settings": state.get("applied_settings", {}),
         }
     )
     text = str(answer or "").strip()

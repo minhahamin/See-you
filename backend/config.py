@@ -22,6 +22,11 @@ class Settings(BaseSettings):
     # 토큰 단가(USD/1M 토큰). 비어 있으면 비용은 "데이터 없음"으로 둔다 (임의 값을 넣지 않는다).
     llm_price_in_per_1m: str = ""
     llm_price_out_per_1m: str = ""
+    # 계정·대화 기록 저장소(PostgreSQL). 로컬에서는 `python -m scripts.dev_server`가 내장 Postgres를 띄워 준다.
+    database_url: str = ""
+    cookie_secure: bool = False  # https로 배포할 때 true (Secure 쿠키)
+    login_ttl_days: int = 30  # 로그인 유지 기간
+    guest_session_ttl_days: int = 14  # 로그인하지 않은 대화를 지우는 기준
     cors_origins: str = "http://localhost:5173,http://127.0.0.1:5173"
     reranker_model: str = "BAAI/bge-reranker-v2-m3"
     tour_api_key: str = ""

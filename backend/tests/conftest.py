@@ -120,3 +120,29 @@ def no_real_llm_calls(monkeypatch: pytest.MonkeyPatch) -> None:
         raise AssertionError("테스트에서 실제 LLM을 호출했습니다. fake_llm으로 대체하세요.")
 
     monkeypatch.setattr("llm.get_chat_model", blocked)
+
+
+
+@pytest.fixture(scope="session")
+def pg_url(tmp_path_factory: pytest.TempPathFactory):
+    """테스트 전체에서 쓰는 실제 PostgreSQL (pgserver 내장). 세션이 끝나면 멈춘다."""
+    import pgserver
+
+    server = pgserver.get_server(tmp_path_factory.mktemp("pgdata"), cleanup_mode="stop")
+    yield server.get_uri()
+    server.cleanup()
+
+
+@pytest.fixture
+def db_url(pg_url: str) -> str:
+    """테스트마다 계정·대화 테이블을 비운 DB 주소."""
+    from sqlalchemy import text
+
+    from accounts.db import init_db, make_engine
+
+    engine = make_engine(pg_url)
+    init_db(engine)
+    with engine.begin() as conn:
+        conn.execute(text("TRUNCATE users, login_sessions, chat_sessions, user_settings CASCADE"))
+    engine.dispose()
+    return pg_url

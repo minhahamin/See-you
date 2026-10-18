@@ -48,6 +48,26 @@ def merge_request(old: TripRequest | None, new: ParsedRequest, today: date) -> T
     )
 
 
+def apply_profile(request: TripRequest, profile: dict | None) -> tuple[TripRequest, dict]:
+    """저장된 설정을 기본 조건으로 채운다. 이미 정해진 값(말로 지정했거나 이전 대화에서 정한 값)은 덮어쓰지 않는다.
+
+    돌려주는 dict는 이번에 설정에서 채운 항목이다 (사용자에게 '설정을 반영했다'고 알리는 데 쓴다).
+    """
+    if not profile:
+        return request, {}
+    updates: dict = {}
+    applied: dict = {}
+    if request.companions is None and profile.get("companion"):
+        updates["companions"] = applied["companions"] = profile["companion"]
+    if request.budget is None and profile.get("budget"):
+        updates["budget"] = applied["budget"] = profile["budget"]
+    new_prefs = [p for p in profile.get("preferences") or [] if p not in request.preferences]
+    if new_prefs:
+        updates["preferences"] = [*request.preferences, *new_prefs]
+        applied["preferences"] = new_prefs
+    return request.model_copy(update=updates), applied
+
+
 def find_missing(request: TripRequest) -> list[str]:
     """필수 조건 중 비어 있는 항목."""
     return [f for f in REQUIRED_FIELDS if getattr(request, f) in (None, "")]
@@ -62,6 +82,7 @@ def parse_request(state: PlannerState) -> dict:
         [SystemMessage(PARSE_REQUEST_SYSTEM.format(today=today.isoformat())), HumanMessage(user_text)],
     )
     request = merge_request(state.get("request"), parsed, today)
+    request, applied = apply_profile(request, state.get("profile"))
     missing = find_missing(request)
-    logger.info("조건 파싱 완료, 부족한 항목: %s", missing)
-    return {"request": request, "missing_fields": missing}
+    logger.info("조건 파싱 완료, 부족한 항목: %s, 설정에서 반영: %s", missing, list(applied))
+    return {"request": request, "missing_fields": missing, "applied_settings": {**state.get("applied_settings", {}), **applied}}

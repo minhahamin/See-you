@@ -1,30 +1,37 @@
-"""세션 관리와 그래프 실행 → SSE 이벤트 변환."""
+"""세션 관리(소유권·기록)와 그래프 실행 → SSE 이벤트 변환."""
 import asyncio
 import json
 import logging
 import time
 import uuid
-from typing import Any, AsyncIterator
+from typing import Any, AsyncIterator, Callable, TypeVar
 
 from langchain_core.messages import AIMessage, HumanMessage
 from langgraph.graph.state import CompiledStateGraph
 from langgraph.types import Command
 from pydantic import BaseModel
+from sqlalchemy.orm import Session, sessionmaker
 
+from accounts import service
+from agent.state import Itinerary
 from api.metrics import MetricsStore, RunRecorder, add_node_call, classify_issue, new_record, run_cost_usd
 from api.schemas import (
+    AppliedSettings,
     ChatMessageOut,
     ErrorEvent,
     ItineraryEvent,
     QuestionEvent,
+    SessionListItem,
     SessionSummary,
     StepEvent,
     place_out,
 )
-from agent.state import Itinerary
 from llm import is_daily_quota_error
 
 logger = logging.getLogger(__name__)
+
+T = TypeVar("T")
+PROVISIONAL_TITLE_LEN = 30  # 일정이 나오기 전까지 목록에 보여 줄 제목 (첫 메시지 앞부분)
 
 NODE_LABELS = {
     "parse_request": "여행 조건 파악",
@@ -58,33 +65,114 @@ def interrupt_event(payload: dict[str, Any]) -> dict[str, str]:
         return sse("question", QuestionEvent(question=payload["question"], missing_fields=payload["missing_fields"]))
     itinerary = Itinerary.model_validate(payload["itinerary"])
     ids = list(dict.fromkeys(v.place_id for d in itinerary.days for v in d.visits))
-    return sse("itinerary", ItineraryEvent(itinerary=itinerary, places=[place_out(i) for i in ids], issues=payload["issues"]))
+    return sse(
+        "itinerary",
+        ItineraryEvent(
+            itinerary=itinerary,
+            places=[place_out(i) for i in ids],
+            issues=payload["issues"],
+            applied_settings=AppliedSettings(**payload.get("applied_settings", {})),
+        ),
+    )
 
 
 class SessionManager:
-    """세션 id(= LangGraph thread_id)를 관리하고 메시지 한 턴을 스트리밍으로 실행한다."""
+    """세션 id(= LangGraph thread_id)를 DB에서 관리하고 메시지 한 턴을 스트리밍으로 실행한다.
 
-    def __init__(self, graph: CompiledStateGraph, store: MetricsStore) -> None:
-        """그래프와 지표 저장소를 받는다."""
+    계정에 속한 대화는 소유자만, 게스트 대화는 id를 아는 사람만 접근할 수 있다.
+    """
+
+    def __init__(self, graph: CompiledStateGraph, store: MetricsStore, db_factory: sessionmaker[Session]) -> None:
+        """그래프, 지표 저장소, DB 세션 팩토리를 받는다."""
         self._graph = graph
         self._store = store
-        self._sessions: set[str] = set()
+        self._db_factory = db_factory
         self._locks: dict[str, asyncio.Lock] = {}
 
-    def create(self) -> str:
-        """새 세션을 만든다."""
-        sid = uuid.uuid4().hex
-        self._sessions.add(sid)
-        self._locks[sid] = asyncio.Lock()
-        return sid
+    async def _db(self, fn: Callable[..., T], *args: Any, **kwargs: Any) -> T:
+        """동기 DB 함수를 스레드에서 한 트랜잭션으로 실행한다 (이벤트 루프를 막지 않는다)."""
 
-    def exists(self, sid: str) -> bool:
-        """세션이 있는지."""
-        return sid in self._sessions
+        def run() -> T:
+            db = self._db_factory()
+            try:
+                result = fn(db, *args, **kwargs)
+                db.commit()
+                return result
+            except Exception:
+                db.rollback()
+                raise
+            finally:
+                db.close()
+
+        return await asyncio.to_thread(run)
+
+    def _lock(self, sid: str) -> asyncio.Lock:
+        return self._locks.setdefault(sid, asyncio.Lock())
+
+    # ---- 생성·접근 ----
+
+    async def create(self, user_id: uuid.UUID | None) -> str:
+        """새 세션을 만든다. 로그인하지 않았으면 게스트 대화가 된다."""
+        return await self._db(service.create_chat_session, user_id)
+
+    async def accessible(self, sid: str, user_id: uuid.UUID | None) -> bool:
+        """세션이 있고 이 사용자가 접근할 수 있는지. 남의 대화는 '없는 것'처럼 보이게 한다."""
+
+        def check(db: Session) -> bool:
+            row = service.get_chat_session(db, sid)
+            return row is not None and service.can_access(row, user_id)
+
+        return await self._db(check)
 
     def is_busy(self, sid: str) -> bool:
         """이전 메시지를 아직 처리 중인지 (한 세션은 동시에 한 턴만 실행한다)."""
-        return self._locks[sid].locked()
+        return self._lock(sid).locked()
+
+    # ---- 기록 ----
+
+    async def list_for(self, user_id: uuid.UUID) -> list[SessionListItem]:
+        """'내 일정' 목록 (최근 수정 순). 대화 내용이 없는 빈 세션은 숨긴다."""
+
+        def load(db: Session) -> list[SessionListItem]:
+            return [
+                SessionListItem(
+                    session_id=r.id,
+                    title=r.title,
+                    trip_days=r.trip_days,
+                    companions=r.companions,
+                    created_at=r.created_at.isoformat(),
+                    updated_at=r.updated_at.isoformat(),
+                )
+                for r in service.list_chat_sessions(db, user_id)
+                if r.title
+            ]
+
+        return await self._db(load)
+
+    async def claim(self, sid: str, user_id: uuid.UUID) -> bool:
+        """게스트 대화를 내 계정으로 가져온다."""
+        return await self._db(service.claim_chat_session, sid, user_id)
+
+    async def delete(self, sid: str) -> None:
+        """대화와 그 체크포인트를 지운다."""
+        await self._db(service.delete_chat_session, sid)
+        await self.purge_checkpoints([sid])
+
+    async def purge_checkpoints(self, session_ids: list[str]) -> None:
+        """대화 상태(체크포인트)를 지운다. 체크포인터가 삭제를 지원하지 않으면 건너뛴다."""
+        saver = self._graph.checkpointer
+        for sid in session_ids:
+            self._locks.pop(sid, None)
+            if hasattr(saver, "adelete_thread"):
+                await saver.adelete_thread(sid)  # type: ignore[union-attr]
+
+    async def purge_old_guests(self, older_than_days: int) -> int:
+        """오래 방치된 게스트 대화를 지운다. 지운 개수를 돌려준다."""
+        ids = await self._db(service.purge_old_guest_sessions, older_than_days)
+        await self.purge_checkpoints(ids)
+        return len(ids)
+
+    # ---- 실행 ----
 
     @staticmethod
     def _config(sid: str, recorder: RunRecorder | None = None) -> dict[str, Any]:
@@ -99,16 +187,20 @@ class SessionManager:
         state = await self._graph.aget_state(self._config(sid))
         return [i.value for t in state.tasks for i in t.interrupts]
 
-    async def stream_turn(self, sid: str, text: str) -> AsyncIterator[dict[str, str]]:
-        """메시지 한 턴을 실행하며 step·question·itinerary·error·done 이벤트를 내보낸다."""
-        async with self._locks[sid]:
+    async def stream_turn(self, sid: str, text: str, profile: dict | None = None) -> AsyncIterator[dict[str, str]]:
+        """메시지 한 턴을 실행하며 step·question·itinerary·error·done 이벤트를 내보낸다.
+
+        profile은 저장된 사용자 설정이다. 에이전트는 이를 일정의 기본 조건으로 쓴다.
+        """
+        async with self._lock(sid):
             recorder = RunRecorder()
             record = new_record(sid, uuid.uuid4().hex[:8])
             started_at = time.perf_counter()
             task_start: dict[str, tuple[float, int]] = {}  # task id → (시작 시각, 시작 시점 토큰 누계)
+            meta: dict[str, Any] = {}  # 목록에 보여 줄 요약 (일정이 나오면 채운다)
             try:
                 pending = await self._pending_interrupts(sid)
-                graph_input: Any = Command(resume=text) if pending else {"messages": [HumanMessage(text)]}
+                graph_input: Any = Command(resume=text) if pending else {"messages": [HumanMessage(text)], "profile": profile}
                 async for mode, chunk in self._graph.astream(
                     graph_input, self._config(sid, recorder), stream_mode=["tasks", "updates"]
                 ):
@@ -128,7 +220,11 @@ class SessionManager:
                             )
                     elif mode == "updates":
                         if "__interrupt__" in chunk:
-                            yield interrupt_event(chunk["__interrupt__"][0].value)
+                            payload = chunk["__interrupt__"][0].value
+                            if payload["type"] == "itinerary":
+                                it = payload["itinerary"]
+                                meta.update(title=it["title"], trip_days=len(it["days"]), companions=it.get("companions") or None)
+                            yield interrupt_event(payload)
                         elif "validate_itinerary" in chunk:
                             issues = chunk["validate_itinerary"].get("validation_issues", [])
                             record["issue_kinds"] += [classify_issue(m) for m in issues]
@@ -143,7 +239,23 @@ class SessionManager:
                 for node, n in record["nodes"].items():
                     n["tokens_in"], n["tokens_out"] = recorder.tokens_in[node], recorder.tokens_out[node]
                 self._store.add(record)
+                await self._save_meta(sid, text, meta)
             yield sse("done", {})
+
+    async def _save_meta(self, sid: str, first_text: str, meta: dict[str, Any]) -> None:
+        """목록용 제목·요약을 갱신한다. 일정이 아직 없으면 첫 메시지 앞부분을 임시 제목으로 쓴다."""
+
+        def save(db: Session) -> None:
+            row = service.get_chat_session(db, sid)
+            if row is None:
+                return
+            title = meta.get("title") or (None if row.title else first_text[:PROVISIONAL_TITLE_LEN])
+            service.update_chat_meta(db, sid, title=title, trip_days=meta.get("trip_days"), companions=meta.get("companions"))
+
+        try:
+            await self._db(save)
+        except Exception as exc:  # noqa: BLE001 - 기록 갱신 실패가 응답을 망치지 않게 한다
+            logger.error("대화 요약 저장 실패: %s", type(exc).__name__)
 
     async def summary(self, sid: str) -> SessionSummary:
         """현재 대화·조건·일정을 요약한다."""
