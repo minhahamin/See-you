@@ -5,7 +5,9 @@ from typing import Any, Callable
 import pytest
 
 from agent import catalog
+from agent.nodes.parse_request import ParsedRequest
 from agent.planning import LLMDay, LLMPlan, LLMVisit
+from agent.review_tools import ReviewAnalysis
 
 LLM_TARGETS = [
     "agent.nodes.parse_request.structured_call",
@@ -72,3 +74,27 @@ def plan_from_prompt(messages: list) -> LLMPlan:
             visits.append(LLMVisit(place_id=pid, slot="stay", reason="후기 근거 추천", evidence_review_ids=ev[:1]))
         plan_days.append(LLMDay(day=day, visits=visits))
     return LLMPlan(title="테스트 여행", days=plan_days)
+
+
+@pytest.fixture
+def wired(fake_llm, fake_search):
+    """그래프 전체를 도는 데 필요한 LLM 대역을 등록한다."""
+    calls = {"build": 0, "parse": 0}
+
+    def parse(msgs: list) -> ParsedRequest:
+        calls["parse"] += 1
+        text = msgs[-1].content
+        return ParsedRequest(
+            days=2 if "2박" in text else None,
+            companions="커플" if "커플" in text else None,
+            start_date="2099-11-14" if "11월" in text else None,
+        )
+
+    def build(msgs: list) -> LLMPlan:
+        calls["build"] += 1
+        return plan_from_prompt(msgs)
+
+    fake_llm[ParsedRequest] = parse
+    fake_llm[ReviewAnalysis] = lambda m: ReviewAnalysis(summaries=[])
+    fake_llm[LLMPlan] = build
+    return calls

@@ -90,30 +90,6 @@ def test_routing_functions() -> None:
     assert route_after_feedback({}) == "validate_itinerary"
 
 
-@pytest.fixture
-def wired(fake_llm, fake_search):
-    """그래프 전체를 도는 데 필요한 LLM 대역을 등록한다."""
-    calls = {"build": 0, "parse": 0}
-
-    def parse(msgs: list) -> ParsedRequest:
-        calls["parse"] += 1
-        text = msgs[-1].content
-        return ParsedRequest(
-            days=2 if "2박" in text else None,
-            companions="커플" if "커플" in text else None,
-            start_date="2099-11-14" if "11월" in text else None,
-        )
-
-    def build(msgs: list) -> LLMPlan:
-        calls["build"] += 1
-        return plan_from_prompt(msgs)
-
-    fake_llm[ParsedRequest] = parse
-    fake_llm[ReviewAnalysis] = lambda m: ReviewAnalysis(summaries=[])
-    fake_llm[LLMPlan] = build
-    return calls
-
-
 def test_graph_full_flow(wired, fake_llm) -> None:
     """되묻기(interrupt) → 재개 → 일정 제시(interrupt) → 피드백 → 확정까지 한 스레드에서 이어진다."""
     graph = build_graph(make_checkpointer())
