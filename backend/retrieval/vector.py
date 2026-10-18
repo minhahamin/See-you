@@ -17,6 +17,40 @@ def get_collection() -> chromadb.Collection:
     return client.get_collection(COLLECTION_NAME)
 
 
+def allowed_place_ids(filters: dict[str, Any] | None) -> list[str] | None:
+    """category·indoor 필터를 만족하는 장소 id 목록을 구한다. 필터가 없으면 None(제한 없음)."""
+    conds = [{k: filters[k]} for k in ("category", "indoor") if filters and k in filters]
+    if not conds:
+        return None
+    where = {"$and": [{"type": "place"}, *conds]}
+    got = get_collection().get(where=where, include=["metadatas"])
+    return [m["place_id"] for m in got["metadatas"]]
+
+
+def chunk_allowed(meta: dict[str, Any], filters: dict[str, Any] | None, allowed: list[str] | None) -> bool:
+    """청크 메타데이터가 필터를 통과하는지 판정한다 (BM25 결과 필터링용).
+
+    장소 소개 청크는 author_type이 없으므로 항상 통과하고, 후기 청크만 작성자 유형으로 거른다.
+    """
+    if allowed is not None and meta["place_id"] not in allowed:
+        return False
+    author = (filters or {}).get("author_type")
+    return author is None or meta["type"] == "place" or meta.get("author_type") == author
+
+
+def build_where(filters: dict[str, Any] | None, allowed: list[str] | None) -> dict[str, Any] | None:
+    """Chroma where 조건을 만든다. 후기 청크는 작성자 유형으로만 제한한다."""
+    clauses: list[dict[str, Any]] = []
+    if allowed is not None:
+        clauses.append({"place_id": {"$in": allowed}})
+    author = (filters or {}).get("author_type")
+    if author:
+        clauses.append({"$or": [{"type": "place"}, {"author_type": author}]})
+    if not clauses:
+        return None
+    return clauses[0] if len(clauses) == 1 else {"$and": clauses}
+
+
 def search_chunks(
     query: str, n_chunks: int = 30, where: dict[str, Any] | None = None
 ) -> list[dict[str, Any]]:

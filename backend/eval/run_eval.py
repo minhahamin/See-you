@@ -12,7 +12,8 @@ from datetime import date
 from typing import Any, Callable
 
 from config import get_settings, setup_logging
-from retrieval.vector import rank_places, search_chunks
+from retrieval.hybrid import hybrid_search
+from retrieval.vector import allowed_place_ids, build_where, rank_places, search_chunks
 
 logger = logging.getLogger(__name__)
 
@@ -25,7 +26,19 @@ def search_v1(question: dict[str, Any]) -> list[str]:
     return rank_places(search_chunks(question["question"]))
 
 
-VERSIONS: dict[str, Callable[[dict[str, Any]], list[str]]] = {"v1": search_v1}
+def search_v2(question: dict[str, Any]) -> list[str]:
+    """v2: v1 + 메타데이터 필터. 필터는 평가셋의 filters(파싱이 완벽하다고 가정한 값)를 쓴다."""
+    filters = question["filters"]
+    allowed = allowed_place_ids(filters)
+    return rank_places(search_chunks(question["question"], where=build_where(filters, allowed)))
+
+
+def search_v3(question: dict[str, Any]) -> list[str]:
+    """v3: v2 + BM25 하이브리드 (RRF 결합)."""
+    return rank_places(hybrid_search(question["question"], filters=question["filters"]))
+
+
+VERSIONS: dict[str, Callable[[dict[str, Any]], list[str]]] = {"v1": search_v1, "v2": search_v2, "v3": search_v3}
 
 
 def recall_at_k(ranked: list[str], relevant: set[str], k: int) -> float:
