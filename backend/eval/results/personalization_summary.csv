@@ -1,0 +1,4 @@
+﻿date,model,condition,n,pref_hit_rate,indoor_rate,over_budget_rate,avg_price_level,violations
+2026-10-19,gemini-3.1-flash-lite,control,4,0.5353,0.828,0.1806,2.172,1.0
+2026-10-19,gemini-3.1-flash-lite,personalized,4,0.6561,0.7451,0.1497,2.0578,2.5
+2026-10-19,gemini-3.1-flash-lite,personalized_higher_in_n_personas,4,4,1,1,1,3
