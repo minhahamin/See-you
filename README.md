@@ -2,7 +2,7 @@
 > 여행 조건을 말하면 장소·후기를 검색하고 날씨와 동선을 고려해
 > 일정을 짜고, 피드백에 맞춰 수정하는 LangGraph 기반 Agentic RAG 서비스
 
-> 개발 진행 중 (6단계 완료: FastAPI + SSE, 기상청 날씨 연동. 다음은 프론트엔드 API 연결)
+> 개발 진행 중 (7단계: 프론트엔드 API·SSE 연결과 지도 연동 완료. 남은 것은 성능 대시보드와 배포)
 
 ## LangGraph 설계
 ```mermaid
@@ -82,6 +82,16 @@ SSE 이벤트: `step`(노드 시작/완료, 지연·토큰), `question`(되묻�
 지표는 실행할 때마다 `backend/data/metrics/runs.jsonl`에 쌓이고(git 제외), 값이 없는 항목은 `null`로 둔다.
 비용은 `.env`의 `LLM_PRICE_IN_PER_1M`, `LLM_PRICE_OUT_PER_1M`을 설정했을 때만 계산한다.
 
+## 프론트엔드
+React + TypeScript + Vite + Tailwind. 타임라인, 지도(카카오맵), 장소 상세, 여행 요약, 대화 패널로 구성된다.
+- **에이전트 연결**: 메시지는 POST라서 `EventSource`를 쓸 수 없어 `fetch`의 스트림 본문을 직접 읽어 SSE를 해석한다 (`src/api/sse.ts`). 청크 경계에서 잘린 이벤트와 한글 바이트 분할도 처리한다.
+- **진행 단계**: `step` 이벤트를 받아 노드별 지연·토큰을 대화 패널에 실시간으로 보여 준다. 검증 실패로 일정을 다시 만들면 같은 노드가 반복해서 나타난다.
+- **세션**: 세션 id를 `sessionStorage`에 두고, 새로고침하면 `GET /api/sessions/{id}`로 대화와 일정을 복원한다. 서버가 재시작돼 세션이 사라졌으면 조용히 새 세션으로 시작한다.
+- **근거 후기**: 장소를 선택하면 `GET /api/places/{id}`로 후기를 가져와(캐시) 일정의 근거 후기 id에 해당하는 것만 보여 준다.
+- **지도**: 일정의 장소 좌표로 일차별 마커와 동선을 그리고, 타임라인과 선택 상태를 공유한다.
+- 서버 없이 화면만 볼 수 있도록 시작 화면에 "예시 일정 보기"가 있다 (`src/mocks`의 더미 데이터).
+- 개발 서버는 `/api`를 `localhost:8000`으로 프록시한다. 배포에서는 `VITE_API_BASE_URL`에 백엔드 주소를 넣는다.
+
 ## 데이터
 - 장소: 한국관광공사 TourAPI(KorService2) 제주 30곳 (관광지 12, 음식점 8, 카페 5, 숙소 5)
 - 후기: LLM 합성 데이터 453개 (**실제 리뷰 아님**, 장소당 10~19개)
@@ -154,6 +164,12 @@ uvicorn api.main:app --reload
 
 # 테스트
 python -m pytest tests -q
+
+# 프론트엔드 (새 터미널, http://localhost:5173)
+cd ../frontend
+npm install
+npm run dev
+npm test
 ```
 
 Gemini 무료 티어는 채팅 모델 일일 20회, 임베딩 분당 100건 한도가 있어서 생성 스크립트는 중단 후 다시 실행하면 이어서 진행한다.
