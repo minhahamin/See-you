@@ -2,7 +2,7 @@
 > 여행 조건을 말하면 장소·후기를 검색하고 날씨와 동선을 고려해
 > 일정을 짜고, 피드백에 맞춰 수정하는 LangGraph 기반 Agentic RAG 서비스
 
-> 개발 진행 중 (5단계 완료: LangGraph 노드와 그래프, 다음은 FastAPI + SSE)
+> 개발 진행 중 (6단계 완료: FastAPI + SSE, 다음은 프론트엔드 API 연결)
 
 ## LangGraph 설계
 ```mermaid
@@ -59,6 +59,24 @@ graph TD;
 - 부분 수정 뒤에는 재생성 루프를 타지 않는다. 재생성하면 사용자가 요청한 수정이 사라지기 때문이다
 
 **한계**: 날씨 도구(`tools/weather.py`)는 기상청 API 명세를 받기 전이라 연동 전이다. 이동시간은 직선거리 기반 근사치다(보정 계수·평균 속도는 가정값).
+
+## API
+| Method | Path | 설명 |
+|---|---|---|
+| POST | `/api/sessions` | 새 세션 생성 (`session_id` = LangGraph `thread_id`) |
+| POST | `/api/sessions/{id}/messages` | 메시지 전송. SSE로 진행 단계와 결과를 스트리밍 |
+| GET | `/api/sessions/{id}` | 현재 대화·조건·일정 요약 (`awaiting`: 되묻기/피드백 대기 여부) |
+| GET | `/api/places/{place_id}` | 장소 상세 + 후기 (후기는 합성 데이터라는 안내 포함) |
+| GET | `/api/health` | 헬스체크 |
+| GET | `/api/metrics/experiments` | 버전별 평가 결과 (`eval/results/summary.csv` 기반) |
+| GET | `/api/metrics/runs` | 노드별 지연·토큰, 요청당 응답시간·비용, 재생성 비율, 주요 실패 사유 |
+
+SSE 이벤트: `step`(노드 시작/완료, 지연·토큰), `question`(되묻기), `itinerary`(일정 결과), `error`, `done`.
+사용자 응답을 기다리는 지점(되묻기, 일정 제시)은 LangGraph interrupt로 구현했고, 같은 세션에 다음 메시지를 보내면 그 지점에서 재개된다.
+한 세션은 동시에 한 메시지만 처리하며, 처리 중이면 409를 돌려준다.
+
+지표는 실행할 때마다 `backend/data/metrics/runs.jsonl`에 쌓이고(git 제외), 값이 없는 항목은 `null`로 둔다.
+비용은 `.env`의 `LLM_PRICE_IN_PER_1M`, `LLM_PRICE_OUT_PER_1M`을 설정했을 때만 계산한다.
 
 ## 데이터
 - 장소: 한국관광공사 TourAPI(KorService2) 제주 30곳 (관광지 12, 음식점 8, 카페 5, 숙소 5)
@@ -126,6 +144,12 @@ python -m ingest.generate_reviews
 python -m ingest.build_index
 python -m eval.build_testset
 python -m eval.run_eval --version v1   # v1~v4 (v4는 RERANKER_MODEL 환경변수로 모델 지정)
+
+# API 서버 (http://localhost:8000/docs)
+uvicorn api.main:app --reload
+
+# 테스트
+python -m pytest tests -q
 ```
 
 Gemini 무료 티어는 채팅 모델 일일 20회, 임베딩 분당 100건 한도가 있어서 생성 스크립트는 중단 후 다시 실행하면 이어서 진행한다.
