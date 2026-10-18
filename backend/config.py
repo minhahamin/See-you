@@ -32,6 +32,7 @@ class Settings(BaseSettings):
     data_dir: Path = BASE_DIR / "data"
     chroma_dir: Path = BASE_DIR / "chroma"
     eval_results_dir: Path = BASE_DIR / "eval" / "results"
+    frontend_dist: Path = ROOT_DIR / "frontend" / "dist"  # 있으면 API 서버가 함께 서빙한다 (배포용)
     runs_log_path: Path = BASE_DIR / "data" / "metrics" / "runs.jsonl"
     region: str = "제주"
     max_retry: int = 2

@@ -3,6 +3,7 @@ import logging
 
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 from langgraph.graph.state import CompiledStateGraph
 from sse_starlette.sse import EventSourceResponse
 
@@ -87,6 +88,11 @@ def create_app(graph: CompiledStateGraph | None = None, store: MetricsStore | No
             runs=metrics.run_metrics(),
             source="data/metrics/runs.jsonl" if metrics.node_metrics() else None,
         )
+
+    # 배포에서는 빌드된 프론트(frontend/dist)를 같은 서버가 서빙한다. 개발 중(dist 없음)에는 건너뛴다.
+    # API 라우트를 모두 등록한 뒤에 마운트해야 /api가 가려지지 않는다.
+    if settings.frontend_dist.is_dir():
+        app.mount("/", StaticFiles(directory=settings.frontend_dist, html=True), name="frontend")
 
     return app
 

@@ -208,8 +208,30 @@ class MetricsStore:
         )
 
 
+def _latest_itinerary_rows() -> dict[str, dict[str, str]]:
+    """eval/results/itinerary_summary.csv에서 config(no_loop/loop)별 가장 최근 행을 읽는다. 파일이 없으면 빈 dict."""
+    path = get_settings().eval_results_dir / "itinerary_summary.csv"
+    if not path.exists():
+        return {}
+    latest: dict[str, dict[str, str]] = {}
+    with path.open(encoding="utf-8-sig", newline="") as f:
+        for row in csv.DictReader(f):  # 파일은 날짜순으로 쌓이므로 뒤의 행이 더 최근이다
+            latest[row["config"]] = row
+    return latest
+
+
+def _opt_float(row: dict[str, str] | None, key: str) -> float | None:
+    """CSV 값을 숫자로. 비어 있거나 행이 없으면 None."""
+    value = (row or {}).get(key, "")
+    return float(value) if value not in ("", None) else None
+
+
 def load_experiments() -> tuple[list[ExperimentResult], str | None]:
-    """eval/results/summary.csv를 읽어 버전별 결과로 만든다. 파일이 없으면 빈 목록."""
+    """버전별 평가 결과를 읽는다. 검색 지표는 summary.csv, 일정 지표(위반율·Faithfulness)는 itinerary_summary.csv.
+
+    일정 평가는 v3 검색 위에서 돌렸다. 첫 생성(루프 없음)의 결과는 v3 행에, 재생성 루프를 적용한 결과는 v5 행에 붙이고,
+    v5의 검색 지표는 같은 검색을 쓰므로 v3 값을 그대로 쓴다.
+    """
     path = get_settings().eval_results_dir / "summary.csv"
     if not path.exists():
         return [], None
@@ -224,4 +246,23 @@ def load_experiments() -> tuple[list[ExperimentResult], str | None]:
             results.append(
                 ExperimentResult(version=version, description=desc, recall_at_5=float(row["recall@5_all"]), mrr=float(row["mrr_all"]))
             )
-    return results, f"eval/results/{path.name}"
+
+    itinerary = _latest_itinerary_rows()
+    sources = [f"eval/results/{path.name}"]
+    v3 = next((r for r in results if r.version == "v3"), None)
+    if itinerary and v3:
+        no_loop, loop = itinerary.get("no_loop"), itinerary.get("loop")
+        v3.faithfulness = _opt_float(no_loop, "faithfulness")
+        v3.violation_rate = _opt_float(no_loop, "violation_check_rate")
+        results.append(
+            ExperimentResult(
+                version="v5",
+                description=f"{EXPERIMENT_DESCRIPTIONS['v5']} (v3 검색 기반)",
+                recall_at_5=v3.recall_at_5,
+                mrr=v3.mrr,
+                faithfulness=_opt_float(loop, "faithfulness"),
+                violation_rate=_opt_float(loop, "violation_check_rate"),
+            )
+        )
+        sources.append("eval/results/itinerary_summary.csv")
+    return results, " + ".join(sources)
