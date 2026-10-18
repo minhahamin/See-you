@@ -1,0 +1,2 @@
+﻿date,version,n_questions,recall@5,mrr,embedding_model
+2026-10-18,v1,21,0.6556,0.8889,gemini-embedding-2
