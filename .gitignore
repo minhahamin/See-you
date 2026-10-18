@@ -7,6 +7,7 @@ venv/
 # 생성 데이터 / 인덱스
 backend/chroma/
 backend/data/raw/
+backend/data/metrics/
 backend/data/*.sqlite
 
 # frontend

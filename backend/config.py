@@ -19,6 +19,10 @@ class Settings(BaseSettings):
     llm_model: str = ""
     embedding_model: str = ""
     llm_api_key: str = ""
+    # 토큰 단가(USD/1M 토큰). 비어 있으면 비용은 "데이터 없음"으로 둔다 (임의 값을 넣지 않는다).
+    llm_price_in_per_1m: str = ""
+    llm_price_out_per_1m: str = ""
+    cors_origins: str = "http://localhost:5173,http://127.0.0.1:5173"
     reranker_model: str = "BAAI/bge-reranker-v2-m3"
     tour_api_key: str = ""
     kma_api_key: str = ""
@@ -28,6 +32,7 @@ class Settings(BaseSettings):
     data_dir: Path = BASE_DIR / "data"
     chroma_dir: Path = BASE_DIR / "chroma"
     eval_results_dir: Path = BASE_DIR / "eval" / "results"
+    runs_log_path: Path = BASE_DIR / "data" / "metrics" / "runs.jsonl"
     region: str = "제주"
     max_retry: int = 2
 
