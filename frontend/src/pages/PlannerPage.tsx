@@ -1,6 +1,7 @@
-import { useMemo, useState } from 'react';
-import ChatDrawer from '../components/chat/ChatDrawer';
+import { useEffect, useMemo, useState } from 'react';
+import ChatDrawer, { inputPlaceholder } from '../components/chat/ChatDrawer';
 import ChatInput from '../components/chat/ChatInput';
+import EmptyPlanner from '../components/EmptyPlanner';
 import TopBar, { type ViewMode } from '../components/layout/TopBar';
 import MapView from '../components/MapView';
 import PlaceDetail from '../components/PlaceDetail';
@@ -10,8 +11,8 @@ import TimelineView from '../components/timeline/TimelineView';
 import TripSummary from '../components/TripSummary';
 import TripSummaryChips from '../components/TripSummaryChips';
 import type { ChatSession } from '../hooks/useChatSession';
+import { usePlaceReviews } from '../hooks/usePlaceReviews';
 import { computeStats } from '../lib/summary';
-import { mockItinerary, mockPlaces, mockReviews } from '../mocks';
 import type { Selection } from '../types';
 
 interface Props {
@@ -22,22 +23,33 @@ interface Props {
 
 /** 플래너 화면: 타임라인/지도 + 오른쪽 상세·요약 + 하단 입력창 + 대화 패널 */
 export default function PlannerPage({ view, onViewChange, chat }: Props) {
-  // 아직 API 연결 전이라 더미 데이터를 사용한다
-  const itinerary = mockItinerary;
-  const places = mockPlaces;
+  const { itinerary, places } = chat;
 
   // 처음에는 첫 일정을 "다음 일정"으로 보여준다
   const [selection, setSelection] = useState<Selection>({ day: 1, index: 0 });
   const [sheetOpen, setSheetOpen] = useState(false);
   const [chatOpen, setChatOpen] = useState(false);
 
-  const stats = useMemo(() => computeStats(itinerary, places), [itinerary, places]);
+  const stats = useMemo(() => (itinerary ? computeStats(itinerary, places) : null), [itinerary, places]);
 
-  const visit = itinerary.days.find((d) => d.day === selection.day)?.visits[selection.index];
+  // 새 일정으로 바뀌었을 때 선택이 가리키는 방문이 없으면 첫 방문으로 되돌린다
+  useEffect(() => {
+    if (!itinerary) return;
+    setSelection((prev) =>
+      itinerary.days.find((d) => d.day === prev.day)?.visits[prev.index]
+        ? prev
+        : { day: itinerary.days[0]?.day ?? 1, index: 0 },
+    );
+  }, [itinerary]);
+
+  // 에이전트가 되물으면 대화 패널을 자동으로 열어 질문이 보이게 한다
+  useEffect(() => {
+    if (chat.awaiting === 'question') setChatOpen(true);
+  }, [chat.awaiting]);
+
+  const visit = itinerary?.days.find((d) => d.day === selection.day)?.visits[selection.index];
   const place = visit ? places[visit.place_id] : undefined;
-  const reviews = visit
-    ? visit.evidence_review_ids.flatMap((id) => (mockReviews[id] ? [mockReviews[id]] : []))
-    : [];
+  const reviews = usePlaceReviews(visit, chat.isDemo);
 
   const handleSelect = (next: Selection) => {
     setSelection(next);
@@ -49,6 +61,7 @@ export default function PlannerPage({ view, onViewChange, chat }: Props) {
 
   // 이미지 생성 코드는 처음 누를 때만 불러온다
   const handleExport = async () => {
+    if (!itinerary) return;
     setExporting(true);
     setExportError(null);
     try {
@@ -88,7 +101,9 @@ export default function PlannerPage({ view, onViewChange, chat }: Props) {
           </p>
         )}
 
-        {view === 'map' ? (
+        {!itinerary || !stats ? (
+          <EmptyPlanner running={chat.running} onPick={handleSend} onDemo={chat.loadDemo} />
+        ) : view === 'map' ? (
           <MapView itinerary={itinerary} places={places} selection={selection} onSelect={handleSelect} />
         ) : (
           <>
@@ -102,13 +117,15 @@ export default function PlannerPage({ view, onViewChange, chat }: Props) {
           </>
         )}
 
-        <ChatInput onSubmit={handleSend} busy={chat.running} />
+        <ChatInput onSubmit={handleSend} busy={chat.running} placeholder={inputPlaceholder(chat)} />
       </div>
 
-      <aside className="hidden min-h-0 w-[340px] shrink-0 flex-col gap-4 overflow-y-auto lg:flex">
-        {detail}
-        <TripSummary stats={stats} />
-      </aside>
+      {itinerary && stats && (
+        <aside className="hidden min-h-0 w-[340px] shrink-0 flex-col gap-4 overflow-y-auto lg:flex">
+          {detail}
+          <TripSummary stats={stats} />
+        </aside>
+      )}
 
       <PlaceDetailSheet open={sheetOpen} onClose={() => setSheetOpen(false)}>
         {detail}

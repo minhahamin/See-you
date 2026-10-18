@@ -97,6 +97,8 @@ export interface AgentStep {
   label: string;
   status: StepStatus;
   duration_ms: number | null;
+  /** 이 단계에서 쓴 LLM 토큰 수 (없으면 생략) */
+  tokens?: number | null;
 }
 
 // ---- 사용자 설정 (동행·취향) ----
