@@ -1,0 +1,357 @@
+[
+  {
+    "id": "companion-가족-관광지",
+    "type": "companion_category",
+    "question": "가족과 가기 좋은 관광지",
+    "relevant_place_ids": [
+      "2767778",
+      "2778809",
+      "3071744",
+      "2633955",
+      "2652545",
+      "2704242",
+      "2751854",
+      "2753082",
+      "2742344",
+      "3027466"
+    ],
+    "filters": {
+      "author_type": "가족",
+      "category": "관광지"
+    }
+  },
+  {
+    "id": "companion-가족-음식점",
+    "type": "companion_category",
+    "question": "가족과 가기 좋은 음식점",
+    "relevant_place_ids": [
+      "2678751",
+      "2678768",
+      "134980",
+      "2783430",
+      "2843766",
+      "2781324",
+      "2840856",
+      "404165"
+    ],
+    "filters": {
+      "author_type": "가족",
+      "category": "음식점"
+    }
+  },
+  {
+    "id": "companion-가족-카페",
+    "type": "companion_category",
+    "question": "가족과 가기 좋은 카페",
+    "relevant_place_ids": [
+      "2831920",
+      "2858473"
+    ],
+    "filters": {
+      "author_type": "가족",
+      "category": "카페"
+    }
+  },
+  {
+    "id": "companion-가족-숙소",
+    "type": "companion_category",
+    "question": "가족과 묵기 좋은 숙소",
+    "relevant_place_ids": [
+      "1348840",
+      "1869305",
+      "1932636",
+      "2358196"
+    ],
+    "filters": {
+      "author_type": "가족",
+      "category": "숙소"
+    }
+  },
+  {
+    "id": "companion-커플-관광지",
+    "type": "companion_category",
+    "question": "연인과 가기 좋은 관광지",
+    "relevant_place_ids": [
+      "2778809",
+      "3071744",
+      "2723689",
+      "2633955",
+      "2781401",
+      "2652545",
+      "2704242",
+      "2751854",
+      "2753082",
+      "2742344",
+      "3027466"
+    ],
+    "filters": {
+      "author_type": "커플",
+      "category": "관광지"
+    }
+  },
+  {
+    "id": "companion-커플-음식점",
+    "type": "companion_category",
+    "question": "연인과 가기 좋은 음식점",
+    "relevant_place_ids": [
+      "2678751",
+      "2678768",
+      "134980",
+      "2783430",
+      "2843766",
+      "2781324",
+      "2840856",
+      "404165"
+    ],
+    "filters": {
+      "author_type": "커플",
+      "category": "음식점"
+    }
+  },
+  {
+    "id": "companion-커플-카페",
+    "type": "companion_category",
+    "question": "연인과 가기 좋은 카페",
+    "relevant_place_ids": [
+      "4128339",
+      "4125008",
+      "2839718",
+      "2831920",
+      "2858473"
+    ],
+    "filters": {
+      "author_type": "커플",
+      "category": "카페"
+    }
+  },
+  {
+    "id": "companion-커플-숙소",
+    "type": "companion_category",
+    "question": "연인과 묵기 좋은 숙소",
+    "relevant_place_ids": [
+      "1348840",
+      "1869305",
+      "1932636",
+      "2021434",
+      "2358196"
+    ],
+    "filters": {
+      "author_type": "커플",
+      "category": "숙소"
+    }
+  },
+  {
+    "id": "companion-친구-관광지",
+    "type": "companion_category",
+    "question": "친구들과 가기 좋은 관광지",
+    "relevant_place_ids": [
+      "2767778",
+      "2778809",
+      "3071744",
+      "2723689",
+      "2633955",
+      "2781401",
+      "2652545",
+      "2704242",
+      "2751854",
+      "2753082",
+      "2742344",
+      "3027466"
+    ],
+    "filters": {
+      "author_type": "친구",
+      "category": "관광지"
+    }
+  },
+  {
+    "id": "companion-친구-음식점",
+    "type": "companion_category",
+    "question": "친구들과 가기 좋은 음식점",
+    "relevant_place_ids": [
+      "2678751",
+      "2678768",
+      "134980",
+      "2783430",
+      "2843766",
+      "2781324",
+      "2840856",
+      "404165"
+    ],
+    "filters": {
+      "author_type": "친구",
+      "category": "음식점"
+    }
+  },
+  {
+    "id": "companion-친구-카페",
+    "type": "companion_category",
+    "question": "친구들과 가기 좋은 카페",
+    "relevant_place_ids": [
+      "4128339",
+      "4125008",
+      "2839718",
+      "2831920",
+      "2858473"
+    ],
+    "filters": {
+      "author_type": "친구",
+      "category": "카페"
+    }
+  },
+  {
+    "id": "companion-친구-숙소",
+    "type": "companion_category",
+    "question": "친구들과 묵기 좋은 숙소",
+    "relevant_place_ids": [
+      "1932636",
+      "2021434"
+    ],
+    "filters": {
+      "author_type": "친구",
+      "category": "숙소"
+    }
+  },
+  {
+    "id": "companion-혼자-관광지",
+    "type": "companion_category",
+    "question": "혼자서 가기 좋은 관광지",
+    "relevant_place_ids": [
+      "2767778",
+      "3071744",
+      "2723689",
+      "2781401",
+      "2652545"
+    ],
+    "filters": {
+      "author_type": "혼자",
+      "category": "관광지"
+    }
+  },
+  {
+    "id": "companion-혼자-음식점",
+    "type": "companion_category",
+    "question": "혼자서 가기 좋은 음식점",
+    "relevant_place_ids": [
+      "2843766",
+      "2840856"
+    ],
+    "filters": {
+      "author_type": "혼자",
+      "category": "음식점"
+    }
+  },
+  {
+    "id": "companion-혼자-카페",
+    "type": "companion_category",
+    "question": "혼자서 가기 좋은 카페",
+    "relevant_place_ids": [
+      "4128339",
+      "4125008",
+      "2839718",
+      "2831920"
+    ],
+    "filters": {
+      "author_type": "혼자",
+      "category": "카페"
+    }
+  },
+  {
+    "id": "companion-혼자-숙소",
+    "type": "companion_category",
+    "question": "혼자서 묵기 좋은 숙소",
+    "relevant_place_ids": [
+      "1348840",
+      "1869305",
+      "1932636"
+    ],
+    "filters": {
+      "author_type": "혼자",
+      "category": "숙소"
+    }
+  },
+  {
+    "id": "companion-혼자-indoor",
+    "type": "companion_indoor",
+    "question": "혼자서 가기 좋은 실내 장소",
+    "relevant_place_ids": [
+      "2843766",
+      "2840856",
+      "4128339",
+      "4125008",
+      "2839718",
+      "2831920",
+      "1869305",
+      "1932636"
+    ],
+    "filters": {
+      "author_type": "혼자",
+      "indoor": true
+    }
+  },
+  {
+    "id": "outdoor-관광지",
+    "type": "outdoor_category",
+    "question": "야외에서 즐기기 좋은 관광지",
+    "relevant_place_ids": [
+      "2767778",
+      "3071744",
+      "2723689",
+      "2633955",
+      "2781401",
+      "2652545",
+      "2704242",
+      "2751854",
+      "2753082",
+      "2742344",
+      "3027466"
+    ],
+    "filters": {
+      "category": "관광지",
+      "indoor": false
+    }
+  },
+  {
+    "id": "indoor-카페",
+    "type": "indoor_category",
+    "question": "비 오는 날 가기 좋은 실내 카페",
+    "relevant_place_ids": [
+      "4128339",
+      "4125008",
+      "2839718",
+      "2831920",
+      "2858473"
+    ],
+    "filters": {
+      "category": "카페",
+      "indoor": true
+    }
+  },
+  {
+    "id": "cheap-관광지",
+    "type": "price",
+    "question": "가격 부담 없는 관광지",
+    "relevant_place_ids": [
+      "2767778",
+      "3071744",
+      "2723689",
+      "2781401",
+      "2652545"
+    ],
+    "filters": {
+      "category": "관광지"
+    }
+  },
+  {
+    "id": "pricey-음식점",
+    "type": "price",
+    "question": "가격대가 높은 고급스러운 음식점",
+    "relevant_place_ids": [
+      "2678751",
+      "2843766",
+      "404165"
+    ],
+    "filters": {
+      "category": "음식점"
+    }
+  }
+]
