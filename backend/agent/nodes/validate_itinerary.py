@@ -12,6 +12,7 @@ logger = logging.getLogger(__name__)
 MAX_LEG_MIN = 60  # 한 번의 이동 상한
 MAX_DAY_TRAVEL_MIN = 180  # 하루 총 이동 상한
 MIN_VISITS_PER_DAY = 3  # 숙소를 뺀 하루 최소 방문 수
+MIN_SIGHTS_PER_DAY = 1  # 하루 최소 관광지 수 (식사·카페만으로 채우지 않게)
 DAY_START_MIN, DAY_END_MIN = 8 * 60, 22 * 60
 MAX_OUTDOOR_SIGHTS_WHEN_RAIN = 1  # 비 오는 날 야외 관광지 상한
 
@@ -48,6 +49,13 @@ def _day_checks(day, summaries: dict[str, ReviewSummary]) -> list[Check]:
             f"{day.day}일차 방문 장소가 {len(non_stay)}곳뿐입니다. 최소 {MIN_VISITS_PER_DAY}곳을 넣으세요.",
         )
     ]
+    sights = [v for v in non_stay if all_places[v.place_id].category == "관광지"]
+    checks.append(
+        Check(
+            len(sights) >= MIN_SIGHTS_PER_DAY,
+            f"{day.day}일차에 관광지가 없습니다. 관광지를 {MIN_SIGHTS_PER_DAY}곳 이상 넣으세요.",
+        )
+    )
     has_meal = any(all_places[v.place_id].category == "음식점" for v in day.visits)
     checks.append(Check(has_meal, f"{day.day}일차에 식사(음식점)가 없습니다. 점심 식사를 넣으세요."))
     legs = [v.travel_minutes_from_prev for v in day.visits]

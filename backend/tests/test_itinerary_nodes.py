@@ -140,3 +140,15 @@ def test_plan_days_passes_weather_and_issues(fake_llm) -> None:
     w = {"2026-11-14": Weather(condition="rain", temp_max=1, temp_min=0)}
     plan_days(state["request"], state["candidates"], state["review_summaries"], w, [1], issues=["문제A"])
     assert "1일차 날씨: rain" in seen["user"] and "문제A" in seen["system"]
+
+
+def test_validate_flags_day_without_sights() -> None:
+    """식사·카페만으로 방문 수를 채운 날(관광지 0곳)을 지적한다."""
+    state = _state(days=1)
+    pick = lambda cat, n: [c for c in state["candidates"] if c.category == cat][:n]  # noqa: E731
+    visits = [
+        Visit(place_id=c.id, start=f"{9 + 2 * i:02d}:00", end=f"{10 + 2 * i:02d}:00", reason="r", evidence_review_ids=sorted(catalog.review_ids(c.id))[:1])
+        for i, c in enumerate([*pick("음식점", 2), *pick("카페", 1)])
+    ]
+    state["itinerary"] = _itinerary(visits)
+    assert any("관광지가 없습니다" in i for i in validate_itinerary(state)["validation_issues"])

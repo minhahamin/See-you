@@ -144,4 +144,5 @@ def test_classify_issue() -> None:
     """검증 문제 문장은 실패 사유로 분류된다."""
     assert classify_issue("1일차 이동이 과합니다(총 205분)") == "이동 과다"
     assert classify_issue("2일차 X: 예산(가격대)을 넘습니다.") == "예산 초과"
+    assert classify_issue("3일차에 관광지가 없습니다. 관광지를 1곳 이상 넣으세요.") == "관광지 누락"
     assert classify_issue("알 수 없는 문장") == "기타"
