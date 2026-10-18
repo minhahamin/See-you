@@ -2,7 +2,63 @@
 > 여행 조건을 말하면 장소·후기를 검색하고 날씨와 동선을 고려해
 > 일정을 짜고, 피드백에 맞춰 수정하는 LangGraph 기반 Agentic RAG 서비스
 
-> 개발 진행 중 (4단계 완료: v1~v4 검색 실험, 다음은 LangGraph 노드 구현)
+> 개발 진행 중 (5단계 완료: LangGraph 노드와 그래프, 다음은 FastAPI + SSE)
+
+## LangGraph 설계
+```mermaid
+graph TD;
+	__start__([<p>__start__</p>]):::first
+	parse_request(parse_request)
+	ask_clarification(ask_clarification)
+	search_places(search_places)
+	analyze_reviews(analyze_reviews)
+	check_weather(check_weather)
+	build_itinerary(build_itinerary)
+	validate_itinerary(validate_itinerary)
+	present_itinerary(present_itinerary)
+	apply_feedback(apply_feedback)
+	__end__([<p>__end__</p>]):::last
+	__start__ --> parse_request;
+	analyze_reviews --> check_weather;
+	apply_feedback -.-> __end__;
+	apply_feedback -.-> search_places;
+	apply_feedback -.-> validate_itinerary;
+	ask_clarification --> parse_request;
+	build_itinerary --> validate_itinerary;
+	check_weather --> build_itinerary;
+	parse_request -.-> ask_clarification;
+	parse_request -.-> search_places;
+	present_itinerary -.-> __end__;
+	present_itinerary -.-> apply_feedback;
+	search_places --> analyze_reviews;
+	validate_itinerary -.-> build_itinerary;
+	validate_itinerary -.-> present_itinerary;
+	classDef default fill:#f2f0ff,line-height:1.2
+	classDef first fill-opacity:0
+	classDef last fill:#bfb6fc
+```
+
+**State** (`backend/agent/state.py`): `messages`, `request`(지역·날짜·일수·동행·취향·예산), `missing_fields`, `candidates`, `review_summaries`(장단점 + 근거 후기 id), `weather`, `itinerary`, `validation_issues`, `feedback`, `retry_count`. 재검색 여부(`rerun_search`)와 확정 여부(`accepted`)를 위한 플래그 둘을 더했다.
+
+| 노드 | 역할 | 입력 → 출력 |
+|---|---|---|
+| `parse_request` | 대화에서 조건 추출(구조화 출력), 이전 조건과 병합 | messages → request, missing_fields |
+| `ask_clarification` | 부족한 조건을 묻고 사용자 응답 대기(interrupt) | missing_fields → messages |
+| `search_places` | 분류별 하이브리드 검색(v3) + 동행 유형 필터 | request → candidates |
+| `analyze_reviews` | 후보별 장단점 요약 + 근거 후기 id, 부적합 장소 제외 (LLM 1회) | candidates → review_summaries, candidates |
+| `check_weather` | 날짜별 날씨 조회, 실패하면 날씨 없이 진행 | request → weather |
+| `build_itinerary` | LLM이 일자·시간대별 장소를 정하고 route 도구로 이동시간·시간표 계산 | candidates, summaries, weather → itinerary |
+| `validate_itinerary` | 규칙 검증: 이동 과다, 영업시간, 예산·동행, 식사 누락, 중복, 근거 없는 추천 | itinerary → validation, validation_issues |
+| `present_itinerary` | 일정을 사용자에게 제시하고 피드백 대기(interrupt) | itinerary → feedback |
+| `apply_feedback` | 수정 범위 판단 후 방문 하나·일차 하나만 교체, 조건 변경이면 재검색 | feedback → itinerary 또는 rerun_search |
+
+**분기 조건** (`backend/agent/graph.py`에 모음)
+- 되묻기: 시작일·일수·동행 중 하나라도 비면 `ask_clarification`, 응답 후 다시 `parse_request`
+- 재생성 루프: 검증 문제가 있고 `retry_count < 2`이면 문제 목록을 프롬프트에 넣어 `build_itinerary` 재실행, 아니면 제시
+- 피드백: 없으면 종료. 있으면 `apply_feedback` 후 확정이면 종료, 조건 변경이면 `search_places`부터, 부분 수정이면 `validate_itinerary`로
+- 부분 수정 뒤에는 재생성 루프를 타지 않는다. 재생성하면 사용자가 요청한 수정이 사라지기 때문이다
+
+**한계**: 날씨 도구(`tools/weather.py`)는 기상청 API 명세를 받기 전이라 연동 전이다. 이동시간은 직선거리 기반 근사치다(보정 계수·평균 속도는 가정값).
 
 ## 데이터
 - 장소: 한국관광공사 TourAPI(KorService2) 제주 30곳 (관광지 12, 음식점 8, 카페 5, 숙소 5)
