@@ -4528,5 +4528,1535 @@
     "season": "가을",
     "visit_time": "오후",
     "created_at": "2026-03-02"
+  },
+  {
+    "review_id": "130363-01",
+    "place_id": "130363",
+    "text": "유럽 고성 같은 건물 외관이 정말 멋지네요. 초콜릿 역사도 배우고 직접 만들어보는 체험까지 알차게 즐겼습니다.",
+    "rating": 5,
+    "author_type": "가족",
+    "season": "봄",
+    "visit_time": "오전 11시",
+    "created_at": "2026-03-18"
+  },
+  {
+    "review_id": "130363-02",
+    "place_id": "130363",
+    "text": "초콜릿 만들기 체험이 생각보다 훨씬 재미있어서 좋았어요. 건물도 아늑하고 예뻐서 만족합니다.",
+    "rating": 4,
+    "author_type": "커플",
+    "season": "가을",
+    "visit_time": "오후 3시",
+    "created_at": "2024-10-24"
+  },
+  {
+    "review_id": "130363-03",
+    "place_id": "130363",
+    "text": "그저 그랬습니다.",
+    "rating": 3,
+    "author_type": "친구",
+    "season": "여름",
+    "visit_time": "오후 2시",
+    "created_at": "2026-08-13"
+  },
+  {
+    "review_id": "130363-04",
+    "place_id": "130363",
+    "text": "대중교통으로 가기엔 너무 불편하네요. 셔틀버스 같은 것도 없고 위치가 애매해서 가는 길이 힘들었습니다.",
+    "rating": 2,
+    "author_type": "친구",
+    "season": "겨울",
+    "visit_time": "오후 1시",
+    "created_at": "2025-01-20"
+  },
+  {
+    "review_id": "130363-05",
+    "place_id": "130363",
+    "text": "제주 송이석으로 지어진 건물이 정말 이국적이에요. 고즈넉한 분위기에서 초콜릿의 역사를 살펴보니 참 좋네요.",
+    "rating": 5,
+    "author_type": "가족",
+    "season": "가을",
+    "visit_time": "오전 10시",
+    "created_at": "2025-09-27"
+  },
+  {
+    "review_id": "130363-06",
+    "place_id": "130363",
+    "text": "시설이 생각보다 많이 노후화되어 있어서 관람하는 내내 아쉬움이 남았습니다.",
+    "rating": 2,
+    "author_type": "혼자",
+    "season": "여름",
+    "visit_time": "오후 4시",
+    "created_at": "2026-05-16"
+  },
+  {
+    "review_id": "130363-07",
+    "place_id": "130363",
+    "text": "운영 시간이 짧아서 방문 계획 짜기가 너무 어려워요. 시간 꼭 확인하고 가세요.",
+    "rating": 2,
+    "author_type": "친구",
+    "season": "봄",
+    "visit_time": "오후 5시",
+    "created_at": "2025-07-28"
+  },
+  {
+    "review_id": "130363-08",
+    "place_id": "130363",
+    "text": "좋았습니다.",
+    "rating": 4,
+    "author_type": "커플",
+    "season": "여름",
+    "visit_time": "오후 1시",
+    "created_at": "2026-08-30"
+  },
+  {
+    "review_id": "130363-09",
+    "place_id": "130363",
+    "text": "아이들과 함께 초콜릿 만들기를 했는데 너무 즐거운 시간이었어요. 박물관 내부도 조용해서 관람하기 좋네요.",
+    "rating": 5,
+    "author_type": "가족",
+    "season": "겨울",
+    "visit_time": "오전 11시",
+    "created_at": "2025-09-12"
+  },
+  {
+    "review_id": "130363-10",
+    "place_id": "130363",
+    "text": "세계 10대 박물관이라길래 기대했는데 시설이 낡아서 실망했어요. 굳이 여기까지 올 필요가 있을까 싶네요.",
+    "rating": 1,
+    "author_type": "친구",
+    "season": "가을",
+    "visit_time": "오후 2시",
+    "created_at": "2025-07-31"
+  },
+  {
+    "review_id": "130363-11",
+    "place_id": "130363",
+    "text": "조용하고 아늑한 분위기에서 초콜릿 문화에 대해 배울 수 있어 유익했습니다.",
+    "rating": 4,
+    "author_type": "혼자",
+    "season": "봄",
+    "visit_time": "오후 3시",
+    "created_at": "2025-12-10"
+  },
+  {
+    "review_id": "130363-12",
+    "place_id": "130363",
+    "text": "가족끼리 와서 만들기 체험하는 거 추천해요. 이국적인 건물 덕분에 낭만적인 느낌이 들어요.",
+    "rating": 5,
+    "author_type": "가족",
+    "season": "겨울",
+    "visit_time": "오전 10시",
+    "created_at": "2026-09-02"
+  },
+  {
+    "review_id": "130363-13",
+    "place_id": "130363",
+    "text": "건물 외관은 예쁘지만 박물관 내부 시설은 좀 낡았습니다. 그래도 체험은 괜찮았어요.",
+    "rating": 3,
+    "author_type": "커플",
+    "season": "여름",
+    "visit_time": "오후 12시",
+    "created_at": "2025-06-13"
+  },
+  {
+    "review_id": "130363-14",
+    "place_id": "130363",
+    "text": "혼자 방문했는데 딱히 특별한 느낌은 못 받았네요. 조용한 건 좋았습니다.",
+    "rating": 3,
+    "author_type": "혼자",
+    "season": "가을",
+    "visit_time": "오전 9시",
+    "created_at": "2025-05-14"
+  },
+  {
+    "review_id": "130363-15",
+    "place_id": "130363",
+    "text": "평일 점심시간에 갔더니 사람이 꽤 많았어요. 그래도 박물관 자체는 조용히 관람할 수 있어 좋습니다.",
+    "rating": 4,
+    "author_type": "가족",
+    "season": "봄",
+    "visit_time": "오후 1시",
+    "created_at": "2025-06-03"
+  },
+  {
+    "review_id": "130363-16",
+    "place_id": "130363",
+    "text": "유럽 고성 같은 분위기가 정말 멋져서 커플 데이트 장소로 딱이네요. 체험도 재밌었어요.",
+    "rating": 5,
+    "author_type": "커플",
+    "season": "겨울",
+    "visit_time": "오후 2시",
+    "created_at": "2026-09-09"
+  },
+  {
+    "review_id": "130180-01",
+    "place_id": "130180",
+    "text": "서아프리카 말리 대사원을 본떠 만든 건물이 정말 이색적이었어요. 아프리카의 독특한 문화를 접할 수 있어 만족합니다.",
+    "rating": 4,
+    "author_type": "커플",
+    "season": "봄",
+    "visit_time": "평일 오전",
+    "created_at": "2026-02-14"
+  },
+  {
+    "review_id": "130180-02",
+    "place_id": "130180",
+    "text": "실내 박물관이라 쾌적하게 관람하기 좋았지만 전시물들이 생각보다 낡아서 관리가 좀 더 필요해 보였습니다.",
+    "rating": 3,
+    "author_type": "가족",
+    "season": "가을",
+    "visit_time": "평일 오후",
+    "created_at": "2025-05-26"
+  },
+  {
+    "review_id": "130180-03",
+    "place_id": "130180",
+    "text": "건물이 신기하게 생겼네요. 잘 봤습니다.",
+    "rating": 4,
+    "author_type": "혼자",
+    "season": "여름",
+    "visit_time": "평일 오전",
+    "created_at": "2025-08-15"
+  },
+  {
+    "review_id": "130180-04",
+    "place_id": "130180",
+    "text": "아프리카 문화를 다룬다는 점이 특별했어요. 날씨 상관없이 구경할 수 있어서 좋았습니다.",
+    "rating": 5,
+    "author_type": "친구",
+    "season": "겨울",
+    "visit_time": "평일 오전",
+    "created_at": "2025-03-15"
+  },
+  {
+    "review_id": "130180-05",
+    "place_id": "130180",
+    "text": "아이들과 함께 갔는데 설명이 너무 어렵고 학술적이라 아이들이 금방 지루해하네요. 활동적인 체험을 원하는 분들에게는 비추천합니다.",
+    "rating": 2,
+    "author_type": "가족",
+    "season": "봄",
+    "visit_time": "주말 오후",
+    "created_at": "2025-08-07"
+  },
+  {
+    "review_id": "130180-06",
+    "place_id": "130180",
+    "text": "독특한 외관 덕분에 기억에 남는 장소입니다. 아프리카 문화에 대해 깊이 있게 알 수 있는 시간이었어요.",
+    "rating": 5,
+    "author_type": "커플",
+    "season": "가을",
+    "visit_time": "평일 오후",
+    "created_at": "2025-11-04"
+  },
+  {
+    "review_id": "130180-07",
+    "place_id": "130180",
+    "text": "그저 그랬어요. 너무 조용하기만 하네요.",
+    "rating": 3,
+    "author_type": "혼자",
+    "season": "여름",
+    "visit_time": "평일 오전",
+    "created_at": "2026-06-28"
+  },
+  {
+    "review_id": "130180-08",
+    "place_id": "130180",
+    "text": "비 오는 날 실내에서 관람하기 아주 좋습니다. 이색적인 문화 체험을 원하시면 추천해요.",
+    "rating": 4,
+    "author_type": "친구",
+    "season": "겨울",
+    "visit_time": "비 오는 날 오후",
+    "created_at": "2025-01-15"
+  },
+  {
+    "review_id": "130180-09",
+    "place_id": "130180",
+    "text": "전시물이 너무 오래된 것 같아 실망스러웠습니다. 관리가 조금 더 잘 되었으면 좋겠네요.",
+    "rating": 2,
+    "author_type": "가족",
+    "season": "봄",
+    "visit_time": "평일 오후",
+    "created_at": "2026-01-10"
+  },
+  {
+    "review_id": "130180-10",
+    "place_id": "130180",
+    "text": "건물 모양이 정말 특이해서 인상 깊었습니다. 아프리카 문화를 이렇게 가까이서 볼 수 있어 좋았어요.",
+    "rating": 4,
+    "author_type": "커플",
+    "season": "여름",
+    "visit_time": "평일 오전",
+    "created_at": "2026-03-26"
+  },
+  {
+    "review_id": "130180-11",
+    "place_id": "130180",
+    "text": "활동적인 것을 좋아하는 분들은 지루할 거예요. 학술적인 내용 위주라 진지하게 관람하실 분들께 맞겠네요.",
+    "rating": 3,
+    "author_type": "친구",
+    "season": "가을",
+    "visit_time": "주말 오후",
+    "created_at": "2026-06-27"
+  },
+  {
+    "review_id": "130180-12",
+    "place_id": "130180",
+    "text": "전시 설명이 꽤 전문적이어서 유익했습니다. 실내라 날씨 걱정 없이 둘러볼 수 있어 편했어요.",
+    "rating": 4,
+    "author_type": "혼자",
+    "season": "봄",
+    "visit_time": "평일 오후",
+    "created_at": "2025-05-31"
+  },
+  {
+    "review_id": "130180-13",
+    "place_id": "130180",
+    "text": "가족끼리 와서 구경하기 좋네요. 건물 자체가 워낙 독특해서 볼거리가 있었습니다.",
+    "rating": 5,
+    "author_type": "가족",
+    "season": "겨울",
+    "visit_time": "평일 오전",
+    "created_at": "2025-05-13"
+  },
+  {
+    "review_id": "130180-14",
+    "place_id": "130180",
+    "text": "박물관이 조금 낡은 느낌이 들어서 아쉬웠습니다. 좀 더 세련된 느낌이면 좋았을 텐데 말이죠.",
+    "rating": 2,
+    "author_type": "친구",
+    "season": "여름",
+    "visit_time": "주말 오후",
+    "created_at": "2025-03-12"
+  },
+  {
+    "review_id": "130180-15",
+    "place_id": "130180",
+    "text": "아프리카 문화를 배울 수 있는 좋은 기회였습니다. 실내라 쾌적했어요.",
+    "rating": 4,
+    "author_type": "가족",
+    "season": "가을",
+    "visit_time": "평일 오전",
+    "created_at": "2025-08-27"
+  },
+  {
+    "review_id": "130180-16",
+    "place_id": "130180",
+    "text": "괜찮았습니다.",
+    "rating": 3,
+    "author_type": "커플",
+    "season": "봄",
+    "visit_time": "평일 오후",
+    "created_at": "2026-06-28"
+  },
+  {
+    "review_id": "596964-01",
+    "place_id": "596964",
+    "text": "아이들이 자동차랑 피아노를 직접 체험해볼 수 있어서 정말 좋아했어요. 사슴 먹이 주기 체험도 알찼습니다.",
+    "rating": 5,
+    "author_type": "가족",
+    "season": "봄",
+    "visit_time": "평일 오후",
+    "created_at": "2026-06-03"
+  },
+  {
+    "review_id": "596964-02",
+    "place_id": "596964",
+    "text": "100여 대의 클래식카와 희귀한 피아노를 보니 시간 가는 줄 몰랐네요. 곶자왈 힐링 로드 산책까지 완벽했습니다.",
+    "rating": 5,
+    "author_type": "친구",
+    "season": "가을",
+    "visit_time": "평일 오전",
+    "created_at": "2025-04-20"
+  },
+  {
+    "review_id": "596964-03",
+    "place_id": "596964",
+    "text": "그저 그랬다.",
+    "rating": 3,
+    "author_type": "커플",
+    "season": "여름",
+    "visit_time": "주말 오전 11시",
+    "created_at": "2026-09-03"
+  },
+  {
+    "review_id": "596964-04",
+    "place_id": "596964",
+    "text": "자동차나 피아노에 별 관심이 없어서인지 전시 규모에 비해 입장료가 너무 비싸게 느껴졌네요. 조용한 관람을 원했는데 아이들이 많아 다소 시끄러웠습니다.",
+    "rating": 2,
+    "author_type": "혼자",
+    "season": "겨울",
+    "visit_time": "공휴일 오후",
+    "created_at": "2026-03-11"
+  },
+  {
+    "review_id": "596964-05",
+    "place_id": "596964",
+    "text": "피아노 박물관 전시가 아주 인상 깊었습니다. 교육적인 측면에서 아이들과 함께 가기에 최고의 장소인 듯해요.",
+    "rating": 4,
+    "author_type": "가족",
+    "season": "여름",
+    "visit_time": "평일 오후",
+    "created_at": "2026-09-02"
+  },
+  {
+    "review_id": "596964-06",
+    "place_id": "596964",
+    "text": "좋았다.",
+    "rating": 4,
+    "author_type": "친구",
+    "season": "가을",
+    "visit_time": "평일 오후",
+    "created_at": "2025-12-01"
+  },
+  {
+    "review_id": "596964-07",
+    "place_id": "596964",
+    "text": "300년 역사의 피아노들을 직접 볼 수 있어 신기했습니다. 다만 전시관이 생각보다 작아서 금방 관람이 끝나는 게 아쉽네요.",
+    "rating": 3,
+    "author_type": "커플",
+    "season": "봄",
+    "visit_time": "주말 오후 1시",
+    "created_at": "2025-08-18"
+  },
+  {
+    "review_id": "596964-08",
+    "place_id": "596964",
+    "text": "아이들이 지휘 체험이랑 사슴 먹이 주기를 너무 즐거워해요. 가족 여행 코스로 딱입니다.",
+    "rating": 5,
+    "author_type": "가족",
+    "season": "여름",
+    "visit_time": "주말 오후 12시",
+    "created_at": "2025-03-10"
+  },
+  {
+    "review_id": "596964-09",
+    "place_id": "596964",
+    "text": "곶자왈 힐링 로드가 잘 조성되어 있어 걷기 좋았지만, 전체적인 입장료는 부담스러운 수준입니다.",
+    "rating": 3,
+    "author_type": "혼자",
+    "season": "가을",
+    "visit_time": "평일 오전",
+    "created_at": "2025-02-15"
+  },
+  {
+    "review_id": "596964-10",
+    "place_id": "596964",
+    "text": "평소 접하기 힘든 로댕의 피아노나 클래식카들을 가까이서 볼 수 있어서 만족스러웠습니다.",
+    "rating": 4,
+    "author_type": "친구",
+    "season": "봄",
+    "visit_time": "평일 오후",
+    "created_at": "2025-04-07"
+  },
+  {
+    "review_id": "759595-01",
+    "place_id": "759595",
+    "text": "제주 자연 속에 미술관이 녹아들어 있는 모습이 참 아름답네요. 장리석 화백의 작품도 깊이 있게 감상할 수 있어 뜻깊은 시간이었습니다.",
+    "rating": 5,
+    "author_type": "혼자",
+    "season": "가을",
+    "visit_time": "오전 10시",
+    "created_at": "2024-12-09"
+  },
+  {
+    "review_id": "759595-02",
+    "place_id": "759595",
+    "text": "조용하고 차분하게 작품을 즐길 수 있어 좋았어요. 건물 자체가 주변 경관과 어우러져서 보는 맛이 있습니다.",
+    "rating": 5,
+    "author_type": "커플",
+    "season": "봄",
+    "visit_time": "오후 2시",
+    "created_at": "2026-09-28"
+  },
+  {
+    "review_id": "759595-03",
+    "place_id": "759595",
+    "text": "기획 전시가 무척 다양하고 깊이가 있어서 시간 가는 줄 몰랐습니다. 가족들과 함께 오기 딱 좋네요.",
+    "rating": 4,
+    "author_type": "가족",
+    "season": "여름",
+    "visit_time": "오후 1시",
+    "created_at": "2025-05-22"
+  },
+  {
+    "review_id": "759595-04",
+    "place_id": "759595",
+    "text": "그저 그랬습니다.",
+    "rating": 3,
+    "author_type": "친구",
+    "season": "겨울",
+    "visit_time": "오후 3시",
+    "created_at": "2026-09-07"
+  },
+  {
+    "review_id": "759595-05",
+    "place_id": "759595",
+    "text": "활동적인 것을 좋아하는 저에게는 너무 정적이고 지루한 공간이었습니다. 시내에서도 멀어서 찾아가기 힘들었네요.",
+    "rating": 2,
+    "author_type": "친구",
+    "season": "봄",
+    "visit_time": "오후 2시",
+    "created_at": "2025-10-05"
+  },
+  {
+    "review_id": "759595-06",
+    "place_id": "759595",
+    "text": "미술관 분위기가 정말 차분해서 온전히 작품에 집중하기 좋았습니다. 제주 미술사를 제대로 조망할 수 있어 유익했습니다.",
+    "rating": 5,
+    "author_type": "혼자",
+    "season": "가을",
+    "visit_time": "오전 11시",
+    "created_at": "2025-05-26"
+  },
+  {
+    "review_id": "759595-07",
+    "place_id": "759595",
+    "text": "건축미가 훌륭해서 구경하는 재미가 쏠쏠합니다. 다만 대중교통으로 가기엔 조금 불편하네요.",
+    "rating": 4,
+    "author_type": "커플",
+    "season": "겨울",
+    "visit_time": "오후 4시",
+    "created_at": "2025-04-02"
+  },
+  {
+    "review_id": "759595-08",
+    "place_id": "759595",
+    "text": "전시 내용이 참 알차네요.",
+    "rating": 5,
+    "author_type": "가족",
+    "season": "여름",
+    "visit_time": "오전 10시",
+    "created_at": "2024-12-22"
+  },
+  {
+    "review_id": "759595-09",
+    "place_id": "759595",
+    "text": "제주 전통문화부터 세계 미술의 흐름까지 폭넓게 볼 수 있어 좋았습니다. 야외 전시실도 인상적이었어요.",
+    "rating": 4,
+    "author_type": "가족",
+    "season": "봄",
+    "visit_time": "오후 1시",
+    "created_at": "2024-11-01"
+  },
+  {
+    "review_id": "759595-10",
+    "place_id": "759595",
+    "text": "아이들이 시끌벅적하게 뛰어놀 곳은 절대 아닙니다. 정적인 곳이라 활동적인 가족 여행객에게는 비추입니다.",
+    "rating": 2,
+    "author_type": "가족",
+    "season": "여름",
+    "visit_time": "오후 2시",
+    "created_at": "2025-07-06"
+  },
+  {
+    "review_id": "759595-11",
+    "place_id": "759595",
+    "text": "조용해서 생각 정리하기 좋았습니다.",
+    "rating": 4,
+    "author_type": "혼자",
+    "season": "가을",
+    "visit_time": "오전 9시",
+    "created_at": "2025-06-03"
+  },
+  {
+    "review_id": "759595-12",
+    "place_id": "759595",
+    "text": "상설 전시랑 기획 전시가 아주 잘 짜여 있어요. 문화 예술 프로그램도 다양해서 다음에 또 오고 싶네요.",
+    "rating": 5,
+    "author_type": "친구",
+    "season": "겨울",
+    "visit_time": "오후 2시",
+    "created_at": "2025-12-25"
+  },
+  {
+    "review_id": "759595-13",
+    "place_id": "759595",
+    "text": "시내 중심가에서 너무 멀어서 다시 오기는 좀 고민되네요. 전시 퀄리티는 좋습니다.",
+    "rating": 3,
+    "author_type": "혼자",
+    "season": "봄",
+    "visit_time": "오후 4시",
+    "created_at": "2026-08-19"
+  },
+  {
+    "review_id": "759595-14",
+    "place_id": "759595",
+    "text": "미술관 정말 괜찮았어요.",
+    "rating": 4,
+    "author_type": "커플",
+    "season": "가을",
+    "visit_time": "오후 3시",
+    "created_at": "2026-02-16"
+  },
+  {
+    "review_id": "2606211-01",
+    "place_id": "2606211",
+    "text": "아이들이 정말 좋아하네요. 실물 크기의 대형 캐릭터 피규어들이 많아서 구경하는 재미가 쏠쏠합니다. 가족 여행 코스로 추천해요.",
+    "rating": 5,
+    "author_type": "가족",
+    "season": "봄",
+    "visit_time": "오전 10시",
+    "created_at": "2026-08-04"
+  },
+  {
+    "review_id": "2606211-02",
+    "place_id": "2606211",
+    "text": "피규어 퀄리티가 엄청나요. 희귀한 작품들이 많아서 눈이 즐거웠습니다.",
+    "rating": 5,
+    "author_type": "혼자",
+    "season": "가을",
+    "visit_time": "오후 2시",
+    "created_at": "2026-07-04"
+  },
+  {
+    "review_id": "2606211-03",
+    "place_id": "2606211",
+    "text": "생각보다 공간이 좁아서 놀랐어요. 사람이 몰리는 시간대라 그런지 너무 북적여서 정신이 없었네요.",
+    "rating": 2,
+    "author_type": "친구",
+    "season": "여름",
+    "visit_time": "오후 2시 30분",
+    "created_at": "2025-01-31"
+  },
+  {
+    "review_id": "2606211-04",
+    "place_id": "2606211",
+    "text": "그저 그랬습니다.",
+    "rating": 3,
+    "author_type": "커플",
+    "season": "겨울",
+    "visit_time": "오후 4시",
+    "created_at": "2026-07-04"
+  },
+  {
+    "review_id": "2606211-05",
+    "place_id": "2606211",
+    "text": "영화에서 보던 캐릭터들을 실물 크기로 볼 수 있어서 신기했습니다. 친구들과 함께 갔는데 다들 사진 찍느라 바빴네요.",
+    "rating": 4,
+    "author_type": "친구",
+    "season": "여름",
+    "visit_time": "오전 11시",
+    "created_at": "2024-12-24"
+  },
+  {
+    "review_id": "2606211-06",
+    "place_id": "2606211",
+    "text": "피규어에 별 관심이 없어서인지 입장료가 좀 비싸게 느껴졌습니다. 굳이 여기까지 찾아와야 하나 싶네요.",
+    "rating": 1,
+    "author_type": "가족",
+    "season": "가을",
+    "visit_time": "오후 1시 30분",
+    "created_at": "2026-08-17"
+  },
+  {
+    "review_id": "2606211-07",
+    "place_id": "2606211",
+    "text": "볼거리가 정말 많아요. 어른인 저도 동심으로 돌아간 기분입니다.",
+    "rating": 5,
+    "author_type": "혼자",
+    "season": "봄",
+    "visit_time": "오전 9시",
+    "created_at": "2024-11-07"
+  },
+  {
+    "review_id": "2606211-08",
+    "place_id": "2606211",
+    "text": "정교한 피규어가 많아 좋았습니다.",
+    "rating": 4,
+    "author_type": "커플",
+    "season": "겨울",
+    "visit_time": "오후 5시",
+    "created_at": "2024-11-20"
+  },
+  {
+    "review_id": "2606211-09",
+    "place_id": "2606211",
+    "text": "주말에 갔더니 사람이 너무 많아서 제대로 관람하기 힘들었어요. 전시관 규모도 생각보다 작아서 금방 돌아보고 나왔습니다.",
+    "rating": 2,
+    "author_type": "가족",
+    "season": "여름",
+    "visit_time": "오후 2시",
+    "created_at": "2025-02-13"
+  },
+  {
+    "review_id": "2606211-10",
+    "place_id": "2606211",
+    "text": "업사이클링 아트 작품도 있고 희귀한 피규어까지 볼 수 있어서 유익한 시간이었어요. 아이들이 정말 좋아합니다.",
+    "rating": 5,
+    "author_type": "가족",
+    "season": "봄",
+    "visit_time": "오전 11시 30분",
+    "created_at": "2024-10-24"
+  },
+  {
+    "review_id": "2606211-11",
+    "place_id": "2606211",
+    "text": "피규어 매니아라면 꼭 가봐야 할 곳입니다. 퀄리티가 남다르네요.",
+    "rating": 5,
+    "author_type": "친구",
+    "season": "가을",
+    "visit_time": "오전 10시",
+    "created_at": "2024-11-29"
+  },
+  {
+    "review_id": "2606211-12",
+    "place_id": "2606211",
+    "text": "좋았습니다.",
+    "rating": 4,
+    "author_type": "커플",
+    "season": "겨울",
+    "visit_time": "오후 3시",
+    "created_at": "2025-09-20"
+  },
+  {
+    "review_id": "2606211-13",
+    "place_id": "2606211",
+    "text": "실물 크기 캐릭터들은 정말 압도적이네요. 제주에서 이런 구경을 할 수 있다니 즐거웠습니다.",
+    "rating": 4,
+    "author_type": "친구",
+    "season": "여름",
+    "visit_time": "오후 1시",
+    "created_at": "2026-05-20"
+  },
+  {
+    "review_id": "2606211-14",
+    "place_id": "2606211",
+    "text": "입장료가 좀 비싼 감이 있긴 하지만 그만큼의 가치는 충분히 하는 것 같아요. 가족끼리 오기 딱입니다.",
+    "rating": 4,
+    "author_type": "가족",
+    "season": "겨울",
+    "visit_time": "오후 4시 30분",
+    "created_at": "2026-07-10"
+  },
+  {
+    "review_id": "2606211-15",
+    "place_id": "2606211",
+    "text": "그냥 그랬어요.",
+    "rating": 2,
+    "author_type": "혼자",
+    "season": "봄",
+    "visit_time": "오후 2시",
+    "created_at": "2025-11-03"
+  },
+  {
+    "review_id": "2606211-16",
+    "place_id": "2606211",
+    "text": "영화 캐릭터뿐만 아니라 애니메이션 피규어까지 다양하게 있어서 시간 가는 줄 몰랐습니다.",
+    "rating": 5,
+    "author_type": "친구",
+    "season": "여름",
+    "visit_time": "오전 10시 30분",
+    "created_at": "2025-04-29"
+  },
+  {
+    "review_id": "2606211-17",
+    "place_id": "2606211",
+    "text": "정말 흥미로운 곳이에요. 피규어 정교함이 대단합니다.",
+    "rating": 5,
+    "author_type": "커플",
+    "season": "가을",
+    "visit_time": "오후 1시",
+    "created_at": "2025-09-04"
+  },
+  {
+    "review_id": "2606211-18",
+    "place_id": "2606211",
+    "text": "전시 공간이 조금 좁은 게 아쉽지만 전시된 피규어들의 퀄리티는 인정할 수밖에 없네요.",
+    "rating": 4,
+    "author_type": "혼자",
+    "season": "봄",
+    "visit_time": "오후 3시",
+    "created_at": "2025-04-30"
+  },
+  {
+    "review_id": "2606690-01",
+    "place_id": "2606690",
+    "text": "이왈종 화백의 예술 세계를 온전히 느낄 수 있는 곳입니다. 2층 전시실에서 도예 작품을 보니 참 좋았습니다.",
+    "rating": 5,
+    "author_type": "혼자",
+    "season": "봄",
+    "visit_time": "오전",
+    "created_at": "2026-06-22"
+  },
+  {
+    "review_id": "2606690-02",
+    "place_id": "2606690",
+    "text": "미술관 건물이 정말 독특하고 예쁘네요. 정방폭포랑 가까워서 일정 짜기 편했어요.",
+    "rating": 4,
+    "author_type": "커플",
+    "season": "가을",
+    "visit_time": "오후",
+    "created_at": "2026-09-05"
+  },
+  {
+    "review_id": "2606690-03",
+    "place_id": "2606690",
+    "text": "작품 수가 생각보다 적어서 다소 아쉽습니다. 가격에 비해 볼거리가 부족한 느낌이네요.",
+    "rating": 2,
+    "author_type": "가족",
+    "season": "여름",
+    "visit_time": "오후",
+    "created_at": "2026-02-04"
+  },
+  {
+    "review_id": "2606690-04",
+    "place_id": "2606690",
+    "text": "미술관 옆 아트숍에서 커피 한잔하며 여유를 즐겼습니다.",
+    "rating": 5,
+    "author_type": "친구",
+    "season": "겨울",
+    "visit_time": "오전",
+    "created_at": "2026-09-10"
+  },
+  {
+    "review_id": "2606690-05",
+    "place_id": "2606690",
+    "text": "그저 그랬습니다.",
+    "rating": 3,
+    "author_type": "혼자",
+    "season": "가을",
+    "visit_time": "오후",
+    "created_at": "2025-04-12"
+  },
+  {
+    "review_id": "2606690-06",
+    "place_id": "2606690",
+    "text": "건물이 참 아름다워요. 미술관에서 보는 바다 배경이 인상 깊었습니다.",
+    "rating": 4,
+    "author_type": "커플",
+    "season": "봄",
+    "visit_time": "오전",
+    "created_at": "2025-03-14"
+  },
+  {
+    "review_id": "2606690-07",
+    "place_id": "2606690",
+    "text": "아이들이 뛰어놀기에는 적합하지 않은 분위기라 가족 동반은 비추천합니다.",
+    "rating": 2,
+    "author_type": "가족",
+    "season": "여름",
+    "visit_time": "오후",
+    "created_at": "2026-01-11"
+  },
+  {
+    "review_id": "2606690-08",
+    "place_id": "2606690",
+    "text": "회화와 도예 작품을 한자리에서 볼 수 있어 좋았습니다.",
+    "rating": 4,
+    "author_type": "혼자",
+    "season": "겨울",
+    "visit_time": "오전",
+    "created_at": "2025-07-21"
+  },
+  {
+    "review_id": "2606690-09",
+    "place_id": "2606690",
+    "text": "좋았습니다.",
+    "rating": 4,
+    "author_type": "친구",
+    "season": "봄",
+    "visit_time": "오후",
+    "created_at": "2025-02-28"
+  },
+  {
+    "review_id": "2606690-10",
+    "place_id": "2606690",
+    "text": "주말 오후에는 사람이 많으니 참고하세요. 정방폭포 가는 길에 들르기 좋습니다.",
+    "rating": 3,
+    "author_type": "친구",
+    "season": "가을",
+    "visit_time": "오후",
+    "created_at": "2025-08-19"
+  },
+  {
+    "review_id": "2606690-11",
+    "place_id": "2606690",
+    "text": "조선백자 찻잔 모양의 건물이 인상적입니다. 건축미를 감상하기에 최고였어요.",
+    "rating": 5,
+    "author_type": "커플",
+    "season": "여름",
+    "visit_time": "오전",
+    "created_at": "2025-08-02"
+  },
+  {
+    "review_id": "2606690-12",
+    "place_id": "2606690",
+    "text": "이왈종 화백의 작품 세계가 깊이 있게 다가와서 만족스러운 시간을 보냈습니다.",
+    "rating": 5,
+    "author_type": "혼자",
+    "season": "겨울",
+    "visit_time": "오전",
+    "created_at": "2025-11-10"
+  },
+  {
+    "review_id": "2606690-13",
+    "place_id": "2606690",
+    "text": "작품 수가 너무 적어서 금방 보고 나왔네요.",
+    "rating": 2,
+    "author_type": "친구",
+    "season": "봄",
+    "visit_time": "오후",
+    "created_at": "2025-08-05"
+  },
+  {
+    "review_id": "2606690-14",
+    "place_id": "2606690",
+    "text": "제주 풍요로움이 담긴 그림들이 참 멋지네요.",
+    "rating": 4,
+    "author_type": "가족",
+    "season": "여름",
+    "visit_time": "오후",
+    "created_at": "2025-06-14"
+  },
+  {
+    "review_id": "2606690-15",
+    "place_id": "2606690",
+    "text": "미술관 분위기는 차분하고 좋았으나 입장료가 조금 부담스럽게 느껴졌습니다.",
+    "rating": 3,
+    "author_type": "커플",
+    "season": "가을",
+    "visit_time": "오전",
+    "created_at": "2025-05-29"
+  },
+  {
+    "review_id": "2606690-16",
+    "place_id": "2606690",
+    "text": "정방폭포 들렀다가 가기 딱 좋은 동선이네요.",
+    "rating": 4,
+    "author_type": "친구",
+    "season": "겨울",
+    "visit_time": "오후",
+    "created_at": "2025-10-11"
+  },
+  {
+    "review_id": "2606690-17",
+    "place_id": "2606690",
+    "text": "그냥 평범했습니다.",
+    "rating": 3,
+    "author_type": "혼자",
+    "season": "봄",
+    "visit_time": "오전",
+    "created_at": "2025-04-20"
+  },
+  {
+    "review_id": "2834656-01",
+    "place_id": "2834656",
+    "text": "삼각형 건물이라는 독특한 구조가 인상적이네요. 옛 모텔의 흔적과 현대 미술이 어우러진 분위기가 아주 특별했습니다.",
+    "rating": 5,
+    "author_type": "커플",
+    "season": "봄",
+    "visit_time": "평일 오전",
+    "created_at": "2025-04-28"
+  },
+  {
+    "review_id": "2834656-02",
+    "place_id": "2834656",
+    "text": "원도심 접근성이 좋아서 찾아가기 편해요. 전시 공간은 다소 좁지만 예술적 경험을 하기에 부족함이 없습니다.",
+    "rating": 4,
+    "author_type": "혼자",
+    "season": "가을",
+    "visit_time": "평일 오후",
+    "created_at": "2025-07-02"
+  },
+  {
+    "review_id": "2834656-03",
+    "place_id": "2834656",
+    "text": "계단이 너무 가파르고 좁아서 오르내리기가 매우 불편했습니다. 노약자나 아이 동반은 정말 비추천합니다.",
+    "rating": 2,
+    "author_type": "가족",
+    "season": "여름",
+    "visit_time": "주말 오후",
+    "created_at": "2025-12-04"
+  },
+  {
+    "review_id": "2834656-04",
+    "place_id": "2834656",
+    "text": "제주 구도심의 역사와 현대 예술이 공존하는 느낌이 좋았습니다. 독특한 공간 배치 덕분에 시간 가는 줄 몰랐네요.",
+    "rating": 5,
+    "author_type": "친구",
+    "season": "겨울",
+    "visit_time": "평일 오전",
+    "created_at": "2025-12-07"
+  },
+  {
+    "review_id": "2834656-05",
+    "place_id": "2834656",
+    "text": "괜찮았습니다.",
+    "rating": 3,
+    "author_type": "혼자",
+    "season": "가을",
+    "visit_time": "평일 오전",
+    "created_at": "2024-12-01"
+  },
+  {
+    "review_id": "2834656-06",
+    "place_id": "2834656",
+    "text": "전시 공간이 생각보다 훨씬 협소하네요. 이동하는 계단도 좁아서 주말에는 너무 붐벼 정신이 하나도 없었어요.",
+    "rating": 2,
+    "author_type": "친구",
+    "season": "봄",
+    "visit_time": "주말 오후",
+    "created_at": "2024-12-01"
+  },
+  {
+    "review_id": "2834656-07",
+    "place_id": "2834656",
+    "text": "삼각형 구조가 주는 색다른 공간감이 매력적인 미술관입니다. 원도심 한가운데라 여행 코스로 넣기 좋았어요.",
+    "rating": 4,
+    "author_type": "커플",
+    "season": "여름",
+    "visit_time": "평일 오후",
+    "created_at": "2026-08-12"
+  },
+  {
+    "review_id": "2834656-08",
+    "place_id": "2834656",
+    "text": "옛 모텔 건물을 활용한 점이 흥미로워요. 산지천 근처라 산책 겸 다녀오기 딱 좋았습니다.",
+    "rating": 4,
+    "author_type": "친구",
+    "season": "겨울",
+    "visit_time": "평일 오전",
+    "created_at": "2025-05-07"
+  },
+  {
+    "review_id": "2834656-09",
+    "place_id": "2834656",
+    "text": "좋았어요.",
+    "rating": 4,
+    "author_type": "혼자",
+    "season": "봄",
+    "visit_time": "평일 오후",
+    "created_at": "2026-05-26"
+  },
+  {
+    "review_id": "2834656-10",
+    "place_id": "2834656",
+    "text": "아무래도 옛 모텔 건물을 개조한 곳이라 그런지 내부가 많이 좁습니다. 가파른 계단 때문에 이동이 힘들어서 아쉬웠어요.",
+    "rating": 2,
+    "author_type": "가족",
+    "season": "가을",
+    "visit_time": "공휴일",
+    "created_at": "2026-03-30"
+  },
+  {
+    "review_id": "2834656-11",
+    "place_id": "2834656",
+    "text": "현대 미술 작품들이 모텔의 옛 흔적과 묘하게 잘 어울리네요. 감각적인 공간이라 마음에 듭니다.",
+    "rating": 5,
+    "author_type": "커플",
+    "season": "여름",
+    "visit_time": "평일 오후",
+    "created_at": "2025-07-08"
+  },
+  {
+    "review_id": "2834656-12",
+    "place_id": "2834656",
+    "text": "그저 그랬어요.",
+    "rating": 3,
+    "author_type": "친구",
+    "season": "겨울",
+    "visit_time": "평일 오전",
+    "created_at": "2025-03-07"
+  },
+  {
+    "review_id": "2834656-13",
+    "place_id": "2834656",
+    "text": "독특한 공간 구성 덕분에 평소 접하기 힘든 예술적 경험을 했습니다. 원도심 중심가에 위치해서 접근성도 훌륭합니다.",
+    "rating": 5,
+    "author_type": "혼자",
+    "season": "봄",
+    "visit_time": "평일 오후",
+    "created_at": "2026-08-13"
+  },
+  {
+    "review_id": "2834656-14",
+    "place_id": "2834656",
+    "text": "건물이 삼각형이라 그런지 내부 구조가 신기하네요. 다만 좁고 가파른 계단은 주의가 필요해 보입니다.",
+    "rating": 4,
+    "author_type": "커플",
+    "season": "가을",
+    "visit_time": "평일 오전",
+    "created_at": "2026-02-05"
+  },
+  {
+    "review_id": "2834656-15",
+    "place_id": "2834656",
+    "text": "분위기는 좋았으나 공간 자체가 너무 비좁아서 사람이 조금만 몰려도 관람하기가 매우 불편하네요.",
+    "rating": 2,
+    "author_type": "친구",
+    "season": "여름",
+    "visit_time": "주말 오후",
+    "created_at": "2026-07-18"
+  },
+  {
+    "review_id": "2834656-16",
+    "place_id": "2834656",
+    "text": "제주 구도심 속에서 현대적인 미술을 즐길 수 있는 특별한 장소예요. 친구들과 함께 오기 딱 좋습니다.",
+    "rating": 5,
+    "author_type": "친구",
+    "season": "겨울",
+    "visit_time": "평일 오후",
+    "created_at": "2025-06-25"
+  },
+  {
+    "review_id": "2717330-01",
+    "place_id": "2717330",
+    "text": "안도 타다오의 건축물이라 해서 방문했는데 정말 압도적인 건축미를 느낄 수 있었습니다. 조용히 유리공예품을 감상하며 사색하기 딱 좋은 곳이에요.",
+    "rating": 5,
+    "author_type": "혼자",
+    "season": "가을",
+    "visit_time": "오전 10시",
+    "created_at": "2026-06-12"
+  },
+  {
+    "review_id": "2717330-02",
+    "place_id": "2717330",
+    "text": "공간 자체가 너무 아름답고 신비로워요. 프랑스 아르누보 유리공예품도 흔치 않은 작품들이라 인상 깊게 잘 보고 왔습니다.",
+    "rating": 5,
+    "author_type": "커플",
+    "season": "봄",
+    "visit_time": "오전 11시",
+    "created_at": "2025-09-11"
+  },
+  {
+    "review_id": "2717330-03",
+    "place_id": "2717330",
+    "text": "입장료에 비해 전시 규모가 너무 작아서 아쉬움이 남네요. 동선도 짧아서 금방 끝납니다.",
+    "rating": 2,
+    "author_type": "가족",
+    "season": "여름",
+    "visit_time": "오후 3시",
+    "created_at": "2025-03-19"
+  },
+  {
+    "review_id": "2717330-04",
+    "place_id": "2717330",
+    "text": "좋았습니다.",
+    "rating": 4,
+    "author_type": "친구",
+    "season": "겨울",
+    "visit_time": "오후 1시",
+    "created_at": "2026-04-01"
+  },
+  {
+    "review_id": "2717330-05",
+    "place_id": "2717330",
+    "text": "섭지코지 내에 있어서 위치는 좋은데 찾아가기가 생각보다 불편하네요. 그래도 조용해서 좋았습니다.",
+    "rating": 3,
+    "author_type": "혼자",
+    "season": "가을",
+    "visit_time": "오전 9시",
+    "created_at": "2026-10-13"
+  },
+  {
+    "review_id": "2717330-06",
+    "place_id": "2717330",
+    "text": "아이들이 뛰어놀기에는 적합하지 않은 분위기예요. 차분하게 관람하고 싶은 분들께 추천합니다.",
+    "rating": 4,
+    "author_type": "가족",
+    "season": "봄",
+    "visit_time": "오후 2시",
+    "created_at": "2025-07-15"
+  },
+  {
+    "review_id": "2717330-07",
+    "place_id": "2717330",
+    "text": "건축물과 어우러진 유리공예의 조화가 정말 예술입니다.",
+    "rating": 5,
+    "author_type": "친구",
+    "season": "여름",
+    "visit_time": "오후 5시",
+    "created_at": "2026-01-20"
+  },
+  {
+    "review_id": "2717330-08",
+    "place_id": "2717330",
+    "text": "그저 그랬습니다.",
+    "rating": 3,
+    "author_type": "혼자",
+    "season": "겨울",
+    "visit_time": "오후 4시",
+    "created_at": "2025-08-08"
+  },
+  {
+    "review_id": "2717330-09",
+    "place_id": "2717330",
+    "text": "주말 낮이라 그런지 사람이 좀 많네요. 안도 타다오의 공간을 즐기기에 다소 번잡했지만 예술품은 훌륭했습니다.",
+    "rating": 4,
+    "author_type": "커플",
+    "season": "가을",
+    "visit_time": "오후 2시",
+    "created_at": "2026-03-04"
+  },
+  {
+    "review_id": "2717330-10",
+    "place_id": "2717330",
+    "text": "접근성이 좋지 않아 이동 시간이 길었지만, 프랑스 아르누보 유리공예를 한자리에서 볼 수 있어 가치 있는 시간이었습니다.",
+    "rating": 4,
+    "author_type": "친구",
+    "season": "봄",
+    "visit_time": "오전 11시",
+    "created_at": "2026-06-28"
+  },
+  {
+    "review_id": "2717330-11",
+    "place_id": "2717330",
+    "text": "건물이 정말 멋있네요.",
+    "rating": 5,
+    "author_type": "커플",
+    "season": "여름",
+    "visit_time": "오전 10시",
+    "created_at": "2025-03-02"
+  },
+  {
+    "review_id": "2717330-12",
+    "place_id": "2717330",
+    "text": "전시 규모가 너무 작고 가격은 비싸서 만족도가 낮습니다. 굳이 여기까지 찾아갈 필요는 없을 것 같아요.",
+    "rating": 1,
+    "author_type": "가족",
+    "season": "겨울",
+    "visit_time": "오후 3시",
+    "created_at": "2026-07-04"
+  },
+  {
+    "review_id": "2717330-13",
+    "place_id": "2717330",
+    "text": "지니어스로사이의 기하학적 선들이 너무 매력적이에요. 사색하면서 걷기 참 좋았습니다.",
+    "rating": 5,
+    "author_type": "혼자",
+    "season": "봄",
+    "visit_time": "오전 9시",
+    "created_at": "2026-02-28"
+  },
+  {
+    "review_id": "2717330-14",
+    "place_id": "2717330",
+    "text": "조용히 대화 나누며 예술 작품 감상하기 좋은 분위기라 친구와 함께하기 좋았습니다.",
+    "rating": 4,
+    "author_type": "친구",
+    "season": "가을",
+    "visit_time": "오후 1시",
+    "created_at": "2026-01-18"
+  },
+  {
+    "review_id": "2713583-01",
+    "place_id": "2713583",
+    "text": "건물이 너무 예뻐서 구경하는 재미가 있었네요. 물방울 작품도 인상 깊었습니다.",
+    "rating": 5,
+    "author_type": "커플",
+    "season": "봄",
+    "visit_time": "오전 10시",
+    "created_at": "2024-11-10"
+  },
+  {
+    "review_id": "2713583-02",
+    "place_id": "2713583",
+    "text": "그냥 그랬어요.",
+    "rating": 3,
+    "author_type": "혼자",
+    "season": "가을",
+    "visit_time": "오후 1시",
+    "created_at": "2024-12-17"
+  },
+  {
+    "review_id": "2713583-03",
+    "place_id": "2713583",
+    "text": "큐브형 건물 구조가 정말 독특해요. 김창열 화백의 철학이 담긴 건축물이라 그런지 차분하게 사색하기 좋았습니다.",
+    "rating": 5,
+    "author_type": "혼자",
+    "season": "여름",
+    "visit_time": "오전 11시",
+    "created_at": "2025-09-26"
+  },
+  {
+    "review_id": "2713583-04",
+    "place_id": "2713583",
+    "text": "아이가 뛰어놀 수 있는 공간이 전혀 없어서 힘들었어요. 너무 조용해서 눈치 보이기도 하고요.",
+    "rating": 2,
+    "author_type": "가족",
+    "season": "가을",
+    "visit_time": "오후 3시",
+    "created_at": "2026-09-21"
+  },
+  {
+    "review_id": "2713583-05",
+    "place_id": "2713583",
+    "text": "전시 공간이 생각보다 좁아서 금방 다 본 것 같아요. 접근성도 떨어져서 아쉬움이 남습니다.",
+    "rating": 2,
+    "author_type": "친구",
+    "season": "겨울",
+    "visit_time": "오후 2시",
+    "created_at": "2026-08-11"
+  },
+  {
+    "review_id": "2713583-06",
+    "place_id": "2713583",
+    "text": "물방울 작품들이 참 좋네요.",
+    "rating": 4,
+    "author_type": "커플",
+    "season": "봄",
+    "visit_time": "오후 2시",
+    "created_at": "2025-04-03"
+  },
+  {
+    "review_id": "2713583-07",
+    "place_id": "2713583",
+    "text": "건축물 자체가 예술이라 어디서 찍어도 인생샷이 나오네요. 조용히 혼자 시간 보내기에 최적의 장소입니다.",
+    "rating": 5,
+    "author_type": "혼자",
+    "season": "가을",
+    "visit_time": "오전 11시",
+    "created_at": "2024-12-16"
+  },
+  {
+    "review_id": "2713583-08",
+    "place_id": "2713583",
+    "text": "홍재승 건축가가 설계했다는 건물이 정말 압권입니다. 김창열 화백의 220점 작품을 한곳에서 볼 수 있어 행복했어요.",
+    "rating": 5,
+    "author_type": "친구",
+    "season": "여름",
+    "visit_time": "오전 10시",
+    "created_at": "2025-11-07"
+  },
+  {
+    "review_id": "2713583-09",
+    "place_id": "2713583",
+    "text": "대중교통으로 가기엔 조금 힘들었습니다. 그래도 미술관 분위기는 참 좋았어요.",
+    "rating": 4,
+    "author_type": "혼자",
+    "season": "겨울",
+    "visit_time": "오후 1시",
+    "created_at": "2026-06-26"
+  },
+  {
+    "review_id": "2713583-10",
+    "place_id": "2713583",
+    "text": "조용해서 집중하기 좋았어요.",
+    "rating": 4,
+    "author_type": "커플",
+    "season": "봄",
+    "visit_time": "오전 11시",
+    "created_at": "2026-03-22"
+  },
+  {
+    "review_id": "2713583-11",
+    "place_id": "2713583",
+    "text": "아이들이랑 같이 오기엔 비추천합니다. 내부가 좁고 너무 정적이라 뛰어놀 공간이 없어요.",
+    "rating": 2,
+    "author_type": "가족",
+    "season": "여름",
+    "visit_time": "오후 3시",
+    "created_at": "2025-05-08"
+  },
+  {
+    "review_id": "2713583-12",
+    "place_id": "2713583",
+    "text": "회귀의 철학을 담은 큐브형 건축물이 인상적이었습니다. 덕분에 멋진 사진 많이 남기고 갑니다.",
+    "rating": 5,
+    "author_type": "커플",
+    "season": "가을",
+    "visit_time": "오후 1시",
+    "created_at": "2024-10-25"
+  },
+  {
+    "review_id": "2713583-13",
+    "place_id": "2713583",
+    "text": "괜찮았습니다.",
+    "rating": 3,
+    "author_type": "친구",
+    "season": "봄",
+    "visit_time": "오전 10시",
+    "created_at": "2026-01-28"
+  },
+  {
+    "review_id": "2713583-14",
+    "place_id": "2713583",
+    "text": "기대보다 전시 공간이 좁아 아쉬웠습니다. 사람 많은 주말 오후는 피해서 가시는 걸 추천드려요.",
+    "rating": 2,
+    "author_type": "친구",
+    "season": "겨울",
+    "visit_time": "오후 3시",
+    "created_at": "2025-09-10"
+  },
+  {
+    "review_id": "2713583-15",
+    "place_id": "2713583",
+    "text": "220점이나 되는 기증 작품들을 감상하니 시간이 금방 가네요. 건축 미학을 즐기는 분들께 추천해요.",
+    "rating": 5,
+    "author_type": "혼자",
+    "season": "가을",
+    "visit_time": "오전 11시",
+    "created_at": "2026-05-22"
+  },
+  {
+    "review_id": "2713583-16",
+    "place_id": "2713583",
+    "text": "건축물이 아름다워서 관람하는 내내 즐거웠습니다.",
+    "rating": 4,
+    "author_type": "커플",
+    "season": "봄",
+    "visit_time": "오전 10시",
+    "created_at": "2025-09-01"
+  },
+  {
+    "review_id": "2713583-17",
+    "place_id": "2713583",
+    "text": "접근성이 아쉬워요.",
+    "rating": 3,
+    "author_type": "혼자",
+    "season": "여름",
+    "visit_time": "오후 2시",
+    "created_at": "2024-12-09"
+  },
+  {
+    "review_id": "2751836-01",
+    "place_id": "2751836",
+    "text": "일 년 내내 크리스마스라니 정말 환상적이에요. 유럽 느낌 가득한 인테리어와 아기자기한 소품들 덕분에 동화 속에 들어온 기분이었어요.",
+    "rating": 5,
+    "author_type": "커플",
+    "season": "봄",
+    "visit_time": "오전 10시",
+    "created_at": "2025-05-24"
+  },
+  {
+    "review_id": "2751836-02",
+    "place_id": "2751836",
+    "text": "12월 마켓 기간에 방문했는데 사람이 너무 많아서 제대로 구경하기 힘들었어요. 조용한 분위기를 원한다면 비추합니다.",
+    "rating": 2,
+    "author_type": "혼자",
+    "season": "겨울",
+    "visit_time": "오후 2시",
+    "created_at": "2025-06-29"
+  },
+  {
+    "review_id": "2751836-03",
+    "place_id": "2751836",
+    "text": "아이들이 크리스마스 소품들을 정말 좋아했어요. 희귀한 오르골이 많아서 시간 가는 줄 모르고 구경했네요.",
+    "rating": 4,
+    "author_type": "가족",
+    "season": "가을",
+    "visit_time": "오후 3시",
+    "created_at": "2025-03-03"
+  },
+  {
+    "review_id": "2751836-04",
+    "place_id": "2751836",
+    "text": "그저 그랬다.",
+    "rating": 3,
+    "author_type": "친구",
+    "season": "여름",
+    "visit_time": "오후 1시",
+    "created_at": "2026-10-09"
+  },
+  {
+    "review_id": "2751836-05",
+    "place_id": "2751836",
+    "text": "유럽풍 분위기가 정말 예뻐서 좋았지만, 박물관 규모가 생각보다 너무 작아서 금방 다 보고 나왔네요. 조금 아쉬워요.",
+    "rating": 3,
+    "author_type": "커플",
+    "season": "겨울",
+    "visit_time": "오전 11시",
+    "created_at": "2025-12-24"
+  },
+  {
+    "review_id": "2751836-06",
+    "place_id": "2751836",
+    "text": "주인 부부가 모은 전시물들이 참 인상적이에요. 소장 가치 있는 물건들을 가까이서 볼 수 있어서 좋았습니다.",
+    "rating": 4,
+    "author_type": "가족",
+    "season": "봄",
+    "visit_time": "오후 2시",
+    "created_at": "2024-11-08"
+  },
+  {
+    "review_id": "2751836-07",
+    "place_id": "2751836",
+    "text": "좋았다.",
+    "rating": 5,
+    "author_type": "혼자",
+    "season": "가을",
+    "visit_time": "오전 10시",
+    "created_at": "2026-07-06"
+  },
+  {
+    "review_id": "2751836-08",
+    "place_id": "2751836",
+    "text": "입장료에 비해 볼거리가 적은 느낌이에요. 넓고 쾌적한 곳을 선호하는 분들에게는 추천하고 싶지 않습니다.",
+    "rating": 2,
+    "author_type": "친구",
+    "season": "여름",
+    "visit_time": "오후 4시",
+    "created_at": "2025-01-01"
+  },
+  {
+    "review_id": "2751836-09",
+    "place_id": "2751836",
+    "text": "독일 스타일 건축물이라 그런지 이국적이고 따뜻한 느낌이 좋네요. 가족들이랑 오기 딱이에요.",
+    "rating": 4,
+    "author_type": "가족",
+    "season": "겨울",
+    "visit_time": "오전 10시",
+    "created_at": "2024-11-16"
+  },
+  {
+    "review_id": "2751836-10",
+    "place_id": "2751836",
+    "text": "12월 마켓 열릴 때 갔는데 주차 전쟁이네요. 너무 붐벼서 정신없었지만 셰프들이 만드는 음식은 맛있었습니다.",
+    "rating": 3,
+    "author_type": "커플",
+    "season": "겨울",
+    "visit_time": "오후 2시",
+    "created_at": "2025-06-07"
+  },
+  {
+    "review_id": "2751836-11",
+    "place_id": "2751836",
+    "text": "아기자기한 전시물 구경하는 재미가 쏠쏠해요. 크리스마스 감성 충전하기엔 최고예요.",
+    "rating": 5,
+    "author_type": "혼자",
+    "season": "봄",
+    "visit_time": "오전 11시",
+    "created_at": "2025-01-26"
+  },
+  {
+    "review_id": "2751836-12",
+    "place_id": "2751836",
+    "text": "체험 프로그램 참여했는데 재밌었어요. 규모는 작지만 알찬 느낌입니다.",
+    "rating": 4,
+    "author_type": "친구",
+    "season": "가을",
+    "visit_time": "오후 1시",
+    "created_at": "2025-08-16"
+  },
+  {
+    "review_id": "2751836-13",
+    "place_id": "2751836",
+    "text": "그냥 평범해요.",
+    "rating": 3,
+    "author_type": "가족",
+    "season": "봄",
+    "visit_time": "오전 10시",
+    "created_at": "2024-12-22"
+  },
+  {
+    "review_id": "2751836-14",
+    "place_id": "2751836",
+    "text": "전시 콘텐츠가 좀 부족하다고 느꼈어요. 기대가 너무 컸나 봅니다.",
+    "rating": 2,
+    "author_type": "친구",
+    "season": "여름",
+    "visit_time": "오후 3시",
+    "created_at": "2024-12-12"
+  },
+  {
+    "review_id": "2751836-15",
+    "place_id": "2751836",
+    "text": "유럽 여행 온 기분이었어요. 사계절 내내 크리스마스라니 정말 낭만적인 공간입니다.",
+    "rating": 5,
+    "author_type": "커플",
+    "season": "겨울",
+    "visit_time": "오후 2시",
+    "created_at": "2025-09-19"
   }
 ]
