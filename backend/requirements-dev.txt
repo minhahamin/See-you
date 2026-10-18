@@ -1,0 +1,4 @@
+# 개발·평가용. 배포 이미지에는 넣지 않는다.
+-r requirements.txt
+pytest>=8.0
+sentence-transformers>=3.0  # v4 리랭커 실험 (torch 포함, 무겁다)
