@@ -8,11 +8,13 @@ import argparse
 import csv
 import json
 import logging
+import time
 from datetime import date
 from typing import Any, Callable
 
 from config import get_settings, setup_logging
 from retrieval.hybrid import hybrid_search
+from retrieval.rerank import rerank
 from retrieval.vector import allowed_place_ids, build_where, rank_places, search_chunks
 
 logger = logging.getLogger(__name__)
@@ -38,7 +40,18 @@ def search_v3(question: dict[str, Any]) -> list[str]:
     return rank_places(hybrid_search(question["question"], filters=question["filters"]))
 
 
-VERSIONS: dict[str, Callable[[dict[str, Any]], list[str]]] = {"v1": search_v1, "v2": search_v2, "v3": search_v3}
+def search_v4(question: dict[str, Any]) -> list[str]:
+    """v4: v3 + 로컬 크로스 인코더 리랭커 (하이브리드 상위 30개 청크를 재정렬)."""
+    chunks = hybrid_search(question["question"], n=30, filters=question["filters"])
+    return rank_places(rerank(question["question"], chunks))
+
+
+VERSIONS: dict[str, Callable[[dict[str, Any]], list[str]]] = {
+    "v1": search_v1,
+    "v2": search_v2,
+    "v3": search_v3,
+    "v4": search_v4,
+}
 
 
 def recall_at_k(ranked: list[str], relevant: set[str], k: int) -> float:
@@ -59,10 +72,15 @@ def run(version: str) -> None:
     settings = get_settings()
     testset = json.loads((settings.eval_results_dir.parent / "testset.json").read_text(encoding="utf-8"))
     search = VERSIONS[version]
+    label = f"{version}_{settings.reranker_model.split('/')[-1]}" if version == "v4" else version
+    search(testset[0])  # 워밍업: 모델 로드 시간이 지연 측정에 섞이지 않게 한다
 
     rows: list[dict[str, Any]] = []
+    elapsed: list[float] = []
     for q in testset:
+        started = time.perf_counter()
         ranked = search(q)
+        elapsed.append(time.perf_counter() - started)
         relevant = set(q["relevant_place_ids"])
         rows.append(
             {
@@ -78,24 +96,40 @@ def run(version: str) -> None:
 
     out_dir = settings.eval_results_dir
     out_dir.mkdir(parents=True, exist_ok=True)
-    detail_path = out_dir / f"{date.today().isoformat()}_{version}.csv"
+    detail_path = out_dir / f"{date.today().isoformat()}_{label}.csv"
     with detail_path.open("w", encoding="utf-8-sig", newline="") as f:
         writer = csv.DictWriter(f, fieldnames=list(rows[0]))
         writer.writeheader()
         writer.writerows(rows)
 
-    mean_recall = sum(r[f"recall@{K}"] for r in rows) / len(rows)
-    mrr = sum(r["rr"] for r in rows) / len(rows)
     summary_path = out_dir / "summary.csv"
     is_new = not summary_path.exists()
+    groups = {
+        "trait": [r for r in rows if r["type"] != "keyword"],
+        "keyword": [r for r in rows if r["type"] == "keyword"],
+        "all": rows,
+    }
+    stats = {
+        g: (len(rs), sum(r[f"recall@{K}"] for r in rs) / len(rs), sum(r["rr"] for r in rs) / len(rs))
+        for g, rs in groups.items()
+    }
     with summary_path.open("a", encoding="utf-8-sig", newline="") as f:
         writer = csv.writer(f)
         if is_new:
-            writer.writerow(["date", "version", "n_questions", f"recall@{K}", "mrr", "embedding_model"])
+            writer.writerow(
+                ["date", "version", "embedding_model"]
+                + [f"{m}_{g}" for g in groups for m in ("n", f"recall@{K}", "mrr")]
+            )
         writer.writerow(
-            [date.today().isoformat(), version, len(rows), round(mean_recall, 4), round(mrr, 4), settings.embedding_model]
+            [date.today().isoformat(), label, settings.embedding_model]
+            + [v if i == 0 else round(v, 4) for g in groups for i, v in enumerate(stats[g])]
         )
-    logger.info("%s: 질문 %d개 | Recall@%d %.3f | MRR %.3f | %s", version, len(rows), K, mean_recall, mrr, detail_path.name)
+    logger.info("%s 질문당 평균 검색 시간 %.2f초 (임베딩 API 호출 포함)", label, sum(elapsed) / len(elapsed))
+    logger.info(
+        "%s | 특성형 %d개 R@%d %.3f MRR %.3f | 키워드형 %d개 R@%d %.3f MRR %.3f | %s",
+        label, stats["trait"][0], K, stats["trait"][1], stats["trait"][2],
+        stats["keyword"][0], K, stats["keyword"][1], stats["keyword"][2], detail_path.name,
+    )
 
 
 def main() -> None:

@@ -19,6 +19,7 @@ class Settings(BaseSettings):
     llm_model: str = ""
     embedding_model: str = ""
     llm_api_key: str = ""
+    reranker_model: str = "BAAI/bge-reranker-v2-m3"
     tour_api_key: str = ""
     kma_api_key: str = ""
     langsmith_api_key: str = ""
