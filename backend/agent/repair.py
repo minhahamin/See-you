@@ -32,6 +32,13 @@ logger = logging.getLogger(__name__)
 MAX_PASSES = 3  # 수리 → 재검증을 이만큼 반복한다
 MAX_TRAVEL_SWAPS = 3  # 하루 이동을 줄이려고 교체해 보는 최대 횟수
 # 방문 수가 모자랄 때 채울 (분류, 시간대) 후보. 하루에 아직 없는 시간대부터 채운다.
+# 분류별로 놓을 수 있는 시간대 (영업시간 때문에 하루 중 순서를 바꿀 때 이 안에서만 옮긴다)
+SLOTS_BY_CATEGORY: dict[Category, list[Slot]] = {
+    "관광지": ["morning", "afternoon", "cafe"],
+    "카페": ["afternoon", "cafe"],
+    "음식점": ["lunch", "dinner"],
+    "숙소": ["stay"],
+}
 FILL_ORDER: list[tuple[Category, Slot]] = [("관광지", "afternoon"), ("카페", "cafe"), ("음식점", "lunch"), ("관광지", "morning"), ("음식점", "dinner")]
 
 
@@ -167,6 +174,18 @@ def _shift_into_hours(visits: list[Visit]) -> tuple[list[Visit], set[str]]:
     return moved, stuck
 
 
+def _reorder_for_hours(visits: list[Visit], stuck: set[str]) -> tuple[list[Visit], set[str]]:
+    """시간만으로 영업시간을 못 맞춘 방문을 하루 중 다른 시간대로 옮겨 본다. 못 맞춘 방문이 가장 적어지는 배치를 쓴다."""
+    best, best_stuck = visits, stuck
+    for place_id in sorted(stuck):
+        for slot in SLOTS_BY_CATEGORY[_category(place_id)]:
+            plans = [p.model_copy(update={"slot": slot}) if p.place_id == place_id else p for p in to_planned(best)]
+            trial, trial_stuck = _shift_into_hours(schedule_day(plans))
+            if len(trial_stuck) < len(best_stuck):
+                best, best_stuck = trial, trial_stuck
+    return best, best_stuck
+
+
 def _repair_once(itinerary: Itinerary, failed: list[Check], ctx: Context) -> Itinerary:
     """실패한 항목을 한 번 고친 일정을 돌려준다. 고칠 수 있는 게 없으면 같은 일정."""
     planned = {d.day: to_planned(d.visits) for d in itinerary.days}
@@ -181,7 +200,7 @@ def _repair_once(itinerary: Itinerary, failed: list[Check], ctx: Context) -> Iti
         if i is None:
             return
         cat = _category(place_id)
-        new = _pick(ctx, used - {place_id}, cat, plans[i].slot, _center(plans, skip=i), indoor_only=rainy[day] and cat == "관광지")
+        new = _pick(ctx, used, cat, plans[i].slot, _center(plans, skip=i), indoor_only=rainy[day] and cat == "관광지")
         if new:
             _swap(plans, i, new, used)
             touched.add(day)
@@ -246,10 +265,12 @@ def _repair_once(itinerary: Itinerary, failed: list[Check], ctx: Context) -> Iti
             for place_id in stuck:  # 시간만으로 안 되면 그 장소를 교체하고 다시 맞춘다
                 plans = to_planned(visits)
                 i = next(k for k, p in enumerate(plans) if p.place_id == place_id)
-                new = _pick(ctx, used - {place_id}, _category(place_id), plans[i].slot, _center(plans, skip=i), indoor_only=rainy[d.day] and _category(place_id) == "관광지")
+                new = _pick(ctx, used, _category(place_id), plans[i].slot, _center(plans, skip=i), indoor_only=rainy[d.day] and _category(place_id) == "관광지")
                 if new:
                     _swap(plans, i, new, used)
-                    visits, _ = _shift_into_hours(schedule_day(plans))
+                    visits, stuck = _shift_into_hours(schedule_day(plans))
+            if stuck:  # 바꿀 후보도 없으면 하루 중 더 이른(또는 늦은) 시간대로 옮긴다
+                visits, _ = _reorder_for_hours(visits, stuck)
         days.append(d.model_copy(update={"visits": visits}))
 
     # 5) 근거 다시 붙이기
@@ -272,7 +293,8 @@ def repair_itinerary_plan(itinerary: Itinerary, ctx: Context) -> Itinerary:
         if not failed:
             break
         repaired = _repair_once(current, failed, ctx)
-        if repaired == current:
+        remaining = sum(not c.ok for c in run_checks(repaired, ctx.request, ctx.summaries))
+        if repaired == current or remaining >= len(failed):  # 변화가 없거나 나아지지 않으면 이전 일정을 지킨다
             break
         logger.info("부분 수리 %d회차: 실패 %d건 처리", n + 1, len(failed))
         current = repaired

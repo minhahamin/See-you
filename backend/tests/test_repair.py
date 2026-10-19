@@ -6,6 +6,7 @@ from agent.planning import PlannedVisit, parse_time, schedule_day, to_candidate
 from agent.repair import Context, repair_itinerary_plan
 from agent.review_tools import fallback_summary
 from agent.state import DayPlan, Itinerary, TripRequest, Weather
+from tools.route import haversine_km
 
 
 def _ctx(**req) -> Context:
@@ -145,3 +146,54 @@ def test_node_uses_up_retry_budget_and_never_calls_llm(fake_llm) -> None:
     it = _itinerary(ctx, [[(cafes[0], "morning"), (cafes[1], "afternoon"), (cafes[2], "cafe")]])
     out = repair_itinerary({"itinerary": it, "request": ctx.request, "candidates": ctx.candidates, "review_summaries": ctx.summaries})
     assert out["retry_count"] == 2 and out["itinerary"] != it
+
+
+def _early_closing_sights(ctx: Context) -> list[str]:
+    """17:30 이전에 닫는 관광지 (하루 끝 시간대에 두면 영업시간을 벗어나기 쉽다)."""
+    return [p for p in _ids(ctx, "관광지", n=99) if (h := parse_hours(catalog.places()[p].opening_hours)) and h[1] <= 17 * 60 + 30]
+
+
+def _compact_day(ctx: Context, x: str, x_slot: str) -> list[tuple[str, str]]:
+    """일찍 닫는 관광지 x와 가까운 장소들로 만든 현실적인 하루."""
+    near = lambda pid: haversine_km(*[getattr(catalog.places()[pid], k) for k in ("lat", "lng")], catalog.places()[x].lat, catalog.places()[x].lng)  # noqa: E731
+    pick = lambda category, n, skip=(): sorted((p for p in _ids(ctx, category, n=99) if p != x and p not in skip), key=near)[:n]  # noqa: E731
+    sights = [p for p in pick("관광지", 6) if p not in _early_closing_sights(ctx)][:2]
+    return [(sights[0], "morning"), (pick("음식점", 1)[0], "lunch"), (sights[1], "afternoon"), (pick("카페", 1)[0], "cafe"), (x, x_slot)]
+
+
+def test_hours_violation_is_fixed_by_reordering_when_no_replacement_exists() -> None:
+    """바꿀 후보가 없어도 일찍 닫는 관광지를 이른 시간대로 옮겨 고칠 수 있는 사례는 고치고, 어떤 사례도 악화시키지 않는다.
+
+    앞으로 옮기면 뒤 방문이 밀려 다른 가게의 마감을 넘길 수 있어서 모든 사례가 해결되는 것은 아니다.
+    """
+    full = _ctx()
+    cases = fixed_cases = 0
+    for slot in ("dinner", "cafe"):
+        for x in _early_closing_sights(full):
+            day = _compact_day(full, x, slot)
+            ctx = Context(full.request, [c for c in full.candidates if c.id in {p for p, _ in day}], full.summaries)  # 대체 후보 없음
+            it = _itinerary(ctx, [day])
+            if not _failed(it, ctx, "hours"):
+                continue
+            cases += 1
+            before = sum(not c.ok for c in run_checks(it, ctx.request, ctx.summaries))
+            fixed = repair_itinerary_plan(it, ctx)
+            assert len(_failed(fixed, ctx, "hours")) <= len(_failed(it, ctx, "hours"))
+            assert sum(not c.ok for c in run_checks(fixed, ctx.request, ctx.summaries)) <= before
+            fixed_cases += not _failed(fixed, ctx, "hours")
+    assert cases >= 3 and fixed_cases >= 1  # 시나리오가 실제로 만들어졌고, 일부는 순서 변경만으로 해결된다
+
+
+def test_repair_never_returns_a_worse_itinerary() -> None:
+    """수리 결과가 검증 실패를 줄이지 못하면 원래 일정을 그대로 돌려준다 (흩어진 장소로 이미 빠듯한 하루도 포함)."""
+    full = _ctx()
+    early = _early_closing_sights(full)
+    others = [p for p in _ids(full, "관광지", n=99) if p not in early]
+    food, cafe = _ids(full, "음식점", n=1)[0], _ids(full, "카페", n=1)[0]
+    for x in early:
+        for slot in ("afternoon", "dinner"):
+            day = [(others[0], "morning"), (food, "lunch"), (others[1], "afternoon"), (cafe, "cafe"), (x, slot)]
+            ctx = Context(full.request, [c for c in full.candidates if c.id in {p for p, _ in day}], full.summaries)
+            it = _itinerary(ctx, [day])
+            count = lambda i: sum(not c.ok for c in run_checks(i, ctx.request, ctx.summaries))  # noqa: E731
+            assert count(repair_itinerary_plan(it, ctx)) <= count(it)
