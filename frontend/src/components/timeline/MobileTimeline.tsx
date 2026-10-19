@@ -1,8 +1,10 @@
 import { Fragment, useState } from 'react';
-import { CATEGORY_META } from '../../lib/category';
-import { formatDate } from '../../lib/time';
+import { DAY_TAB_ATTR, type CardDropTarget } from '../../hooks/useCardDrag';
+import { startAtDayEnd, startForVisitSlot, type MoveRequest } from '../../lib/dragMove';
+import { formatDate, toMinutes } from '../../lib/time';
 import { WEATHER_META } from '../../lib/weather';
 import type { Itinerary, Place, Selection } from '../../types';
+import MobileVisitCard from './MobileVisitCard';
 import TravelGap from './TravelGap';
 
 interface Props {
@@ -10,13 +12,31 @@ interface Props {
   places: Record<string, Place>;
   selection: Selection;
   onSelect: (selection: Selection) => void;
+  /** 끌어서 옮길 수 있을 때만 넘긴다 */
+  onMove?: (move: MoveRequest) => void;
 }
 
 /** 모바일: 일차 탭 + 하루 세로 타임라인 */
-export default function MobileTimeline({ itinerary, places, selection, onSelect }: Props) {
+export default function MobileTimeline({ itinerary, places, selection, onSelect, onMove }: Props) {
   const [dayNo, setDayNo] = useState(selection.day);
   const day = itinerary.days.find((d) => d.day === dayNo) ?? itinerary.days[0];
+  const [hover, setHover] = useState<CardDropTarget | null>(null);
   const forecast = day.weather;
+
+  // 카드를 같은 날의 다른 방문 자리나 다른 일차 탭에 놓으면 이동 요청을 보낸다
+  const handleDrop = (fromIndex: number, target: CardDropTarget) => {
+    const moved = day.visits[fromIndex];
+    if (!onMove || !moved) return;
+    if (target.kind === 'visit') {
+      const startMin = startForVisitSlot(day.visits, fromIndex, target.index);
+      if (startMin !== null) onMove({ fromDay: day.day, fromIndex, day: day.day, startMin });
+      return;
+    }
+    const other = itinerary.days.find((d) => d.day === target.day);
+    if (!other || other.day === day.day) return;
+    const duration = toMinutes(moved.end) - toMinutes(moved.start);
+    onMove({ fromDay: day.day, fromIndex, day: other.day, startMin: startAtDayEnd(other.visits, duration) });
+  };
   const weather = forecast ? WEATHER_META[forecast.condition] : null;
 
   return (
@@ -28,10 +48,11 @@ export default function MobileTimeline({ itinerary, places, selection, onSelect 
             type="button"
             role="tab"
             aria-selected={d.day === day.day}
+            {...(onMove ? { [DAY_TAB_ATTR]: d.day } : {})}
             onClick={() => setDayNo(d.day)}
             className={`shrink-0 rounded-full px-4 py-2 text-sm font-semibold ${
               d.day === day.day ? 'bg-primary text-white shadow-soft' : 'bg-surface text-text-sub'
-            }`}
+            } ${hover?.kind === 'day' && hover.day === d.day ? 'ring-2 ring-primary ring-offset-2' : ''}`}
           >
             {d.day}일차
           </button>
@@ -58,9 +79,6 @@ export default function MobileTimeline({ itinerary, places, selection, onSelect 
         {day.visits.map((visit, i) => {
           const place = places[visit.place_id];
           if (!place) return null;
-          const meta = CATEGORY_META[place.category];
-          const Icon = meta.icon;
-          const selected = selection.day === day.day && selection.index === i;
           return (
             <Fragment key={`${visit.place_id}-${visit.start}`}>
               {i > 0 && (
@@ -68,26 +86,16 @@ export default function MobileTimeline({ itinerary, places, selection, onSelect 
                   <TravelGap minutes={visit.travel_minutes_from_prev} />
                 </div>
               )}
-              <button
-                type="button"
-                onClick={() => onSelect({ day: day.day, index: i })}
-                className={`flex items-center gap-3 rounded-full py-1.5 pl-1.5 pr-4 text-left shadow-lg shadow-black/10 ${meta.bg} ${meta.fg} ${
-                  selected ? 'ring-2 ring-primary ring-offset-2' : ''
-                }`}
-              >
-                <span className="grid size-11 shrink-0 place-items-center rounded-full bg-white/30">
-                  <Icon size={20} />
-                </span>
-                <span className="min-w-0 flex-1">
-                  <span className="block truncate text-sm font-semibold">{place.name}</span>
-                  <span className="block text-xs opacity-80">
-                    {visit.start} – {visit.end}
-                  </span>
-                </span>
-                {visit.changed && (
-                  <span className="rounded-full bg-changed px-2 py-0.5 text-[10px] font-bold text-white">수정됨</span>
-                )}
-              </button>
+              <MobileVisitCard
+                index={i}
+                visit={visit}
+                place={place}
+                selected={selection.day === day.day && selection.index === i}
+                isDropTarget={hover?.kind === 'visit' && hover.index === i}
+                onSelect={() => onSelect({ day: day.day, index: i })}
+                onDrop={onMove ? (target) => handleDrop(i, target) : undefined}
+                onHover={setHover}
+              />
             </Fragment>
           );
         })}

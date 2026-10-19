@@ -1,4 +1,5 @@
-import { DAY_END_MIN, DAY_START_MIN, PX_PER_HOUR } from './time';
+import type { Visit } from '../types';
+import { DAY_END_MIN, DAY_START_MIN, PX_PER_HOUR, toMinutes } from './time';
 
 /** 끌어다 놓을 때 시작 시각이 맞춰지는 단위(분) — 타임라인 격자와 같다 */
 export const SNAP_MIN = 30;
@@ -33,4 +34,33 @@ export function snapStart(leftPx: number, durationMin: number): number {
  */
 export function moveMessage(move: MoveRequest, placeName: string): string {
   return `${move.fromDay}일차 ${move.fromIndex + 1}번째 방문(${placeName})을 ${move.day}일차 ${formatClock(move.startMin)}로 옮겨줘`;
+}
+
+/** 분을 30분 격자 위로 올림한다 */
+function ceilToSnap(minutes: number): number {
+  return Math.ceil(minutes / SNAP_MIN) * SNAP_MIN;
+}
+
+/** 시작 시각이 하루 범위를 벗어나지 않게 자른다 */
+function clampStart(startMin: number, durationMin: number): number {
+  return Math.min(Math.max(startMin, DAY_START_MIN), DAY_END_MIN - durationMin);
+}
+
+/**
+ * 모바일 목록에서 방문을 다른 방문 자리로 끌어다 놓을 때의 시작 시각.
+ * 위쪽 방문으로 옮기면 그 방문의 시작 시각을, 아래쪽 방문으로 옮기면 그 방문이 끝난 뒤(30분 격자)를 쓴다.
+ * 겹치는 방문은 백엔드가 뒤로 밀어 준다. 같은 자리면 null.
+ */
+export function startForVisitSlot(visits: Visit[], fromIndex: number, overIndex: number): number | null {
+  if (fromIndex === overIndex || !visits[fromIndex] || !visits[overIndex]) return null;
+  const duration = toMinutes(visits[fromIndex].end) - toMinutes(visits[fromIndex].start);
+  const over = visits[overIndex];
+  const start = overIndex < fromIndex ? toMinutes(over.start) : ceilToSnap(toMinutes(over.end));
+  return clampStart(start, duration);
+}
+
+/** 다른 일차 탭에 놓을 때의 시작 시각: 그날 마지막 방문이 끝난 뒤(30분 격자). 빈 날이면 하루 시작 시각 */
+export function startAtDayEnd(visits: Visit[], durationMin: number): number {
+  const last = visits[visits.length - 1];
+  return clampStart(last ? ceilToSnap(toMinutes(last.end)) : DAY_START_MIN, durationMin);
 }

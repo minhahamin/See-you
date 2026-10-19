@@ -128,7 +128,13 @@ export default function PlannerPage({ view, onViewChange, chat }: Props) {
             </div>
             <div className="flex min-h-0 flex-1 flex-col gap-4 overflow-y-auto lg:hidden">
               <TripSummaryChips stats={stats} />
-              <MobileTimeline itinerary={itinerary} places={places} selection={selection} onSelect={handleSelect} />
+              <MobileTimeline
+                itinerary={itinerary}
+                places={places}
+                selection={selection}
+                onSelect={handleSelect}
+                onMove={canMove ? handleMove : undefined}
+              />
             </div>
           </>
         )}
