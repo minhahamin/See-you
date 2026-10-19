@@ -1,15 +1,19 @@
 """구역(제주시/서귀포시) 조건: 파싱 병합, 검색 필터, 검증 규칙 테스트."""
+from collections import Counter
 from datetime import date
 
 from agent import catalog
 from agent.nodes import search_places as search_module
+from agent.nodes.build_itinerary import build_itinerary
+from agent.nodes.check_weather import check_weather, combine
 from agent.nodes.parse_request import ParsedRequest, merge_request
 from agent.nodes.search_places import search_places
 from agent.nodes.validate_itinerary import run_checks
-from agent.planning import to_candidate
+from agent.planning import LLMPlan, to_candidate
 from agent.review_tools import fallback_summary
-from agent.state import DayPlan, Itinerary, TripRequest, Visit
+from agent.state import DayPlan, Itinerary, TripRequest, Visit, Weather
 from retrieval.vector import allowed_place_ids
+from tests.conftest import plan_from_prompt
 
 TODAY = date(2026, 10, 19)
 
@@ -71,3 +75,56 @@ def test_validation_flags_places_outside_requested_area() -> None:
     assert failures(outside, "서귀포시")
     assert not failures(inside, "서귀포시")
     assert not failures(outside, None)
+
+
+def _rain(temp: float = 15) -> Weather:
+    return Weather(condition="rain", temp_max=temp, temp_min=temp - 5)
+
+
+def _sunny(temp: float = 20) -> Weather:
+    return Weather(condition="sunny", temp_max=temp, temp_min=temp - 5)
+
+
+def test_weather_is_fetched_for_both_areas_unless_one_is_requested(monkeypatch) -> None:
+    """구역을 지정하지 않으면 두 구역 날씨를 모두 조회하고, 지정하면 그 구역만 조회한다."""
+    asked: list[str] = []
+
+    def forecast(dates: list[str], region: str) -> dict:
+        asked.append(region)
+        return {dates[0]: _rain() if region == "서귀포시" else _sunny()}
+
+    monkeypatch.setattr("agent.nodes.check_weather.get_forecast", forecast)
+    out = check_weather({"request": TripRequest(start_date="2026-11-14", days=1)})
+    assert asked == ["제주시", "서귀포시"]
+    assert out["weather"]["2026-11-14"].condition == "rain"  # 계획용은 더 나쁜 쪽
+    assert out["area_weather"]["제주시"]["2026-11-14"].condition == "sunny"
+
+    asked.clear()
+    check_weather({"request": TripRequest(start_date="2026-11-14", days=1, area="제주시")})
+    assert asked == ["제주시"]
+
+
+def test_combine_takes_worse_condition_and_widest_temperatures() -> None:
+    """합친 날씨는 더 나쁜 상태를 따르고 기온은 가장 넓은 범위를 쓴다."""
+    merged = combine([{"d": _sunny(20)}, {"d": _rain(15)}])["d"]
+    assert (merged.condition, merged.temp_max, merged.temp_min) == ("rain", 20, 10)
+
+
+def test_day_weather_follows_the_area_where_the_day_is_spent(fake_llm) -> None:
+    """각 일차의 날씨는 그날 방문지가 많은 구역의 날씨이고, 구역별 날씨가 없으면 계획용 날씨로 대신한다."""
+    fake_llm[LLMPlan] = plan_from_prompt
+    cands = [to_candidate(pid, i) for i, pid in enumerate(sorted(catalog.places()))]
+    state = {
+        "request": TripRequest(start_date="2026-11-14", days=1, companions="커플"),
+        "candidates": cands,
+        "review_summaries": {c.id: fallback_summary(c) for c in cands},
+        "weather": {"2026-11-14": _rain()},
+        "area_weather": {"제주시": {"2026-11-14": _sunny()}, "서귀포시": {"2026-11-14": _rain()}},
+    }
+    day = build_itinerary(state)["itinerary"].days[0]
+    areas = Counter(catalog.area_of(catalog.places()[v.place_id]) for v in day.visits)
+    expected = state["area_weather"][areas.most_common(1)[0][0]]["2026-11-14"]
+    assert day.weather == expected
+
+    del state["area_weather"]
+    assert build_itinerary(state)["itinerary"].days[0].weather == _rain()

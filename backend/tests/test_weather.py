@@ -151,7 +151,7 @@ def test_fetch_failures_do_not_leak_key(monkeypatch: pytest.MonkeyPatch, respons
 def test_check_weather_node_uses_forecast_and_degrades(monkeypatch: pytest.MonkeyPatch) -> None:
     """노드는 예보가 있으면 담고, 범위 밖이면 빈 dict로 진행한다."""
     far = check_weather({"request": TripRequest(start_date="2099-11-14", days=2)})
-    assert far == {"weather": {}}
+    assert far == {"weather": {}, "area_weather": {}}
     monkeypatch.setattr("agent.nodes.check_weather.get_forecast", lambda dates, region: W.summarize_daily(SAMPLE, dates))
     near = check_weather({"request": TripRequest(start_date="2026-10-19", days=2)})
     assert near["weather"]["2026-10-20"].condition == "rain"

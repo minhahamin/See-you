@@ -34,7 +34,7 @@ def test_trip_dates() -> None:
 def test_check_weather_degrades_without_forecast() -> None:
     """날씨 연동 전에는 빈 dict로 진행한다."""
     out = check_weather({"request": TripRequest(start_date="2026-11-14", days=2)})
-    assert out == {"weather": {}}
+    assert out == {"weather": {}, "area_weather": {}}
 
 
 def test_check_weather_uses_forecast_when_available(monkeypatch) -> None:

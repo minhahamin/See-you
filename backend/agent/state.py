@@ -105,7 +105,8 @@ class PlannerState(TypedDict, total=False):
     missing_fields: list[str]  # 부족한 조건
     candidates: list[Candidate]  # 검색된 후보 장소
     review_summaries: dict[str, ReviewSummary]  # place_id → 후기 요약
-    weather: dict[str, Weather]  # 날짜 → 날씨
+    weather: dict[str, Weather]  # 날짜 → 날씨 (일정 계획용. 구역이 둘이면 더 나쁜 쪽을 따른다)
+    area_weather: dict[str, dict[str, Weather]]  # 구역 → 날짜 → 날씨 (일차별 날씨 표시용)
     itinerary: Itinerary | None  # 일자별 일정
     validation_issues: list[str]
     feedback: str | None

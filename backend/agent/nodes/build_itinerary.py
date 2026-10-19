@@ -1,12 +1,21 @@
 """일정 생성 노드: 후보와 후기 요약으로 일자별 계획을 만들고 route 도구로 시간·동선을 배치한다."""
 import logging
+from collections import Counter
 from datetime import date, timedelta
 
 from agent import catalog
 from agent.planning import plan_days, sanitize_visits, schedule_day
-from agent.state import DayPlan, Itinerary, PlannerState, Validation
+from agent.state import DayPlan, Itinerary, PlannerState, Validation, Visit, Weather
 
 logger = logging.getLogger(__name__)
+
+
+def _day_weather(visits: list[Visit], day_date: str, state: PlannerState) -> Weather | None:
+    """그날 방문지가 가장 많은 구역의 날씨. 구역별 날씨가 없으면 계획에 쓴 날씨로 대신한다."""
+    areas = Counter(catalog.area_of(catalog.places()[v.place_id]) for v in visits)
+    area = areas.most_common(1)[0][0] if areas else None
+    by_area = state.get("area_weather", {})
+    return (by_area.get(area, {}).get(day_date) if area else None) or state.get("weather", {}).get(day_date)
 
 
 def build_itinerary(state: PlannerState) -> dict:
@@ -30,7 +39,8 @@ def build_itinerary(state: PlannerState) -> dict:
         planned = sanitize_visits(llm_day.visits if llm_day else [], candidates, summaries, exclude_ids=used)
         used |= {p.place_id for p in planned if all_places[p.place_id].category != "숙소"}
         day_date = (start + timedelta(days=n - 1)).isoformat()
-        day_plans.append(DayPlan(day=n, date=day_date, weather=weather.get(day_date), visits=schedule_day(planned)))
+        visits = schedule_day(planned)
+        day_plans.append(DayPlan(day=n, date=day_date, weather=_day_weather(visits, day_date, state), visits=visits))
 
     itinerary = Itinerary(
         title=plan.title or f"{request.region} {day_count}일 여행",
