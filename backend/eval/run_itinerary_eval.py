@@ -2,7 +2,7 @@
 
 시나리오마다 그래프를 한 번 실행하며 검증이 돌 때마다 결과를 기록한다.
 - 루프 없음(v4 구성에 해당) = 처음 생성한 일정(pass 0)의 검증 결과
-- 루프 적용(v5)             = 재생성을 마친 최종 일정의 검증 결과
+- 루프 적용(v5)             = 재생성 또는 부분 수리(VALIDATION_LOOP)를 마친 최종 일정의 검증 결과
 같은 입력·같은 실행에서 비교하므로 LLM 호출을 아끼고 조건이 같다.
 
 날씨는 실제 예보 대신 시나리오별로 고정한다 (예보는 날마다 달라 재현이 안 되고, 비 오는 날 경로를 확인하기 위함).
@@ -168,22 +168,27 @@ def summarize(records: list[dict[str, Any]]) -> dict[str, dict[str, Any]]:
 
 
 SUMMARY_FIELDS = [
-    "date", "config", "model", "n", "violation_itinerary_rate", "violation_check_rate", "avg_violations",
+    "date", "config", "loop_mode", "model", "n", "violation_itinerary_rate", "violation_check_rate", "avg_violations",
     "faithfulness", "avg_travel_min", "avg_travel_km", "avg_regen", "avg_response_sec", "avg_tokens",
     "n_improved", "n_same", "n_worse",
 ]
 
 
 def write_summary(summary: dict[str, dict[str, Any]], model: str) -> None:
-    """집계를 eval/results/itinerary_summary.csv에 저장한다. 같은 날짜·모델의 이전 행은 새 값으로 바꾼다."""
+    """집계를 eval/results/itinerary_summary.csv에 저장한다. 같은 날짜·모델·루프 방식의 이전 행은 새 값으로 바꾼다.
+
+    loop_mode 열이 없던 예전 행은 전체 재생성(regenerate)으로 기록된 것이다.
+    """
     path = get_settings().eval_results_dir / "itinerary_summary.csv"
     today = date.today().isoformat()
+    mode = get_settings().validation_loop
     kept: list[dict[str, str]] = []
     if path.exists():
         with path.open(encoding="utf-8-sig", newline="") as f:
-            kept = [row for row in csv.DictReader(f) if not (row["date"] == today and row["model"] == model)]
+            rows = [{"loop_mode": "regenerate", **row} for row in csv.DictReader(f)]
+        kept = [row for row in rows if not (row["date"] == today and row["model"] == model and row["loop_mode"] == mode)]
     new_rows = [
-        {"date": today, "config": config, "model": model, **{k: (round(v, 4) if isinstance(v, float) else v) for k, v in row.items()}}
+        {"date": today, "config": config, "loop_mode": mode, "model": model, **{k: (round(v, 4) if isinstance(v, float) else v) for k, v in row.items()}}
         for config, row in summary.items()
     ]
     with path.open("w", encoding="utf-8-sig", newline="") as f:
@@ -202,7 +207,8 @@ def main() -> None:
 
     out_dir = get_settings().eval_results_dir
     out_dir.mkdir(parents=True, exist_ok=True)
-    runs_path = out_dir / f"itinerary_runs_{date.today().isoformat()}.jsonl"
+    suffix = "" if get_settings().validation_loop == "regenerate" else f"_{get_settings().validation_loop}"  # 예전 파일 이름과 호환
+    runs_path = out_dir / f"itinerary_runs_{date.today().isoformat()}{suffix}.jsonl"
     records = [json.loads(line) for line in runs_path.read_text(encoding="utf-8").splitlines()] if runs_path.exists() else []
     done = {r["id"] for r in records if "passes" in r}
 

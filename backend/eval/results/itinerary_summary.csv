@@ -1,3 +1,5 @@
-﻿date,config,model,n,violation_itinerary_rate,violation_check_rate,avg_violations,faithfulness,avg_travel_min,avg_travel_km,avg_regen,avg_response_sec,avg_tokens,n_improved,n_same,n_worse
-2026-10-19,no_loop,gemini-3.1-flash-lite,10,0.9,0.0671,2.9,0.9454,98.8333,42.6076,0.0,,,,,
-2026-10-19,loop,gemini-3.1-flash-lite,10,0.8,0.0659,2.7,0.9443,85.5,36.5462,1.7,41.18,26700.2,3,4,3
+﻿date,config,loop_mode,model,n,violation_itinerary_rate,violation_check_rate,avg_violations,faithfulness,avg_travel_min,avg_travel_km,avg_regen,avg_response_sec,avg_tokens,n_improved,n_same,n_worse
+2026-10-19,no_loop,regenerate,gemini-3.1-flash-lite,10,0.9,0.0671,2.9,0.9454,98.8333,42.6076,0.0,,,,,
+2026-10-19,loop,regenerate,gemini-3.1-flash-lite,10,0.8,0.0659,2.7,0.9443,85.5,36.5462,1.7,41.18,26700.2,3,4,3
+2026-10-19,no_loop,repair,gemini-3.1-flash-lite,10,0.9,0.0588,2.5,0.9275,96.5,41.7342,0.0,,,,,
+2026-10-19,loop,repair,gemini-3.1-flash-lite,10,0.3,0.0259,1.1,0.9435,105.3333,46.3284,0.9,21.16,18560.8,9,1,0
