@@ -102,6 +102,9 @@ def _visit_checks(day_no: int, visit, request: TripRequest, summaries: dict[str,
             )
         )
 
+    if request.area:
+        checks.append(Check(catalog.area_of(place) == request.area, f"{label}: 요청한 {request.area} 지역이 아닙니다."))
+
     valid = catalog.review_ids(visit.place_id)
     grounded = bool(visit.reason.strip()) and bool(visit.evidence_review_ids) and all(
         i in valid for i in visit.evidence_review_ids

@@ -10,7 +10,7 @@ from agent.moving import MoveError, move_visit, parse_move
 from agent.planning import CATEGORY_PHRASE, PlannedVisit, plan_days, sanitize_visits, schedule_day, to_candidate, to_planned
 from agent.prompts import APPLY_FEEDBACK_SYSTEM, REPLACE_DAY_NOTE
 from agent.review_tools import summarize
-from agent.state import DayPlan, Itinerary, PlannerState
+from agent.state import Area, DayPlan, Itinerary, PlannerState
 from config import get_settings
 from llm import structured_call
 from retrieval.hybrid import hybrid_search
@@ -28,6 +28,7 @@ class FeedbackAction(BaseModel):
     day: int | None = None
     visit_index: int | None = None  # 1부터
     constraint: str = ""
+    area: Area | None = None  # rebuild에서 사용자가 구역을 바꾸라고 했을 때
 
 
 def render_itinerary(itinerary: Itinerary) -> str:
@@ -87,6 +88,8 @@ def _replace_visit(
     filters: dict = {"category": category}
     if request.companions:
         filters["author_type"] = request.companions
+    if request.area:
+        filters["area"] = request.area
     query = f"{action.constraint} {CATEGORY_PHRASE[category]}".strip()
     taken = _used_ids(state["itinerary"]) | {old.place_id}
     pool_ids = [p for p in rank_places(hybrid_search(query, n=30, filters=filters)) if p not in taken][:REPLACEMENT_POOL]
@@ -139,7 +142,8 @@ def apply_feedback(state: PlannerState) -> dict:
         return {**base, "accepted": True}
     if action.action == "rebuild":
         prefs = list(dict.fromkeys([*request.preferences, *([action.constraint] if action.constraint else [])]))
-        return {**base, "request": request.model_copy(update={"preferences": prefs}), "rerun_search": True}
+        update = {"preferences": prefs, **({"area": action.area} if action.area else {})}
+        return {**base, "request": request.model_copy(update=update), "rerun_search": True}
 
     # 부분 수정 뒤에는 검증 결과만 보여 주고 일정을 다시 만들지 않는다 (재생성하면 요청한 수정이 사라진다).
     base["retry_count"] = get_settings().max_retry

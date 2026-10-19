@@ -6,7 +6,7 @@ from langchain_core.messages import HumanMessage, SystemMessage
 from pydantic import BaseModel, Field
 
 from agent.prompts import PARSE_REQUEST_SYSTEM
-from agent.state import REQUIRED_FIELDS, Companion, PlannerState, TripRequest
+from agent.state import REQUIRED_FIELDS, Area, Companion, PlannerState, TripRequest
 from llm import structured_call
 
 logger = logging.getLogger(__name__)
@@ -16,6 +16,7 @@ class ParsedRequest(BaseModel):
     """LLM이 대화에서 뽑은 조건. 없는 값은 None."""
 
     region: str | None = None
+    area: Area | None = None
     start_date: str | None = None
     days: int | None = Field(default=None, ge=1, le=7)
     companions: Companion | None = None
@@ -40,6 +41,7 @@ def merge_request(old: TripRequest | None, new: ParsedRequest, today: date) -> T
     prefs = list(dict.fromkeys([*base.preferences, *new.preferences]))
     return TripRequest(
         region=new.region or base.region,
+        area=new.area or base.area,
         start_date=_valid_future_date(new.start_date, today) or _valid_future_date(base.start_date, today),
         days=new.days or base.days,
         companions=new.companions or base.companions,

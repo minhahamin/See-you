@@ -4,6 +4,7 @@ from typing import Any
 
 import chromadb
 
+from agent import catalog
 from config import get_settings
 from ingest.build_index import COLLECTION_NAME
 from llm import embed_query_cached
@@ -18,13 +19,22 @@ def get_collection() -> chromadb.Collection:
 
 
 def allowed_place_ids(filters: dict[str, Any] | None) -> list[str] | None:
-    """category·indoor 필터를 만족하는 장소 id 목록을 구한다. 필터가 없으면 None(제한 없음)."""
+    """category·indoor·area 필터를 만족하는 장소 id 목록을 구한다. 필터가 없으면 None(제한 없음).
+
+    area는 인덱스 메타데이터가 아니라 장소 주소(catalog)로 거르므로 인덱스를 다시 만들 필요가 없다.
+    """
     conds = [{k: filters[k]} for k in ("category", "indoor") if filters and k in filters]
-    if not conds:
+    area = (filters or {}).get("area")
+    if not conds and not area:
         return None
-    where = {"$and": [{"type": "place"}, *conds]}
-    got = get_collection().get(where=where, include=["metadatas"])
-    return [m["place_id"] for m in got["metadatas"]]
+    ids = None
+    if conds:
+        got = get_collection().get(where={"$and": [{"type": "place"}, *conds]}, include=["metadatas"])
+        ids = [m["place_id"] for m in got["metadatas"]]
+    if area:
+        in_area = set(catalog.place_ids_in_area(area))
+        ids = sorted(in_area) if ids is None else [i for i in ids if i in in_area]
+    return ids
 
 
 def chunk_allowed(meta: dict[str, Any], filters: dict[str, Any] | None, allowed: list[str] | None) -> bool:

@@ -36,6 +36,8 @@ def search_places(state: PlannerState) -> dict:
         filters: dict = {"category": category}
         if request.companions:
             filters["author_type"] = request.companions
+        if request.area:
+            filters["area"] = request.area
         chunks = hybrid_search(build_query(request, category), n=30, filters=filters)
         for rank, pid in enumerate(rank_places(chunks)[: candidate_count(category, days)]):
             candidates.append(to_candidate(pid, rank))

@@ -10,6 +10,7 @@ from pydantic import BaseModel, Field
 from models import Place
 
 Companion = Literal["혼자", "커플", "친구", "가족"]
+Area = Literal["제주시", "서귀포시"]  # 제주도 안의 행정 구역. 지정하지 않으면 제주 전체
 Slot = Literal["morning", "lunch", "afternoon", "cafe", "dinner", "stay"]
 WeatherCondition = Literal["sunny", "cloudy", "rain"]
 
@@ -20,6 +21,7 @@ class TripRequest(BaseModel):
     """사용자 대화에서 파싱한 여행 조건."""
 
     region: str = "제주"
+    area: Area | None = None  # 사용자가 말한 구역 (장소 주소로 거른다)
     start_date: str | None = None  # YYYY-MM-DD
     days: int | None = Field(default=None, ge=1, le=7)
     companions: Companion | None = None
