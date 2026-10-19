@@ -80,9 +80,12 @@ def test_feedback_unknown_day_leaves_itinerary(fake_llm, fake_search) -> None:
     assert "itinerary" not in out and out["messages"]
 
 
-def test_routing_functions() -> None:
-    """분기 함수: 검증 재시도 한도와 피드백 후 경로."""
+def test_routing_functions(monkeypatch) -> None:
+    """분기 함수: 검증 재시도 한도와 피드백 후 경로. 검증 실패 시 기본은 부분 수리, 설정하면 전체 재생성."""
+    assert route_after_validate({"validation_issues": ["x"], "retry_count": 1}) == "repair_itinerary"
+    monkeypatch.setenv("VALIDATION_LOOP", "regenerate")
     assert route_after_validate({"validation_issues": ["x"], "retry_count": 1}) == "build_itinerary"
+    monkeypatch.delenv("VALIDATION_LOOP")
     assert route_after_validate({"validation_issues": ["x"], "retry_count": 2}) == "present_itinerary"
     assert route_after_validate({"validation_issues": [], "retry_count": 0}) == "present_itinerary"
     assert route_after_feedback({"accepted": True}) == "__end__"

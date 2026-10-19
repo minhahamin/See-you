@@ -30,6 +30,7 @@ NODE_ORDER = [
     "check_weather",
     "build_itinerary",
     "validate_itinerary",
+    "repair_itinerary",
     "present_itinerary",
     "apply_feedback",
 ]

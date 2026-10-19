@@ -10,6 +10,7 @@ from agent.nodes.apply_feedback import apply_feedback
 from agent.nodes.ask_clarification import ask_clarification
 from agent.nodes.build_itinerary import build_itinerary
 from agent.nodes.check_weather import check_weather
+from agent.nodes.repair_itinerary import repair_itinerary
 from agent.nodes.parse_request import parse_request
 from agent.nodes.present_itinerary import present_itinerary
 from agent.nodes.search_places import search_places
@@ -36,9 +37,10 @@ def route_after_parse(state: PlannerState) -> str:
 
 
 def route_after_validate(state: PlannerState) -> str:
-    """검증 문제가 있고 재시도 여유가 있으면 일정을 다시 만들고, 아니면 사용자에게 제시한다."""
-    if state.get("validation_issues") and state.get("retry_count", 0) < get_settings().max_retry:
-        return "build_itinerary"
+    """검증 문제가 있고 재시도 여유가 있으면 고치고(부분 수리 또는 전체 재생성), 아니면 사용자에게 제시한다."""
+    settings = get_settings()
+    if state.get("validation_issues") and state.get("retry_count", 0) < settings.max_retry:
+        return "repair_itinerary" if settings.validation_loop == "repair" else "build_itinerary"
     return "present_itinerary"
 
 
@@ -67,6 +69,7 @@ def build_graph(checkpointer: BaseCheckpointSaver | None = None) -> CompiledStat
         "check_weather": check_weather,
         "build_itinerary": build_itinerary,
         "validate_itinerary": validate_itinerary,
+        "repair_itinerary": repair_itinerary,
         "present_itinerary": present_itinerary,
         "apply_feedback": apply_feedback,
     }
@@ -80,7 +83,8 @@ def build_graph(checkpointer: BaseCheckpointSaver | None = None) -> CompiledStat
     graph.add_edge("analyze_reviews", "check_weather")
     graph.add_edge("check_weather", "build_itinerary")
     graph.add_edge("build_itinerary", "validate_itinerary")
-    graph.add_conditional_edges("validate_itinerary", route_after_validate, ["build_itinerary", "present_itinerary"])
+    graph.add_conditional_edges("validate_itinerary", route_after_validate, ["repair_itinerary", "build_itinerary", "present_itinerary"])
+    graph.add_edge("repair_itinerary", "validate_itinerary")
     graph.add_conditional_edges("present_itinerary", route_after_present, ["apply_feedback", END])
     graph.add_conditional_edges("apply_feedback", route_after_feedback, ["search_places", "validate_itinerary", END])
     return graph.compile(checkpointer=checkpointer or make_checkpointer())

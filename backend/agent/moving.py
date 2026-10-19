@@ -31,7 +31,7 @@ def _slot_for(start: int) -> Slot:
     return fitting[-1] if fitting else SLOT_ORDER[0]
 
 
-def _relayout(visits: list[Visit], starts: list[int]) -> list[Visit]:
+def relayout(visits: list[Visit], starts: list[int]) -> list[Visit]:
     """순서대로 놓으면서 이동시간을 다시 계산하고, 앞 방문과 겹치면 뒤로 민다. 22시를 넘으면 MoveError."""
     all_places = catalog.places()
     result: list[Visit] = []
@@ -81,5 +81,5 @@ def move_visit(itinerary: Itinerary, from_day: int, from_index: int, to_day: int
             days.append(d.model_copy(update={"visits": cleared[d.day]}))
             continue
         visits = cleared[d.day]
-        days.append(d.model_copy(update={"visits": _relayout(visits, [parse_time(v.start) for v in visits])}))
+        days.append(d.model_copy(update={"visits": relayout(visits, [parse_time(v.start) for v in visits])}))
     return itinerary.model_copy(update={"days": days})

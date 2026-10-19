@@ -41,6 +41,7 @@ NODE_LABELS = {
     "check_weather": "날씨 확인",
     "build_itinerary": "일정 생성",
     "validate_itinerary": "일정 검증",
+    "repair_itinerary": "일정 부분 수리",
     "present_itinerary": "일정 제시",
     "apply_feedback": "피드백 반영",
 }

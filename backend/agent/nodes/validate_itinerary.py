@@ -20,10 +20,13 @@ _RANGE = re.compile(r"(\d{1,2}):(\d{2})\s*[~\-–]\s*(\d{1,2}):(\d{2})")
 
 
 class Check(NamedTuple):
-    """검증 항목 하나의 결과. 실패했을 때만 message를 재생성 프롬프트에 쓴다."""
+    """검증 항목 하나의 결과. 실패했을 때 message는 재생성 프롬프트에, kind·day·place_id는 부분 수리에 쓴다."""
 
     ok: bool
     message: str
+    kind: str = ""  # few_visits, no_sight, no_meal, travel, time_range, rain_outdoor, hours, grounding, budget, unsuitable, area, duplicate, day_count
+    day: int = 0
+    place_id: str = ""
 
 
 def parse_hours(text: str | None) -> tuple[int, int] | None:
@@ -47,6 +50,8 @@ def _day_checks(day, summaries: dict[str, ReviewSummary]) -> list[Check]:
         Check(
             len(non_stay) >= MIN_VISITS_PER_DAY,
             f"{day.day}일차 방문 장소가 {len(non_stay)}곳뿐입니다. 최소 {MIN_VISITS_PER_DAY}곳을 넣으세요.",
+            "few_visits",
+            day.day,
         )
     ]
     sights = [v for v in non_stay if all_places[v.place_id].category == "관광지"]
@@ -54,16 +59,20 @@ def _day_checks(day, summaries: dict[str, ReviewSummary]) -> list[Check]:
         Check(
             len(sights) >= MIN_SIGHTS_PER_DAY,
             f"{day.day}일차에 관광지가 없습니다. 관광지를 {MIN_SIGHTS_PER_DAY}곳 이상 넣으세요.",
+            "no_sight",
+            day.day,
         )
     )
     has_meal = any(all_places[v.place_id].category == "음식점" for v in day.visits)
-    checks.append(Check(has_meal, f"{day.day}일차에 식사(음식점)가 없습니다. 점심 식사를 넣으세요."))
+    checks.append(Check(has_meal, f"{day.day}일차에 식사(음식점)가 없습니다. 점심 식사를 넣으세요.", "no_meal", day.day))
     legs = [v.travel_minutes_from_prev for v in day.visits]
     total, longest = sum(legs), max(legs, default=0)
     checks.append(
         Check(
             total <= MAX_DAY_TRAVEL_MIN and longest <= MAX_LEG_MIN,
             f"{day.day}일차 이동이 과합니다(총 {total}분, 최장 {longest}분). 가까운 장소끼리 묶으세요.",
+            "travel",
+            day.day,
         )
     )
     if day.visits:
@@ -72,6 +81,8 @@ def _day_checks(day, summaries: dict[str, ReviewSummary]) -> list[Check]:
             Check(
                 first >= DAY_START_MIN and last <= DAY_END_MIN,
                 f"{day.day}일차 일정이 {day.visits[0].start}~{day.visits[-1].end}로 08:00~22:00을 벗어납니다.",
+                "time_range",
+                day.day,
             )
         )
     if day.weather and day.weather.condition == "rain":
@@ -80,6 +91,8 @@ def _day_checks(day, summaries: dict[str, ReviewSummary]) -> list[Check]:
             Check(
                 len(outdoor) <= MAX_OUTDOOR_SIGHTS_WHEN_RAIN,
                 f"{day.day}일차는 비 예보인데 야외 관광지가 {len(outdoor)}곳입니다. 실내 장소로 바꾸세요.",
+                "rain_outdoor",
+                day.day,
             )
         )
     return checks
@@ -99,28 +112,30 @@ def _visit_checks(day_no: int, visit, request: TripRequest, summaries: dict[str,
             Check(
                 hours[0] <= start and end <= hours[1],
                 f"{label}: 방문 시간 {visit.start}~{visit.end}이 영업시간({place.opening_hours})을 벗어납니다.",
+                "hours",
+                day_no,
+                visit.place_id,
             )
         )
 
     if request.area:
-        checks.append(Check(catalog.area_of(place) == request.area, f"{label}: 요청한 {request.area} 지역이 아닙니다."))
+        checks.append(Check(catalog.area_of(place) == request.area, f"{label}: 요청한 {request.area} 지역이 아닙니다.", "area", day_no, visit.place_id))
 
     valid = catalog.review_ids(visit.place_id)
     grounded = bool(visit.reason.strip()) and bool(visit.evidence_review_ids) and all(
         i in valid for i in visit.evidence_review_ids
     )
-    checks.append(Check(grounded, f"{label}: 추천 이유에 근거가 되는 후기가 없거나 올바르지 않습니다."))
+    checks.append(Check(grounded, f"{label}: 추천 이유에 근거가 되는 후기가 없거나 올바르지 않습니다.", "grounding", day_no, visit.place_id))
 
     summary = summaries.get(visit.place_id)
     within_budget = request.budget is None or trait.price_level <= request.budget
     suitable = summary is None or summary.suitable
-    checks.append(
-        Check(
-            within_budget and suitable,
-            f"{label}: "
-            + ("예산(가격대)을 넘습니다." if not within_budget else f"동행 조건에 맞지 않습니다({summary.exclude_reason})."),
-        )
+    reason = (
+        "예산(가격대)을 넘습니다."
+        if not within_budget
+        else (f"동행 조건에 맞지 않습니다({summary.exclude_reason})." if summary and not suitable else "")
     )
+    checks.append(Check(within_budget and suitable, f"{label}: {reason}", "budget" if not within_budget else "unsuitable", day_no, visit.place_id))
     return checks
 
 
@@ -131,6 +146,7 @@ def run_checks(itinerary: Itinerary, request: TripRequest, summaries: dict[str, 
         Check(
             len(itinerary.days) == (request.days or len(itinerary.days)),
             f"일정이 {len(itinerary.days)}일치입니다. {request.days}일 일정이어야 합니다.",
+            "day_count",
         )
     ]
     seen: set[str] = set()
@@ -143,7 +159,7 @@ def run_checks(itinerary: Itinerary, request: TripRequest, summaries: dict[str, 
         for v in day.visits:
             checks.extend(_visit_checks(day.day, v, request, summaries))
     names = ", ".join(all_places[p].name for p in sorted(duplicates))
-    checks.append(Check(not duplicates, f"같은 장소가 반복됩니다: {names}"))
+    checks.append(Check(not duplicates, f"같은 장소가 반복됩니다: {names}", "duplicate"))
     return checks
 
 

@@ -1,6 +1,7 @@
 """환경변수 로딩과 설정값."""
 import logging
 from pathlib import Path
+from typing import Literal
 
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
@@ -41,6 +42,7 @@ class Settings(BaseSettings):
     runs_log_path: Path = BASE_DIR / "data" / "metrics" / "runs.jsonl"
     region: str = "제주"
     max_retry: int = 2
+    validation_loop: Literal["repair", "regenerate"] = "repair"  # 검증 실패 시 부분 수리(기본) 또는 전체 재생성(비교 실험용)
 
 
 def get_settings() -> Settings:
