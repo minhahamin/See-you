@@ -12,6 +12,7 @@ import TripSummary from '../components/TripSummary';
 import TripSummaryChips from '../components/TripSummaryChips';
 import type { ChatSession } from '../hooks/useChatSession';
 import { usePlaceReviews } from '../hooks/usePlaceReviews';
+import { moveMessage, type MoveRequest } from '../lib/dragMove';
 import { computeStats } from '../lib/summary';
 import type { Selection } from '../types';
 
@@ -80,6 +81,14 @@ export default function PlannerPage({ view, onViewChange, chat }: Props) {
     setChatOpen(true);
   };
 
+  // 타임라인에서 끌어다 놓은 방문은 에이전트 피드백으로 보낸다 (예시 일정이나 실행 중에는 옮기지 않는다)
+  const handleMove = (move: MoveRequest) => {
+    const moved = itinerary?.days.find((d) => d.day === move.fromDay)?.visits[move.fromIndex];
+    const name = moved ? places[moved.place_id]?.name : undefined;
+    if (name) handleSend(moveMessage(move, name));
+  };
+  const canMove = !chat.isDemo && !chat.running;
+
   const detail = visit && place ? <PlaceDetail visit={visit} place={place} reviews={reviews} /> : null;
 
   return (
@@ -109,7 +118,13 @@ export default function PlannerPage({ view, onViewChange, chat }: Props) {
         ) : (
           <>
             <div className="hidden min-h-0 flex-1 lg:flex">
-              <TimelineView itinerary={itinerary} places={places} selection={selection} onSelect={handleSelect} />
+              <TimelineView
+                itinerary={itinerary}
+                places={places}
+                selection={selection}
+                onSelect={handleSelect}
+                onMove={canMove ? handleMove : undefined}
+              />
             </div>
             <div className="flex min-h-0 flex-1 flex-col gap-4 overflow-y-auto lg:hidden">
               <TripSummaryChips stats={stats} />

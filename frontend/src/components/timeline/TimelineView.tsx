@@ -1,3 +1,4 @@
+import type { MoveRequest } from '../../lib/dragMove';
 import { DAY_END_MIN, DAY_START_MIN, PX_PER_HOUR, TRACK_WIDTH } from '../../lib/time';
 import type { Itinerary, Place, Selection } from '../../types';
 import DayRow, { ROW_HEADER_WIDTH } from './DayRow';
@@ -7,6 +8,8 @@ interface Props {
   places: Record<string, Place>;
   selection: Selection;
   onSelect: (selection: Selection) => void;
+  /** 없으면 끌어서 옮길 수 없다 */
+  onMove?: (move: MoveRequest) => void;
 }
 
 const HOURS = Array.from(
@@ -15,7 +18,7 @@ const HOURS = Array.from(
 );
 
 /** 행 = 여행 일차, 가로축 = 시간(08:00~22:00) */
-export default function TimelineView({ itinerary, places, selection, onSelect }: Props) {
+export default function TimelineView({ itinerary, places, selection, onSelect, onMove }: Props) {
   return (
     <div className="min-h-0 flex-1 overflow-auto rounded-3xl">
       <div className="flex min-w-max flex-col gap-3 pb-3">
@@ -34,7 +37,7 @@ export default function TimelineView({ itinerary, places, selection, onSelect }:
           </div>
         </div>
         {itinerary.days.map((day) => (
-          <DayRow key={day.day} day={day} places={places} selection={selection} onSelect={onSelect} />
+          <DayRow key={day.day} day={day} places={places} selection={selection} onSelect={onSelect} onMove={onMove} />
         ))}
       </div>
     </div>

@@ -1,3 +1,5 @@
+import { DAY_TRACK_ATTR } from '../../hooks/useBlockDrag';
+import type { MoveRequest } from '../../lib/dragMove';
 import { WEATHER_META } from '../../lib/weather';
 import { formatDate, minutesToPx, PX_PER_HOUR, toMinutes, TRACK_WIDTH } from '../../lib/time';
 import type { DayPlan, Place, Selection } from '../../types';
@@ -17,10 +19,12 @@ interface Props {
   places: Record<string, Place>;
   selection: Selection;
   onSelect: (selection: Selection) => void;
+  /** 없으면 끌어서 옮길 수 없다 */
+  onMove?: (move: MoveRequest) => void;
 }
 
 /** 타임라인의 한 행 = 여행 하루 */
-export default function DayRow({ day, places, selection, onSelect }: Props) {
+export default function DayRow({ day, places, selection, onSelect, onMove }: Props) {
   const forecast = day.weather;
   const weather = forecast ? WEATHER_META[forecast.condition] : null;
   const rainy = forecast?.condition === 'rain';
@@ -45,7 +49,7 @@ export default function DayRow({ day, places, selection, onSelect }: Props) {
         </span>
       </div>
 
-      <div className="relative h-28 shrink-0" style={GRID_STYLE}>
+      <div className="relative h-28 shrink-0" style={GRID_STYLE} {...{ [DAY_TRACK_ATTR]: day.day }}>
         {day.visits.map((visit, i) => {
           const place = places[visit.place_id];
           if (!place) return null;
@@ -68,6 +72,7 @@ export default function DayRow({ day, places, selection, onSelect }: Props) {
                 place={place}
                 selected={selection.day === day.day && selection.index === i}
                 onClick={() => onSelect({ day: day.day, index: i })}
+                onDrop={onMove && ((target) => onMove({ ...target, fromDay: day.day, fromIndex: i }))}
               />
             </div>
           );
