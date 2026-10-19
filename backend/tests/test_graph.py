@@ -148,3 +148,30 @@ def test_feedback_rebuild_applies_changed_date_days_and_budget(fake_llm, fake_se
 
     fake_llm[ParsedRequest] = lambda m: ParsedRequest(start_date="2020-01-01")
     assert apply_feedback(state)["request"].start_date == "2026-11-14"  # 이미 지난 날짜는 받아들이지 않는다
+
+
+def test_feedback_rebuild_gives_parser_current_request_and_skips_empty_constraint(fake_llm, fake_search) -> None:
+    """'하루 미뤄줘' 같은 상대 변경을 계산하도록 파서에 현재 조건을 주고, 취향이 아닌 변경은 취향에 넣지 않는다."""
+    seen: list[str] = []
+
+    def parse(messages: list) -> ParsedRequest:
+        seen.append(messages[-1].content)
+        return ParsedRequest(start_date="2099-12-13")
+
+    fake_llm[LLMPlan] = plan_from_prompt
+    fake_llm[FeedbackAction] = lambda m: FeedbackAction(action="rebuild")
+    fake_llm[ParsedRequest] = parse
+    state = {**_full_state(), "feedback": "출발을 하루 미뤄줘"}
+    out = apply_feedback(state)
+    assert "출발일 2026-11-14" in seen[0] and "하루 미뤄줘" in seen[0]
+    assert out["request"].start_date == "2099-12-13"
+    assert out["request"].preferences == state["request"].preferences
+
+
+def test_feedback_unclear_keeps_itinerary_and_does_not_accept(fake_llm, fake_search) -> None:
+    """의미 없는 피드백은 확정으로 보지 않고 일정을 그대로 둔 채 다시 묻는다."""
+    fake_llm[LLMPlan] = plan_from_prompt
+    fake_llm[FeedbackAction] = lambda m: FeedbackAction(action="unclear")
+    out = apply_feedback({**_full_state(), "feedback": "ㅋㅋㅋㅋ"})
+    assert not out.get("accepted") and "itinerary" not in out and not out.get("rerun_search")
+    assert "바꾸고 싶으신지" in out["messages"][0].content

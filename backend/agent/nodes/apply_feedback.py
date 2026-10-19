@@ -12,7 +12,7 @@ from agent.planning import CATEGORY_PHRASE, PlannedVisit, plan_days, refresh_wea
 from agent.nodes.parse_request import ParsedRequest, merge_request
 from agent.prompts import APPLY_FEEDBACK_SYSTEM, PARSE_REQUEST_SYSTEM, REPLACE_DAY_NOTE
 from agent.review_tools import summarize
-from agent.state import Area, DayPlan, Itinerary, PlannerState
+from agent.state import Area, DayPlan, Itinerary, PlannerState, TripRequest
 from config import get_settings
 from llm import structured_call
 from retrieval.hybrid import hybrid_search
@@ -21,12 +21,13 @@ from retrieval.vector import rank_places
 logger = logging.getLogger(__name__)
 
 REPLACEMENT_POOL = 3
+UNCLEAR_FEEDBACK_REPLY = "무엇을 바꾸고 싶으신지 잘 모르겠어요. 일정은 그대로 두었어요. 예: '2일차 점심을 흑돼지 식당으로 바꿔줘', 마음에 드시면 '이대로 확정'이라고 말해 주세요."
 
 
 class FeedbackAction(BaseModel):
     """LLM이 해석한 수정 동작."""
 
-    action: Literal["replace_visit", "replace_day", "rebuild", "accept"]
+    action: Literal["replace_visit", "replace_day", "rebuild", "accept", "unclear"]
     day: int | None = None
     visit_index: int | None = None  # 1부터
     constraint: str = ""
@@ -119,6 +120,14 @@ def _replace_visit(
     return day.model_copy(update={"visits": schedule_day(planned)}), candidates, summaries
 
 
+def render_current_request(request: TripRequest) -> str:
+    """파서가 상대적 변경('하루 미뤄줘')을 계산할 수 있도록 현재 조건을 한 줄로 보여 준다."""
+    return (
+        f"현재 조건: 출발일 {request.start_date or '미정'}, {request.days or '미정'}일, "
+        f"동행 {request.companions or '미정'}, 예산 {request.budget or '미정'}"
+    )
+
+
 def apply_feedback(state: PlannerState) -> dict:
     """피드백을 해석해 수정 범위에 맞게 일정을 바꾼다. 처리한 피드백은 비운다."""
     itinerary, request = state["itinerary"], state["request"]
@@ -142,12 +151,16 @@ def apply_feedback(state: PlannerState) -> dict:
 
     if action.action == "accept":
         return {**base, "accepted": True}
+    if action.action == "unclear":
+        # 확정으로 오해해 대화를 끝내지 않고, 일정은 그대로 둔 채 다시 묻는다
+        base["retry_count"] = get_settings().max_retry
+        return {**base, "messages": [AIMessage(UNCLEAR_FEEDBACK_REPLY)]}
     if action.action == "rebuild":
         # 날짜·일수·동행·예산·구역이 바뀌었을 수 있으므로 처음 조건을 읽던 파서로 피드백을 다시 읽어 합친다
         today = date.today()
         parsed = structured_call(
             ParsedRequest,
-            [SystemMessage(PARSE_REQUEST_SYSTEM.format(today=today.isoformat())), HumanMessage(state["feedback"] or "")],
+            [SystemMessage(PARSE_REQUEST_SYSTEM.format(today=today.isoformat())), HumanMessage(f"{render_current_request(request)}\n사용자 피드백: {state['feedback'] or ''}")],
         )
         merged = merge_request(request, parsed, today)
         prefs = list(dict.fromkeys([*merged.preferences, *([action.constraint] if action.constraint else [])]))
