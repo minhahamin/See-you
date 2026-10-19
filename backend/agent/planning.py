@@ -1,5 +1,6 @@
 """일정 계획 공용 로직: LLM 계획 호출, 계획 정리, 시간 배치. build_itinerary와 apply_feedback이 함께 쓴다."""
 import logging
+from collections import Counter
 from datetime import date, timedelta
 
 from langchain_core.messages import HumanMessage, SystemMessage
@@ -7,7 +8,7 @@ from pydantic import BaseModel, Field
 
 from agent import catalog
 from agent.prompts import BUILD_ITINERARY_RETRY, BUILD_ITINERARY_SYSTEM
-from agent.state import Candidate, ReviewSummary, Slot, TripRequest, Visit, Weather
+from agent.state import Candidate, Itinerary, PlannerState, ReviewSummary, Slot, TripRequest, Visit, Weather
 from llm import structured_call
 from models import Category
 from tools.route import order_nearest, travel_minutes
@@ -188,6 +189,20 @@ def schedule_day(planned: list[PlannedVisit]) -> list[Visit]:
         )
         cursor, prev = end, coord
     return visits
+
+
+def day_weather(visits: list[Visit], day_date: str, state: PlannerState) -> Weather | None:
+    """그날 방문지가 가장 많은 구역의 날씨. 구역별 날씨가 없으면 계획에 쓴 날씨로 대신한다."""
+    areas = Counter(catalog.area_of(catalog.places()[v.place_id]) for v in visits)
+    area = areas.most_common(1)[0][0] if areas else None
+    by_area = state.get("area_weather", {})
+    return (by_area.get(area, {}).get(day_date) if area else None) or state.get("weather", {}).get(day_date)
+
+
+def refresh_weather(itinerary: Itinerary, state: PlannerState) -> Itinerary:
+    """부분 수정으로 방문지가 바뀐 뒤, 각 일차의 날씨를 지금 방문지 기준으로 다시 붙인다."""
+    days = [d.model_copy(update={"weather": day_weather(d.visits, d.date, state) or d.weather}) for d in itinerary.days]
+    return itinerary.model_copy(update={"days": days})
 
 
 def to_planned(visits: list[Visit]) -> list[PlannedVisit]:

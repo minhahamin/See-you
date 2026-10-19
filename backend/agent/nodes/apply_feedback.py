@@ -7,7 +7,7 @@ from pydantic import BaseModel
 
 from agent import catalog
 from agent.moving import MoveError, move_visit, parse_move
-from agent.planning import CATEGORY_PHRASE, PlannedVisit, plan_days, sanitize_visits, schedule_day, to_candidate, to_planned
+from agent.planning import CATEGORY_PHRASE, PlannedVisit, plan_days, refresh_weather, sanitize_visits, schedule_day, to_candidate, to_planned
 from agent.prompts import APPLY_FEEDBACK_SYSTEM, REPLACE_DAY_NOTE
 from agent.review_tools import summarize
 from agent.state import Area, DayPlan, Itinerary, PlannerState
@@ -127,7 +127,7 @@ def apply_feedback(state: PlannerState) -> dict:
         # 이동 뒤에도 재생성하지 않고 검증 결과만 보여 준다 (재생성하면 옮긴 위치가 사라진다)
         base = {"feedback": None, "retry_count": get_settings().max_retry, "validation_issues": []}
         try:
-            return {**base, "itinerary": move_visit(itinerary, *move)}
+            return {**base, "itinerary": refresh_weather(move_visit(itinerary, *move), state)}
         except MoveError as e:
             return {**base, "messages": [AIMessage(str(e))]}
 
@@ -163,4 +163,4 @@ def apply_feedback(state: PlannerState) -> dict:
         return {**base, "messages": [AIMessage("조건에 맞는 대체 장소를 찾지 못해 일정을 그대로 두었어요.")]}
 
     days = [new_day if d.day == day.day else d.model_copy(update={"visits": [v.model_copy(update={"changed": False}) for v in d.visits]}) for d in itinerary.days]
-    return {**base, **update, "itinerary": itinerary.model_copy(update={"days": days})}
+    return {**base, **update, "itinerary": refresh_weather(itinerary.model_copy(update={"days": days}), state)}

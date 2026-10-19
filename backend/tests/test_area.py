@@ -128,3 +128,21 @@ def test_day_weather_follows_the_area_where_the_day_is_spent(fake_llm) -> None:
 
     del state["area_weather"]
     assert build_itinerary(state)["itinerary"].days[0].weather == _rain()
+
+
+def test_partial_edits_refresh_day_weather(fake_llm, fake_search) -> None:
+    """방문을 다른 일차로 옮기면 두 일차의 날씨가 지금 방문지의 구역 기준으로 다시 정해진다."""
+    from agent.nodes.apply_feedback import apply_feedback
+    from tests.test_graph import _full_state
+
+    fake_llm[LLMPlan] = plan_from_prompt
+    state = _full_state()
+    state["area_weather"] = {"제주시": {d.date: _sunny() for d in state["itinerary"].days}, "서귀포시": {d.date: _rain() for d in state["itinerary"].days}}
+    state["weather"] = {}
+    name = catalog.places()[state["itinerary"].days[0].visits[0].place_id].name
+    state["feedback"] = f"1일차 1번째 방문({name})을 2일차 18:00로 옮겨줘"
+
+    out = apply_feedback(state)["itinerary"]
+    for day in out.days:
+        areas = Counter(catalog.area_of(catalog.places()[v.place_id]) for v in day.visits)
+        assert day.weather == state["area_weather"][areas.most_common(1)[0][0]][day.date]
