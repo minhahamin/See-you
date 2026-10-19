@@ -1,5 +1,6 @@
 """피드백 반영 노드: 수정 범위를 판단해 특정 방문·일차만 바꾸거나, 필요하면 전체 재검색을 요청한다."""
 import logging
+from datetime import date
 from typing import Literal
 
 from langchain_core.messages import AIMessage, HumanMessage, SystemMessage
@@ -8,7 +9,8 @@ from pydantic import BaseModel
 from agent import catalog
 from agent.moving import MoveError, move_visit, parse_move
 from agent.planning import CATEGORY_PHRASE, PlannedVisit, plan_days, refresh_weather, sanitize_visits, schedule_day, to_candidate, to_planned
-from agent.prompts import APPLY_FEEDBACK_SYSTEM, REPLACE_DAY_NOTE
+from agent.nodes.parse_request import ParsedRequest, merge_request
+from agent.prompts import APPLY_FEEDBACK_SYSTEM, PARSE_REQUEST_SYSTEM, REPLACE_DAY_NOTE
 from agent.review_tools import summarize
 from agent.state import Area, DayPlan, Itinerary, PlannerState
 from config import get_settings
@@ -141,9 +143,16 @@ def apply_feedback(state: PlannerState) -> dict:
     if action.action == "accept":
         return {**base, "accepted": True}
     if action.action == "rebuild":
-        prefs = list(dict.fromkeys([*request.preferences, *([action.constraint] if action.constraint else [])]))
-        update = {"preferences": prefs, **({"area": action.area} if action.area else {})}
-        return {**base, "request": request.model_copy(update=update), "rerun_search": True}
+        # 날짜·일수·동행·예산·구역이 바뀌었을 수 있으므로 처음 조건을 읽던 파서로 피드백을 다시 읽어 합친다
+        today = date.today()
+        parsed = structured_call(
+            ParsedRequest,
+            [SystemMessage(PARSE_REQUEST_SYSTEM.format(today=today.isoformat())), HumanMessage(state["feedback"] or "")],
+        )
+        merged = merge_request(request, parsed, today)
+        prefs = list(dict.fromkeys([*merged.preferences, *([action.constraint] if action.constraint else [])]))
+        update = {"preferences": prefs, **({"area": action.area} if action.area and not parsed.area else {})}
+        return {**base, "request": merged.model_copy(update=update), "rerun_search": True}
 
     # 부분 수정 뒤에는 검증 결과만 보여 주고 일정을 다시 만들지 않는다 (재생성하면 요청한 수정이 사라진다).
     base["retry_count"] = get_settings().max_retry

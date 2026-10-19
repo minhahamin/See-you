@@ -35,6 +35,7 @@ def test_feedback_accept_and_rebuild(fake_llm, fake_search) -> None:
     assert apply_feedback(state)["accepted"] is True
 
     fake_llm[FeedbackAction] = lambda m: FeedbackAction(action="rebuild", constraint="흑돼지")
+    fake_llm[ParsedRequest] = lambda m: ParsedRequest()  # 피드백에 조건 변경이 없으면 기존 조건을 그대로 둔다
     out = apply_feedback(state)
     assert out["rerun_search"] is True and "흑돼지" in out["request"].preferences
     assert out["feedback"] is None and out["retry_count"] == 0
@@ -131,3 +132,19 @@ def test_graph_without_feedback_ends(wired) -> None:
     assert out["__interrupt__"][0].value["type"] == "itinerary"
     out = graph.invoke(Command(resume=""), cfg)
     assert "__interrupt__" not in out and not out.get("feedback")
+
+
+def test_feedback_rebuild_applies_changed_date_days_and_budget(fake_llm, fake_search) -> None:
+    """피드백으로 날짜·일수·예산이 바뀌면 조건에 반영하고 다시 검색한다. 지난 날짜는 무시한다."""
+    fake_llm[LLMPlan] = plan_from_prompt
+    state = {**_full_state(), "feedback": "12월 12일로 3일, 저렴하게 바꿔줘"}
+    fake_llm[FeedbackAction] = lambda m: FeedbackAction(action="rebuild")
+    fake_llm[ParsedRequest] = lambda m: ParsedRequest(start_date="2099-12-12", days=3, budget=1)
+
+    out = apply_feedback(state)
+    assert out["rerun_search"] is True
+    assert (out["request"].start_date, out["request"].days, out["request"].budget) == ("2099-12-12", 3, 1)
+    assert out["request"].companions == "커플"  # 말하지 않은 조건은 유지
+
+    fake_llm[ParsedRequest] = lambda m: ParsedRequest(start_date="2020-01-01")
+    assert apply_feedback(state)["request"].start_date == "2026-11-14"  # 이미 지난 날짜는 받아들이지 않는다
