@@ -11,6 +11,7 @@ from agent.moving import MoveError, move_visit, parse_move
 from agent.planning import CATEGORY_PHRASE, PlannedVisit, plan_days, refresh_weather, sanitize_visits, schedule_day, to_candidate, to_planned
 from agent.nodes.parse_request import ParsedRequest, merge_request
 from agent.prompts import APPLY_FEEDBACK_SYSTEM, PARSE_REQUEST_SYSTEM, REPLACE_DAY_NOTE
+from agent.repair import _fits_hours, _travel_score
 from agent.review_tools import summarize
 from agent.state import Area, DayPlan, Itinerary, PlannerState, TripRequest
 from config import get_settings
@@ -20,7 +21,7 @@ from retrieval.vector import rank_places
 
 logger = logging.getLogger(__name__)
 
-REPLACEMENT_POOL = 3
+REPLACEMENT_POOL = 5
 UNCLEAR_FEEDBACK_REPLY = "무엇을 바꾸고 싶으신지 잘 모르겠어요. 일정은 그대로 두었어요. 예: '2일차 점심을 흑돼지 식당으로 바꿔줘', 마음에 드시면 '이대로 확정'이라고 말해 주세요."
 
 
@@ -103,21 +104,35 @@ def _replace_visit(
     fresh = [to_candidate(p, i) for i, p in enumerate(pool_ids) if p not in summaries]
     if fresh:
         summaries.update(summarize(fresh, request.companions or "미정"))
-    chosen = next((p for p in pool_ids if summaries[p].suitable), None)
-    if chosen is None:
+    planned = to_planned(day.visits)
+    slot = planned[index].slot
+
+    def fit(item: tuple[int, str]) -> tuple[bool, int, int]:
+        """영업시간을 벗어나는지, 교체 뒤 이동 상한을 넘는 정도, 검색 순위. 작을수록 좋다."""
+        rank, pid = item
+        trial = [*planned[:index], PlannedVisit(place_id=pid, slot=slot, reason="", evidence_review_ids=[]), *planned[index + 1 :]]
+        return (not _fits_hours(pid, slot), _travel_score(trial)[0], rank)
+
+    suitable = [(i, p) for i, p in enumerate(pool_ids) if summaries[p].suitable]
+    if not suitable:
         return None
+    chosen = min(suitable, key=fit)[1]
 
     s = summaries[chosen]
     reason = (f"요청하신 '{action.constraint}'에 맞춰 골랐어요. " if action.constraint else "") + (
         f"후기에서 '{s.pros[0]}'라는 평이 있어요." if s.pros else ""
     )
-    planned = to_planned(day.visits)
     planned[index] = PlannedVisit(
-        place_id=chosen, slot=planned[index].slot, reason=reason.strip(), evidence_review_ids=s.evidence_review_ids[:2], changed=True
+        place_id=chosen, slot=slot, reason=reason.strip(), evidence_review_ids=s.evidence_review_ids[:2], changed=True
     )
     known = {c.id for c in state["candidates"]}
     candidates = [*state["candidates"], *[c for c in fresh if c.id not in known]]
     return day.model_copy(update={"visits": schedule_day(planned)}), candidates, summaries
+
+
+def _note(text: str) -> dict:
+    """사용자에게 알릴 말: 대화 기록에 남기고, 다음 일정 제시 때 함께 보여 준다."""
+    return {"notice": text, "messages": [AIMessage(text)]}
 
 
 def render_current_request(request: TripRequest) -> str:
@@ -140,7 +155,7 @@ def apply_feedback(state: PlannerState) -> dict:
         try:
             return {**base, "itinerary": refresh_weather(move_visit(itinerary, *move), state)}
         except MoveError as e:
-            return {**base, "messages": [AIMessage(str(e))]}
+            return {**base, **_note(str(e))}
 
     action = structured_call(
         FeedbackAction,
@@ -154,7 +169,7 @@ def apply_feedback(state: PlannerState) -> dict:
     if action.action == "unclear":
         # 확정으로 오해해 대화를 끝내지 않고, 일정은 그대로 둔 채 다시 묻는다
         base["retry_count"] = get_settings().max_retry
-        return {**base, "messages": [AIMessage(UNCLEAR_FEEDBACK_REPLY)]}
+        return {**base, **_note(UNCLEAR_FEEDBACK_REPLY)}
     if action.action == "rebuild":
         # 날짜·일수·동행·예산·구역이 바뀌었을 수 있으므로 처음 조건을 읽던 파서로 피드백을 다시 읽어 합친다
         today = date.today()
@@ -171,18 +186,24 @@ def apply_feedback(state: PlannerState) -> dict:
     base["retry_count"] = get_settings().max_retry
     day = next((d for d in itinerary.days if d.day == action.day), None)
     if day is None:
-        return {**base, "messages": [AIMessage("어느 일차를 바꿀지 찾지 못해 일정을 그대로 두었어요.")]}
+        return {**base, **_note("어느 일차를 바꿀지 찾지 못해 일정을 그대로 두었어요.")}
 
     update: dict = {}
+    names = catalog.places()
+    done = ""
     if action.action == "replace_day":
         new_day = _replace_day(state, action, day)
+        done = f"{day.day}일차를 다시 짰어요."
     else:
         result = _replace_visit(state, action, day)
         new_day = result[0] if result else None
         if result:
             update = {"candidates": result[1], "review_summaries": result[2]}
+            old_id = day.visits[(action.visit_index or 1) - 1].place_id
+            new_id = next(v.place_id for v in new_day.visits if v.changed)
+            done = f"{day.day}일차 {action.visit_index}번째 방문 '{names[old_id].name}'을(를) '{names[new_id].name}'(으)로 바꿨어요."
     if new_day is None:
-        return {**base, "messages": [AIMessage("조건에 맞는 대체 장소를 찾지 못해 일정을 그대로 두었어요.")]}
+        return {**base, **_note("조건에 맞는 대체 장소를 찾지 못해 일정을 그대로 두었어요.")}
 
     days = [new_day if d.day == day.day else d.model_copy(update={"visits": [v.model_copy(update={"changed": False}) for v in d.visits]}) for d in itinerary.days]
-    return {**base, **update, "itinerary": refresh_weather(itinerary.model_copy(update={"days": days}), state)}
+    return {**base, **update, **_note(done), "itinerary": refresh_weather(itinerary.model_copy(update={"days": days}), state)}

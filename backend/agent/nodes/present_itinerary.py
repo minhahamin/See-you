@@ -13,7 +13,8 @@ def present_itinerary(state: PlannerState) -> dict:
             "itinerary": state["itinerary"].model_dump(),
             "issues": state.get("validation_issues", []),
             "applied_settings": state.get("applied_settings", {}),
+            "notice": state.get("notice"),
         }
     )
     text = str(answer or "").strip()
-    return {"feedback": text or None, "messages": [HumanMessage(text)] if text else []}
+    return {"feedback": text or None, "notice": None, "messages": [HumanMessage(text)] if text else []}

@@ -58,6 +58,7 @@ def test_feedback_replace_visit_changes_only_that_block(fake_llm, fake_search) -
     assert catalog.places()[changed[0][1]].category == catalog.places()[target.place_id].category
     assert [v.place_id for v in after.days[1].visits] == [v.place_id for v in before.days[1].visits]  # 다른 일차는 그대로
     assert changed[0][1] in out["review_summaries"]
+    assert "1일차 2번째 방문" in out["notice"] and "바꿨어요" in out["notice"]  # 무엇이 바뀌었는지 알려 준다
 
 
 def test_feedback_replace_day_marks_new_places(fake_llm, fake_search) -> None:
@@ -70,6 +71,7 @@ def test_feedback_replace_day_marks_new_places(fake_llm, fake_search) -> None:
     day2 = out["itinerary"].days[1]
     assert all(v.changed == (v.place_id not in before_ids) for v in day2.visits)
     assert not any(v.changed for v in out["itinerary"].days[0].visits)
+    assert out["notice"] == "2일차를 다시 짰어요."
 
 
 def test_feedback_unknown_day_leaves_itinerary(fake_llm, fake_search) -> None:
@@ -117,6 +119,7 @@ def test_graph_full_flow(wired, fake_llm) -> None:
     again = out["__interrupt__"][0].value
     flags = [v["changed"] for d in again["itinerary"]["days"] for v in d["visits"]]
     assert sum(flags) == 1
+    assert "바꿨어요" in again["notice"]
 
     # 4) 확정하면 끝난다
     fake_llm[FeedbackAction] = lambda m: FeedbackAction(action="accept")

@@ -51,6 +51,12 @@ describe('itineraryMessage', () => {
     );
   });
 
+  it('피드백 처리 결과 안내가 있으면 제목 안내 대신 먼저 보여 준다', () => {
+    const text = itineraryMessage(mockItinerary, [], undefined, "2일차 1번째 방문 'A'을(를) 'B'(으)로 바꿨어요.");
+    expect(text.startsWith("2일차 1번째 방문 'A'")).toBe(true);
+    expect(text).not.toContain('일정을 만들었어요');
+  });
+
   it('남은 문제는 최대 5건까지 보이고 나머지는 개수로 알린다', () => {
     const issues = Array.from({ length: 7 }, (_, i) => `문제${i + 1}`);
     const text = itineraryMessage(mockItinerary, issues);

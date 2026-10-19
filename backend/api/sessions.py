@@ -73,6 +73,7 @@ def interrupt_event(payload: dict[str, Any]) -> dict[str, str]:
             places=[place_out(i) for i in ids],
             issues=payload["issues"],
             applied_settings=AppliedSettings(**payload.get("applied_settings", {})),
+            notice=payload.get("notice"),
         ),
     )
 

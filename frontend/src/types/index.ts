@@ -199,6 +199,8 @@ export interface ItineraryEvent {
   /** 검증을 통과하지 못한 항목 설명 */
   issues: string[];
   applied_settings: AppliedSettings;
+  /** 피드백 처리 결과 안내 (무엇을 바꿨는지, 못 바꿨으면 이유) */
+  notice?: string | null;
 }
 
 /** SSE `error` 이벤트 */

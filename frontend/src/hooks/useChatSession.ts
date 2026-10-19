@@ -61,8 +61,8 @@ export function describeApplied(applied?: AppliedSettings): string | null {
 }
 
 /** 일정이 나왔을 때 대화에 남길 안내 문구. 설정을 반영했으면 알리고, 검증에서 남은 문제가 있으면 함께 알린다. */
-export function itineraryMessage(itinerary: Itinerary, issues: string[], applied?: AppliedSettings): string {
-  const lines = [`${itinerary.title} 일정을 만들었어요. 바꾸고 싶은 부분이 있으면 말해 주세요.`];
+export function itineraryMessage(itinerary: Itinerary, issues: string[], applied?: AppliedSettings, notice?: string | null): string {
+  const lines = notice ? [notice, '바꾸고 싶은 부분이 더 있으면 말해 주세요.'] : [`${itinerary.title} 일정을 만들었어요. 바꾸고 싶은 부분이 있으면 말해 주세요.`];
   const appliedLine = describeApplied(applied);
   if (appliedLine) lines.push(appliedLine);
   if (issues.length > 0) {
@@ -184,7 +184,7 @@ export function useChatSession(userId: string | null, authReady: boolean): ChatS
       setItinerary(event.itinerary);
       setPlaces(toPlaceMap(event.places));
       setAwaiting('feedback');
-      addMessage('assistant', itineraryMessage(event.itinerary, event.issues, event.applied_settings));
+      addMessage('assistant', itineraryMessage(event.itinerary, event.issues, event.applied_settings, event.notice));
     },
     onError: (message) => addMessage('assistant', `오류: ${message}`),
   };

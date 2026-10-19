@@ -117,6 +117,7 @@ class ItineraryEvent(BaseModel):
     places: list[PlaceOut]
     issues: list[str]
     applied_settings: AppliedSettings = Field(default_factory=AppliedSettings)
+    notice: str | None = None  # 피드백 처리 결과 안내 (무엇을 바꿨는지, 못 바꿨으면 이유)
 
 
 class ErrorEvent(BaseModel):
