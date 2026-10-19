@@ -4,6 +4,7 @@ from functools import lru_cache
 
 from ingest.build_index import dedupe_reviews, load_json
 from models import Place, PlaceTraits, Review
+from tools.grids import zone_of
 
 
 @lru_cache(maxsize=1)
@@ -30,6 +31,11 @@ def reviews_by_place() -> dict[str, list[Review]]:
 def area_of(place: Place) -> str | None:
     """장소 주소에서 구역(제주시/서귀포시)을 구한다. 둘 다 아니면 None."""
     return next((a for a in ("서귀포시", "제주시") if a in place.address), None)
+
+
+def weather_zone_of(place: Place) -> str | None:
+    """장소의 날씨 조회 구역(읍면동 격자 단위, 예: '서귀포시 성산읍')."""
+    return zone_of(place.address, place.lat, place.lng)
 
 
 def place_ids_in_area(area: str) -> list[str]:

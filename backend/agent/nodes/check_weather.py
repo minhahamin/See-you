@@ -1,13 +1,16 @@
 """날씨 확인 노드: 여행 날짜별 날씨를 구역별로 조회한다. 조회할 수 없으면 날씨 없이 진행한다."""
 import logging
+from concurrent.futures import ThreadPoolExecutor
 from datetime import date, timedelta
 
+from agent import catalog
 from agent.state import PlannerState, Weather
 from tools.weather import WeatherUnavailable, get_forecast
 
 logger = logging.getLogger(__name__)
 
 ALL_AREAS = ("제주시", "서귀포시")
+MAX_PARALLEL = 6
 SEVERITY = {"sunny": 0, "cloudy": 1, "rain": 2}
 
 
@@ -33,15 +36,26 @@ def combine(forecasts: list[dict[str, Weather]]) -> dict[str, Weather]:
     return combined
 
 
+def candidate_zones(state: PlannerState) -> list[str]:
+    """후보 장소가 있는 읍면동 구역들 (이름순). 후보가 없거나 격자 데이터가 없으면 빈 목록."""
+    zones = {catalog.weather_zone_of(c) for c in state.get("candidates", [])}
+    return sorted(z for z in zones if z)
+
+
 def check_weather(state: PlannerState) -> dict:
-    """구역별 날씨를 area_weather에, 일정 계획에 쓸 합친 날씨를 weather에 담는다. 실패한 구역은 건너뛴다."""
+    """읍면동 구역별 날씨를 area_weather에, 일정 계획에 쓸 합친 날씨를 weather에 담는다. 실패한 구역은 건너뛴다."""
     request = state["request"]
     dates = trip_dates(request.start_date, request.days)
-    areas = [request.area] if request.area else list(ALL_AREAS)
-    by_area: dict[str, dict[str, Weather]] = {}
-    for area in areas:
+    areas = candidate_zones(state) or ([request.area] if request.area else list(ALL_AREAS))
+    def fetch(area: str) -> dict[str, Weather] | None:
+        """구역 하나의 예보. 조회할 수 없으면 None."""
         try:
-            by_area[area] = get_forecast(dates, area)
+            return get_forecast(dates, area)
         except WeatherUnavailable as exc:
             logger.warning("%s 날씨 없이 진행: %s", area, exc)
+            return None
+
+    with ThreadPoolExecutor(max_workers=MAX_PARALLEL) as pool:  # 구역이 많아도 응답이 늘어나지 않게 병렬로 조회한다
+        results = list(pool.map(fetch, areas))
+    by_area = {a: f for a, f in zip(areas, results) if f}
     return {"weather": combine(list(by_area.values())), "area_weather": by_area}

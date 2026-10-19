@@ -3,8 +3,8 @@
 명세 출처: 기상청 '단기예보 조회서비스 오픈API 활용가이드'(2026-09-28 판).
 - 발표시각(base_time): 0200, 0500, 0800, 1100, 1400, 1700, 2000, 2300 (제공은 발표 10분 후부터)
 - 예보 범위: 02~14시 발표는 +4일(글피), 17·20·23시 발표는 +5일(그글피)까지. 그 밖의 날짜는 조회할 수 없다.
-- 격자 좌표(nx, ny)는 가이드 첨부 엑셀(격자_위경도 2607)의 '제주특별자치도 제주시'(5011000000) 행 (53, 38)과
-  '제주특별자치도 서귀포시'(5013000000) 행 (53, 33)을 쓴다. 읍면동마다 격자가 다르지만(예: 성산읍 60,37) 구역 단위로 근사한다.
+- 격자 좌표(nx, ny)는 가이드 첨부 엑셀(격자_위경도 2607)의 값이다. 읍면동 단위 구역('서귀포시 성산읍' 등)은 tools/grids.py가,
+  시 단위('제주시' 53,38 / '서귀포시' 53,33)는 아래 REGION_GRIDS가 가리킨다.
 
 호스트 주의: 가이드의 서비스 URL(apihub.kma.go.kr)은 기상청 API허브 전용 인증키(authKey)를 요구하고,
 공공데이터포털에서 받은 키는 거기서 401이 난다. 같은 서비스의 공공데이터포털 주소(apis.data.go.kr)에서는
@@ -21,6 +21,7 @@ import httpx
 
 from agent.state import Weather
 from config import get_settings
+from tools.grids import zone_grid
 
 logger = logging.getLogger(__name__)
 
@@ -54,7 +55,7 @@ def latest_base(now_kst: datetime) -> tuple[str, str]:
     return (available - timedelta(days=1)).strftime("%Y%m%d"), "2300"
 
 
-@lru_cache(maxsize=8)
+@lru_cache(maxsize=32)  # 읍면동 격자가 최대 수십 개라 넉넉히 둔다
 def _fetch_items(base_date: str, base_time: str, nx: int, ny: int) -> tuple[dict[str, Any], ...]:
     """단기예보 항목을 모두 가져온다. 같은 발표분은 프로세스 안에서 재사용한다."""
     key = get_settings().kma_api_key
@@ -133,7 +134,8 @@ def summarize_daily(items: list[dict[str, Any]], dates: list[str]) -> dict[str, 
 
 def get_forecast(dates: list[str], region: str, now: datetime | None = None) -> dict[str, Weather]:
     """날짜(YYYY-MM-DD)별 날씨를 반환한다. 예보 범위 밖 날짜는 결과에서 빠지고, 하나도 없으면 WeatherUnavailable."""
-    if region not in REGION_GRIDS:
+    grid = REGION_GRIDS.get(region) or zone_grid(region)
+    if grid is None:
         raise WeatherUnavailable(f"격자 좌표가 없는 지역입니다: {region}")
     now_kst = (now or datetime.now(KST)).astimezone(KST)
     horizon = now_kst.date() + timedelta(days=HORIZON_DAYS)
@@ -141,7 +143,7 @@ def get_forecast(dates: list[str], region: str, now: datetime | None = None) -> 
     if not in_range:
         raise WeatherUnavailable(f"예보 범위 밖입니다 (발표일 기준 최대 +{HORIZON_DAYS}일)")
     base_date, base_time = latest_base(now_kst)
-    nx, ny = REGION_GRIDS[region]
+    nx, ny = grid
     forecast = summarize_daily(list(_fetch_items(base_date, base_time, nx, ny)), in_range)
     if not forecast:
         raise WeatherUnavailable("요청한 날짜의 예보가 없습니다")

@@ -192,11 +192,16 @@ def schedule_day(planned: list[PlannedVisit]) -> list[Visit]:
 
 
 def day_weather(visits: list[Visit], day_date: str, state: PlannerState) -> Weather | None:
-    """그날 방문지가 가장 많은 구역의 날씨. 구역별 날씨가 없으면 계획에 쓴 날씨로 대신한다."""
-    areas = Counter(catalog.area_of(catalog.places()[v.place_id]) for v in visits)
-    area = areas.most_common(1)[0][0] if areas else None
+    """그날 방문지가 가장 많은 읍면동의 날씨. 그 구역 날씨가 없으면 시 단위, 그것도 없으면 계획에 쓴 날씨로 대신한다."""
     by_area = state.get("area_weather", {})
-    return (by_area.get(area, {}).get(day_date) if area else None) or state.get("weather", {}).get(day_date)
+    places = [catalog.places()[v.place_id] for v in visits]
+    for key in (catalog.weather_zone_of, catalog.area_of):
+        counts = Counter(key(p) for p in places)
+        top = counts.most_common(1)[0][0] if counts else None
+        found = by_area.get(top, {}).get(day_date) if top else None
+        if found:
+            return found
+    return state.get("weather", {}).get(day_date)
 
 
 def refresh_weather(itinerary: Itinerary, state: PlannerState) -> Itinerary:

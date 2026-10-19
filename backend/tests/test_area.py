@@ -95,7 +95,7 @@ def test_weather_is_fetched_for_both_areas_unless_one_is_requested(monkeypatch) 
 
     monkeypatch.setattr("agent.nodes.check_weather.get_forecast", forecast)
     out = check_weather({"request": TripRequest(start_date="2026-11-14", days=1)})
-    assert asked == ["제주시", "서귀포시"]
+    assert sorted(asked) == ["서귀포시", "제주시"]
     assert out["weather"]["2026-11-14"].condition == "rain"  # 계획용은 더 나쁜 쪽
     assert out["area_weather"]["제주시"]["2026-11-14"].condition == "sunny"
 
