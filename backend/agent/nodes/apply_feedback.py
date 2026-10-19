@@ -6,6 +6,7 @@ from langchain_core.messages import AIMessage, HumanMessage, SystemMessage
 from pydantic import BaseModel
 
 from agent import catalog
+from agent.moving import MoveError, move_visit, parse_move
 from agent.planning import CATEGORY_PHRASE, PlannedVisit, plan_days, sanitize_visits, schedule_day, to_candidate, to_planned
 from agent.prompts import APPLY_FEEDBACK_SYSTEM, REPLACE_DAY_NOTE
 from agent.review_tools import summarize
@@ -116,6 +117,17 @@ def _replace_visit(
 def apply_feedback(state: PlannerState) -> dict:
     """피드백을 해석해 수정 범위에 맞게 일정을 바꾼다. 처리한 피드백은 비운다."""
     itinerary, request = state["itinerary"], state["request"]
+
+    # 타임라인에서 끌어다 놓은 이동은 문장 형식이 정해져 있어 LLM 없이 바로 처리한다
+    move = parse_move(state["feedback"] or "")
+    if move:
+        # 이동 뒤에도 재생성하지 않고 검증 결과만 보여 준다 (재생성하면 옮긴 위치가 사라진다)
+        base = {"feedback": None, "retry_count": get_settings().max_retry, "validation_issues": []}
+        try:
+            return {**base, "itinerary": move_visit(itinerary, *move)}
+        except MoveError as e:
+            return {**base, "messages": [AIMessage(str(e))]}
+
     action = structured_call(
         FeedbackAction,
         [SystemMessage(APPLY_FEEDBACK_SYSTEM.format(itinerary=render_itinerary(itinerary))), HumanMessage(state["feedback"] or "")],
