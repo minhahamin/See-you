@@ -143,8 +143,13 @@ def build_place(
     )
 
 
-def fetch_places(only: set[str] | None = None, skip_ids: set[str] = frozenset()) -> list[Place]:  # type: ignore[assignment]
-    """PLAN에 따라 장소를 수집한다. only로 계획 이름을 제한하고, skip_ids에 있는 장소는 건너뛴다."""
+def fetch_places(
+    only: set[str] | None = None, skip_ids: set[str] = frozenset(), add: int | None = None  # type: ignore[assignment]
+) -> list[Place]:
+    """PLAN에 따라 장소를 수집한다. only로 계획 이름을 제한하고, skip_ids에 있는 장소는 건너뛴다.
+
+    add가 있으면 계획의 목표 개수 대신 이 수만큼 새로 담는다 (이미 가진 장소 위에 추가할 때 쓴다).
+    """
     client = TourApiClient()
     raw_dump: dict[str, list[dict[str, Any]]] = {}
     places: list[Place] = []
@@ -153,9 +158,10 @@ def fetch_places(only: set[str] | None = None, skip_ids: set[str] = frozenset())
             continue
         candidates = fetch_candidates(client, plan)
         raw_dump[plan.label] = candidates
+        target = add if add is not None else plan.target
         picked = 0
         for item in candidates:
-            if picked >= plan.target:
+            if picked >= target:
                 break
             if item["contentid"] in skip_ids or not item.get("mapx") or not item.get("mapy"):
                 continue
@@ -163,7 +169,7 @@ def fetch_places(only: set[str] | None = None, skip_ids: set[str] = frozenset())
             if place:
                 places.append(place)
                 picked += 1
-        logger.info("%s: 후보 %d개 중 %d/%d개 선정", plan.label, len(candidates), picked, plan.target)
+        logger.info("%s: 후보 %d개 중 %d/%d개 선정", plan.label, len(candidates), picked, target)
     raw_dir = get_settings().data_dir / "raw"
     raw_dir.mkdir(parents=True, exist_ok=True)
     suffix = "_" + "_".join(sorted(only)) if only else ""
@@ -180,13 +186,14 @@ def main() -> None:
     setup_logging()
     parser = argparse.ArgumentParser()
     parser.add_argument("--only", nargs="+", choices=[p.label for p in PLAN], help="이 계획만 수집해 기존 파일에 추가")
+    parser.add_argument("--add", type=int, help="--only와 함께: 계획의 목표 대신 이 수만큼 새 장소를 추가")
     args = parser.parse_args()
 
     out = get_settings().data_dir / "places.json"
     existing: list[Place] = []
     if args.only and out.exists():
         existing = [Place(**p) for p in json.loads(out.read_text(encoding="utf-8"))]
-    fetched = fetch_places(set(args.only) if args.only else None, {p.id for p in existing})
+    fetched = fetch_places(set(args.only) if args.only else None, {p.id for p in existing}, args.add)
     places = [*existing, *fetched]
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps([p.model_dump() for p in places], ensure_ascii=False, indent=2), encoding="utf-8")
