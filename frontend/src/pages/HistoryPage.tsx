@@ -48,7 +48,8 @@ export default function HistoryPage({ chat, onOpened }: Props) {
   };
 
   return (
-    <div className="flex min-h-0 flex-1 flex-col gap-4 overflow-y-auto">
+    // 스크롤 영역은 넘치는 부분을 가로로도 잘라 내므로, 선택 테두리(ring)와 그림자가 잘리지 않게 안쪽 여백을 두고 같은 만큼 바깥으로 넓힌다
+    <div className="-mx-3 -mb-3 flex min-h-0 flex-1 flex-col gap-4 overflow-y-auto px-3 pb-3">
       <header className="flex flex-wrap items-start justify-between gap-3">
         <div>
           <h1 className="text-2xl font-bold lg:text-3xl">내 일정</h1>
