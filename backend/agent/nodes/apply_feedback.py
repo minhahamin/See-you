@@ -11,7 +11,7 @@ from agent.moving import MoveError, move_visit, parse_move
 from agent.planning import CATEGORY_PHRASE, PlannedVisit, plan_days, refresh_weather, sanitize_visits, schedule_day, to_candidate, to_planned
 from agent.nodes.parse_request import ParsedRequest, merge_request
 from agent.prompts import APPLY_FEEDBACK_SYSTEM, PARSE_REQUEST_SYSTEM, REPLACE_DAY_NOTE
-from agent.repair import _fits_hours, _travel_score
+from agent.repair import Context, _fits_hours, _travel_score, repair_itinerary_plan
 from agent.review_tools import summarize
 from agent.state import Area, DayPlan, Itinerary, PlannerState, TripRequest
 from config import get_settings
@@ -21,7 +21,7 @@ from retrieval.vector import rank_places
 
 logger = logging.getLogger(__name__)
 
-REPLACEMENT_POOL = 5
+REPLACEMENT_POOL = 8
 UNCLEAR_FEEDBACK_REPLY = "무엇을 바꾸고 싶으신지 잘 모르겠어요. 일정은 그대로 두었어요. 예: '2일차 점심을 흑돼지 식당으로 바꿔줘', 마음에 드시면 '이대로 확정'이라고 말해 주세요."
 
 
@@ -33,6 +33,7 @@ class FeedbackAction(BaseModel):
     visit_index: int | None = None  # 1부터
     constraint: str = ""
     area: Area | None = None  # rebuild에서 사용자가 구역을 바꾸라고 했을 때
+    keep: list[str] = []  # 그대로 두거나 꼭 넣고 싶은 장소·음식 키워드 (예: 흑돼지)
 
 
 def render_itinerary(itinerary: Itinerary) -> str:
@@ -59,23 +60,81 @@ def _used_ids(itinerary: Itinerary, skip_day: int | None = None) -> set[str]:
     }
 
 
+def _place_text(place_id: str) -> str:
+    """키워드가 들어 있는지 볼 장소의 이름·소개·특성 텍스트."""
+    place, trait = catalog.places()[place_id], catalog.traits()[place_id]
+    return " ".join([place.name, place.description, *trait.pros, *trait.cons])
+
+
+def find_pinned(keywords: list[str], itinerary: Itinerary, request: TripRequest) -> list[str]:
+    """그대로 두거나 넣고 싶다고 한 키워드에 해당하는 장소 id. 현재 일정에서 먼저 찾고, 없으면 검색한다."""
+    in_plan = [v.place_id for d in itinerary.days for v in d.visits]
+    found: list[str] = []
+    for kw in (k.strip() for k in keywords):
+        if not kw:
+            continue
+        pid = next((p for p in in_plan if kw in _place_text(p)), None)
+        if pid is None:
+            filters = {"area": request.area} if request.area else {}
+            pid = next((p for p in rank_places(hybrid_search(kw, n=10, filters=filters)) if kw in _place_text(p)), None)
+        if pid and pid not in found:
+            found.append(pid)
+    return found
+
+
+def _pin_slot(place_id: str) -> str:
+    """꼭 넣을 장소가 들어갈 시간대. 식당은 영업시간이 맞는 점심/저녁, 그 밖에는 분류에 맞는 시간대."""
+    category = catalog.places()[place_id].category
+    if category == "음식점":
+        return "lunch" if _fits_hours(place_id, "lunch") or not _fits_hours(place_id, "dinner") else "dinner"
+    return {"카페": "cafe", "숙소": "stay"}.get(category, "afternoon")
+
+
 def _replace_day(state: PlannerState, action: FeedbackAction, day: DayPlan) -> DayPlan | None:
     """한 일차를 LLM으로 다시 짜고, 바뀐 방문에 changed를 표시한다. 계획이 비면 None."""
     itinerary, request = state["itinerary"], state["request"]
-    candidates, summaries = state["candidates"], state["review_summaries"]
+    candidates, summaries = list(state["candidates"]), dict(state["review_summaries"])
     used = _used_ids(itinerary, skip_day=day.day)
     all_places = catalog.places()
+
+    pinned = [p for p in find_pinned(action.keep, itinerary, request) if p not in used]
+    fresh = [to_candidate(p, i) for i, p in enumerate(pinned) if p not in {c.id for c in candidates}]
+    if fresh:
+        candidates += fresh
+        summaries.update(summarize(fresh, request.companions or "미정"))
+    must = "".join(f"반드시 포함: {all_places[p].name}({all_places[p].category})\n" for p in pinned)
     note = REPLACE_DAY_NOTE.format(
-        day=day.day, constraint=action.constraint or "다른 구성으로", used=", ".join(all_places[p].name for p in sorted(used)) or "없음"
+        day=day.day,
+        constraint=action.constraint or "다른 구성으로",
+        must=must,
+        used=", ".join(all_places[p].name for p in sorted(used)) or "없음",
     )
     plan = plan_days(request, candidates, summaries, state.get("weather", {}), [day.day], note=note)
     llm_day = next((d for d in plan.days if d.day == day.day), plan.days[0] if plan.days else None)
     planned = sanitize_visits(llm_day.visits if llm_day else [], candidates, summaries, exclude_ids=used)
     if not planned:
         return None
+
+    for pid in pinned:  # LLM이 빠뜨렸거나 엉뚱한 시간대에 넣었어도 꼭 넣을 장소는 알맞은 시간대에 둔다
+        slot = _pin_slot(pid)
+        s = summaries.get(pid)
+        entry = PlannedVisit(
+            place_id=pid,
+            slot=slot,
+            reason="요청하신 대로 넣었어요. " + (f"후기에서 '{s.pros[0]}'라는 평이 있어요." if s and s.pros else ""),
+            evidence_review_ids=s.evidence_review_ids[:2] if s else [],
+        )
+        category = all_places[pid].category
+        planned = [p for p in planned if p.place_id != pid and not (all_places[p.place_id].category == category and p.slot == slot)]
+        planned.append(entry)
+
     old_ids = {v.place_id for v in day.visits}
-    planned = [p.model_copy(update={"changed": p.place_id not in old_ids}) for p in planned]
-    return day.model_copy(update={"visits": schedule_day(planned)})
+    scheduled = day.model_copy(update={"visits": schedule_day(planned)})
+    trial = itinerary.model_copy(update={"days": [scheduled if d.day == day.day else d for d in itinerary.days]})
+    fixed = repair_itinerary_plan(trial, Context(request, candidates, summaries, frozenset(pinned)))
+    visits = next(d for d in fixed.days if d.day == day.day).visits  # 수리는 이 일차만 반영한다 (다른 일차는 그대로)
+    visits = [v.model_copy(update={"changed": v.place_id not in old_ids}) for v in visits]
+    return day.model_copy(update={"visits": visits})
 
 
 def _replace_visit(
@@ -111,6 +170,8 @@ def _replace_visit(
         """영업시간을 벗어나는지, 교체 뒤 이동 상한을 넘는 정도, 검색 순위. 작을수록 좋다."""
         rank, pid = item
         trial = [*planned[:index], PlannedVisit(place_id=pid, slot=slot, reason="", evidence_review_ids=[]), *planned[index + 1 :]]
+        if action.constraint:  # 원하는 바를 말했으면 관련도가 먼저다 (이동 때문에 엉뚱한 곳으로 바꾸지 않는다)
+            return (not _fits_hours(pid, slot), 0, rank)
         return (not _fits_hours(pid, slot), _travel_score(trial)[0], rank)
 
     suitable = [(i, p) for i, p in enumerate(pool_ids) if summaries[p].suitable]
@@ -128,6 +189,16 @@ def _replace_visit(
     known = {c.id for c in state["candidates"]}
     candidates = [*state["candidates"], *[c for c in fresh if c.id not in known]]
     return day.model_copy(update={"visits": schedule_day(planned)}), candidates, summaries
+
+
+def render_feedback_input(state: PlannerState, limit: int = 6) -> str:
+    """피드백 해석기에 줄 입력: 최근 대화(직전 요청과의 맥락)와 이번 피드백."""
+    feedback = state["feedback"] or ""
+    history = [m for m in state.get("messages", []) if m.type in ("human", "ai")][-limit - 1 : -1]
+    if not history:
+        return feedback
+    lines = [f"{'사용자' if m.type == 'human' else '에이전트'}: {str(m.content)[:200]}" for m in history]
+    return "최근 대화:\n" + "\n".join(lines) + f"\n\n이번 피드백: {feedback}"
 
 
 def _note(text: str) -> dict:
@@ -159,7 +230,7 @@ def apply_feedback(state: PlannerState) -> dict:
 
     action = structured_call(
         FeedbackAction,
-        [SystemMessage(APPLY_FEEDBACK_SYSTEM.format(itinerary=render_itinerary(itinerary))), HumanMessage(state["feedback"] or "")],
+        [SystemMessage(APPLY_FEEDBACK_SYSTEM.format(itinerary=render_itinerary(itinerary))), HumanMessage(render_feedback_input(state))],
     )
     logger.info("피드백 해석: %s", action.model_dump())
     base: dict = {"feedback": None, "retry_count": 0, "validation_issues": []}

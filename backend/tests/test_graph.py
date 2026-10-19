@@ -178,3 +178,36 @@ def test_feedback_unclear_keeps_itinerary_and_does_not_accept(fake_llm, fake_sea
     out = apply_feedback({**_full_state(), "feedback": "ㅋㅋㅋㅋ"})
     assert not out.get("accepted") and "itinerary" not in out and not out.get("rerun_search")
     assert "바꾸고 싶으신지" in out["messages"][0].content
+
+
+def test_feedback_input_includes_recent_conversation() -> None:
+    """피드백 해석기는 직전 대화를 함께 받아 '다시 포함해' 같은 말을 해석할 수 있다."""
+    from langchain_core.messages import AIMessage
+
+    from agent.nodes.apply_feedback import render_feedback_input
+
+    state = {"feedback": "흑돼지 다시 포함해", "messages": [HumanMessage("2일차 점심 흑돼지로"), AIMessage("바꿨어요."), HumanMessage("흑돼지 다시 포함해")]}
+    text = render_feedback_input(state)
+    assert "사용자: 2일차 점심 흑돼지로" in text and "에이전트: 바꿨어요." in text and text.endswith("이번 피드백: 흑돼지 다시 포함해")
+    assert render_feedback_input({"feedback": "안녕", "messages": []}) == "안녕"
+
+
+def test_replace_day_keeps_requested_place_and_leaves_other_days(fake_llm, fake_search, monkeypatch) -> None:
+    """keep으로 지정한 장소는 그 일차 점심에 반드시 들어가고, 다른 일차는 바뀌지 않는다."""
+    fake_llm[LLMPlan] = plan_from_prompt
+    fake_llm[ReviewAnalysis] = lambda m: ReviewAnalysis(summaries=[])
+    monkeypatch.setattr(
+        "agent.nodes.apply_feedback.hybrid_search",
+        lambda q, n=30, filters=None: [{"id": "x", "text": "", "meta": {"place_id": "404165"}}],  # 키워드 검색이 흑돼지 식당을 돌려준다
+    )
+    state = {**_full_state(), "feedback": "2일차 흑돼지 넣고 나머지는 가까운 곳으로"}
+    before = state["itinerary"]
+    fake_llm[FeedbackAction] = lambda m: FeedbackAction(action="replace_day", day=2, constraint="이동이 짧은 곳", keep=["흑돼지"])
+
+    out = apply_feedback(state)
+    day2 = out["itinerary"].days[1]
+    hog = catalog.places()["404165"]  # 흑돼지 식당 (왕일번지식당)
+    lunch = [v for v in day2.visits if v.place_id == hog.id]
+    assert len(lunch) == 1 and lunch[0].slot == "lunch" and lunch[0].start < "13:30"
+    assert [v.place_id for v in out["itinerary"].days[0].visits] == [v.place_id for v in before.days[0].visits]
+    assert out["itinerary"].days[1].visits[-1].end <= "22:00"

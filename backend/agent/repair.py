@@ -48,6 +48,7 @@ class Context(NamedTuple):
     request: TripRequest
     candidates: list[Candidate]
     summaries: dict[str, ReviewSummary]
+    protected: frozenset[str] = frozenset()  # 사용자가 직접 요청해 수리가 바꾸면 안 되는 장소
 
 
 def _coord(place_id: str) -> tuple[float, float]:
@@ -135,6 +136,8 @@ def _reduce_travel(planned: list[PlannedVisit], ctx: Context, used: set[str], in
             break
         for i, p in enumerate(planned):
             cat = _category(p.place_id)
+            if p.place_id in ctx.protected:
+                continue
             for c in ctx.candidates:
                 if c.id == p.place_id or not _eligible(c, ctx, used, cat, indoor_only and cat == "관광지"):
                     continue
@@ -197,7 +200,7 @@ def _repair_once(itinerary: Itinerary, failed: list[Check], ctx: Context) -> Iti
         """하루 안의 한 장소를 같은 분류의 적합한 후보로 바꾼다. 없으면 그대로 둔다."""
         plans = planned[day]
         i = next((k for k, p in enumerate(plans) if p.place_id == place_id), None)
-        if i is None:
+        if i is None or place_id in ctx.protected:
             return
         cat = _category(place_id)
         new = _pick(ctx, used, cat, plans[i].slot, _center(plans, skip=i), indoor_only=rainy[day] and cat == "관광지")
@@ -263,6 +266,8 @@ def _repair_once(itinerary: Itinerary, failed: list[Check], ctx: Context) -> Iti
         if d.day in fix_hours_days:
             visits, stuck = _shift_into_hours(visits)
             for place_id in stuck:  # 시간만으로 안 되면 그 장소를 교체하고 다시 맞춘다
+                if place_id in ctx.protected:
+                    continue
                 plans = to_planned(visits)
                 i = next(k for k, p in enumerate(plans) if p.place_id == place_id)
                 new = _pick(ctx, used, _category(place_id), plans[i].slot, _center(plans, skip=i), indoor_only=rainy[d.day] and _category(place_id) == "관광지")
