@@ -42,3 +42,23 @@ def test_build_question_mentions_each_missing_field() -> None:
     """되묻기 문장은 부족한 항목마다 한 줄씩 포함한다."""
     text = build_question(["days", "companions"])
     assert "며칠" in text and "누구와" in text and "언제" not in text
+
+
+def test_normalize_region_unifies_jeju_spellings() -> None:
+    """'제주도'는 '제주'로 통일하고 다른 지역은 그대로 둔다."""
+    from agent.nodes.parse_request import normalize_region
+
+    assert normalize_region("제주도") == "제주"
+    assert normalize_region("부산") == "부산"
+    assert normalize_region(None) is None
+
+
+def test_unsupported_region_asks_once_then_proceeds(fake_llm) -> None:
+    """지원하지 않는 지역은 한 번 알리고, 다시 파싱될 때는 제주로 진행한다."""
+    fake_llm[ParsedRequest] = lambda msgs: ParsedRequest(region="부산", start_date="2099-01-01", days=2, companions="커플")
+    first = parse_request({"messages": [HumanMessage("부산 2박 3일")]})
+    assert first["request"].region == "제주"
+    assert first["missing_fields"] == ["region"] and first["unsupported_region"] == "부산"
+    assert "부산" in build_question(first["missing_fields"], "부산")
+    second = parse_request({"messages": [HumanMessage("부산 2박 3일")], "region_notified": True, "request": first["request"]})
+    assert second["missing_fields"] == []

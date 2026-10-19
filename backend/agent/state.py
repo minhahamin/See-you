@@ -114,4 +114,6 @@ class PlannerState(TypedDict, total=False):
     rerun_search: bool  # 피드백이 전체 재검색을 요구하는지
     accepted: bool  # 사용자가 일정을 확정했는지
     profile: dict | None  # 저장된 사용자 설정 {companion, preferences, budget}. 맞춤 일정의 기본 조건
+    unsupported_region: str | None  # 사용자가 말한 지원하지 않는 지역 (되묻기 안내에 쓴다)
+    region_notified: bool  # 지원하지 않는 지역 안내를 이미 한 뒤인지
     applied_settings: dict  # 설정에서 가져와 반영한 항목 {companions, budget, preferences}

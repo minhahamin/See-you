@@ -11,6 +11,8 @@ from llm import structured_call
 
 logger = logging.getLogger(__name__)
 
+SUPPORTED_REGION = "제주"
+
 
 class ParsedRequest(BaseModel):
     """LLM이 대화에서 뽑은 조건. 없는 값은 None."""
@@ -35,12 +37,19 @@ def _valid_future_date(value: str | None, today: date) -> str | None:
     return value if parsed >= today else None
 
 
+def normalize_region(value: str | None) -> str | None:
+    """'제주도'·'제주 여행' 같은 표기를 '제주'로 통일한다. 다른 지역은 그대로 둔다."""
+    if not value:
+        return None
+    return "제주" if "제주" in value else value.strip()
+
+
 def merge_request(old: TripRequest | None, new: ParsedRequest, today: date) -> TripRequest:
     """이전 조건에 새로 파싱된 값을 덮어쓴다. 취향은 합집합."""
     base = old or TripRequest()
     prefs = list(dict.fromkeys([*base.preferences, *new.preferences]))
     return TripRequest(
-        region=new.region or base.region,
+        region=normalize_region(new.region) or base.region,
         area=new.area or base.area,
         start_date=_valid_future_date(new.start_date, today) or _valid_future_date(base.start_date, today),
         days=new.days or base.days,
@@ -84,7 +93,19 @@ def parse_request(state: PlannerState) -> dict:
         [SystemMessage(PARSE_REQUEST_SYSTEM.format(today=today.isoformat())), HumanMessage(user_text)],
     )
     request = merge_request(state.get("request"), parsed, today)
+    # 제주만 지원한다: 다른 지역을 말하면 한 번 알리고(되묻기), 그 뒤에는 제주로 만든다
+    unsupported = request.region if request.region != SUPPORTED_REGION else None
+    request = request.model_copy(update={"region": SUPPORTED_REGION})
     request, applied = apply_profile(request, state.get("profile"))
     missing = find_missing(request)
+    notify = bool(unsupported) and not state.get("region_notified")
+    if notify:
+        missing = ["region", *missing]
     logger.info("조건 파싱 완료, 부족한 항목: %s, 설정에서 반영: %s", missing, list(applied))
-    return {"request": request, "missing_fields": missing, "applied_settings": {**state.get("applied_settings", {}), **applied}}
+    return {
+        "request": request,
+        "missing_fields": missing,
+        "unsupported_region": unsupported,
+        "region_notified": bool(unsupported) or bool(state.get("region_notified")),
+        "applied_settings": {**state.get("applied_settings", {}), **applied},
+    }
