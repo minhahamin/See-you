@@ -239,3 +239,24 @@ def test_feedback_replace_visit_repairs_day_and_protects_new_place(fake_llm, fak
     new_id = next(v.place_id for v in out["itinerary"].days[0].visits if v.changed and v.place_id in seen["protected"])
     assert seen["protected"] == frozenset({new_id})
     assert catalog.places()[new_id].name in out["notice"]
+
+
+def test_feedback_replace_visit_summarizes_only_top_candidates_when_constrained(fake_llm, fake_search, monkeypatch) -> None:
+    """요청한 조건이 있으면 후기 요약(LLM)을 상위 후보 몇 곳에만 먼저 건다."""
+    from agent.nodes import apply_feedback as module
+
+    sizes = []
+    real = module.summarize
+
+    def spy(candidates, companions):
+        sizes.append(len(candidates))
+        return real(candidates, companions)
+
+    monkeypatch.setattr(module, "summarize", spy)
+    fake_llm[LLMPlan] = plan_from_prompt
+    fake_llm[FeedbackAction] = lambda m: FeedbackAction(action="replace_visit", day=1, visit_index=2, constraint="조용한 곳")
+    fake_llm[ReviewAnalysis] = lambda m: ReviewAnalysis(summaries=[])
+    state = {**_full_state(), "feedback": "1일차 두 번째 카페로 바꿔줘"}
+    out = apply_feedback(state)
+    assert sizes and all(n <= module.CONSTRAINT_SUMMARY_BATCH for n in sizes[:1])
+    assert "바꿨어요" in out["notice"]

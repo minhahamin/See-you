@@ -23,6 +23,7 @@ from retrieval.vector import rank_places
 logger = logging.getLogger(__name__)
 
 REPLACEMENT_POOL = 8
+CONSTRAINT_SUMMARY_BATCH = 3  # 요청한 조건이 있으면 관련도 상위 이만큼만 먼저 요약한다 (후기 요약 LLM 호출이 후보 수에 비례해 느려진다)
 UNCLEAR_FEEDBACK_REPLY = "무엇을 바꾸고 싶으신지 잘 모르겠어요. 일정은 그대로 두었어요. 예: '2일차 점심을 흑돼지 식당으로 바꿔줘', 마음에 드시면 '이대로 확정'이라고 말해 주세요."
 
 
@@ -162,8 +163,17 @@ def _replace_visit(
 
     summaries = dict(state["review_summaries"])
     fresh = [to_candidate(p, i) for i, p in enumerate(pool_ids) if p not in summaries]
-    if fresh:
-        summaries.update(summarize(fresh, request.companions or "미정"))
+    # 조건이 있으면 상위 후보만 먼저 요약하고, 그 안에 적합한 곳이 없을 때만 나머지를 요약한다
+    batches = [fresh[:CONSTRAINT_SUMMARY_BATCH], fresh[CONSTRAINT_SUMMARY_BATCH:]] if action.constraint else [fresh]
+    summarized: list = []
+    for batch in batches:
+        if batch:
+            summaries.update(summarize(batch, request.companions or "미정"))
+            summarized += batch
+        if any(summaries[p].suitable for p in pool_ids if p in summaries):
+            break
+    fresh = summarized
+    pool_ids = [p for p in pool_ids if p in summaries]
     planned = to_planned(day.visits)
     slot = planned[index].slot
 
