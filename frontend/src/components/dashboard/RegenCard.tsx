@@ -7,7 +7,7 @@ interface Props {
   isSample: boolean;
 }
 
-/** validate 재생성 비율과 주요 실패 사유 Top 3 */
+/** validate 실패 뒤 재생성·수리 비율과 주요 실패 사유 Top 3 */
 export default function RegenCard({ runs, source, isSample }: Props) {
   const failures = [...(runs?.top_failures ?? [])].sort((a, b) => b.count - a.count).slice(0, 3);
   const max = Math.max(0, ...failures.map((f) => f.count));
@@ -18,7 +18,7 @@ export default function RegenCard({ runs, source, isSample }: Props) {
         <NoData />
       ) : (
         <>
-          <p className="text-xs text-text-sub">validate 재생성 비율</p>
+          <p className="text-xs text-text-sub">검증 실패 후 재생성·수리 비율</p>
           <p className="mt-1 text-3xl font-bold tracking-tight">{Math.round(runs.regen_rate * 100)}%</p>
 
           <h3 className="mb-2 mt-5 text-xs font-semibold text-text-sub">주요 실패 사유 Top 3</h3>

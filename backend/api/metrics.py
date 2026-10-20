@@ -204,7 +204,8 @@ class MetricsStore:
                 RecentRun(run_id=r["run_id"], response_sec=round(r["response_sec"], 2), cost_usd=r["cost_usd"])
                 for r in runs[-RECENT_RUNS:]
             ],
-            regen_rate=round(sum(r["build_count"] > 1 for r in built) / len(built), 3) if built else None,
+            # 검증에 실패해 다시 만들거나(전체 재생성) 고친(부분 수리) 실행의 비율. 부분 수리는 build를 다시 부르지 않아 따로 센다.
+            regen_rate=round(sum(r["build_count"] > 1 or "repair_itinerary" in r["nodes"] for r in built) / len(built), 3) if built else None,
             top_failures=[FailureReason(reason=k, count=c) for k, c in failures.most_common(TOP_FAILURES)],
         )
 
@@ -236,17 +237,22 @@ def load_experiments() -> tuple[list[ExperimentResult], str | None]:
     path = get_settings().eval_results_dir / "summary.csv"
     if not path.exists():
         return [], None
-    results: list[ExperimentResult] = []
     with path.open(encoding="utf-8-sig", newline="") as f:
-        for row in csv.DictReader(f):
-            version = row["version"]
-            base = version.split("_", 1)[0]
-            desc = EXPERIMENT_DESCRIPTIONS.get(base, version)
-            if "_" in version:
-                desc += f" ({version.split('_', 1)[1]})"
-            results.append(
-                ExperimentResult(version=version, description=desc, recall_at_5=float(row["recall@5_all"]), mrr=float(row["mrr_all"]))
-            )
+        rows = list(csv.DictReader(f))
+    # 같은 버전을 여러 번 측정했으면 가장 최근 행만 쓴다 (파일은 날짜순이라 뒤의 행이 최근이고, 순서는 처음 나온 자리를 지킨다)
+    latest = {row["version"]: row for row in rows}
+    newest_date = max((row["date"] for row in rows), default="")
+    results: list[ExperimentResult] = []
+    for version, row in latest.items():
+        base = version.split("_", 1)[0]
+        desc = EXPERIMENT_DESCRIPTIONS.get(base, version)
+        if "_" in version:
+            desc += f" ({version.split('_', 1)[1]})"
+        if row["date"] != newest_date:
+            desc += f" · {row['date']} 측정"  # 다시 측정하지 않은 버전은 측정일을 밝혀 최신 값과 섞이지 않게 한다
+        results.append(
+            ExperimentResult(version=version, description=desc, recall_at_5=float(row["recall@5_all"]), mrr=float(row["mrr_all"]))
+        )
 
     itinerary = _latest_itinerary_rows()
     sources = [f"eval/results/{path.name}"]

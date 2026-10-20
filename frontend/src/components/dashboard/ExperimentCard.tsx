@@ -14,6 +14,12 @@ const METRICS: { key: MetricKey; label: string; better: 'high' | 'low' }[] = [
 const BEST_COLOR = '#EE7BA6';
 const OTHER_COLOR = '#F9CADB';
 
+// 'v4_bge-reranker-v2-m3' → 'v4 bge'. 긴 이름이 x축에서 서로 겹쳐 라벨이 사라지는 것을 막는다
+const shortLabel = (version: string): string => {
+  const [base, rest] = version.split('_');
+  return rest ? `${base} ${rest.split('-')[0]}` : version;
+};
+
 const toPercent = (v: number | null): number | null => (v === null ? null : Math.round(v * 1000) / 10);
 
 interface Props {
@@ -57,7 +63,7 @@ export default function ExperimentCard({ experiments, source, isSample }: Props)
           <ResponsiveContainer width="100%" height={220}>
             <BarChart data={data} margin={{ top: 8, right: 8, left: -16, bottom: 0 }}>
               <CartesianGrid vertical={false} stroke="#F6E3EA" />
-              <XAxis dataKey="version" tickLine={false} axisLine={false} tick={{ fontSize: 12, fill: '#9CA3AF' }} />
+              <XAxis dataKey="version" interval={0} tickFormatter={shortLabel} tickLine={false} axisLine={false} tick={{ fontSize: 12, fill: '#9CA3AF' }} />
               <YAxis tickLine={false} axisLine={false} tick={{ fontSize: 12, fill: '#9CA3AF' }} />
               <Tooltip
                 cursor={{ fill: 'rgba(238,123,166,0.08)' }}

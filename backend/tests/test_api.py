@@ -194,3 +194,25 @@ def test_experiments_merge_itinerary_summary(tmp_path, monkeypatch) -> None:
 
     (tmp_path / "itinerary_summary.csv").unlink()  # 일정 평가가 없으면 v5 행도 만들지 않는다
     assert [r.version for r in M.load_experiments()[0]] == ["v1", "v3"]
+
+
+def test_experiments_use_latest_row_per_version(tmp_path, monkeypatch) -> None:
+    """같은 버전을 다시 측정했으면 최신 행만 쓰고, 다시 측정하지 않은 버전에는 측정일을 붙인다."""
+    from api import metrics as M
+
+    head = "date,version,embedding_model,n_trait,recall@5_trait,mrr_trait,n_keyword,recall@5_keyword,mrr_keyword,n_all,recall@5_all,mrr_all"
+    rows = [
+        head,
+        "2026-10-19,v1,m,19,0.5,0.7,18,0.9,0.9,37,0.7,0.8",
+        "2026-10-19,v3,m,19,0.9,0.9,18,0.9,0.9,37,0.9,0.95",
+        "2026-10-19,v4_bge-x,m,19,0.9,0.9,18,0.9,0.9,37,0.9,0.95",
+        "2026-10-20,v1,m,19,0.5,0.7,18,0.9,0.9,37,0.6,0.7",
+        "2026-10-20,v3,m,19,0.7,0.8,18,0.9,0.9,37,0.8,0.9",
+    ]
+    (tmp_path / "summary.csv").write_text("\n".join(rows) + "\n", encoding="utf-8-sig")
+    monkeypatch.setattr(M, "get_settings", lambda: SimpleNamespace(eval_results_dir=tmp_path))
+    results, _ = M.load_experiments()
+    by = {r.version: r for r in results}
+    assert [r.version for r in results] == ["v1", "v3", "v4_bge-x"]
+    assert (by["v1"].recall_at_5, by["v3"].recall_at_5) == (0.6, 0.8)
+    assert "2026-10-19 측정" in by["v4_bge-x"].description and "측정" not in by["v3"].description
