@@ -257,6 +257,8 @@ def test_feedback_replace_visit_summarizes_only_top_candidates_when_constrained(
     fake_llm[FeedbackAction] = lambda m: FeedbackAction(action="replace_visit", day=1, visit_index=2, constraint="조용한 곳")
     fake_llm[ReviewAnalysis] = lambda m: ReviewAnalysis(summaries=[])
     state = {**_full_state(), "feedback": "1일차 두 번째 카페로 바꿔줘"}
+    used = {v.place_id for d in state["itinerary"].days for v in d.visits}
+    state["review_summaries"] = {k: v for k, v in state["review_summaries"].items() if k in used}  # 교체 후보는 아직 요약 전
     out = apply_feedback(state)
-    assert sizes and all(n <= module.CONSTRAINT_SUMMARY_BATCH for n in sizes[:1])
+    assert sizes and sizes[0] <= module.CONSTRAINT_SUMMARY_BATCH
     assert "바꿨어요" in out["notice"]
