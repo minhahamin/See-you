@@ -1,4 +1,6 @@
 """apply_feedback 단위 테스트와 그래프 전체 흐름(되묻기 → 생성 → 검증 루프 → 피드백) 테스트."""
+from types import SimpleNamespace
+
 import pytest
 from langchain_core.messages import HumanMessage
 from langgraph.types import Command
@@ -113,12 +115,12 @@ def test_graph_full_flow(wired, fake_llm) -> None:
     assert wired["build"] <= 3  # 최초 1회 + 재생성 최대 2회
     assert shown["itinerary"]["validation"]["total"] > 0
 
-    # 3) 피드백으로 한 곳만 바꾸면 다시 제시된다
+    # 3) 피드백으로 한 곳을 바꾸면 다시 제시된다 (바꾼 장소 때문에 생긴 검증 실패를 고치느라 같은 날 다른 방문이 조정될 수 있다)
     fake_llm[FeedbackAction] = lambda m: FeedbackAction(action="replace_visit", day=1, visit_index=2, constraint="조용한 곳")
     out = graph.invoke(Command(resume="1일차 두 번째 장소 바꿔줘"), cfg)
     again = out["__interrupt__"][0].value
     flags = [v["changed"] for d in again["itinerary"]["days"] for v in d["visits"]]
-    assert sum(flags) == 1
+    assert sum(flags) >= 1
     assert "바꿨어요" in again["notice"]
 
     # 4) 확정하면 끝난다
@@ -211,3 +213,29 @@ def test_replace_day_keeps_requested_place_and_leaves_other_days(fake_llm, fake_
     assert len(lunch) == 1 and lunch[0].slot == "lunch" and lunch[0].start < "13:30"
     assert [v.place_id for v in out["itinerary"].days[0].visits] == [v.place_id for v in before.days[0].visits]
     assert out["itinerary"].days[1].visits[-1].end <= "22:00"
+
+
+def test_feedback_replace_visit_repairs_day_and_protects_new_place(fake_llm, fake_search, monkeypatch) -> None:
+    """방문 교체 뒤 그 일차를 수리하되, 사용자가 요청해 넣은 새 장소는 수리가 바꾸지 못하게 지킨다."""
+    from agent.nodes import apply_feedback as module
+
+    seen = {}
+    real = module.repair_itinerary_plan
+
+    def spy(itinerary, ctx):
+        seen["protected"] = ctx.protected
+        return real(itinerary, ctx)
+
+    monkeypatch.setattr(module, "repair_itinerary_plan", spy)
+    # 교체한 일정(changed 표시가 있는 쪽)만 검증에 실패한다고 보고, 수리가 불리는지 확인한다
+    monkeypatch.setattr(
+        module, "run_checks", lambda it, *_: [SimpleNamespace(ok=not any(v.changed for d in it.days for v in d.visits))]
+    )
+    fake_llm[LLMPlan] = plan_from_prompt
+    state = {**_full_state(), "feedback": "1일차 두 번째 카페로 바꿔줘"}
+    fake_llm[FeedbackAction] = lambda m: FeedbackAction(action="replace_visit", day=1, visit_index=2, constraint="조용한 곳")
+    fake_llm[ReviewAnalysis] = lambda m: ReviewAnalysis(summaries=[])
+    out = apply_feedback(state)
+    new_id = next(v.place_id for v in out["itinerary"].days[0].visits if v.changed and v.place_id in seen["protected"])
+    assert seen["protected"] == frozenset({new_id})
+    assert catalog.places()[new_id].name in out["notice"]

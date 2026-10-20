@@ -10,6 +10,7 @@ from agent import catalog
 from agent.moving import MoveError, move_visit, parse_move
 from agent.planning import CATEGORY_PHRASE, PlannedVisit, plan_days, refresh_weather, sanitize_visits, schedule_day, to_candidate, to_planned
 from agent.nodes.parse_request import ParsedRequest, merge_request
+from agent.nodes.validate_itinerary import run_checks
 from agent.prompts import APPLY_FEEDBACK_SYSTEM, PARSE_REQUEST_SYSTEM, REPLACE_DAY_NOTE
 from agent.repair import Context, _fits_hours, _travel_score, repair_itinerary_plan
 from agent.review_tools import summarize
@@ -139,8 +140,8 @@ def _replace_day(state: PlannerState, action: FeedbackAction, day: DayPlan) -> D
 
 def _replace_visit(
     state: PlannerState, action: FeedbackAction, day: DayPlan
-) -> tuple[DayPlan, list, dict] | None:
-    """방문 하나를 검색으로 찾은 새 장소로 바꾼다. 적합한 대체 장소가 없으면 None."""
+) -> tuple[DayPlan, list, dict, str] | None:
+    """방문 하나를 검색으로 찾은 새 장소로 바꾸고 그 일차를 부분 수리한다. (일차, 후보, 요약, 새 장소 id). 적합한 대체 장소가 없으면 None."""
     index = (action.visit_index or 0) - 1
     if not 0 <= index < len(day.visits):
         return None
@@ -188,7 +189,25 @@ def _replace_visit(
     )
     known = {c.id for c in state["candidates"]}
     candidates = [*state["candidates"], *[c for c in fresh if c.id not in known]]
-    return day.model_copy(update={"visits": schedule_day(planned)}), candidates, summaries
+
+    # 바꾼 장소 때문에 검증 실패가 늘어났을 때만 그 일차를 수리한다 (원래 있던 문제나 요청하지 않은 블록은 건드리지 않는다).
+    # 사용자가 요청한 장소는 수리가 바꾸지 못하게 지킨다.
+    itinerary = state["itinerary"]
+    old_ids = {v.place_id for v in day.visits}
+    scheduled = day.model_copy(update={"visits": schedule_day(planned)})
+    trial = itinerary.model_copy(update={"days": [scheduled if d.day == day.day else d for d in itinerary.days]})
+    summaries_now = {**state["review_summaries"], **summaries}
+
+    def failures(it: Itinerary) -> int:
+        """검증에 실패한 항목 수."""
+        return sum(not c.ok for c in run_checks(it, request, summaries_now))
+
+    if failures(trial) > failures(itinerary):
+        fixed = repair_itinerary_plan(trial, Context(request, candidates, summaries, frozenset({chosen})))
+        trial = fixed if failures(fixed) < failures(trial) else trial
+    visits = next(d for d in trial.days if d.day == day.day).visits  # 수리는 이 일차만 반영한다 (다른 일차는 그대로)
+    visits = [v.model_copy(update={"changed": v.place_id not in old_ids}) for v in visits]
+    return day.model_copy(update={"visits": visits}), candidates, summaries, chosen
 
 
 def render_feedback_input(state: PlannerState, limit: int = 6) -> str:
@@ -270,9 +289,11 @@ def apply_feedback(state: PlannerState) -> dict:
         new_day = result[0] if result else None
         if result:
             update = {"candidates": result[1], "review_summaries": result[2]}
-            old_id = day.visits[(action.visit_index or 1) - 1].place_id
-            new_id = next(v.place_id for v in new_day.visits if v.changed)
+            old_id, new_id = day.visits[(action.visit_index or 1) - 1].place_id, result[3]
             done = f"{day.day}일차 {action.visit_index}번째 방문 '{names[old_id].name}'을(를) '{names[new_id].name}'(으)로 바꿨어요."
+            moved = sum(v.changed for v in new_day.visits) - 1
+            if moved > 0:  # 바꾼 장소 때문에 생긴 이동·영업시간 문제를 고치려고 다른 방문도 조정한 경우
+                done += f" 이동·영업시간 문제를 피하려고 같은 날 {moved}곳도 함께 조정했어요."
     if new_day is None:
         return {**base, **_note("조건에 맞는 대체 장소를 찾지 못해 일정을 그대로 두었어요.")}
 
