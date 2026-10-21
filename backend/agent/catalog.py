@@ -6,6 +6,8 @@ from ingest.build_index import dedupe_reviews, load_json
 from models import Place, PlaceTraits, Review
 from tools.grids import zone_of
 
+POSITIVE_RATING = 4  # 추천 근거로 내세울 수 있는 후기의 최저 별점
+
 
 @lru_cache(maxsize=1)
 def places() -> dict[str, Place]:
@@ -46,3 +48,10 @@ def place_ids_in_area(area: str) -> list[str]:
 def review_ids(place_id: str) -> set[str]:
     """장소의 후기 id 집합."""
     return {r.review_id for r in reviews_by_place().get(place_id, [])}
+
+
+def positive_first(place_id: str, ids: list[str]) -> list[str]:
+    """추천 근거로 보여줄 후기 id를 별점 높은 순으로 정렬한다. 4점 이상이 있으면 그것만 남긴다."""
+    ratings = {r.review_id: r.rating for r in reviews_by_place().get(place_id, [])}
+    ordered = sorted(ids, key=lambda i: -ratings.get(i, 0))
+    return [i for i in ordered if ratings.get(i, 0) >= POSITIVE_RATING] or ordered

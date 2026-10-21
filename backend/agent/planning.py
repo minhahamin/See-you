@@ -142,7 +142,7 @@ def sanitize_visits(
         if v.place_id not in valid_ids or v.place_id in seen:
             continue
         seen.add(v.place_id)
-        evidence = [i for i in v.evidence_review_ids if i in catalog.review_ids(v.place_id)]
+        evidence = catalog.positive_first(v.place_id, [i for i in v.evidence_review_ids if i in catalog.review_ids(v.place_id)])
         summary = summaries.get(v.place_id)
         if not evidence and summary:
             evidence = summary.evidence_review_ids[:1]

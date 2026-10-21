@@ -2,7 +2,7 @@
 from agent import catalog
 from agent.nodes.analyze_reviews import analyze_reviews
 from agent.planning import to_candidate
-from agent.review_tools import ReviewAnalysis, apply_exclusions, clean_summary
+from agent.review_tools import ReviewAnalysis, apply_exclusions, clean_summary, fallback_summary
 from agent.state import ReviewSummary, TripRequest
 
 
@@ -43,3 +43,28 @@ def test_exclusion_keeps_minimum_per_category() -> None:
     kept = apply_exclusions(cands, summaries, days=1)  # 하루 최소 관광지 2곳
     assert len(kept) == 2
     assert [c.rank for c in kept] == [0, 1]
+
+
+def _place_with_mixed_ratings() -> tuple[str, str, str]:
+    """4점 이상 후기와 2점 이하 후기가 모두 있는 장소의 (id, 좋은 후기 id, 나쁜 후기 id)."""
+    for pid, reviews in catalog.reviews_by_place().items():
+        good = next((r for r in reviews if r.rating >= 4), None)
+        bad = next((r for r in reviews if r.rating <= 2), None)
+        if good and bad:
+            return pid, good.review_id, bad.review_id
+    raise AssertionError("별점이 섞인 장소가 없다")
+
+
+def test_clean_summary_puts_positive_reviews_first() -> None:
+    """근거 후기는 별점 높은 것만 남긴다 (낮은 별점 후기가 추천 근거로 나오지 않게)."""
+    pid, good, bad = _place_with_mixed_ratings()
+    s = clean_summary(ReviewSummary(place_id=pid, evidence_review_ids=[bad, good]))
+    assert s.evidence_review_ids == [good]
+
+
+def test_fallback_summary_uses_best_review() -> None:
+    """LLM이 빠뜨려 대체 요약을 쓸 때도 가장 낮은 별점 후기를 근거로 고르지 않는다."""
+    pid, _, _ = _place_with_mixed_ratings()
+    fallback = fallback_summary(to_candidate(pid, 0))
+    ratings = {r.review_id: r.rating for r in catalog.reviews_by_place()[pid]}
+    assert ratings[fallback.evidence_review_ids[0]] >= 4

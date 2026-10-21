@@ -44,14 +44,15 @@ def render_candidate(c: Candidate) -> str:
 def fallback_summary(c: Candidate) -> ReviewSummary:
     """LLM이 빠뜨린 장소는 특성과 대표 후기 id로 요약을 대신한다."""
     t = catalog.traits()[c.id]
-    ids = [r.review_id for r in sample_reviews(c.id)[:1]]
+    ids = catalog.positive_first(c.id, [r.review_id for r in sample_reviews(c.id)])[:1]
     return ReviewSummary(place_id=c.id, pros=t.pros[:3], cons=t.cons[:3], evidence_review_ids=ids)
 
 
 def clean_summary(s: ReviewSummary) -> ReviewSummary:
-    """존재하지 않거나 다른 장소의 후기 id를 제거한다."""
+    """존재하지 않거나 다른 장소의 후기 id를 제거하고, 근거는 별점 높은 후기를 앞세운다."""
     valid = catalog.review_ids(s.place_id)
-    return s.model_copy(update={"evidence_review_ids": [i for i in s.evidence_review_ids if i in valid]})
+    ids = catalog.positive_first(s.place_id, [i for i in s.evidence_review_ids if i in valid])
+    return s.model_copy(update={"evidence_review_ids": ids})
 
 
 def summarize(candidates: list[Candidate], companions: str) -> dict[str, ReviewSummary]:
