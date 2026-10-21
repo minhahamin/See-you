@@ -62,6 +62,11 @@ def _category(place_id: str) -> Category:
     return catalog.places()[place_id].category
 
 
+def _is_outdoor_sight(place_id: str) -> bool:
+    """야외 관광지인지."""
+    return _category(place_id) == "관광지" and not catalog.traits()[place_id].indoor
+
+
 def _summary(c: Candidate, ctx: Context) -> ReviewSummary:
     """후보의 후기 요약. 없으면 특성 기반 요약으로 대신한다."""
     return ctx.summaries.get(c.id) or fallback_summary(c)
@@ -138,8 +143,11 @@ def _reduce_travel(planned: list[PlannedVisit], ctx: Context, used: set[str], in
             cat = _category(p.place_id)
             if p.place_id in ctx.protected:
                 continue
+            # 비 오는 날도 야외 관광지를 허용 수까지는 둘 수 있다 (실내만 고집하면 멀리 흩어진 곳만 남는다)
+            outdoor_others = sum(1 for k, q in enumerate(planned) if k != i and _is_outdoor_sight(q.place_id))
+            sight_indoor_only = indoor_only and outdoor_others >= MAX_OUTDOOR_SIGHTS_WHEN_RAIN
             for c in ctx.candidates:
-                if c.id == p.place_id or not _eligible(c, ctx, used, cat, indoor_only and cat == "관광지"):
+                if c.id == p.place_id or not _eligible(c, ctx, used, cat, sight_indoor_only and cat == "관광지"):
                     continue
                 new = _planned_for(c, p.slot, ctx)
                 if not new or not _fits_hours(c.id, p.slot):

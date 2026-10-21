@@ -197,3 +197,32 @@ def test_repair_never_returns_a_worse_itinerary() -> None:
             it = _itinerary(ctx, [day])
             count = lambda i: sum(not c.ok for c in run_checks(i, ctx.request, ctx.summaries))  # noqa: E731
             assert count(repair_itinerary_plan(it, ctx)) <= count(it)
+
+
+def test_rain_day_travel_reduction_may_use_one_outdoor_sight(monkeypatch) -> None:
+    """비 오는 날 이동을 줄일 때 야외 관광지도 허용 수(1곳)까지는 후보가 되어, 실내만 고집할 때보다 이동이 더 줄어든다."""
+    import itertools
+
+    from agent import repair
+
+    ctx = _ctx()
+    indoor = [c for c in _ids(ctx, "관광지", None, 99) if catalog.traits()[c].indoor]
+    foods, cafes = _ids(ctx, "음식점", None, 6), _ids(ctx, "카페", None, 6)
+
+    def reduced_total(day: list[PlannedVisit], outdoor_allowed: int) -> tuple[int, int]:
+        monkeypatch.setattr(repair, "MAX_OUTDOOR_SIGHTS_WHEN_RAIN", outdoor_allowed)
+        trial = list(day)
+        repair._reduce_travel(trial, ctx, {p.place_id for p in trial}, True)
+        outdoor = sum(repair._is_outdoor_sight(p.place_id) for p in trial)
+        return repair._travel_score(trial)[1], outdoor
+
+    for a, b in itertools.combinations(indoor, 2):
+        for f, c in itertools.product(foods, cafes):
+            day = [_visit(ctx, a, "morning"), _visit(ctx, f, "lunch"), _visit(ctx, b, "afternoon"), _visit(ctx, c, "cafe")]
+            if repair._travel_score(day)[0] == 0:  # 이동 상한을 넘는 하루만 본다
+                continue
+            (indoor_only, _), (relaxed, outdoor) = reduced_total(day, 0), reduced_total(day, 1)
+            if relaxed < indoor_only:
+                assert outdoor <= 1
+                return
+    raise AssertionError("두 규칙의 결과가 갈리는 하루를 데이터에서 찾지 못했다")
