@@ -8348,5 +8348,5845 @@
     "season": "겨울",
     "visit_time": "오후 4시",
     "created_at": "2025-12-15"
+  },
+  {
+    "review_id": "4128788-01",
+    "place_id": "4128788",
+    "text": "가족들과 함께 방문했는데 제주산 은갈치 요리가 아주 정갈하게 나와서 만족스러웠습니다. 순살이라 가시 바를 걱정 없이 편하게 먹을 수 있었고 조미료 없이 건강한 맛이라 부모님도 좋아하셨어요.",
+    "rating": 5,
+    "author_type": "가족",
+    "season": "가을",
+    "visit_time": "평일 점심",
+    "created_at": "2025-08-15"
+  },
+  {
+    "review_id": "4128788-02",
+    "place_id": "4128788",
+    "text": "순살갈치조림이라 먹기 편해서 좋았어요.",
+    "rating": 5,
+    "author_type": "커플",
+    "season": "여름",
+    "visit_time": "평일 저녁",
+    "created_at": "2025-07-27"
+  },
+  {
+    "review_id": "4128788-03",
+    "place_id": "4128788",
+    "text": "조용한 분위기에서 즐기는 식사는 좋았지만 가격대가 좀 높아서 자주는 못 올 것 같아요.",
+    "rating": 3,
+    "author_type": "친구",
+    "season": "봄",
+    "visit_time": "평일 저녁",
+    "created_at": "2025-06-18"
+  },
+  {
+    "review_id": "4128788-04",
+    "place_id": "4128788",
+    "text": "혼자 가서 먹기엔 분위기도 그렇고 구성이 좀 부담스럽네요. 갈치조림 맛은 나쁘지 않았습니다.",
+    "rating": 2,
+    "author_type": "혼자",
+    "season": "겨울",
+    "visit_time": "평일 점심",
+    "created_at": "2025-09-29"
+  },
+  {
+    "review_id": "4128788-05",
+    "place_id": "4128788",
+    "text": "주말 점심에 갔더니 대기가 너무 길어서 지쳤어요. 음식은 건강한 맛이라 괜찮았는데 기다림이 너무 힘드네요.",
+    "rating": 2,
+    "author_type": "가족",
+    "season": "봄",
+    "visit_time": "주말 점심",
+    "created_at": "2026-02-24"
+  },
+  {
+    "review_id": "4128788-06",
+    "place_id": "4128788",
+    "text": "미역국이랑 생선구이까지 나와서 푸짐하게 즐겼습니다. 특히 순살갈치조림은 정말 먹기 편하네요.",
+    "rating": 5,
+    "author_type": "가족",
+    "season": "여름",
+    "visit_time": "평일 점심",
+    "created_at": "2025-06-29"
+  },
+  {
+    "review_id": "4128788-07",
+    "place_id": "4128788",
+    "text": "감귤밭 근처라 그런지 조용해서 좋았습니다.",
+    "rating": 4,
+    "author_type": "커플",
+    "season": "가을",
+    "visit_time": "평일 점심",
+    "created_at": "2025-03-12"
+  },
+  {
+    "review_id": "4128788-08",
+    "place_id": "4128788",
+    "text": "자극적이지 않고 재료 본연의 맛이 느껴지는 정갈한 식사였습니다. 가족들과 여유롭게 시간을 보낼 수 있어 좋았습니다.",
+    "rating": 5,
+    "author_type": "가족",
+    "season": "겨울",
+    "visit_time": "평일 저녁",
+    "created_at": "2026-02-22"
+  },
+  {
+    "review_id": "4128788-09",
+    "place_id": "4128788",
+    "text": "가격 대비 양이나 맛이 조금 아쉽게 느껴졌습니다. 건강한 맛이라고는 하는데 제 입맛엔 너무 심심했어요.",
+    "rating": 2,
+    "author_type": "친구",
+    "season": "봄",
+    "visit_time": "주말 저녁",
+    "created_at": "2026-07-31"
+  },
+  {
+    "review_id": "4128788-10",
+    "place_id": "4128788",
+    "text": "제주산 은갈치를 순살로 편하게 먹을 수 있는 점이 최고예요. 친절한 서비스까지 더해져 기분 좋게 식사했습니다.",
+    "rating": 5,
+    "author_type": "커플",
+    "season": "가을",
+    "visit_time": "평일 점심",
+    "created_at": "2026-10-20"
+  },
+  {
+    "review_id": "4128788-11",
+    "place_id": "4128788",
+    "text": "그저 그랬습니다.",
+    "rating": 3,
+    "author_type": "혼자",
+    "season": "여름",
+    "visit_time": "평일 점심",
+    "created_at": "2026-05-14"
+  },
+  {
+    "review_id": "4128788-12",
+    "place_id": "4128788",
+    "text": "통갈치구이도 맛있고 조림도 좋았습니다. 가격은 좀 나가지만 그만큼 정갈하게 나와서 대접받는 기분이었어요.",
+    "rating": 4,
+    "author_type": "친구",
+    "season": "가을",
+    "visit_time": "평일 저녁",
+    "created_at": "2025-11-21"
+  },
+  {
+    "review_id": "4128788-13",
+    "place_id": "4128788",
+    "text": "사람이 너무 많아서 정신이 없었어요. 음식 맛은 괜찮았는데 사람이 붐비는 시간대는 피해서 가는 게 좋겠어요.",
+    "rating": 3,
+    "author_type": "가족",
+    "season": "겨울",
+    "visit_time": "주말 점심",
+    "created_at": "2025-10-07"
+  },
+  {
+    "review_id": "4128788-14",
+    "place_id": "4128788",
+    "text": "천연 재료만 사용해서 그런지 확실히 자극적이지 않고 속이 편안했습니다. 감귤밭 사이 분위기도 좋았고요.",
+    "rating": 4,
+    "author_type": "커플",
+    "season": "봄",
+    "visit_time": "평일 저녁",
+    "created_at": "2025-04-11"
+  },
+  {
+    "review_id": "4128788-15",
+    "place_id": "4128788",
+    "text": "순살이라 먹기 편해서 좋았어요.",
+    "rating": 4,
+    "author_type": "친구",
+    "season": "여름",
+    "visit_time": "평일 점심",
+    "created_at": "2026-05-13"
+  },
+  {
+    "review_id": "4128788-16",
+    "place_id": "4128788",
+    "text": "가족끼리 와서 먹기 딱 좋은 곳이네요. 갈치요리 좋아하신다면 추천합니다.",
+    "rating": 5,
+    "author_type": "가족",
+    "season": "가을",
+    "visit_time": "평일 저녁",
+    "created_at": "2025-06-10"
+  },
+  {
+    "review_id": "404121-01",
+    "place_id": "404121",
+    "text": "제주산 은갈치로 만든 조림이 정말 맛있네요. 무에도 양념이 잘 배어서 밥 한 공기 뚝딱했습니다.",
+    "rating": 5,
+    "author_type": "가족",
+    "season": "여름",
+    "visit_time": "18:30",
+    "created_at": "2025-05-09"
+  },
+  {
+    "review_id": "404121-02",
+    "place_id": "404121",
+    "text": "갈치회 처음 먹어보는데 쫄깃하고 신선함이 그대로 느껴져서 좋았어요.",
+    "rating": 5,
+    "author_type": "친구",
+    "season": "봄",
+    "visit_time": "13:00",
+    "created_at": "2026-04-09"
+  },
+  {
+    "review_id": "404121-03",
+    "place_id": "404121",
+    "text": "사람이 너무 많아서 정신없고 시끄러워요. 조용한 식사를 원하신다면 비추합니다.",
+    "rating": 2,
+    "author_type": "커플",
+    "season": "여름",
+    "visit_time": "19:00",
+    "created_at": "2025-03-05"
+  },
+  {
+    "review_id": "404121-04",
+    "place_id": "404121",
+    "text": "맛있어요.",
+    "rating": 4,
+    "author_type": "혼자",
+    "season": "가을",
+    "visit_time": "12:00",
+    "created_at": "2025-01-15"
+  },
+  {
+    "review_id": "404121-05",
+    "place_id": "404121",
+    "text": "가족들과 단체로 방문했는데 1, 2층 좌석이 넓어서 편하게 식사할 수 있었습니다. 갈치조림 양념이 정말 깊은 맛이 나네요.",
+    "rating": 5,
+    "author_type": "가족",
+    "season": "봄",
+    "visit_time": "18:00",
+    "created_at": "2025-03-03"
+  },
+  {
+    "review_id": "404121-06",
+    "place_id": "404121",
+    "text": "성수기라 예약 안 했으면 큰일 날 뻔했네요. 유명한 곳이라 그런지 가격은 좀 있는 편입니다.",
+    "rating": 4,
+    "author_type": "친구",
+    "season": "여름",
+    "visit_time": "18:45",
+    "created_at": "2026-01-17"
+  },
+  {
+    "review_id": "404121-07",
+    "place_id": "404121",
+    "text": "그저 그랬습니다.",
+    "rating": 3,
+    "author_type": "혼자",
+    "season": "겨울",
+    "visit_time": "13:00",
+    "created_at": "2025-04-08"
+  },
+  {
+    "review_id": "404121-08",
+    "place_id": "404121",
+    "text": "가성비 따지는 사람들에겐 비추입니다. 관광지 물가라 그런지 가격대가 높긴 하지만 갈치회 퀄리티는 좋네요.",
+    "rating": 3,
+    "author_type": "친구",
+    "season": "가을",
+    "visit_time": "19:00",
+    "created_at": "2026-08-07"
+  },
+  {
+    "review_id": "404121-09",
+    "place_id": "404121",
+    "text": "매콤한 갈치조림이 일품입니다. 무도 큼직해서 좋았고 만족스러운 식사였어요.",
+    "rating": 5,
+    "author_type": "가족",
+    "season": "겨울",
+    "visit_time": "12:30",
+    "created_at": "2025-08-14"
+  },
+  {
+    "review_id": "404121-10",
+    "place_id": "404121",
+    "text": "회도 신선하고 조림도 맛있어서 다음에 또 방문할 것 같아요.",
+    "rating": 5,
+    "author_type": "커플",
+    "season": "봄",
+    "visit_time": "18:15",
+    "created_at": "2026-02-04"
+  },
+  {
+    "review_id": "404121-11",
+    "place_id": "404121",
+    "text": "매장이 넓어서 쾌적해요.",
+    "rating": 4,
+    "author_type": "친구",
+    "season": "여름",
+    "visit_time": "12:00",
+    "created_at": "2025-09-07"
+  },
+  {
+    "review_id": "404121-12",
+    "place_id": "404121",
+    "text": "너무 비싸요. 맛은 있는데 이 가격이면 다른 곳을 갈 것 같네요.",
+    "rating": 2,
+    "author_type": "커플",
+    "season": "여름",
+    "visit_time": "18:00",
+    "created_at": "2025-05-08"
+  },
+  {
+    "review_id": "404121-13",
+    "place_id": "404121",
+    "text": "제주산 갈치회 쫄깃함이 남다르네요. 예약하고 갔더니 편하게 이용했습니다.",
+    "rating": 5,
+    "author_type": "가족",
+    "season": "가을",
+    "visit_time": "19:00",
+    "created_at": "2026-01-15"
+  },
+  {
+    "review_id": "404121-14",
+    "place_id": "404121",
+    "text": "무엇보다 조림 양념이 예술이에요. 밥 두 공기 먹었습니다.",
+    "rating": 5,
+    "author_type": "혼자",
+    "season": "겨울",
+    "visit_time": "12:00",
+    "created_at": "2026-05-25"
+  },
+  {
+    "review_id": "404121-15",
+    "place_id": "404121",
+    "text": "단체 모임 하기에는 여기가 최고인 듯합니다. 넓고 깨끗해요.",
+    "rating": 4,
+    "author_type": "친구",
+    "season": "봄",
+    "visit_time": "18:30",
+    "created_at": "2024-11-18"
+  },
+  {
+    "review_id": "404121-16",
+    "place_id": "404121",
+    "text": "그저 그랬어요.",
+    "rating": 3,
+    "author_type": "커플",
+    "season": "겨울",
+    "visit_time": "13:00",
+    "created_at": "2025-12-08"
+  },
+  {
+    "review_id": "404151-01",
+    "place_id": "404151",
+    "text": "제주산 전복만 쓴다더니 확실히 신선함이 남다르네요. 산방산 가는 길에 들렀는데 가족들과 전복죽 아주 맛있게 잘 먹고 왔습니다.",
+    "rating": 5,
+    "author_type": "가족",
+    "season": "봄",
+    "visit_time": "11:00",
+    "created_at": "2025-10-11"
+  },
+  {
+    "review_id": "404151-02",
+    "place_id": "404151",
+    "text": "전복 돌솥밥 먹으러 갔는데 이미 다 떨어졌다고 해서 어쩔 수 없이 죽만 먹었네요. 인기 메뉴가 너무 빨리 소진되는 거 아닌가요?",
+    "rating": 2,
+    "author_type": "친구",
+    "season": "여름",
+    "visit_time": "13:00",
+    "created_at": "2026-05-20"
+  },
+  {
+    "review_id": "404151-03",
+    "place_id": "404151",
+    "text": "친구들이랑 갔는데 전복 내장이 듬뿍 들어가서 아주 진하고 고소했어요. 산방산 근처라 동선 짜기도 딱 좋았네요.",
+    "rating": 5,
+    "author_type": "친구",
+    "season": "가을",
+    "visit_time": "18:00",
+    "created_at": "2026-08-10"
+  },
+  {
+    "review_id": "404151-04",
+    "place_id": "404151",
+    "text": "좋았습니다.",
+    "rating": 4,
+    "author_type": "혼자",
+    "season": "겨울",
+    "visit_time": "14:00",
+    "created_at": "2025-03-14"
+  },
+  {
+    "review_id": "404151-05",
+    "place_id": "404151",
+    "text": "해녀 집안 전통이 있다고 해서 기대했는데 맛은 그저 그랬어요. 주차 공간도 너무 좁아서 차 대기 힘들었네요.",
+    "rating": 2,
+    "author_type": "가족",
+    "season": "봄",
+    "visit_time": "12:30",
+    "created_at": "2024-12-17"
+  },
+  {
+    "review_id": "404151-06",
+    "place_id": "404151",
+    "text": "전복죽이 진짜 진하고 고소해요. 제주 지역에서 잡은 전복이라 그런지 식감이 확실히 다릅니다. 가족들과 식사하기 딱 좋은 곳이에요.",
+    "rating": 5,
+    "author_type": "가족",
+    "season": "여름",
+    "visit_time": "11:30",
+    "created_at": "2025-04-03"
+  },
+  {
+    "review_id": "404151-07",
+    "place_id": "404151",
+    "text": "산방산 근처라 위치는 최고예요. 다만 혼자 가서 먹기엔 분위기가 조금 부담스럽고 불편하네요.",
+    "rating": 3,
+    "author_type": "혼자",
+    "season": "가을",
+    "visit_time": "18:30",
+    "created_at": "2026-06-01"
+  },
+  {
+    "review_id": "404151-08",
+    "place_id": "404151",
+    "text": "전복 돌솥밥 최고예요. 다음에 또 올게요.",
+    "rating": 5,
+    "author_type": "커플",
+    "season": "겨울",
+    "visit_time": "17:00",
+    "created_at": "2024-11-26"
+  },
+  {
+    "review_id": "404151-09",
+    "place_id": "404151",
+    "text": "제주산 전복을 써서 그런지 확실히 싱싱해요. 전복죽도 푸짐하게 주셔서 배부르게 잘 먹고 왔습니다.",
+    "rating": 4,
+    "author_type": "친구",
+    "season": "봄",
+    "visit_time": "09:00",
+    "created_at": "2025-01-27"
+  },
+  {
+    "review_id": "404151-10",
+    "place_id": "404151",
+    "text": "산방산 들르는 길에 가기 좋아요. 음식도 깔끔하고 맛있네요.",
+    "rating": 4,
+    "author_type": "커플",
+    "season": "여름",
+    "visit_time": "18:00",
+    "created_at": "2024-12-16"
+  },
+  {
+    "review_id": "404126-01",
+    "place_id": "404126",
+    "text": "가족들과 함께 방문했는데 초가집 분위기가 참 정겹네요. 제주산 흑돼지 주물럭 양념이 정말 맛있어서 다들 만족하며 먹었습니다.",
+    "rating": 5,
+    "author_type": "가족",
+    "season": "봄",
+    "visit_time": "11:30",
+    "created_at": "2026-09-19"
+  },
+  {
+    "review_id": "404126-02",
+    "place_id": "404126",
+    "text": "그냥 평범했어요.",
+    "rating": 3,
+    "author_type": "친구",
+    "season": "여름",
+    "visit_time": "12:00",
+    "created_at": "2025-04-14"
+  },
+  {
+    "review_id": "404126-03",
+    "place_id": "404126",
+    "text": "점심시간에 갔더니 사람이 너무 많아서 정신이 하나도 없었습니다. 맛은 있지만 너무 붐비는 게 흠이네요.",
+    "rating": 3,
+    "author_type": "커플",
+    "season": "가을",
+    "visit_time": "12:30",
+    "created_at": "2025-04-11"
+  },
+  {
+    "review_id": "404126-04",
+    "place_id": "404126",
+    "text": "혼자 여행 중인데 여기는 다인석 위주에 붐비는 곳이라 눈치가 보여서 불편했습니다. 혼밥하기엔 비추예요.",
+    "rating": 2,
+    "author_type": "혼자",
+    "season": "봄",
+    "visit_time": "12:00",
+    "created_at": "2025-12-06"
+  },
+  {
+    "review_id": "404126-05",
+    "place_id": "404126",
+    "text": "성읍민속마을 구경하고 점심 먹기 딱 좋아요. 식탁에서 직접 구워 먹는 흑돼지 주물럭이 특제 양념 덕분에 확실히 별미네요.",
+    "rating": 5,
+    "author_type": "친구",
+    "season": "겨울",
+    "visit_time": "13:00",
+    "created_at": "2026-05-25"
+  },
+  {
+    "review_id": "404126-06",
+    "place_id": "404126",
+    "text": "저녁 먹으려고 찾아갔는데 영업 종료라니 너무 아쉽네요. 점심에만 와야 하는 게 큰 단점입니다.",
+    "rating": 2,
+    "author_type": "가족",
+    "season": "여름",
+    "visit_time": "18:00",
+    "created_at": "2026-01-03"
+  },
+  {
+    "review_id": "404126-07",
+    "place_id": "404126",
+    "text": "좋았습니다.",
+    "rating": 4,
+    "author_type": "친구",
+    "season": "가을",
+    "visit_time": "11:00",
+    "created_at": "2025-12-17"
+  },
+  {
+    "review_id": "404126-08",
+    "place_id": "404126",
+    "text": "실내가 넓어서 단체 모임 하기 좋았습니다. 초가집을 개조한 식당이라 향토적인 분위기가 정말 좋았어요.",
+    "rating": 5,
+    "author_type": "가족",
+    "season": "봄",
+    "visit_time": "12:00",
+    "created_at": "2025-11-16"
+  },
+  {
+    "review_id": "404126-09",
+    "place_id": "404126",
+    "text": "제주산 토종 흑돼지 맛이 아주 일품입니다. 양념이 잘 배어 있어서 남녀노소 좋아할 맛이에요.",
+    "rating": 5,
+    "author_type": "친구",
+    "season": "가을",
+    "visit_time": "13:00",
+    "created_at": "2026-02-26"
+  },
+  {
+    "review_id": "404126-10",
+    "place_id": "404126",
+    "text": "너무 북적거려서 여유롭게 먹기 힘들었습니다. 관광지 식당 그 이상도 이하도 아니네요.",
+    "rating": 2,
+    "author_type": "커플",
+    "season": "겨울",
+    "visit_time": "12:30",
+    "created_at": "2025-01-28"
+  },
+  {
+    "review_id": "404126-11",
+    "place_id": "404126",
+    "text": "민속마을 분위기 속에서 먹는 흑돼지라 더 특별하게 느껴졌어요. 다음 점심에도 또 오고 싶습니다.",
+    "rating": 4,
+    "author_type": "가족",
+    "season": "여름",
+    "visit_time": "11:30",
+    "created_at": "2025-07-05"
+  },
+  {
+    "review_id": "404126-12",
+    "place_id": "404126",
+    "text": "일행들과 방문했는데 넓어서 자리 잡기 좋았어요. 주물럭 양념이 이곳만의 비법인 듯 독특해서 맛있게 즐겼습니다.",
+    "rating": 4,
+    "author_type": "친구",
+    "season": "봄",
+    "visit_time": "12:30",
+    "created_at": "2025-07-28"
+  },
+  {
+    "review_id": "404126-13",
+    "place_id": "404126",
+    "text": "그저 그랬습니다.",
+    "rating": 3,
+    "author_type": "혼자",
+    "season": "여름",
+    "visit_time": "13:00",
+    "created_at": "2026-01-22"
+  },
+  {
+    "review_id": "404126-14",
+    "place_id": "404126",
+    "text": "점심 식사로 아주 적당한 곳입니다. 저녁 장사를 안 하는 건 아쉽지만 점심에 흑돼지 주물럭 먹으러 올 가치가 충분해요.",
+    "rating": 4,
+    "author_type": "가족",
+    "season": "가을",
+    "visit_time": "12:00",
+    "created_at": "2026-07-21"
+  },
+  {
+    "review_id": "404175-01",
+    "place_id": "404175",
+    "text": "성산일출봉 근처에서 아침 일찍 식사할 곳을 찾다가 들어갔는데 전복해물뚝배기 국물이 정말 시원하고 맛있었어요.",
+    "rating": 5,
+    "author_type": "가족",
+    "season": "봄",
+    "visit_time": "오전 8시",
+    "created_at": "2024-12-14"
+  },
+  {
+    "review_id": "404175-02",
+    "place_id": "404175",
+    "text": "오분자기랑 새우가 잔뜩 들어있어서 좋았어요. 전통 있는 곳이라 그런지 깊은 맛이 나네요.",
+    "rating": 4,
+    "author_type": "친구",
+    "season": "가을",
+    "visit_time": "오후 1시",
+    "created_at": "2025-06-24"
+  },
+  {
+    "review_id": "404175-03",
+    "place_id": "404175",
+    "text": "그냥 평범했어요.",
+    "rating": 3,
+    "author_type": "혼자",
+    "season": "겨울",
+    "visit_time": "오전 11시",
+    "created_at": "2026-03-08"
+  },
+  {
+    "review_id": "404175-04",
+    "place_id": "404175",
+    "text": "가족들이랑 다녀왔는데 매장이 좀 시끌벅적하긴 해도 해물 뚝배기 맛은 일품이었네요.",
+    "rating": 4,
+    "author_type": "가족",
+    "season": "여름",
+    "visit_time": "오후 12시 30분",
+    "created_at": "2025-05-28"
+  },
+  {
+    "review_id": "404175-05",
+    "place_id": "404175",
+    "text": "입구가 너무 좁아서 들어갈 때 불편했고 사람도 많아서 정신이 없었어요. 조용한 식사를 원하신다면 비추예요.",
+    "rating": 2,
+    "author_type": "커플",
+    "season": "가을",
+    "visit_time": "오후 1시",
+    "created_at": "2026-07-27"
+  },
+  {
+    "review_id": "404175-06",
+    "place_id": "404175",
+    "text": "갈치조림이 담백하니 입에 잘 맞았습니다. 단체 모임 하기 괜찮은 곳 같아요.",
+    "rating": 5,
+    "author_type": "친구",
+    "season": "봄",
+    "visit_time": "오전 11시 30분",
+    "created_at": "2025-09-23"
+  },
+  {
+    "review_id": "404175-07",
+    "place_id": "404175",
+    "text": "아침 일찍 문 열어서 일정 시작하기 전에 들르기 딱 좋아요. 전복죽도 부드럽고 든든합니다.",
+    "rating": 5,
+    "author_type": "혼자",
+    "season": "여름",
+    "visit_time": "오전 7시 30분",
+    "created_at": "2024-12-14"
+  },
+  {
+    "review_id": "404175-08",
+    "place_id": "404175",
+    "text": "뚝배기 맛있었어요.",
+    "rating": 4,
+    "author_type": "친구",
+    "season": "겨울",
+    "visit_time": "오후 12시",
+    "created_at": "2026-08-22"
+  },
+  {
+    "review_id": "404175-09",
+    "place_id": "404175",
+    "text": "유명하다고 해서 왔는데 사람이 너무 많아서 너무 시끄럽고 불편했네요. 조용히 식사하고 싶었는데 실망입니다.",
+    "rating": 1,
+    "author_type": "커플",
+    "season": "봄",
+    "visit_time": "오후 12시",
+    "created_at": "2026-03-10"
+  },
+  {
+    "review_id": "404175-10",
+    "place_id": "404175",
+    "text": "고등어조림이랑 전복죽 주문해서 먹었는데 가족들 모두 만족했어요. 성산일출봉 가는 길이라 위치도 좋고요.",
+    "rating": 5,
+    "author_type": "가족",
+    "season": "가을",
+    "visit_time": "오전 11시",
+    "created_at": "2025-02-17"
+  },
+  {
+    "review_id": "404175-11",
+    "place_id": "404175",
+    "text": "점심시간에 갔더니 주차 공간이 꽉 차서 고생 좀 했네요. 그래도 국물 맛은 인정합니다.",
+    "rating": 3,
+    "author_type": "친구",
+    "season": "여름",
+    "visit_time": "오후 12시",
+    "created_at": "2025-12-01"
+  },
+  {
+    "review_id": "404175-12",
+    "place_id": "404175",
+    "text": "싱싱한 해물이 가득 들어간 뚝배기 덕분에 여행 내내 생각날 것 같아요.",
+    "rating": 5,
+    "author_type": "가족",
+    "season": "봄",
+    "visit_time": "오전 9시",
+    "created_at": "2026-07-29"
+  },
+  {
+    "review_id": "404175-13",
+    "place_id": "404175",
+    "text": "그저 그랬습니다.",
+    "rating": 3,
+    "author_type": "혼자",
+    "season": "겨울",
+    "visit_time": "오후 1시",
+    "created_at": "2026-03-03"
+  },
+  {
+    "review_id": "404175-14",
+    "place_id": "404175",
+    "text": "성산에서 가장 오래된 맛집이라더니 역시 전통의 맛이 있네요. 게랑 소라가 신선해서 좋았어요.",
+    "rating": 4,
+    "author_type": "친구",
+    "season": "가을",
+    "visit_time": "오전 10시",
+    "created_at": "2024-11-28"
+  },
+  {
+    "review_id": "404175-15",
+    "place_id": "404175",
+    "text": "주말 오전에는 정말 사람이 많아서 정신이 하나도 없었어요. 시끄러운 거 싫어하시면 다른 곳 가세요.",
+    "rating": 2,
+    "author_type": "커플",
+    "season": "여름",
+    "visit_time": "오전 11시",
+    "created_at": "2024-11-25"
+  },
+  {
+    "review_id": "404175-16",
+    "place_id": "404175",
+    "text": "단체로 가서 이것저것 시켜 먹었는데 다들 좋아하더라고요. 아침부터 든든하게 먹기 최고입니다.",
+    "rating": 5,
+    "author_type": "친구",
+    "season": "겨울",
+    "visit_time": "오전 8시 30분",
+    "created_at": "2025-09-10"
+  },
+  {
+    "review_id": "404175-17",
+    "place_id": "404175",
+    "text": "매장 입구가 좁아서 들어갈 때 좀 힘들었지만 해물 양이 푸짐해서 다 용서됐습니다.",
+    "rating": 4,
+    "author_type": "가족",
+    "season": "봄",
+    "visit_time": "오후 12시 30분",
+    "created_at": "2024-11-01"
+  },
+  {
+    "review_id": "404175-18",
+    "place_id": "404175",
+    "text": "전복죽이 정말 부드럽고 담백해서 아침 식사로 아주 딱이었어요.",
+    "rating": 5,
+    "author_type": "혼자",
+    "season": "가을",
+    "visit_time": "오전 7시",
+    "created_at": "2026-02-26"
+  },
+  {
+    "review_id": "2755457-01",
+    "place_id": "2755457",
+    "text": "가족들과 함께 방문했는데 가시 없는 순살 갈치조림이라 정말 편하게 식사했습니다. 신축 건물이라 내부가 깔끔해서 좋았어요.",
+    "rating": 5,
+    "author_type": "가족",
+    "season": "봄",
+    "visit_time": "평일 점심",
+    "created_at": "2025-12-12"
+  },
+  {
+    "review_id": "2755457-02",
+    "place_id": "2755457",
+    "text": "중문 관광단지 입구라 접근성이 좋네요. 기념품숍과 카페가 한 건물에 있어서 식사 후 동선이 아주 편리했습니다.",
+    "rating": 4,
+    "author_type": "친구",
+    "season": "여름",
+    "visit_time": "평일 오후",
+    "created_at": "2026-07-23"
+  },
+  {
+    "review_id": "2755457-03",
+    "place_id": "2755457",
+    "text": "순살이라 먹기 편한 건 인정하는데 가격대가 좀 높아서 가성비는 글쎄요.",
+    "rating": 2,
+    "author_type": "혼자",
+    "season": "가을",
+    "visit_time": "평일 저녁",
+    "created_at": "2026-08-08"
+  },
+  {
+    "review_id": "2755457-04",
+    "place_id": "2755457",
+    "text": "주차장이 넓어서 차 대기 좋았고 유아 시설이 있어 아이 동반 가족 모임에 딱입니다.",
+    "rating": 5,
+    "author_type": "가족",
+    "season": "겨울",
+    "visit_time": "주말 점심",
+    "created_at": "2025-09-28"
+  },
+  {
+    "review_id": "2755457-05",
+    "place_id": "2755457",
+    "text": "맛있어요.",
+    "rating": 4,
+    "author_type": "커플",
+    "season": "봄",
+    "visit_time": "평일 저녁",
+    "created_at": "2026-09-14"
+  },
+  {
+    "review_id": "2755457-06",
+    "place_id": "2755457",
+    "text": "유명한 곳이라 주말 점심에 대기하느라 힘들었어요. 조용히 식사하고 싶은 분들은 피하시는 게 좋겠네요.",
+    "rating": 3,
+    "author_type": "친구",
+    "season": "여름",
+    "visit_time": "주말 점심",
+    "created_at": "2026-02-01"
+  },
+  {
+    "review_id": "2755457-07",
+    "place_id": "2755457",
+    "text": "기본 상차림으로 나오는 잡채랑 김이 푸짐해서 만족스러웠습니다. 46년 전통이라 그런지 갈치조림 맛이 깊네요.",
+    "rating": 5,
+    "author_type": "가족",
+    "season": "가을",
+    "visit_time": "평일 점심",
+    "created_at": "2026-07-05"
+  },
+  {
+    "review_id": "2755457-08",
+    "place_id": "2755457",
+    "text": "시설이 깔끔하고 넓어서 단체 모임하기 적합합니다. 갈치 가시 발라내기 귀찮은데 여긴 순살이라 최고예요.",
+    "rating": 5,
+    "author_type": "친구",
+    "season": "겨울",
+    "visit_time": "평일 저녁",
+    "created_at": "2025-10-28"
+  },
+  {
+    "review_id": "2755457-09",
+    "place_id": "2755457",
+    "text": "그저 그랬어요.",
+    "rating": 3,
+    "author_type": "혼자",
+    "season": "봄",
+    "visit_time": "평일 점심",
+    "created_at": "2025-01-01"
+  },
+  {
+    "review_id": "2755457-10",
+    "place_id": "2755457",
+    "text": "가격이 부담스럽긴 하지만 그만큼 깔끔하고 편리한 시설을 이용할 수 있어서 만족합니다.",
+    "rating": 4,
+    "author_type": "커플",
+    "season": "여름",
+    "visit_time": "주말 저녁",
+    "created_at": "2026-05-05"
+  },
+  {
+    "review_id": "2755457-11",
+    "place_id": "2755457",
+    "text": "식사하고 바로 옆에서 기념품 구경까지 해결하니 시간 절약되고 좋네요.",
+    "rating": 5,
+    "author_type": "친구",
+    "season": "가을",
+    "visit_time": "평일 오후",
+    "created_at": "2025-12-30"
+  },
+  {
+    "review_id": "2755457-12",
+    "place_id": "2755457",
+    "text": "갈치조림은 맛있는데 너무 정신없고 시끄러워서 조용한 분위기 좋아하시면 비추입니다.",
+    "rating": 2,
+    "author_type": "커플",
+    "season": "겨울",
+    "visit_time": "주말 점심",
+    "created_at": "2026-08-02"
+  },
+  {
+    "review_id": "2755457-13",
+    "place_id": "2755457",
+    "text": "가족끼리 와서 통갈치구이 정식 먹었는데 다들 좋아했습니다. 시설이 정말 쾌적해요.",
+    "rating": 5,
+    "author_type": "가족",
+    "season": "봄",
+    "visit_time": "평일 점심",
+    "created_at": "2025-10-17"
+  },
+  {
+    "review_id": "2755457-14",
+    "place_id": "2755457",
+    "text": "좋았습니다.",
+    "rating": 4,
+    "author_type": "혼자",
+    "season": "여름",
+    "visit_time": "평일 저녁",
+    "created_at": "2026-08-24"
+  },
+  {
+    "review_id": "2755457-15",
+    "place_id": "2755457",
+    "text": "주차 걱정 없이 편하게 다녀왔습니다. 가시 없는 순살 갈치조림은 정말 혁명이네요.",
+    "rating": 5,
+    "author_type": "가족",
+    "season": "가을",
+    "visit_time": "평일 점심",
+    "created_at": "2025-05-17"
+  },
+  {
+    "review_id": "2755457-16",
+    "place_id": "2755457",
+    "text": "중문에서 식사할 때마다 찾는 곳입니다. 카페까지 한 번에 해결할 수 있는 신축 시설이 큰 장점이죠.",
+    "rating": 4,
+    "author_type": "친구",
+    "season": "겨울",
+    "visit_time": "평일 저녁",
+    "created_at": "2024-11-12"
+  },
+  {
+    "review_id": "2755457-17",
+    "place_id": "2755457",
+    "text": "무난하게 먹기 좋습니다.",
+    "rating": 3,
+    "author_type": "커플",
+    "season": "봄",
+    "visit_time": "평일 점심",
+    "created_at": "2025-04-20"
+  },
+  {
+    "review_id": "2753021-01",
+    "place_id": "2753021",
+    "text": "직접 반죽한 자가제면이라 그런지 면발이 정말 탱글탱글하고 식감이 좋았어요. 가족들과 함께 아침 일찍 방문했는데 든든하게 잘 먹었습니다.",
+    "rating": 5,
+    "author_type": "가족",
+    "season": "봄",
+    "visit_time": "08:30",
+    "created_at": "2025-03-12"
+  },
+  {
+    "review_id": "2753021-02",
+    "place_id": "2753021",
+    "text": "주차장이 정말 넓어서 편하게 이용했습니다. 고기국수 맛도 깊고 좋았어요.",
+    "rating": 4,
+    "author_type": "친구",
+    "season": "여름",
+    "visit_time": "11:00",
+    "created_at": "2025-11-01"
+  },
+  {
+    "review_id": "2753021-03",
+    "place_id": "2753021",
+    "text": "전복이랑 성게가 푸짐하게 들어가 있어서 제주의 맛을 제대로 느끼고 왔네요.",
+    "rating": 5,
+    "author_type": "가족",
+    "season": "가을",
+    "visit_time": "12:30",
+    "created_at": "2025-08-10"
+  },
+  {
+    "review_id": "2753021-04",
+    "place_id": "2753021",
+    "text": "관광지 근처라 그런지 가격이 조금 비싼 느낌이 들었어요.",
+    "rating": 2,
+    "author_type": "커플",
+    "season": "겨울",
+    "visit_time": "12:10",
+    "created_at": "2026-10-13"
+  },
+  {
+    "review_id": "2753021-05",
+    "place_id": "2753021",
+    "text": "점심시간에 맞춰 갔더니 대기가 좀 있었어요. 사람이 너무 많아서 조용한 분위기는 아니네요.",
+    "rating": 3,
+    "author_type": "혼자",
+    "season": "봄",
+    "visit_time": "12:00",
+    "created_at": "2025-05-08"
+  },
+  {
+    "review_id": "2753021-06",
+    "place_id": "2753021",
+    "text": "12시간 정성이 담긴 육수라더니 정말 깊은 맛이 납니다. 최고예요.",
+    "rating": 5,
+    "author_type": "친구",
+    "season": "여름",
+    "visit_time": "09:00",
+    "created_at": "2026-10-06"
+  },
+  {
+    "review_id": "2753021-07",
+    "place_id": "2753021",
+    "text": "주차하기 아주 편해서 좋았어요.",
+    "rating": 4,
+    "author_type": "가족",
+    "season": "가을",
+    "visit_time": "13:00",
+    "created_at": "2026-02-07"
+  },
+  {
+    "review_id": "2753021-08",
+    "place_id": "2753021",
+    "text": "아침 식사하러 들렀는데 면발 식감이 부드러워 속이 편했습니다.",
+    "rating": 5,
+    "author_type": "혼자",
+    "season": "겨울",
+    "visit_time": "08:00",
+    "created_at": "2026-02-17"
+  },
+  {
+    "review_id": "2753021-09",
+    "place_id": "2753021",
+    "text": "사람이 많아서 북적거리고 정신없었어요. 조용한 곳을 원하신다면 비추천합니다.",
+    "rating": 2,
+    "author_type": "커플",
+    "season": "봄",
+    "visit_time": "18:30",
+    "created_at": "2025-08-24"
+  },
+  {
+    "review_id": "2753021-10",
+    "place_id": "2753021",
+    "text": "제주도 고기국수를 제대로 즐기고 싶다면 추천합니다. 면발이 참 좋네요.",
+    "rating": 4,
+    "author_type": "친구",
+    "season": "여름",
+    "visit_time": "19:00",
+    "created_at": "2025-12-10"
+  },
+  {
+    "review_id": "2753021-11",
+    "place_id": "2753021",
+    "text": "그저 그랬습니다.",
+    "rating": 3,
+    "author_type": "가족",
+    "season": "가을",
+    "visit_time": "11:30",
+    "created_at": "2026-01-05"
+  },
+  {
+    "review_id": "2753021-12",
+    "place_id": "2753021",
+    "text": "자가제면이라 면발이 남다르네요. 식구들과 같이 먹기 좋았습니다.",
+    "rating": 5,
+    "author_type": "가족",
+    "season": "겨울",
+    "visit_time": "10:00",
+    "created_at": "2025-10-03"
+  },
+  {
+    "review_id": "2753021-13",
+    "place_id": "2753021",
+    "text": "주차장이 넓어서 차 대기 정말 수월해요.",
+    "rating": 4,
+    "author_type": "친구",
+    "season": "봄",
+    "visit_time": "11:00",
+    "created_at": "2026-08-13"
+  },
+  {
+    "review_id": "2753021-14",
+    "place_id": "2753021",
+    "text": "성게와 전복이 가득해서 만족스러웠습니다. 맛있는 한 끼였어요.",
+    "rating": 5,
+    "author_type": "커플",
+    "season": "여름",
+    "visit_time": "12:00",
+    "created_at": "2026-03-29"
+  },
+  {
+    "review_id": "2753021-15",
+    "place_id": "2753021",
+    "text": "그냥 평범합니다.",
+    "rating": 3,
+    "author_type": "혼자",
+    "season": "가을",
+    "visit_time": "14:00",
+    "created_at": "2025-09-03"
+  },
+  {
+    "review_id": "2753021-16",
+    "place_id": "2753021",
+    "text": "관광지 앞이라 그런지 기대보다는 좀 비싸네요.",
+    "rating": 2,
+    "author_type": "친구",
+    "season": "겨울",
+    "visit_time": "12:30",
+    "created_at": "2025-05-22"
+  },
+  {
+    "review_id": "2904424-01",
+    "place_id": "2904424",
+    "text": "가족들과 함께 방문했는데 전복과 홍합 등 해물이 가득 들어가서 국물이 정말 시원했어요. 명가상 세트 구성이 알차서 다들 배부르게 잘 먹었습니다.",
+    "rating": 5,
+    "author_type": "가족",
+    "season": "가을",
+    "visit_time": "18:00",
+    "created_at": "2026-09-17"
+  },
+  {
+    "review_id": "2904424-02",
+    "place_id": "2904424",
+    "text": "서귀포중학교 근처라 찾기 쉬웠어요. 전복두루치기는 처음 먹어보는데 해물 양이 많아 만족스러웠습니다.",
+    "rating": 4,
+    "author_type": "친구",
+    "season": "봄",
+    "visit_time": "12:30",
+    "created_at": "2025-07-23"
+  },
+  {
+    "review_id": "2904424-03",
+    "place_id": "2904424",
+    "text": "전복두루치기 맛집이라 기대하고 갔는데 사람이 너무 많아서 대기 시간이 길었어요. 차를 대기에도 공간이 좁아 힘들었습니다.",
+    "rating": 2,
+    "author_type": "친구",
+    "season": "여름",
+    "visit_time": "19:00",
+    "created_at": "2026-08-14"
+  },
+  {
+    "review_id": "2904424-04",
+    "place_id": "2904424",
+    "text": "그저 그랬습니다.",
+    "rating": 3,
+    "author_type": "혼자",
+    "season": "겨울",
+    "visit_time": "14:00",
+    "created_at": "2025-01-27"
+  },
+  {
+    "review_id": "2904424-05",
+    "place_id": "2904424",
+    "text": "현지인들도 인정하는 맛집이라더니 역시 국물 맛이 다르네요. 파채랑 콩나물까지 들어가서 정말 시원하게 먹었습니다.",
+    "rating": 5,
+    "author_type": "가족",
+    "season": "여름",
+    "visit_time": "13:00",
+    "created_at": "2025-03-29"
+  },
+  {
+    "review_id": "2904424-06",
+    "place_id": "2904424",
+    "text": "혼자 가서 먹으려니 살짝 눈치도 보이고 여럿이 오기 좋은 곳 같아요. 맛은 있었지만 비추천합니다.",
+    "rating": 2,
+    "author_type": "혼자",
+    "season": "가을",
+    "visit_time": "11:00",
+    "created_at": "2025-04-15"
+  },
+  {
+    "review_id": "2904424-07",
+    "place_id": "2904424",
+    "text": "이중섭미술관 구경하고 들렀어요. 세트 메뉴인 명가상이 구성이 좋아서 다양하게 맛볼 수 있었습니다.",
+    "rating": 4,
+    "author_type": "커플",
+    "season": "봄",
+    "visit_time": "17:00",
+    "created_at": "2025-04-17"
+  },
+  {
+    "review_id": "2904424-08",
+    "place_id": "2904424",
+    "text": "맛있었어요.",
+    "rating": 5,
+    "author_type": "친구",
+    "season": "겨울",
+    "visit_time": "18:30",
+    "created_at": "2025-06-21"
+  },
+  {
+    "review_id": "2904424-09",
+    "place_id": "2904424",
+    "text": "푸짐한 상차림 덕분에 가족 모임 장소로 딱이네요. 전복이랑 새우도 많이 들어있어서 가성비 최고예요.",
+    "rating": 5,
+    "author_type": "가족",
+    "season": "여름",
+    "visit_time": "12:00",
+    "created_at": "2026-03-01"
+  },
+  {
+    "review_id": "2904424-10",
+    "place_id": "2904424",
+    "text": "갈치조림이랑 전복죽도 메뉴에 있어서 좋네요. 다음에는 다른 단품 메뉴도 도전해봐야겠어요.",
+    "rating": 4,
+    "author_type": "친구",
+    "season": "가을",
+    "visit_time": "15:00",
+    "created_at": "2026-04-28"
+  },
+  {
+    "review_id": "2904424-11",
+    "place_id": "2904424",
+    "text": "정방폭포 들렀다 방문했는데 실내가 북적여서 정신없었어요. 그래도 음식은 괜찮았습니다.",
+    "rating": 3,
+    "author_type": "커플",
+    "season": "겨울",
+    "visit_time": "19:30",
+    "created_at": "2025-02-17"
+  },
+  {
+    "review_id": "2904424-12",
+    "place_id": "2904424",
+    "text": "원조집답게 전복두루치기 맛이 깊네요. 시원한 국물이 인상적이었습니다.",
+    "rating": 5,
+    "author_type": "가족",
+    "season": "봄",
+    "visit_time": "12:30",
+    "created_at": "2025-11-27"
+  },
+  {
+    "review_id": "2904424-13",
+    "place_id": "2904424",
+    "text": "주변에 서귀포 관광극장이 있어서 산책하다 가기 좋습니다. 전복해물뚝배기도 국물이 정말 시원해요.",
+    "rating": 4,
+    "author_type": "커플",
+    "season": "여름",
+    "visit_time": "18:00",
+    "created_at": "2025-04-06"
+  },
+  {
+    "review_id": "2904424-14",
+    "place_id": "2904424",
+    "text": "무난하게 먹기 좋습니다.",
+    "rating": 3,
+    "author_type": "친구",
+    "season": "봄",
+    "visit_time": "13:00",
+    "created_at": "2025-04-15"
+  },
+  {
+    "review_id": "2851196-01",
+    "place_id": "2851196",
+    "text": "벽난로 앞에 앉아 장작 타는 소리를 들으니 정말 평온했어요. 아이리쉬 커피 맛도 아주 독특해서 기억에 남네요.",
+    "rating": 5,
+    "author_type": "커플",
+    "season": "겨울",
+    "visit_time": "평일 낮",
+    "created_at": "2025-06-14"
+  },
+  {
+    "review_id": "2851196-02",
+    "place_id": "2851196",
+    "text": "가족끼리 왔는데 분위기는 좋았지만 아이들과 오기에는 조금 불편한 점이 있었습니다.",
+    "rating": 2,
+    "author_type": "가족",
+    "season": "가을",
+    "visit_time": "주말 오후",
+    "created_at": "2026-05-21"
+  },
+  {
+    "review_id": "2851196-03",
+    "place_id": "2851196",
+    "text": "빈티지한 인테리어가 정말 마음에 들었어요. 가가멜 스튜도 맛있게 먹었습니다.",
+    "rating": 5,
+    "author_type": "친구",
+    "season": "봄",
+    "visit_time": "평일 오후",
+    "created_at": "2026-01-06"
+  },
+  {
+    "review_id": "2851196-04",
+    "place_id": "2851196",
+    "text": "이색적이고 좋았습니다.",
+    "rating": 4,
+    "author_type": "혼자",
+    "season": "여름",
+    "visit_time": "평일 저녁",
+    "created_at": "2025-09-30"
+  },
+  {
+    "review_id": "2851196-05",
+    "place_id": "2851196",
+    "text": "대중교통으로 가기엔 좀 힘들더라고요. 그래도 도착해서 본 분위기는 최고였습니다.",
+    "rating": 3,
+    "author_type": "친구",
+    "season": "가을",
+    "visit_time": "주말 오전",
+    "created_at": "2025-12-11"
+  },
+  {
+    "review_id": "2851196-06",
+    "place_id": "2851196",
+    "text": "주말 오후에 갔더니 사람이 너무 많아서 대기 시간이 길었어요. 인기만큼 분위기는 좋네요.",
+    "rating": 3,
+    "author_type": "커플",
+    "season": "봄",
+    "visit_time": "주말 오후",
+    "created_at": "2026-01-12"
+  },
+  {
+    "review_id": "2851196-07",
+    "place_id": "2851196",
+    "text": "서부 개척 시대 컨셉이라니 신기했어요. 에인절 미 맛이 일품입니다.",
+    "rating": 5,
+    "author_type": "친구",
+    "season": "여름",
+    "visit_time": "평일 낮",
+    "created_at": "2025-04-21"
+  },
+  {
+    "review_id": "2851196-08",
+    "place_id": "2851196",
+    "text": "그냥 평범해요.",
+    "rating": 3,
+    "author_type": "혼자",
+    "season": "겨울",
+    "visit_time": "평일 오후",
+    "created_at": "2025-07-02"
+  },
+  {
+    "review_id": "2851196-09",
+    "place_id": "2851196",
+    "text": "돈내코유원지 갔다가 들렀는데 벽난로 분위기가 정말 감성적이에요.",
+    "rating": 4,
+    "author_type": "커플",
+    "season": "겨울",
+    "visit_time": "평일 저녁",
+    "created_at": "2026-03-19"
+  },
+  {
+    "review_id": "2851196-10",
+    "place_id": "2851196",
+    "text": "목조 주택이라 그런지 아늑하고 좋았어요. 다음에도 또 오고 싶네요.",
+    "rating": 5,
+    "author_type": "친구",
+    "season": "가을",
+    "visit_time": "평일 오전",
+    "created_at": "2025-09-27"
+  },
+  {
+    "review_id": "2851196-11",
+    "place_id": "2851196",
+    "text": "사람이 많아서 제대로 즐기지 못했어요. 추천하기 좀 망설여지네요.",
+    "rating": 2,
+    "author_type": "친구",
+    "season": "여름",
+    "visit_time": "주말 저녁",
+    "created_at": "2025-10-10"
+  },
+  {
+    "review_id": "2851196-12",
+    "place_id": "2851196",
+    "text": "아이리쉬 커피가 정말 맛있어서 놀랐습니다. 인테리어 소품 구경하는 재미도 쏠쏠하네요.",
+    "rating": 5,
+    "author_type": "커플",
+    "season": "봄",
+    "visit_time": "평일 오후",
+    "created_at": "2025-05-16"
+  },
+  {
+    "review_id": "2851196-13",
+    "place_id": "2851196",
+    "text": "분위기는 인정하지만 교통편이 너무 불편해서 다시 방문하기는 어려울 것 같습니다.",
+    "rating": 2,
+    "author_type": "혼자",
+    "season": "겨울",
+    "visit_time": "평일 저녁",
+    "created_at": "2026-08-13"
+  },
+  {
+    "review_id": "2851196-14",
+    "place_id": "2851196",
+    "text": "가가멜 스튜가 정말 독특하고 맛있었어요. 친구들과 수다 떨기 좋은 곳이에요.",
+    "rating": 4,
+    "author_type": "친구",
+    "season": "여름",
+    "visit_time": "평일 오후",
+    "created_at": "2025-08-27"
+  },
+  {
+    "review_id": "2851196-15",
+    "place_id": "2851196",
+    "text": "좋았습니다.",
+    "rating": 4,
+    "author_type": "혼자",
+    "season": "가을",
+    "visit_time": "평일 낮",
+    "created_at": "2026-03-02"
+  },
+  {
+    "review_id": "2851196-16",
+    "place_id": "2851196",
+    "text": "516도로 끝에 있어서 찾기는 좀 힘들지만 오길 잘했다 싶어요.",
+    "rating": 4,
+    "author_type": "커플",
+    "season": "봄",
+    "visit_time": "평일 낮",
+    "created_at": "2025-07-28"
+  },
+  {
+    "review_id": "2851196-17",
+    "place_id": "2851196",
+    "text": "벽난로 보면서 멍하니 있기 딱 좋은 곳입니다. 분위기 하나는 최고네요.",
+    "rating": 5,
+    "author_type": "친구",
+    "season": "겨울",
+    "visit_time": "평일 저녁",
+    "created_at": "2026-10-05"
+  },
+  {
+    "review_id": "2363045-01",
+    "place_id": "2363045",
+    "text": "나무랑 돌로 된 인테리어 덕분에 카페 내부가 정말 아늑해요. 찰떡구이 꼭 드세요 진짜 맛있습니다.",
+    "rating": 5,
+    "author_type": "커플",
+    "season": "가을",
+    "visit_time": "오전 11시",
+    "created_at": "2025-11-06"
+  },
+  {
+    "review_id": "2363045-02",
+    "place_id": "2363045",
+    "text": "감귤밭 풍경이 평화로워서 좋았어요.",
+    "rating": 4,
+    "author_type": "혼자",
+    "season": "겨울",
+    "visit_time": "오후 1시",
+    "created_at": "2025-12-27"
+  },
+  {
+    "review_id": "2363045-03",
+    "place_id": "2363045",
+    "text": "친구가 추천해서 왔는데 영귤에이드 상큼하고 괜찮네요. 다만 골목길 주차가 좀 힘들어서 고생했습니다.",
+    "rating": 3,
+    "author_type": "친구",
+    "season": "봄",
+    "visit_time": "오후 3시",
+    "created_at": "2026-04-20"
+  },
+  {
+    "review_id": "2363045-04",
+    "place_id": "2363045",
+    "text": "단체로 갔는데 너무 좁아서 불편했어요. 우리 같은 단체 관광객은 피하는 게 좋겠네요.",
+    "rating": 1,
+    "author_type": "가족",
+    "season": "가을",
+    "visit_time": "오후 2시",
+    "created_at": "2025-07-01"
+  },
+  {
+    "review_id": "2363045-05",
+    "place_id": "2363045",
+    "text": "오후 늦게 갔더니 문이 닫혀 있어서 아쉬웠어요. 영업시간이 너무 짧은 것 같아요.",
+    "rating": 2,
+    "author_type": "커플",
+    "season": "여름",
+    "visit_time": "오후 5시",
+    "created_at": "2026-10-11"
+  },
+  {
+    "review_id": "2363045-06",
+    "place_id": "2363045",
+    "text": "따뜻한 분위기에서 먹는 찰떡구이 최고예요. 위미리 마을 분위기도 참 좋네요.",
+    "rating": 5,
+    "author_type": "친구",
+    "season": "겨울",
+    "visit_time": "오후 1시",
+    "created_at": "2025-11-29"
+  },
+  {
+    "review_id": "2363045-07",
+    "place_id": "2363045",
+    "text": "그냥 평범했어요.",
+    "rating": 3,
+    "author_type": "혼자",
+    "season": "봄",
+    "visit_time": "오후 2시",
+    "created_at": "2025-01-15"
+  },
+  {
+    "review_id": "2363045-08",
+    "place_id": "2363045",
+    "text": "동백나무 군락지 근처라 들렀는데 감귤 스무디 맛있고 카페 인테리어도 나무 느낌이라 편안합니다.",
+    "rating": 4,
+    "author_type": "가족",
+    "season": "겨울",
+    "visit_time": "오전 10시",
+    "created_at": "2026-09-18"
+  },
+  {
+    "review_id": "2363045-09",
+    "place_id": "2363045",
+    "text": "올레 5코스 걷다가 들렀는데 찰떡구이 고소하고 정말 맛있어요. 또 오고 싶습니다.",
+    "rating": 5,
+    "author_type": "친구",
+    "season": "봄",
+    "visit_time": "오후 3시",
+    "created_at": "2025-04-07"
+  },
+  {
+    "review_id": "2363045-10",
+    "place_id": "2363045",
+    "text": "영귤차 향이 좋고 카페 분위기도 따뜻해서 커플들이 오기에 딱인 것 같아요.",
+    "rating": 5,
+    "author_type": "커플",
+    "season": "여름",
+    "visit_time": "오후 2시",
+    "created_at": "2025-07-14"
+  },
+  {
+    "review_id": "2363045-11",
+    "place_id": "2363045",
+    "text": "좋았다.",
+    "rating": 4,
+    "author_type": "친구",
+    "season": "가을",
+    "visit_time": "오전 11시",
+    "created_at": "2026-07-17"
+  },
+  {
+    "review_id": "2363045-12",
+    "place_id": "2363045",
+    "text": "주차가 너무 불편해서 다시는 안 올 것 같아요. 골목길 운전이 힘드네요.",
+    "rating": 1,
+    "author_type": "가족",
+    "season": "겨울",
+    "visit_time": "오후 4시",
+    "created_at": "2026-08-15"
+  },
+  {
+    "review_id": "2363045-13",
+    "place_id": "2363045",
+    "text": "유기농 감귤로 만든 음료라 믿음이 가요. 돌담 너머 감귤밭 뷰가 예술입니다.",
+    "rating": 5,
+    "author_type": "혼자",
+    "season": "가을",
+    "visit_time": "오전 10시",
+    "created_at": "2025-01-19"
+  },
+  {
+    "review_id": "2363045-14",
+    "place_id": "2363045",
+    "text": "이중섭거리랑 가까워서 가기 편했어요. 아늑한 곳이라 친구랑 수다 떨기 좋습니다.",
+    "rating": 4,
+    "author_type": "친구",
+    "season": "여름",
+    "visit_time": "오후 1시",
+    "created_at": "2026-06-13"
+  },
+  {
+    "review_id": "2363045-15",
+    "place_id": "2363045",
+    "text": "사람이 너무 많아서 정신 없었어요. 붐비는 시간대는 피해서 오세요.",
+    "rating": 2,
+    "author_type": "커플",
+    "season": "겨울",
+    "visit_time": "오후 3시",
+    "created_at": "2026-01-17"
+  },
+  {
+    "review_id": "2891382-01",
+    "place_id": "2891382",
+    "text": "성읍민속마을 안에서 만난 초가집 카페라니 분위기가 정말 고즈넉하고 좋네요. 100% 찹쌀 반죽으로 만든 기름떡도 처음 먹어봤는데 고소하고 달달해서 아주 만족스러웠습니다.",
+    "rating": 5,
+    "author_type": "커플",
+    "season": "봄",
+    "visit_time": "오전 11시",
+    "created_at": "2024-12-30"
+  },
+  {
+    "review_id": "2891382-02",
+    "place_id": "2891382",
+    "text": "기름떡이 생각보다 달콤하고 맛있어요. 창문으로 들어오는 채광이 예뻐서 머물기 좋습니다.",
+    "rating": 4,
+    "author_type": "친구",
+    "season": "가을",
+    "visit_time": "오후 1시",
+    "created_at": "2025-07-04"
+  },
+  {
+    "review_id": "2891382-03",
+    "place_id": "2891382",
+    "text": "그저 그랬습니다.",
+    "rating": 3,
+    "author_type": "혼자",
+    "season": "여름",
+    "visit_time": "오후 2시",
+    "created_at": "2025-12-15"
+  },
+  {
+    "review_id": "2891382-04",
+    "place_id": "2891382",
+    "text": "제주 전통 가옥을 개조해서 그런지 분위기가 정말 남다르네요. 기름떡이 특별해서 또 생각날 것 같아요.",
+    "rating": 5,
+    "author_type": "가족",
+    "season": "겨울",
+    "visit_time": "오후 3시",
+    "created_at": "2026-01-01"
+  },
+  {
+    "review_id": "2891382-05",
+    "place_id": "2891382",
+    "text": "카페 내 좌석이 적어서 조금만 늦게 가도 자리가 없네요. 조용히 즐기고 싶었는데 너무 정신없었습니다.",
+    "rating": 2,
+    "author_type": "친구",
+    "season": "봄",
+    "visit_time": "주말 오후 3시",
+    "created_at": "2025-04-26"
+  },
+  {
+    "review_id": "2891382-06",
+    "place_id": "2891382",
+    "text": "초가집 인테리어와 돌담이 주는 편안함이 최고예요. 창가 자리에 앉아 햇살을 느끼며 먹는 기름떡은 정말 최고입니다.",
+    "rating": 5,
+    "author_type": "커플",
+    "season": "봄",
+    "visit_time": "오전 10시",
+    "created_at": "2026-03-20"
+  },
+  {
+    "review_id": "2891382-07",
+    "place_id": "2891382",
+    "text": "영업 종료 시간이 좀 일찍이라 아쉬웠어요. 더 여유롭게 있고 싶었는데.",
+    "rating": 3,
+    "author_type": "친구",
+    "season": "가을",
+    "visit_time": "오후 4시",
+    "created_at": "2025-05-26"
+  },
+  {
+    "review_id": "2891382-08",
+    "place_id": "2891382",
+    "text": "그냥 평범했어요.",
+    "rating": 3,
+    "author_type": "혼자",
+    "season": "겨울",
+    "visit_time": "오후 1시",
+    "created_at": "2025-12-09"
+  },
+  {
+    "review_id": "2891382-09",
+    "place_id": "2891382",
+    "text": "나무 질감이 느껴지는 소품들이 너무 취향 저격이에요. 기름떡도 설탕이 뿌려져 있어서 아이들도 좋아하네요.",
+    "rating": 5,
+    "author_type": "가족",
+    "season": "여름",
+    "visit_time": "오후 2시",
+    "created_at": "2025-04-10"
+  },
+  {
+    "review_id": "2891382-10",
+    "place_id": "2891382",
+    "text": "시끌벅적한 곳 싫어하는데 이곳은 고즈넉해서 정말 좋았습니다. 찹쌀로 만든 기름떡이 아주 인상적이에요.",
+    "rating": 4,
+    "author_type": "커플",
+    "season": "가을",
+    "visit_time": "오전 11시",
+    "created_at": "2026-07-07"
+  },
+  {
+    "review_id": "2891382-11",
+    "place_id": "2891382",
+    "text": "전통 가옥 분위기 아주 좋아요.",
+    "rating": 4,
+    "author_type": "혼자",
+    "season": "봄",
+    "visit_time": "오후 12시",
+    "created_at": "2025-08-04"
+  },
+  {
+    "review_id": "2891382-12",
+    "place_id": "2891382",
+    "text": "카페 규모가 작아서 단체로 오기에는 무리인 듯합니다. 아늑한 분위기를 찾는 분들께 추천해요.",
+    "rating": 4,
+    "author_type": "친구",
+    "season": "겨울",
+    "visit_time": "오후 3시",
+    "created_at": "2025-12-28"
+  },
+  {
+    "review_id": "2891382-13",
+    "place_id": "2891382",
+    "text": "기름떡이 정말 맛있네요. 갓 구워져 나온 찹쌀떡이라 고소함이 남다릅니다.",
+    "rating": 5,
+    "author_type": "가족",
+    "season": "여름",
+    "visit_time": "오후 1시",
+    "created_at": "2026-01-26"
+  },
+  {
+    "review_id": "2891382-14",
+    "place_id": "2891382",
+    "text": "주말 오후에는 사람이 많아서 자리가 없더라고요. 조용한 시간에 다시 와야겠어요.",
+    "rating": 3,
+    "author_type": "커플",
+    "season": "봄",
+    "visit_time": "주말 오후 3시",
+    "created_at": "2026-01-03"
+  },
+  {
+    "review_id": "2891382-15",
+    "place_id": "2891382",
+    "text": "빈티지한 소품들이 초가집이랑 잘 어울려요. 따뜻한 채광 덕분에 기분 좋게 머물다 갑니다.",
+    "rating": 5,
+    "author_type": "친구",
+    "season": "가을",
+    "visit_time": "오후 2시",
+    "created_at": "2025-01-14"
+  },
+  {
+    "review_id": "2891382-16",
+    "place_id": "2891382",
+    "text": "제주 전통 떡을 카페에서 맛볼 수 있다니 좋네요. 기름떡 추천합니다.",
+    "rating": 4,
+    "author_type": "혼자",
+    "season": "겨울",
+    "visit_time": "오전 10시",
+    "created_at": "2026-05-07"
+  },
+  {
+    "review_id": "2891382-17",
+    "place_id": "2891382",
+    "text": "전체적으로 차분한 분위기입니다.",
+    "rating": 4,
+    "author_type": "가족",
+    "season": "여름",
+    "visit_time": "오전 11시",
+    "created_at": "2025-03-04"
+  },
+  {
+    "review_id": "2891382-18",
+    "place_id": "2891382",
+    "text": "자리가 너무 부족해서 불편했어요. 회전율도 안 좋고 생각보다 그저 그랬습니다.",
+    "rating": 2,
+    "author_type": "친구",
+    "season": "겨울",
+    "visit_time": "주말 오후 2시",
+    "created_at": "2026-04-08"
+  },
+  {
+    "review_id": "2891382-19",
+    "place_id": "2891382",
+    "text": "성읍민속마을에서 가장 예쁜 카페 같아요. 기름떡의 달달함과 고즈넉한 인테리어가 완벽합니다.",
+    "rating": 5,
+    "author_type": "커플",
+    "season": "봄",
+    "visit_time": "오후 1시",
+    "created_at": "2025-05-27"
+  },
+  {
+    "review_id": "2808037-01",
+    "place_id": "2808037",
+    "text": "산방산을 보면서 먹는 산방산 케이크가 정말 특별했습니다. 야외 테라스는 이국적이라 분위기가 아주 좋았어요.",
+    "rating": 5,
+    "author_type": "커플",
+    "season": "봄",
+    "visit_time": "오전 11시",
+    "created_at": "2025-11-24"
+  },
+  {
+    "review_id": "2808037-02",
+    "place_id": "2808037",
+    "text": "음료랑 디저트 가격이 좀 많이 비싼 편이네요. 그래도 뷰는 인정합니다.",
+    "rating": 3,
+    "author_type": "친구",
+    "season": "여름",
+    "visit_time": "오후 1시",
+    "created_at": "2025-04-04"
+  },
+  {
+    "review_id": "2808037-03",
+    "place_id": "2808037",
+    "text": "그냥 그랬음.",
+    "rating": 3,
+    "author_type": "혼자",
+    "season": "가을",
+    "visit_time": "오전 10시",
+    "created_at": "2025-10-31"
+  },
+  {
+    "review_id": "2808037-04",
+    "place_id": "2808037",
+    "text": "황우치해변이 한눈에 들어오는 풍경이 정말 압도적입니다. 다만 사람이 너무 많아서 자리 잡기가 힘들었어요.",
+    "rating": 4,
+    "author_type": "가족",
+    "season": "가을",
+    "visit_time": "오후 3시",
+    "created_at": "2026-02-26"
+  },
+  {
+    "review_id": "2808037-05",
+    "place_id": "2808037",
+    "text": "조용히 쉬고 싶었는데 사람이 너무 붐벼서 정신이 하나도 없었습니다. 여유로운 분위기를 원하시면 비추천입니다.",
+    "rating": 2,
+    "author_type": "혼자",
+    "season": "겨울",
+    "visit_time": "오후 2시",
+    "created_at": "2025-04-19"
+  },
+  {
+    "review_id": "2808037-06",
+    "place_id": "2808037",
+    "text": "원앤온리 브런치는 수란이랑 크림소스 조합이 훌륭해요. 굿즈도 다양해서 기념품 사기 좋았습니다.",
+    "rating": 5,
+    "author_type": "친구",
+    "season": "봄",
+    "visit_time": "오전 11시",
+    "created_at": "2024-10-31"
+  },
+  {
+    "review_id": "2808037-07",
+    "place_id": "2808037",
+    "text": "너무 좋았어요.",
+    "rating": 5,
+    "author_type": "커플",
+    "season": "여름",
+    "visit_time": "오후 12시",
+    "created_at": "2026-09-17"
+  },
+  {
+    "review_id": "2808037-08",
+    "place_id": "2808037",
+    "text": "마감 시간이 생각보다 빨라서 아쉬웠어요. 더 오래 머물고 싶었는데 말이죠.",
+    "rating": 3,
+    "author_type": "친구",
+    "season": "겨울",
+    "visit_time": "오후 4시",
+    "created_at": "2025-11-14"
+  },
+  {
+    "review_id": "2808037-09",
+    "place_id": "2808037",
+    "text": "산방산을 배경으로 찍은 사진들이 전부 다 잘 나왔네요. 커플들끼리 데이트하러 오기 딱 좋은 곳입니다.",
+    "rating": 4,
+    "author_type": "커플",
+    "season": "여름",
+    "visit_time": "오후 3시",
+    "created_at": "2025-09-21"
+  },
+  {
+    "review_id": "2808037-10",
+    "place_id": "2808037",
+    "text": "사람이 너무 많아서 대기가 너무 길었어요. 쾌적한 휴식을 생각한다면 다시 고려해볼 것 같습니다.",
+    "rating": 2,
+    "author_type": "가족",
+    "season": "가을",
+    "visit_time": "오후 2시",
+    "created_at": "2025-03-06"
+  },
+  {
+    "review_id": "2808037-11",
+    "place_id": "2808037",
+    "text": "친구들과 방문했는데 황우치해변이 보이는 풍경이 너무 멋져서 다들 좋아했습니다.",
+    "rating": 5,
+    "author_type": "친구",
+    "season": "봄",
+    "visit_time": "오후 1시",
+    "created_at": "2025-01-07"
+  },
+  {
+    "review_id": "2808037-12",
+    "place_id": "2808037",
+    "text": "산방산 케이크 모양이 신기해서 주문해봤는데 맛있게 잘 먹었습니다.",
+    "rating": 4,
+    "author_type": "혼자",
+    "season": "겨울",
+    "visit_time": "오후 1시",
+    "created_at": "2026-08-17"
+  },
+  {
+    "review_id": "2808037-13",
+    "place_id": "2808037",
+    "text": "풍경이 다 했습니다. 사람이 많긴 하지만 한 번쯤 가볼 만합니다.",
+    "rating": 4,
+    "author_type": "가족",
+    "season": "봄",
+    "visit_time": "오전 11시",
+    "created_at": "2026-02-08"
+  },
+  {
+    "review_id": "2815713-01",
+    "place_id": "2815713",
+    "text": "산방산 뷰가 정말 멋지네요. 베이커리 종류도 다양해서 가족들과 즐거운 시간 보내고 왔습니다.",
+    "rating": 5,
+    "author_type": "가족",
+    "season": "봄",
+    "visit_time": "오전 11시",
+    "created_at": "2025-01-10"
+  },
+  {
+    "review_id": "2815713-02",
+    "place_id": "2815713",
+    "text": "직접 구운 빵이라 그런지 향이 너무 좋았어요. 매장이 넓어서 단체로 가기 딱 좋아요.",
+    "rating": 5,
+    "author_type": "친구",
+    "season": "가을",
+    "visit_time": "오후 1시",
+    "created_at": "2026-05-08"
+  },
+  {
+    "review_id": "2815713-03",
+    "place_id": "2815713",
+    "text": "주차가 편해서 좋았어요.",
+    "rating": 4,
+    "author_type": "커플",
+    "season": "여름",
+    "visit_time": "오후 5시",
+    "created_at": "2026-02-05"
+  },
+  {
+    "review_id": "2815713-04",
+    "place_id": "2815713",
+    "text": "주말 오후에 갔더니 사람이 너무 많아서 정신이 하나도 없었어요. 조용한 분위기를 기대했는데 실망이네요.",
+    "rating": 2,
+    "author_type": "혼자",
+    "season": "여름",
+    "visit_time": "오후 3시",
+    "created_at": "2025-10-15"
+  },
+  {
+    "review_id": "2815713-05",
+    "place_id": "2815713",
+    "text": "건물이 웅장하고 예뻐요. 브런치 메뉴도 깔끔하니 괜찮네요.",
+    "rating": 4,
+    "author_type": "친구",
+    "season": "봄",
+    "visit_time": "오전 10시",
+    "created_at": "2025-03-04"
+  },
+  {
+    "review_id": "2815713-06",
+    "place_id": "2815713",
+    "text": "그저 그랬습니다.",
+    "rating": 3,
+    "author_type": "가족",
+    "season": "겨울",
+    "visit_time": "오후 2시",
+    "created_at": "2026-06-17"
+  },
+  {
+    "review_id": "2815713-07",
+    "place_id": "2815713",
+    "text": "산방산이 보이는 뷰가 정말 일품입니다. 다만 사람이 많아 대기가 좀 있었지만 기다릴 가치가 있었어요.",
+    "rating": 4,
+    "author_type": "커플",
+    "season": "가을",
+    "visit_time": "오후 2시 30분",
+    "created_at": "2026-07-12"
+  },
+  {
+    "review_id": "2815713-08",
+    "place_id": "2815713",
+    "text": "실내가 매우 넓어서 쾌적합니다. 베이킹 공간이 커서 신뢰가 가고 직접 만든 디저트라 맛도 좋네요.",
+    "rating": 5,
+    "author_type": "친구",
+    "season": "여름",
+    "visit_time": "오후 12시",
+    "created_at": "2026-02-23"
+  },
+  {
+    "review_id": "2815713-09",
+    "place_id": "2815713",
+    "text": "시설은 깨끗한데 사람이 너무 많아 소란스러워 혼자 작업하기엔 적합하지 않네요.",
+    "rating": 2,
+    "author_type": "혼자",
+    "season": "가을",
+    "visit_time": "오후 3시 30분",
+    "created_at": "2026-03-22"
+  },
+  {
+    "review_id": "2815713-10",
+    "place_id": "2815713",
+    "text": "주차장이 넓어 초보 운전자인 저도 편하게 이용했습니다.",
+    "rating": 5,
+    "author_type": "가족",
+    "season": "겨울",
+    "visit_time": "오전 11시 30분",
+    "created_at": "2025-12-05"
+  },
+  {
+    "review_id": "2815713-11",
+    "place_id": "2815713",
+    "text": "그냥 평범해요.",
+    "rating": 3,
+    "author_type": "친구",
+    "season": "봄",
+    "visit_time": "오후 1시",
+    "created_at": "2025-11-15"
+  },
+  {
+    "review_id": "2815713-12",
+    "place_id": "2815713",
+    "text": "단체 모임 하기에 이만한 장소가 없네요. 뷰도 예쁘고 내부가 쾌적해서 다들 좋아했습니다.",
+    "rating": 5,
+    "author_type": "가족",
+    "season": "여름",
+    "visit_time": "오후 1시",
+    "created_at": "2025-11-01"
+  },
+  {
+    "review_id": "2815713-13",
+    "place_id": "2815713",
+    "text": "빨간 벽돌 건물부터 눈길을 끄네요. 갓 구운 빵 냄새 가득한 공간에서 산방산 보며 쉬기 좋습니다.",
+    "rating": 4,
+    "author_type": "커플",
+    "season": "봄",
+    "visit_time": "오후 12시",
+    "created_at": "2025-04-09"
+  },
+  {
+    "review_id": "2815713-14",
+    "place_id": "2815713",
+    "text": "공간은 넓은데 사람이 너무 북적여서 제대로 쉬질 못했어요. 주말은 피하시는 게 좋을 듯합니다.",
+    "rating": 2,
+    "author_type": "혼자",
+    "season": "겨울",
+    "visit_time": "오후 2시",
+    "created_at": "2025-09-23"
+  },
+  {
+    "review_id": "2815713-15",
+    "place_id": "2815713",
+    "text": "베이커리 종류가 다양해서 고르는 재미가 있었어요.",
+    "rating": 4,
+    "author_type": "친구",
+    "season": "가을",
+    "visit_time": "오후 1시 30분",
+    "created_at": "2025-06-02"
+  },
+  {
+    "review_id": "2815713-16",
+    "place_id": "2815713",
+    "text": "매장에서 디저트를 직접 만드는 모습이 보여서 믿음이 갑니다. 가족들과 오기 참 좋은 곳이네요.",
+    "rating": 5,
+    "author_type": "가족",
+    "season": "봄",
+    "visit_time": "오후 1시",
+    "created_at": "2026-02-12"
+  },
+  {
+    "review_id": "2815713-17",
+    "place_id": "2815713",
+    "text": "깔끔하고 뷰가 최고예요.",
+    "rating": 5,
+    "author_type": "커플",
+    "season": "여름",
+    "visit_time": "오후 4시",
+    "created_at": "2026-01-02"
+  },
+  {
+    "review_id": "2815713-18",
+    "place_id": "2815713",
+    "text": "점심 지나고 갔더니 사람이 정말 많더라고요. 다음엔 좀 일찍 와야겠어요.",
+    "rating": 3,
+    "author_type": "친구",
+    "season": "가을",
+    "visit_time": "오후 3시",
+    "created_at": "2025-10-25"
+  },
+  {
+    "review_id": "2790670-01",
+    "place_id": "2790670",
+    "text": "사일리커피 오션뷰 정말 최고예요! 테라스에서 마라도랑 가파도까지 보이고 산방산 전망도 훌륭합니다.",
+    "rating": 5,
+    "author_type": "가족",
+    "season": "봄",
+    "visit_time": "오전 11시",
+    "created_at": "2026-06-14"
+  },
+  {
+    "review_id": "2790670-02",
+    "place_id": "2790670",
+    "text": "카페 앞에 해안가가 있어서 커피 마시고 산책하기 딱 좋아요. 현무암 해변이 정말 이색적이네요.",
+    "rating": 5,
+    "author_type": "커플",
+    "season": "가을",
+    "visit_time": "오후 1시",
+    "created_at": "2026-09-12"
+  },
+  {
+    "review_id": "2790670-03",
+    "place_id": "2790670",
+    "text": "공간이 넓어서 아이들 데리고 가기 정말 편했어요. 베이커리랑 라떼도 있어서 아이들도 잘 먹었습니다.",
+    "rating": 4,
+    "author_type": "가족",
+    "season": "여름",
+    "visit_time": "오후 3시",
+    "created_at": "2025-07-21"
+  },
+  {
+    "review_id": "2790670-04",
+    "place_id": "2790670",
+    "text": "좋았습니다.",
+    "rating": 4,
+    "author_type": "혼자",
+    "season": "가을",
+    "visit_time": "오전 10시",
+    "created_at": "2026-07-24"
+  },
+  {
+    "review_id": "2790670-05",
+    "place_id": "2790670",
+    "text": "제주 최남단이라 그런지 경치가 너무 좋네요. 가족들이랑 왔는데 다들 좋아했습니다.",
+    "rating": 5,
+    "author_type": "가족",
+    "season": "여름",
+    "visit_time": "오후 2시",
+    "created_at": "2025-07-07"
+  },
+  {
+    "review_id": "2790670-06",
+    "place_id": "2790670",
+    "text": "그저 그랬어요.",
+    "rating": 3,
+    "author_type": "친구",
+    "season": "겨울",
+    "visit_time": "오후 4시",
+    "created_at": "2025-09-25"
+  },
+  {
+    "review_id": "2790670-07",
+    "place_id": "2790670",
+    "text": "조용히 책 읽으러 왔는데 사람이 너무 많고 시끄러워서 집중하기 힘들었어요. 독서하기엔 비추천입니다.",
+    "rating": 2,
+    "author_type": "혼자",
+    "season": "봄",
+    "visit_time": "오후 2시",
+    "created_at": "2025-07-25"
+  },
+  {
+    "review_id": "2790670-08",
+    "place_id": "2790670",
+    "text": "영업 종료 시간이 생각보다 너무 일러서 아쉬웠어요. 저녁에 느긋하게 즐기고 싶었는데 금방 나와야 했네요.",
+    "rating": 3,
+    "author_type": "커플",
+    "season": "봄",
+    "visit_time": "오후 3시",
+    "created_at": "2024-11-30"
+  },
+  {
+    "review_id": "2790670-09",
+    "place_id": "2790670",
+    "text": "바닷가 바로 옆이라 그런지 바람이 너무 강하게 불어서 테라스 이용하기가 좀 불편했어요.",
+    "rating": 2,
+    "author_type": "친구",
+    "season": "겨울",
+    "visit_time": "오후 1시",
+    "created_at": "2025-01-05"
+  },
+  {
+    "review_id": "2790670-10",
+    "place_id": "2790670",
+    "text": "산방산이랑 바다가 한눈에 들어오는 뷰가 정말 기억에 남아요. 다음 제주 여행 때 또 올 것 같아요.",
+    "rating": 5,
+    "author_type": "커플",
+    "season": "가을",
+    "visit_time": "오후 3시",
+    "created_at": "2026-05-27"
+  },
+  {
+    "review_id": "2790670-11",
+    "place_id": "2790670",
+    "text": "가족들이랑 함께 방문했는데 카페도 넓고 해변 산책로도 있어서 알차게 시간 보냈습니다.",
+    "rating": 4,
+    "author_type": "가족",
+    "season": "여름",
+    "visit_time": "오후 2시",
+    "created_at": "2026-01-08"
+  },
+  {
+    "review_id": "2790670-12",
+    "place_id": "2790670",
+    "text": "다양한 음료랑 빵이 있어서 선택지가 많아 좋았고 바다 전망 보며 쉬기엔 최고입니다.",
+    "rating": 5,
+    "author_type": "친구",
+    "season": "여름",
+    "visit_time": "오후 1시",
+    "created_at": "2024-11-25"
+  },
+  {
+    "review_id": "2664574-01",
+    "place_id": "2664574",
+    "text": "유럽풍 건축물과 바다의 조화가 정말 멋지네요. 섶 섬과 범 섬을 바라보며 조용히 커피를 즐길 수 있어서 친구와 함께 힐링하고 왔습니다.",
+    "rating": 5,
+    "author_type": "친구",
+    "season": "봄",
+    "visit_time": "평일 오전 11시",
+    "created_at": "2025-05-01"
+  },
+  {
+    "review_id": "2664574-02",
+    "place_id": "2664574",
+    "text": "바다 전망 최고네요. 이국적인 정원 산책로도 잘 되어 있어서 좋았어요.",
+    "rating": 5,
+    "author_type": "커플",
+    "season": "여름",
+    "visit_time": "평일 오후 2시",
+    "created_at": "2025-07-08"
+  },
+  {
+    "review_id": "2664574-03",
+    "place_id": "2664574",
+    "text": "산책로 따라 걷다 보니 식물원에 온 것 같은 기분이 들더라고요. 다만 주말에 갔더니 사람이 너무 많아서 앉을 자리가 없어서 고생했습니다.",
+    "rating": 3,
+    "author_type": "혼자",
+    "season": "가을",
+    "visit_time": "주말 오후 3시",
+    "created_at": "2026-01-07"
+  },
+  {
+    "review_id": "2664574-04",
+    "place_id": "2664574",
+    "text": "분위기 좋음.",
+    "rating": 4,
+    "author_type": "친구",
+    "season": "가을",
+    "visit_time": "평일 오후 1시",
+    "created_at": "2024-11-25"
+  },
+  {
+    "review_id": "2664574-05",
+    "place_id": "2664574",
+    "text": "가족이랑 왔는데 접근로가 생각보다 복잡해서 한참 헤맸네요. 어린아이 데려오기에는 조금 불편한 것 같습니다.",
+    "rating": 2,
+    "author_type": "가족",
+    "season": "봄",
+    "visit_time": "주말 오후 2시",
+    "created_at": "2025-06-22"
+  },
+  {
+    "review_id": "2664574-06",
+    "place_id": "2664574",
+    "text": "이국적인 느낌이 물씬 풍겨서 커플들에게 강력 추천해요. 테라스에 앉아 바다를 가까이서 보며 디저트 먹으니 정말 평화로웠습니다.",
+    "rating": 5,
+    "author_type": "커플",
+    "season": "여름",
+    "visit_time": "평일 오전 10시",
+    "created_at": "2025-06-07"
+  },
+  {
+    "review_id": "2664574-07",
+    "place_id": "2664574",
+    "text": "그저 그랬어요.",
+    "rating": 3,
+    "author_type": "혼자",
+    "season": "겨울",
+    "visit_time": "평일 오후 4시",
+    "created_at": "2026-10-01"
+  },
+  {
+    "review_id": "2664574-08",
+    "place_id": "2664574",
+    "text": "음료 가격대가 좀 있는 편이지만 전망이 그만큼 압도적이라 아깝지 않네요. 조용한 분위기를 즐기기에 최적의 장소입니다.",
+    "rating": 4,
+    "author_type": "친구",
+    "season": "가을",
+    "visit_time": "평일 오후 2시",
+    "created_at": "2026-10-09"
+  },
+  {
+    "review_id": "2664574-09",
+    "place_id": "2664574",
+    "text": "옛 파라다이스 호텔 공간이라 그런지 건축물이 독특하고 정원이 참 예뻐요. 식사 겸 샌드위치도 함께 먹었는데 괜찮았습니다.",
+    "rating": 4,
+    "author_type": "커플",
+    "season": "봄",
+    "visit_time": "평일 오후 1시",
+    "created_at": "2026-02-20"
+  },
+  {
+    "review_id": "2664574-10",
+    "place_id": "2664574",
+    "text": "바다를 바로 앞에서 볼 수 있는 테라스 자리가 정말 인상적이었어요.",
+    "rating": 5,
+    "author_type": "혼자",
+    "season": "여름",
+    "visit_time": "평일 오전 9시",
+    "created_at": "2026-01-03"
+  },
+  {
+    "review_id": "2664574-11",
+    "place_id": "2664574",
+    "text": "주말에 방문했는데 사람이 너무 많아서 정신이 하나도 없었습니다. 조용한 분위기를 기대했는데 실망이에요.",
+    "rating": 1,
+    "author_type": "가족",
+    "season": "여름",
+    "visit_time": "주말 오후 3시",
+    "created_at": "2024-11-07"
+  },
+  {
+    "review_id": "2664574-12",
+    "place_id": "2664574",
+    "text": "산책로가 너무 잘 조성되어 있어서 식물원에 온 듯한 착각이 들 정도예요. 혼자 사색하며 커피 한 잔 하기 딱 좋아요.",
+    "rating": 5,
+    "author_type": "혼자",
+    "season": "가을",
+    "visit_time": "평일 오후 3시",
+    "created_at": "2026-07-08"
+  },
+  {
+    "review_id": "2664574-13",
+    "place_id": "2664574",
+    "text": "디저트 종류가 많아서 친구와 이것저것 시켜 먹었네요. 섶 섬과 범 섬이 보이는 뷰가 정말 평화롭고 좋았습니다.",
+    "rating": 4,
+    "author_type": "친구",
+    "season": "겨울",
+    "visit_time": "평일 오전 11시",
+    "created_at": "2024-10-28"
+  },
+  {
+    "review_id": "2664574-14",
+    "place_id": "2664574",
+    "text": "가족끼리 왔는데 자리가 너무 좁고 비싸서 만족스럽지 못했네요.",
+    "rating": 2,
+    "author_type": "가족",
+    "season": "여름",
+    "visit_time": "주말 오후 2시",
+    "created_at": "2025-10-31"
+  },
+  {
+    "review_id": "2562214-01",
+    "place_id": "2562214",
+    "text": "라바를 좋아하는 아이들이 정말 즐거워하네요. 오스카 뉴월드와 라바 어드벤처 빌리지까지 구경거리가 많아서 좋았습니다.",
+    "rating": 5,
+    "author_type": "가족",
+    "season": "봄",
+    "visit_time": "오전",
+    "created_at": "2025-10-05"
+  },
+  {
+    "review_id": "2562214-02",
+    "place_id": "2562214",
+    "text": "캐릭터들이 귀여워요. 다만 주말에 방문했더니 대기 시간이 너무 길어서 힘들었습니다.",
+    "rating": 3,
+    "author_type": "친구",
+    "season": "여름",
+    "visit_time": "오후",
+    "created_at": "2025-07-26"
+  },
+  {
+    "review_id": "2562214-03",
+    "place_id": "2562214",
+    "text": "어트랙션이 다양해서 하루 종일 재미있게 보냈어요.",
+    "rating": 4,
+    "author_type": "커플",
+    "season": "가을",
+    "visit_time": "오전",
+    "created_at": "2025-09-11"
+  },
+  {
+    "review_id": "2562214-04",
+    "place_id": "2562214",
+    "text": "야외 시설이라 날씨 영향을 많이 받네요. 맑은 날 다시 가보고 싶어요.",
+    "rating": 3,
+    "author_type": "가족",
+    "season": "여름",
+    "visit_time": "오후",
+    "created_at": "2025-05-19"
+  },
+  {
+    "review_id": "2562214-05",
+    "place_id": "2562214",
+    "text": "조용히 쉬는 여행을 원했는데 여기는 너무 북적거리고 정신이 없어서 별로였습니다.",
+    "rating": 1,
+    "author_type": "혼자",
+    "season": "봄",
+    "visit_time": "오후",
+    "created_at": "2025-10-28"
+  },
+  {
+    "review_id": "2562214-06",
+    "place_id": "2562214",
+    "text": "라바 캐릭터들이 많아서 사진 찍기 정말 좋았고 놀이기구 종류도 12가지라 알차게 놀았네요.",
+    "rating": 5,
+    "author_type": "친구",
+    "season": "봄",
+    "visit_time": "오전",
+    "created_at": "2024-12-20"
+  },
+  {
+    "review_id": "2562214-07",
+    "place_id": "2562214",
+    "text": "그저 그랬습니다.",
+    "rating": 3,
+    "author_type": "혼자",
+    "season": "가을",
+    "visit_time": "오전",
+    "created_at": "2026-09-09"
+  },
+  {
+    "review_id": "2562214-08",
+    "place_id": "2562214",
+    "text": "음식 반입이 안 되는 점은 조금 아쉽지만 아이들과 함께 가서 즐거운 시간 보내기에는 적합합니다.",
+    "rating": 4,
+    "author_type": "가족",
+    "season": "겨울",
+    "visit_time": "오후",
+    "created_at": "2026-06-18"
+  },
+  {
+    "review_id": "2562214-09",
+    "place_id": "2562214",
+    "text": "로터리 파크부터 라바 어드벤처 빌리지까지 컨셉이 뚜렷해서 만족스러웠어요.",
+    "rating": 5,
+    "author_type": "친구",
+    "season": "가을",
+    "visit_time": "오후",
+    "created_at": "2025-07-30"
+  },
+  {
+    "review_id": "2562214-10",
+    "place_id": "2562214",
+    "text": "기다리는 게 너무 싫어서 제대로 즐기지 못했네요. 대기 줄이 긴 건 좀 개선이 필요해요.",
+    "rating": 2,
+    "author_type": "커플",
+    "season": "여름",
+    "visit_time": "오후",
+    "created_at": "2026-08-19"
+  },
+  {
+    "review_id": "2562214-11",
+    "place_id": "2562214",
+    "text": "좋았습니다.",
+    "rating": 4,
+    "author_type": "가족",
+    "season": "봄",
+    "visit_time": "오전",
+    "created_at": "2026-07-29"
+  },
+  {
+    "review_id": "2562214-12",
+    "place_id": "2562214",
+    "text": "다양한 연령대가 놀기 괜찮은 곳 같아요. 정글 같은 분위기의 오스카 뉴월드가 인상적입니다.",
+    "rating": 4,
+    "author_type": "친구",
+    "season": "겨울",
+    "visit_time": "오전",
+    "created_at": "2026-10-08"
+  },
+  {
+    "review_id": "1737497-01",
+    "place_id": "1737497",
+    "text": "아이들이 초콜릿 만들기를 정말 좋아했어요. 직접 만든 걸 포장까지 해서 선물하니 뜻깊네요.",
+    "rating": 5,
+    "author_type": "가족",
+    "season": "여름",
+    "visit_time": "평일 오전",
+    "created_at": "2025-07-08"
+  },
+  {
+    "review_id": "1737497-02",
+    "place_id": "1737497",
+    "text": "중문관광단지 안에 있어서 위치는 참 좋았어요. 다만 전시관 규모가 생각보다 너무 작아서 금방 보고 나왔네요.",
+    "rating": 3,
+    "author_type": "친구",
+    "season": "봄",
+    "visit_time": "주말 오후",
+    "created_at": "2026-02-25"
+  },
+  {
+    "review_id": "1737497-03",
+    "place_id": "1737497",
+    "text": "달콤한 향기가 가득해서 기분이 좋았습니다. 연인과 데이트하기에 적당한 곳 같아요.",
+    "rating": 4,
+    "author_type": "커플",
+    "season": "가을",
+    "visit_time": "평일 오후",
+    "created_at": "2025-10-21"
+  },
+  {
+    "review_id": "1737497-04",
+    "place_id": "1737497",
+    "text": "그저 그랬습니다.",
+    "rating": 3,
+    "author_type": "혼자",
+    "season": "겨울",
+    "visit_time": "평일 오전",
+    "created_at": "2026-10-11"
+  },
+  {
+    "review_id": "1737497-05",
+    "place_id": "1737497",
+    "text": "체험 활동에 관심이 없는 저에게는 별로였어요. 너무 시끄럽고 어수선해서 조용히 구경하고 싶은 분들에겐 추천하지 않습니다.",
+    "rating": 2,
+    "author_type": "혼자",
+    "season": "여름",
+    "visit_time": "공휴일 오전",
+    "created_at": "2025-05-15"
+  },
+  {
+    "review_id": "1737497-06",
+    "place_id": "1737497",
+    "text": "아이와 함께 초콜릿 만들기를 했는데 체험비가 좀 비싼 편이네요. 그래도 애들이 좋아하니 만족합니다.",
+    "rating": 4,
+    "author_type": "가족",
+    "season": "봄",
+    "visit_time": "주말 오후",
+    "created_at": "2026-06-09"
+  },
+  {
+    "review_id": "1737497-07",
+    "place_id": "1737497",
+    "text": "마카롱 만들기 체험도 재미있었고 초콜릿 향이 너무 좋아서 행복했어요.",
+    "rating": 5,
+    "author_type": "친구",
+    "season": "가을",
+    "visit_time": "평일 오후",
+    "created_at": "2026-03-02"
+  },
+  {
+    "review_id": "1737497-08",
+    "place_id": "1737497",
+    "text": "초콜릿 종류가 많아서 눈이 즐거웠어요.",
+    "rating": 4,
+    "author_type": "커플",
+    "season": "겨울",
+    "visit_time": "평일 오전",
+    "created_at": "2025-06-23"
+  },
+  {
+    "review_id": "1737497-09",
+    "place_id": "1737497",
+    "text": "중문단지 구경하다 들렀는데 체험 프로그램이 다양해서 좋았습니다.",
+    "rating": 5,
+    "author_type": "가족",
+    "season": "봄",
+    "visit_time": "평일 오후",
+    "created_at": "2026-05-01"
+  },
+  {
+    "review_id": "1737497-10",
+    "place_id": "1737497",
+    "text": "비싸고 좁아요. 딱히 추천하고 싶지 않네요.",
+    "rating": 1,
+    "author_type": "커플",
+    "season": "여름",
+    "visit_time": "주말 오후",
+    "created_at": "2026-10-06"
+  },
+  {
+    "review_id": "1737497-11",
+    "place_id": "1737497",
+    "text": "전망대까지 알차게 보고 왔습니다.",
+    "rating": 4,
+    "author_type": "친구",
+    "season": "겨울",
+    "visit_time": "평일 오전",
+    "created_at": "2025-01-22"
+  },
+  {
+    "review_id": "1620936-01",
+    "place_id": "1620936",
+    "text": "이중섭 거주 초가도 보고 예쁜 공방들을 구경하는 재미가 쏠쏠했네요. 친구들과 예술적인 분위기를 즐기기에 딱이었어요.",
+    "rating": 5,
+    "author_type": "친구",
+    "season": "봄",
+    "visit_time": "오전",
+    "created_at": "2026-05-18"
+  },
+  {
+    "review_id": "1620936-02",
+    "place_id": "1620936",
+    "text": "오르막길이 꽤 있어서 걷다 보니 다리가 아팠어요. 어르신 모시고 오기엔 좀 힘드네요.",
+    "rating": 2,
+    "author_type": "가족",
+    "season": "여름",
+    "visit_time": "오후",
+    "created_at": "2025-08-06"
+  },
+  {
+    "review_id": "1620936-03",
+    "place_id": "1620936",
+    "text": "아기자기한 소품샵들이 많아서 커플끼리 데이트하며 구경하기 좋습니다.",
+    "rating": 4,
+    "author_type": "커플",
+    "season": "가을",
+    "visit_time": "오후",
+    "created_at": "2025-11-02"
+  },
+  {
+    "review_id": "1620936-04",
+    "place_id": "1620936",
+    "text": "혼자 천천히 걸으며 예술가의 자취를 느끼기 좋았습니다.",
+    "rating": 5,
+    "author_type": "혼자",
+    "season": "겨울",
+    "visit_time": "오전",
+    "created_at": "2024-10-27"
+  },
+  {
+    "review_id": "1620936-05",
+    "place_id": "1620936",
+    "text": "사람이 너무 많아서 정신이 없었어요.",
+    "rating": 2,
+    "author_type": "친구",
+    "season": "봄",
+    "visit_time": "주말 오후",
+    "created_at": "2025-10-09"
+  },
+  {
+    "review_id": "1620936-06",
+    "place_id": "1620936",
+    "text": "맛집이 많아서 좋았어요.",
+    "rating": 4,
+    "author_type": "친구",
+    "season": "가을",
+    "visit_time": "점심시간",
+    "created_at": "2025-03-20"
+  },
+  {
+    "review_id": "1620936-07",
+    "place_id": "1620936",
+    "text": "주말이라 그런지 사람이 정말 많네요. 그래도 주변에 맛집이 많아 이동하기 편했습니다.",
+    "rating": 4,
+    "author_type": "커플",
+    "season": "여름",
+    "visit_time": "주말 오후",
+    "created_at": "2025-03-06"
+  },
+  {
+    "review_id": "1620936-08",
+    "place_id": "1620936",
+    "text": "거리 전체가 감성적이고 예뻐요. 소품 구경하느라 시간 가는 줄 몰랐네요.",
+    "rating": 5,
+    "author_type": "친구",
+    "season": "봄",
+    "visit_time": "오후",
+    "created_at": "2026-02-17"
+  },
+  {
+    "review_id": "1620936-09",
+    "place_id": "1620936",
+    "text": "그냥 평범해요.",
+    "rating": 3,
+    "author_type": "혼자",
+    "season": "겨울",
+    "visit_time": "오전",
+    "created_at": "2025-07-27"
+  },
+  {
+    "review_id": "1620936-10",
+    "place_id": "1620936",
+    "text": "이중섭 화가의 삶을 엿볼 수 있는 의미 있는 거리였습니다. 공방들이 참 예쁘네요.",
+    "rating": 4,
+    "author_type": "가족",
+    "season": "가을",
+    "visit_time": "오후",
+    "created_at": "2026-08-03"
+  },
+  {
+    "review_id": "1620936-11",
+    "place_id": "1620936",
+    "text": "오르막길이 계속 이어져서 걷기 힘들었어요. 비추합니다.",
+    "rating": 1,
+    "author_type": "가족",
+    "season": "여름",
+    "visit_time": "오후",
+    "created_at": "2025-10-08"
+  },
+  {
+    "review_id": "1620936-12",
+    "place_id": "1620936",
+    "text": "소품샵 구경하는 재미가 크네요. 도보로 맛집까지 이동 가능해서 동선이 참 좋았어요.",
+    "rating": 5,
+    "author_type": "커플",
+    "season": "봄",
+    "visit_time": "점심시간",
+    "created_at": "2025-12-02"
+  },
+  {
+    "review_id": "1620936-13",
+    "place_id": "1620936",
+    "text": "사람이 너무 붐벼서 제대로 구경하기 어려웠어요.",
+    "rating": 2,
+    "author_type": "친구",
+    "season": "가을",
+    "visit_time": "주말 오후",
+    "created_at": "2026-09-30"
+  },
+  {
+    "review_id": "1620936-14",
+    "place_id": "1620936",
+    "text": "예술적 분위기가 느껴져서 좋았습니다.",
+    "rating": 4,
+    "author_type": "혼자",
+    "season": "겨울",
+    "visit_time": "오전",
+    "created_at": "2026-10-18"
+  },
+  {
+    "review_id": "1620936-15",
+    "place_id": "1620936",
+    "text": "아기자기한 편집샵이 많아서 눈이 즐거웠습니다. 추천해요.",
+    "rating": 5,
+    "author_type": "커플",
+    "season": "봄",
+    "visit_time": "오후",
+    "created_at": "2026-10-01"
+  },
+  {
+    "review_id": "1620936-16",
+    "place_id": "1620936",
+    "text": "좋았습니다.",
+    "rating": 4,
+    "author_type": "가족",
+    "season": "가을",
+    "visit_time": "오전",
+    "created_at": "2025-02-17"
+  },
+  {
+    "review_id": "1620936-17",
+    "place_id": "1620936",
+    "text": "경사가 심해서 걷기 불편해요. 거동 불편하신 분들은 피하세요.",
+    "rating": 2,
+    "author_type": "가족",
+    "season": "여름",
+    "visit_time": "오후",
+    "created_at": "2026-04-14"
+  },
+  {
+    "review_id": "1620936-18",
+    "place_id": "1620936",
+    "text": "맛있는 식당들이 몰려 있어서 편하게 다녀왔네요.",
+    "rating": 4,
+    "author_type": "친구",
+    "season": "봄",
+    "visit_time": "점심시간",
+    "created_at": "2024-12-31"
+  },
+  {
+    "review_id": "1620936-19",
+    "place_id": "1620936",
+    "text": "그저 그랬어요.",
+    "rating": 3,
+    "author_type": "혼자",
+    "season": "겨울",
+    "visit_time": "오후",
+    "created_at": "2025-05-19"
+  },
+  {
+    "review_id": "2765245-01",
+    "place_id": "2765245",
+    "text": "송악산 해안 절벽의 웅장함이 압도적입니다. 역사적인 의미가 담긴 곳이라 더 깊이 있게 느껴졌어요.",
+    "rating": 5,
+    "author_type": "커플",
+    "season": "봄",
+    "visit_time": "오전 10시",
+    "created_at": "2025-07-03"
+  },
+  {
+    "review_id": "2765245-02",
+    "place_id": "2765245",
+    "text": "동굴 내부 출입이 안 돼서 아쉬웠지만 형제섬을 조망하기에는 최적의 장소네요.",
+    "rating": 4,
+    "author_type": "친구",
+    "season": "가을",
+    "visit_time": "오전 9시",
+    "created_at": "2025-07-06"
+  },
+  {
+    "review_id": "2765245-03",
+    "place_id": "2765245",
+    "text": "그저 그랬습니다.",
+    "rating": 3,
+    "author_type": "혼자",
+    "season": "여름",
+    "visit_time": "오후 3시",
+    "created_at": "2025-09-22"
+  },
+  {
+    "review_id": "2765245-04",
+    "place_id": "2765245",
+    "text": "일제 강점기 군사 시설에 대해 알게 되어 의미 있는 시간이었습니다. 해안 경관도 멋지네요.",
+    "rating": 5,
+    "author_type": "가족",
+    "season": "봄",
+    "visit_time": "오후 1시",
+    "created_at": "2026-04-10"
+  },
+  {
+    "review_id": "2765245-05",
+    "place_id": "2765245",
+    "text": "낙석 위험으로 접근이 제한된 곳이 많아 실망스러웠습니다. 아이와 함께 가기엔 위험해 보여요.",
+    "rating": 2,
+    "author_type": "가족",
+    "season": "여름",
+    "visit_time": "오후 2시",
+    "created_at": "2024-11-12"
+  },
+  {
+    "review_id": "2765245-06",
+    "place_id": "2765245",
+    "text": "동굴 너비가 3~4m 정도라던데 밖에서 봐도 그 규모가 상당하더군요. 형제섬이 여러 개로 보이는 뷰가 정말 신기했습니다.",
+    "rating": 5,
+    "author_type": "친구",
+    "season": "겨울",
+    "visit_time": "오전 11시",
+    "created_at": "2025-02-15"
+  },
+  {
+    "review_id": "2765245-07",
+    "place_id": "2765245",
+    "text": "좋았습니다.",
+    "rating": 4,
+    "author_type": "혼자",
+    "season": "가을",
+    "visit_time": "오후 2시",
+    "created_at": "2026-04-25"
+  },
+  {
+    "review_id": "2765245-08",
+    "place_id": "2765245",
+    "text": "산책로에 그늘이 거의 없어서 걷기가 너무 힘들었어요. 노약자에게는 비추천입니다.",
+    "rating": 2,
+    "author_type": "가족",
+    "season": "여름",
+    "visit_time": "오후 3시",
+    "created_at": "2026-10-17"
+  },
+  {
+    "review_id": "2765245-09",
+    "place_id": "2765245",
+    "text": "역사적인 아픔이 있는 곳이라 숙연해지네요. 해안 절벽을 따라 걷는 길은 참 아름다웠습니다.",
+    "rating": 4,
+    "author_type": "커플",
+    "season": "봄",
+    "visit_time": "오후 4시",
+    "created_at": "2026-02-14"
+  },
+  {
+    "review_id": "2765245-10",
+    "place_id": "2765245",
+    "text": "형제섬이 쪼개져 보이는 모습이 정말 인상적이었어요. 친구들과 사진 남기기 좋았습니다.",
+    "rating": 5,
+    "author_type": "친구",
+    "season": "가을",
+    "visit_time": "오전 10시",
+    "created_at": "2025-03-23"
+  },
+  {
+    "review_id": "2765245-11",
+    "place_id": "2765245",
+    "text": "볼 게 별로 없고 입장도 안 돼서 시간 낭비한 기분이에요.",
+    "rating": 1,
+    "author_type": "혼자",
+    "season": "여름",
+    "visit_time": "주말 오후 2시",
+    "created_at": "2025-04-19"
+  },
+  {
+    "review_id": "2765245-12",
+    "place_id": "2765245",
+    "text": "해안 절벽의 웅장한 경관 하나는 정말 최고입니다. 역사 공부도 되고 뜻깊었어요.",
+    "rating": 4,
+    "author_type": "커플",
+    "season": "겨울",
+    "visit_time": "오후 1시",
+    "created_at": "2025-09-11"
+  },
+  {
+    "review_id": "2765245-13",
+    "place_id": "2765245",
+    "text": "아이들이 걷기엔 힘들 것 같아요. 어른들끼리 역사 탐방하러 오기 좋은 곳입니다.",
+    "rating": 3,
+    "author_type": "가족",
+    "season": "봄",
+    "visit_time": "오후 3시",
+    "created_at": "2025-05-09"
+  },
+  {
+    "review_id": "2765245-14",
+    "place_id": "2765245",
+    "text": "형제섬 뷰가 좋아서 다시 가보고 싶네요.",
+    "rating": 4,
+    "author_type": "친구",
+    "season": "가을",
+    "visit_time": "오후 1시",
+    "created_at": "2025-08-04"
+  },
+  {
+    "review_id": "2048059-01",
+    "place_id": "2048059",
+    "text": "성산일출봉 옆이라 위치도 좋고 메인 수조 규모가 정말 압도적이네요. 바닷속에 들어온 기분이었어요.",
+    "rating": 5,
+    "author_type": "가족",
+    "season": "여름",
+    "visit_time": "오전",
+    "created_at": "2026-05-24"
+  },
+  {
+    "review_id": "2048059-02",
+    "place_id": "2048059",
+    "text": "해녀 시연이 생각보다 흥미롭고 교육적인 것 같아요. 아이들이 정말 좋아합니다.",
+    "rating": 4,
+    "author_type": "가족",
+    "season": "봄",
+    "visit_time": "오후",
+    "created_at": "2024-11-13"
+  },
+  {
+    "review_id": "2048059-03",
+    "place_id": "2048059",
+    "text": "실내라서 날씨 상관없이 쾌적하게 구경 잘했습니다.",
+    "rating": 4,
+    "author_type": "커플",
+    "season": "여름",
+    "visit_time": "오후",
+    "created_at": "2025-11-21"
+  },
+  {
+    "review_id": "2048059-04",
+    "place_id": "2048059",
+    "text": "사람이 너무 많아서 정신이 하나도 없었어요. 조용히 관람하고 싶은 분들께는 비추천합니다.",
+    "rating": 2,
+    "author_type": "혼자",
+    "season": "겨울",
+    "visit_time": "주말 오후",
+    "created_at": "2025-12-11"
+  },
+  {
+    "review_id": "2048059-05",
+    "place_id": "2048059",
+    "text": "규모가 엄청나서 2만 7천 마리의 어류를 보는 재미가 쏠쏠했네요. 강추합니다.",
+    "rating": 5,
+    "author_type": "친구",
+    "season": "가을",
+    "visit_time": "오전",
+    "created_at": "2025-12-30"
+  },
+  {
+    "review_id": "2048059-06",
+    "place_id": "2048059",
+    "text": "입장료가 좀 부담스럽긴 한데 그만큼 볼거리가 많긴 해요.",
+    "rating": 3,
+    "author_type": "친구",
+    "season": "여름",
+    "visit_time": "점심",
+    "created_at": "2026-01-04"
+  },
+  {
+    "review_id": "2048059-07",
+    "place_id": "2048059",
+    "text": "관람 동선이 너무 길어서 다리가 아파요. 체력 소모가 엄청납니다.",
+    "rating": 2,
+    "author_type": "가족",
+    "season": "봄",
+    "visit_time": "오후",
+    "created_at": "2026-06-16"
+  },
+  {
+    "review_id": "2048059-08",
+    "place_id": "2048059",
+    "text": "좋았어요.",
+    "rating": 4,
+    "author_type": "혼자",
+    "season": "겨울",
+    "visit_time": "오전",
+    "created_at": "2026-02-17"
+  },
+  {
+    "review_id": "2048059-09",
+    "place_id": "2048059",
+    "text": "방학 때 갔는데 사람이 너무 많아서 제대로 보지도 못했네요.",
+    "rating": 1,
+    "author_type": "가족",
+    "season": "여름",
+    "visit_time": "방학 기간 점심",
+    "created_at": "2025-09-24"
+  },
+  {
+    "review_id": "2048059-10",
+    "place_id": "2048059",
+    "text": "해녀 시연은 꼭 보세요. 제주 해양 생태계를 잘 느낄 수 있는 곳입니다.",
+    "rating": 5,
+    "author_type": "커플",
+    "season": "가을",
+    "visit_time": "오후",
+    "created_at": "2025-01-17"
+  },
+  {
+    "review_id": "2048059-11",
+    "place_id": "2048059",
+    "text": "그저 그랬음.",
+    "rating": 3,
+    "author_type": "친구",
+    "season": "겨울",
+    "visit_time": "오전",
+    "created_at": "2025-09-17"
+  },
+  {
+    "review_id": "2048059-12",
+    "place_id": "2048059",
+    "text": "국내 최대 규모답게 메인 수조가 정말 웅장해요. 아이와 가기 딱입니다.",
+    "rating": 5,
+    "author_type": "가족",
+    "season": "봄",
+    "visit_time": "오전",
+    "created_at": "2026-07-13"
+  },
+  {
+    "review_id": "2048059-13",
+    "place_id": "2048059",
+    "text": "저렴한 여행을 원하시는 분들에겐 비싼 입장료가 걸림돌이 될 듯해요.",
+    "rating": 2,
+    "author_type": "친구",
+    "season": "여름",
+    "visit_time": "오후",
+    "created_at": "2024-11-15"
+  },
+  {
+    "review_id": "2048059-14",
+    "place_id": "2048059",
+    "text": "오션아레나 공연 보느라 시간 가는 줄 몰랐습니다.",
+    "rating": 5,
+    "author_type": "커플",
+    "season": "여름",
+    "visit_time": "오후",
+    "created_at": "2026-01-16"
+  },
+  {
+    "review_id": "2048059-15",
+    "place_id": "2048059",
+    "text": "4만 5천여 마리의 생물을 한자리에서 볼 수 있어서 매우 유익했습니다.",
+    "rating": 4,
+    "author_type": "혼자",
+    "season": "가을",
+    "visit_time": "오전",
+    "created_at": "2025-05-31"
+  },
+  {
+    "review_id": "2048059-16",
+    "place_id": "2048059",
+    "text": "주말이라 사람이 많아 힘들었지만 메인 수조만큼은 정말 최고였어요.",
+    "rating": 4,
+    "author_type": "친구",
+    "season": "겨울",
+    "visit_time": "주말 오후",
+    "created_at": "2025-07-10"
+  },
+  {
+    "review_id": "2048059-17",
+    "place_id": "2048059",
+    "text": "실내 환경이 쾌적해서 관람하기는 편해요.",
+    "rating": 4,
+    "author_type": "가족",
+    "season": "봄",
+    "visit_time": "오전",
+    "created_at": "2026-10-16"
+  },
+  {
+    "review_id": "2048059-18",
+    "place_id": "2048059",
+    "text": "동선이 길어서 힘들긴 한데 그만큼 생태계 전시가 알차게 되어 있네요.",
+    "rating": 4,
+    "author_type": "커플",
+    "season": "가을",
+    "visit_time": "오후",
+    "created_at": "2025-05-17"
+  },
+  {
+    "review_id": "1220821-01",
+    "place_id": "1220821",
+    "text": "명연숙 관장님이 41년 동안 모으셨다는 조가비들이 정말 신기했어요. 아이들과 함께 관람하기에 교육적으로 참 좋네요.",
+    "rating": 5,
+    "author_type": "가족",
+    "season": "여름",
+    "visit_time": "오전",
+    "created_at": "2026-06-16"
+  },
+  {
+    "review_id": "1220821-02",
+    "place_id": "1220821",
+    "text": "예술적이고 좋았습니다.",
+    "rating": 4,
+    "author_type": "커플",
+    "season": "가을",
+    "visit_time": "오후",
+    "created_at": "2025-03-03"
+  },
+  {
+    "review_id": "1220821-03",
+    "place_id": "1220821",
+    "text": "동 소재 받침대와 조가비의 조화가 독특하더군요. 다만 생각보다 규모가 작아서 금방 둘러보게 됩니다.",
+    "rating": 3,
+    "author_type": "친구",
+    "season": "봄",
+    "visit_time": "오후",
+    "created_at": "2026-02-23"
+  },
+  {
+    "review_id": "1220821-04",
+    "place_id": "1220821",
+    "text": "활동적인 것을 좋아하는 저에게는 너무 정적인 공간이라 맞지 않았어요. 지루한 시간이었습니다.",
+    "rating": 1,
+    "author_type": "혼자",
+    "season": "겨울",
+    "visit_time": "오후",
+    "created_at": "2025-06-26"
+  },
+  {
+    "review_id": "1220821-05",
+    "place_id": "1220821",
+    "text": "세계 각국의 희귀한 산호와 조가비를 한눈에 볼 수 있어 만족스러워요. 전시 연출이 세련됐습니다.",
+    "rating": 5,
+    "author_type": "가족",
+    "season": "봄",
+    "visit_time": "오전",
+    "created_at": "2025-09-16"
+  },
+  {
+    "review_id": "1220821-06",
+    "place_id": "1220821",
+    "text": "대중교통으로 찾아가기가 조금 번거롭네요. 그래도 조가비들은 예뻤어요.",
+    "rating": 3,
+    "author_type": "친구",
+    "season": "여름",
+    "visit_time": "오전",
+    "created_at": "2024-10-31"
+  },
+  {
+    "review_id": "1220821-07",
+    "place_id": "1220821",
+    "text": "그냥 평범해요.",
+    "rating": 3,
+    "author_type": "커플",
+    "season": "겨울",
+    "visit_time": "오후",
+    "created_at": "2025-01-23"
+  },
+  {
+    "review_id": "1220821-08",
+    "place_id": "1220821",
+    "text": "금속조형작가님이 만든 받침대가 인상적이에요. 조가비와 산호가 예술 작품처럼 느껴집니다.",
+    "rating": 4,
+    "author_type": "혼자",
+    "season": "가을",
+    "visit_time": "오전",
+    "created_at": "2026-07-08"
+  },
+  {
+    "review_id": "1220821-09",
+    "place_id": "1220821",
+    "text": "교육적으로 아이들에게 보여줄 게 많아서 가족 단위 관람객에게 추천합니다.",
+    "rating": 5,
+    "author_type": "가족",
+    "season": "봄",
+    "visit_time": "오후",
+    "created_at": "2026-02-22"
+  },
+  {
+    "review_id": "1220821-10",
+    "place_id": "1220821",
+    "text": "볼거리가 많네요.",
+    "rating": 4,
+    "author_type": "친구",
+    "season": "여름",
+    "visit_time": "오후",
+    "created_at": "2024-11-26"
+  },
+  {
+    "review_id": "1220821-11",
+    "place_id": "1220821",
+    "text": "박물관이 너무 작아서 아쉬웠어요. 금방 다 보고 나오게 되네요.",
+    "rating": 2,
+    "author_type": "커플",
+    "season": "겨울",
+    "visit_time": "오후",
+    "created_at": "2026-08-09"
+  },
+  {
+    "review_id": "1220821-12",
+    "place_id": "1220821",
+    "text": "조가비 종류가 8,800여 종이나 된다니 놀라울 따름입니다. 정성스럽게 수집하신 게 느껴져요.",
+    "rating": 5,
+    "author_type": "혼자",
+    "season": "여름",
+    "visit_time": "오전",
+    "created_at": "2026-06-16"
+  },
+  {
+    "review_id": "1220821-13",
+    "place_id": "1220821",
+    "text": "실내라 쾌적하게 관람했습니다. 아이들이 신기해하니 좋네요.",
+    "rating": 4,
+    "author_type": "가족",
+    "season": "가을",
+    "visit_time": "오후",
+    "created_at": "2026-03-01"
+  },
+  {
+    "review_id": "1220821-14",
+    "place_id": "1220821",
+    "text": "생각보다 작아서 실망했습니다. 차 없이는 가기도 힘들고 별로였어요.",
+    "rating": 2,
+    "author_type": "친구",
+    "season": "봄",
+    "visit_time": "오후",
+    "created_at": "2025-11-29"
+  },
+  {
+    "review_id": "1220821-15",
+    "place_id": "1220821",
+    "text": "예술적인 연출이 돋보이는 곳이에요. 차분하게 구경하기 좋았습니다.",
+    "rating": 4,
+    "author_type": "커플",
+    "season": "여름",
+    "visit_time": "오전",
+    "created_at": "2025-04-09"
+  },
+  {
+    "review_id": "1220821-16",
+    "place_id": "1220821",
+    "text": "좋았습니다.",
+    "rating": 5,
+    "author_type": "가족",
+    "season": "겨울",
+    "visit_time": "오후",
+    "created_at": "2025-09-25"
+  },
+  {
+    "review_id": "1220821-17",
+    "place_id": "1220821",
+    "text": "동과 조가비의 조화가 정말 아름답네요. 전시 방식이 참신합니다.",
+    "rating": 5,
+    "author_type": "혼자",
+    "season": "가을",
+    "visit_time": "오전",
+    "created_at": "2024-11-02"
+  },
+  {
+    "review_id": "1220821-18",
+    "place_id": "1220821",
+    "text": "조용한 분위기라 좋았지만 액티비티를 즐기는 사람에겐 비추천합니다.",
+    "rating": 3,
+    "author_type": "친구",
+    "season": "여름",
+    "visit_time": "오후",
+    "created_at": "2026-08-01"
+  },
+  {
+    "review_id": "1220821-19",
+    "place_id": "1220821",
+    "text": "아이들이 교육적으로도 좋아할 것 같고 조가비 구경하는 재미가 쏠쏠해요.",
+    "rating": 4,
+    "author_type": "가족",
+    "season": "봄",
+    "visit_time": "오전",
+    "created_at": "2026-08-07"
+  },
+  {
+    "review_id": "129767-01",
+    "place_id": "129767",
+    "text": "독특한 나선형 구조가 인상적이었습니다. 특히 변시지 화백의 작품을 차분하게 감상하기에 이만한 공간이 없네요.",
+    "rating": 5,
+    "author_type": "커플",
+    "season": "봄",
+    "visit_time": "오전",
+    "created_at": "2025-05-30"
+  },
+  {
+    "review_id": "129767-02",
+    "place_id": "129767",
+    "text": "전시 공간이 생각보다 작아서 금방 둘러보게 되네요. 활동적인 체험을 원하시는 분들에겐 비추입니다.",
+    "rating": 2,
+    "author_type": "친구",
+    "season": "여름",
+    "visit_time": "오후",
+    "created_at": "2026-04-02"
+  },
+  {
+    "review_id": "129767-03",
+    "place_id": "129767",
+    "text": "조용히 사색하며 예술을 즐기기 딱 좋습니다. 혼자 방문했는데 정말 만족스러웠어요.",
+    "rating": 5,
+    "author_type": "혼자",
+    "season": "가을",
+    "visit_time": "오전",
+    "created_at": "2025-07-04"
+  },
+  {
+    "review_id": "129767-04",
+    "place_id": "129767",
+    "text": "대중교통으로 가기에 조금 불편해서 힘들었습니다.",
+    "rating": 2,
+    "author_type": "가족",
+    "season": "겨울",
+    "visit_time": "오후",
+    "created_at": "2025-07-27"
+  },
+  {
+    "review_id": "129767-05",
+    "place_id": "129767",
+    "text": "변시지 화백의 작품세계를 깊이 있게 들여다볼 수 있는 곳입니다. 건물의 나선형 구조도 신기했고요.",
+    "rating": 4,
+    "author_type": "커플",
+    "season": "봄",
+    "visit_time": "오전",
+    "created_at": "2025-02-02"
+  },
+  {
+    "review_id": "129767-06",
+    "place_id": "129767",
+    "text": "그저 그랬습니다.",
+    "rating": 3,
+    "author_type": "혼자",
+    "season": "여름",
+    "visit_time": "오후",
+    "created_at": "2025-09-08"
+  },
+  {
+    "review_id": "129767-07",
+    "place_id": "129767",
+    "text": "아이가 기대를 많이 했는데 체험 위주가 아니라서 조금 지루해했습니다.",
+    "rating": 2,
+    "author_type": "가족",
+    "season": "가을",
+    "visit_time": "주말 오후",
+    "created_at": "2026-07-04"
+  },
+  {
+    "review_id": "129767-08",
+    "place_id": "129767",
+    "text": "미술관 분위기가 아주 차분해요. 혼자 여행하시는 분들께 추천합니다.",
+    "rating": 5,
+    "author_type": "혼자",
+    "season": "겨울",
+    "visit_time": "오전",
+    "created_at": "2026-07-27"
+  },
+  {
+    "review_id": "129767-09",
+    "place_id": "129767",
+    "text": "건물이 정말 독특하네요. 전시 규모는 작지만 알차게 관람했습니다.",
+    "rating": 4,
+    "author_type": "친구",
+    "season": "봄",
+    "visit_time": "오전",
+    "created_at": "2025-12-16"
+  },
+  {
+    "review_id": "129767-10",
+    "place_id": "129767",
+    "text": "좋았습니다.",
+    "rating": 4,
+    "author_type": "커플",
+    "season": "여름",
+    "visit_time": "오후",
+    "created_at": "2025-05-13"
+  },
+  {
+    "review_id": "129767-11",
+    "place_id": "129767",
+    "text": "조용하고 한적하게 둘러볼 수 있어 좋았습니다. 작품 하나하나 깊이 있게 감상했네요.",
+    "rating": 5,
+    "author_type": "혼자",
+    "season": "가을",
+    "visit_time": "오전",
+    "created_at": "2025-04-14"
+  },
+  {
+    "review_id": "129767-12",
+    "place_id": "129767",
+    "text": "예술을 좋아해서 방문했는데 나선형 동선이 참 인상 깊었습니다. 다음에도 또 오고 싶어요.",
+    "rating": 4,
+    "author_type": "친구",
+    "season": "겨울",
+    "visit_time": "오후",
+    "created_at": "2026-05-27"
+  },
+  {
+    "review_id": "590415-01",
+    "place_id": "590415",
+    "text": "아이들이랑 함께 방문해서 감귤의 역사도 배우고 유리 온실에서 다양한 품종의 감귤을 구경했어요. 교육적으로 아주 좋았습니다.",
+    "rating": 5,
+    "author_type": "가족",
+    "season": "봄",
+    "visit_time": "평일 오전",
+    "created_at": "2026-04-08"
+  },
+  {
+    "review_id": "590415-02",
+    "place_id": "590415",
+    "text": "생각보다 볼 게 많네요. 감귤 종류가 이렇게나 많은 줄 몰랐어요.",
+    "rating": 4,
+    "author_type": "친구",
+    "season": "여름",
+    "visit_time": "평일 오후",
+    "created_at": "2026-09-16"
+  },
+  {
+    "review_id": "590415-03",
+    "place_id": "590415",
+    "text": "그저 그랬어요.",
+    "rating": 3,
+    "author_type": "혼자",
+    "season": "가을",
+    "visit_time": "평일 오전",
+    "created_at": "2026-08-29"
+  },
+  {
+    "review_id": "590415-04",
+    "place_id": "590415",
+    "text": "전시 내용이 너무 정적이라 활동적인 걸 좋아하는 제 스타일은 아니네요. 박물관이 꽤 오래된 느낌도 들어요.",
+    "rating": 2,
+    "author_type": "커플",
+    "season": "겨울",
+    "visit_time": "주말 오후",
+    "created_at": "2025-11-12"
+  },
+  {
+    "review_id": "590415-05",
+    "place_id": "590415",
+    "text": "감귤 체험이 다양해서 친구들과 즐거운 시간 보냈습니다. 제주 감귤의 역사를 이해하기 좋았어요.",
+    "rating": 5,
+    "author_type": "친구",
+    "season": "겨울",
+    "visit_time": "평일 오후",
+    "created_at": "2026-06-15"
+  },
+  {
+    "review_id": "590415-06",
+    "place_id": "590415",
+    "text": "유리 온실에 감귤이 가득해서 신기했어요. 아이들 학습용으로 딱이네요.",
+    "rating": 4,
+    "author_type": "가족",
+    "season": "봄",
+    "visit_time": "주말 오후",
+    "created_at": "2025-10-06"
+  },
+  {
+    "review_id": "590415-07",
+    "place_id": "590415",
+    "text": "좋았습니다.",
+    "rating": 4,
+    "author_type": "혼자",
+    "season": "여름",
+    "visit_time": "평일 오전",
+    "created_at": "2026-06-20"
+  },
+  {
+    "review_id": "590415-08",
+    "place_id": "590415",
+    "text": "시설이 세월의 흔적이 느껴지네요. 좀 더 현대적이었으면 좋았을 텐데 아쉽습니다.",
+    "rating": 3,
+    "author_type": "가족",
+    "season": "가을",
+    "visit_time": "주말 오후",
+    "created_at": "2026-05-05"
+  },
+  {
+    "review_id": "590415-09",
+    "place_id": "590415",
+    "text": "제주인들의 삶이 담긴 감귤 역사를 살펴보며 뜻깊은 시간을 보냈습니다. 실내라서 관람하기 편했어요.",
+    "rating": 4,
+    "author_type": "커플",
+    "season": "겨울",
+    "visit_time": "평일 오전",
+    "created_at": "2025-11-10"
+  },
+  {
+    "review_id": "590415-10",
+    "place_id": "590415",
+    "text": "가족들과 함께 가기 좋은 곳이에요. 사계절 내내 온실에서 감귤을 볼 수 있다는 게 큰 장점인 것 같아요.",
+    "rating": 5,
+    "author_type": "가족",
+    "season": "봄",
+    "visit_time": "평일 오전",
+    "created_at": "2024-12-26"
+  },
+  {
+    "review_id": "590415-11",
+    "place_id": "590415",
+    "text": "활동적인 액티비티를 선호하는 분들에게는 비추천해요. 너무 잔잔한 전시 위주라 지루할 수 있어요.",
+    "rating": 2,
+    "author_type": "친구",
+    "season": "여름",
+    "visit_time": "주말 오후",
+    "created_at": "2025-11-30"
+  },
+  {
+    "review_id": "590415-12",
+    "place_id": "590415",
+    "text": "박물관에서 감귤 재배 방법도 배우고 유익했어요.",
+    "rating": 4,
+    "author_type": "혼자",
+    "season": "가을",
+    "visit_time": "평일 오후",
+    "created_at": "2026-10-20"
+  },
+  {
+    "review_id": "590415-13",
+    "place_id": "590415",
+    "text": "아이들이 감귤 체험을 너무 좋아하네요. 박물관이 교육적인 공간이라 만족스러워요.",
+    "rating": 5,
+    "author_type": "가족",
+    "season": "겨울",
+    "visit_time": "주말 오후",
+    "created_at": "2025-03-09"
+  },
+  {
+    "review_id": "590415-14",
+    "place_id": "590415",
+    "text": "전 세계 감귤 품종을 한자리에서 볼 수 있는 건 좋았지만 전반적으로 시설이 많이 노후화된 점이 아쉬워요.",
+    "rating": 3,
+    "author_type": "친구",
+    "season": "봄",
+    "visit_time": "평일 오전",
+    "created_at": "2026-03-13"
+  },
+  {
+    "review_id": "2899509-01",
+    "place_id": "2899509",
+    "text": "가정집을 개조한 식당이라 아늑했고 정원에 수국이 정말 예쁘게 피어 있었어요. 물밀면은 양념장을 따로 주셔서 취향껏 조절해 먹기 좋았고 곱빼기도 가격이 같아서 배부르게 먹었네요.",
+    "rating": 5,
+    "author_type": "가족",
+    "season": "여름",
+    "visit_time": "11:30",
+    "created_at": "2025-05-01"
+  },
+  {
+    "review_id": "2899509-02",
+    "place_id": "2899509",
+    "text": "음식 양이 엄청 많네요. 맛은 그냥 그랬어요.",
+    "rating": 3,
+    "author_type": "혼자",
+    "season": "봄",
+    "visit_time": "14:00",
+    "created_at": "2025-10-28"
+  },
+  {
+    "review_id": "2899509-03",
+    "place_id": "2899509",
+    "text": "메뉴가 딱 세 개라 고민할 필요 없이 떡갈비랑 밀면을 시켰는데 자극적이지 않아서 가족들 모두 만족했습니다. 수국 가득한 정원 덕분에 식사 전후로 기분이 좋더라고요.",
+    "rating": 5,
+    "author_type": "가족",
+    "season": "여름",
+    "visit_time": "12:30",
+    "created_at": "2026-08-12"
+  },
+  {
+    "review_id": "2899509-04",
+    "place_id": "2899509",
+    "text": "주말 점심에 갔더니 사람이 너무 많아서 기다리는 게 힘들었어요. 빨리 먹고 이동해야 하는 분들께는 비추합니다.",
+    "rating": 2,
+    "author_type": "친구",
+    "season": "여름",
+    "visit_time": "12:15",
+    "created_at": "2026-09-20"
+  },
+  {
+    "review_id": "2899509-05",
+    "place_id": "2899509",
+    "text": "맥반석 계란이 올라간 물밀면이 인상적이었어요. 양이 정말 많아서 가성비가 최고네요.",
+    "rating": 4,
+    "author_type": "친구",
+    "season": "봄",
+    "visit_time": "11:00",
+    "created_at": "2025-02-02"
+  },
+  {
+    "review_id": "2899509-06",
+    "place_id": "2899509",
+    "text": "겨울에 갔는데 문이 닫혀있어서 너무 아쉬웠어요. 방문 가능한 달을 잘 확인하고 가야 할 것 같아요.",
+    "rating": 1,
+    "author_type": "커플",
+    "season": "겨울",
+    "visit_time": "13:00",
+    "created_at": "2025-07-17"
+  },
+  {
+    "review_id": "2899509-07",
+    "place_id": "2899509",
+    "text": "비빔밀면 양념이 자극적이지 않고 건강한 맛이라 좋았습니다. 정원도 예쁘고 전체적으로 만족스러웠어요.",
+    "rating": 4,
+    "author_type": "커플",
+    "season": "여름",
+    "visit_time": "13:00",
+    "created_at": "2025-06-17"
+  },
+  {
+    "review_id": "2899509-08",
+    "place_id": "2899509",
+    "text": "그냥 평범한 밀면집입니다.",
+    "rating": 3,
+    "author_type": "혼자",
+    "season": "여름",
+    "visit_time": "15:00",
+    "created_at": "2025-10-01"
+  },
+  {
+    "review_id": "2899509-09",
+    "place_id": "2899509",
+    "text": "수제 떡갈비와 밀면 조합이 참 좋네요. 정원 허브 향도 좋고 가족들과 함께 오기 딱 좋은 곳입니다.",
+    "rating": 5,
+    "author_type": "가족",
+    "season": "봄",
+    "visit_time": "12:00",
+    "created_at": "2026-01-03"
+  },
+  {
+    "review_id": "2899509-10",
+    "place_id": "2899509",
+    "text": "맛은 나쁘지 않았지만 메뉴가 3가지뿐이라 선택지가 너무 좁아서 아쉬웠어요. 더 다양한 메뉴가 있었으면 좋겠네요.",
+    "rating": 3,
+    "author_type": "친구",
+    "season": "가을",
+    "visit_time": "13:30",
+    "created_at": "2025-01-13"
+  },
+  {
+    "review_id": "2899509-11",
+    "place_id": "2899509",
+    "text": "곱빼기도 가격이 동일해서 정말 배부르게 먹고 왔어요. 수국 정원 구경하는 재미도 쏠쏠합니다.",
+    "rating": 5,
+    "author_type": "친구",
+    "season": "여름",
+    "visit_time": "12:45",
+    "created_at": "2025-08-02"
+  },
+  {
+    "review_id": "2902758-01",
+    "place_id": "2902758",
+    "text": "제주산 농산물로 만든 감자 피자 정말 맛있었습니다. 밀가루가 안 들어갔다니 건강해지는 기분이에요.",
+    "rating": 5,
+    "author_type": "가족",
+    "season": "봄",
+    "visit_time": "오전 11시",
+    "created_at": "2025-11-14"
+  },
+  {
+    "review_id": "2902758-02",
+    "place_id": "2902758",
+    "text": "무농약 당근 주스 맛이 아주 진하고 좋았어요. 비건 브런치 찾는 분들에게 추천합니다.",
+    "rating": 4,
+    "author_type": "혼자",
+    "season": "가을",
+    "visit_time": "오후 1시",
+    "created_at": "2026-02-24"
+  },
+  {
+    "review_id": "2902758-03",
+    "place_id": "2902758",
+    "text": "그냥 평범해요.",
+    "rating": 3,
+    "author_type": "친구",
+    "season": "여름",
+    "visit_time": "오후 2시",
+    "created_at": "2026-05-16"
+  },
+  {
+    "review_id": "2902758-04",
+    "place_id": "2902758",
+    "text": "자극적인 맛을 좋아하는데 여기는 너무 건강한 맛만 나네요. 제 입맛에는 좀 별로였습니다.",
+    "rating": 2,
+    "author_type": "친구",
+    "season": "봄",
+    "visit_time": "오후 12시",
+    "created_at": "2026-07-20"
+  },
+  {
+    "review_id": "2902758-05",
+    "place_id": "2902758",
+    "text": "아늑한 분위기에서 조용하게 더덕 주스 마시니 참 좋네요. 비자림 가기 전에 들르기 딱 좋습니다.",
+    "rating": 5,
+    "author_type": "혼자",
+    "season": "가을",
+    "visit_time": "오전 10시",
+    "created_at": "2026-08-08"
+  },
+  {
+    "review_id": "2902758-06",
+    "place_id": "2902758",
+    "text": "음식은 건강하고 좋았는데 메뉴 선택지가 너무 적어서 아쉬워요. 조금 더 다양했으면 좋겠네요.",
+    "rating": 3,
+    "author_type": "가족",
+    "season": "겨울",
+    "visit_time": "오후 1시",
+    "created_at": "2025-01-21"
+  },
+  {
+    "review_id": "2902758-07",
+    "place_id": "2902758",
+    "text": "좋았다.",
+    "rating": 4,
+    "author_type": "커플",
+    "season": "여름",
+    "visit_time": "오후 2시",
+    "created_at": "2026-04-14"
+  },
+  {
+    "review_id": "2902758-08",
+    "place_id": "2902758",
+    "text": "아부오름 근처라 방문하기 편하고 친환경 식품도 구경할 수 있어서 좋았습니다.",
+    "rating": 5,
+    "author_type": "가족",
+    "season": "봄",
+    "visit_time": "오전 11시",
+    "created_at": "2025-11-26"
+  },
+  {
+    "review_id": "2902758-09",
+    "place_id": "2902758",
+    "text": "영업시간이 너무 짧아서 시간 맞추기가 힘드네요. 좀 더 늦게까지 하면 좋을 텐데.",
+    "rating": 2,
+    "author_type": "커플",
+    "season": "겨울",
+    "visit_time": "오후 3시",
+    "created_at": "2025-12-31"
+  },
+  {
+    "review_id": "2902758-10",
+    "place_id": "2902758",
+    "text": "푸른 컵 제휴업체라 환경까지 생각하는 점이 마음에 쏙 들었습니다. 다음에도 또 올게요.",
+    "rating": 5,
+    "author_type": "혼자",
+    "season": "가을",
+    "visit_time": "오전 10시",
+    "created_at": "2025-01-09"
+  },
+  {
+    "review_id": "2902758-11",
+    "place_id": "2902758",
+    "text": "아이들이랑 건강한 음식 먹으러 왔는데 조용해서 다행이었어요. 단체로 오기에는 장소가 조금 좁은 것 같네요.",
+    "rating": 4,
+    "author_type": "가족",
+    "season": "여름",
+    "visit_time": "오후 12시",
+    "created_at": "2026-07-09"
+  },
+  {
+    "review_id": "2902737-01",
+    "place_id": "2902737",
+    "text": "통창으로 보이는 제주 바다가 예술입니다. 글루텐 프리라 속도 편하고 바움쿠헨도 담백하니 맛있었어요.",
+    "rating": 5,
+    "author_type": "커플",
+    "season": "봄",
+    "visit_time": "오전 11시",
+    "created_at": "2025-12-25"
+  },
+  {
+    "review_id": "2902737-02",
+    "place_id": "2902737",
+    "text": "우리쌀로 만든 디저트라 안심하고 먹었네요. 창가 뷰가 정말 최고입니다.",
+    "rating": 4,
+    "author_type": "가족",
+    "season": "여름",
+    "visit_time": "오후 1시",
+    "created_at": "2025-05-04"
+  },
+  {
+    "review_id": "2902737-03",
+    "place_id": "2902737",
+    "text": "제주 식재료로 만든 음료들이 특색 있어요. 용담 해안도로 지나다 들르기 좋습니다.",
+    "rating": 5,
+    "author_type": "친구",
+    "season": "가을",
+    "visit_time": "오전 10시",
+    "created_at": "2024-12-11"
+  },
+  {
+    "review_id": "2902737-04",
+    "place_id": "2902737",
+    "text": "그저 그랬습니다.",
+    "rating": 3,
+    "author_type": "혼자",
+    "season": "겨울",
+    "visit_time": "오후 2시",
+    "created_at": "2026-08-18"
+  },
+  {
+    "review_id": "2902737-05",
+    "place_id": "2902737",
+    "text": "주말 오후에 갔더니 사람이 너무 많아서 창가 자리는 앉지도 못했네요. 정신없고 시끄러워서 집중하기 어려워요.",
+    "rating": 2,
+    "author_type": "혼자",
+    "season": "봄",
+    "visit_time": "토요일 오후 3시",
+    "created_at": "2024-10-22"
+  },
+  {
+    "review_id": "2902737-06",
+    "place_id": "2902737",
+    "text": "한라봉요거트 상큼하니 맛있고 타르트도 부드러워요. 바다 보면서 시간 보내기 딱입니다.",
+    "rating": 4,
+    "author_type": "친구",
+    "season": "여름",
+    "visit_time": "오후 4시",
+    "created_at": "2025-10-14"
+  },
+  {
+    "review_id": "2902737-07",
+    "place_id": "2902737",
+    "text": "건강한 디저트라니 좋네요. 뷰도 좋습니다.",
+    "rating": 4,
+    "author_type": "커플",
+    "season": "가을",
+    "visit_time": "오후 2시",
+    "created_at": "2025-11-12"
+  },
+  {
+    "review_id": "2902737-08",
+    "place_id": "2902737",
+    "text": "사람이 너무 많아 인기 메뉴는 다 팔리고 없더라고요. 조용한 곳을 찾는다면 비추입니다.",
+    "rating": 2,
+    "author_type": "혼자",
+    "season": "겨울",
+    "visit_time": "일요일 오후 3시",
+    "created_at": "2025-01-25"
+  },
+  {
+    "review_id": "2902737-09",
+    "place_id": "2902737",
+    "text": "제주녹차라떼 진하고 맛있어요. 바움쿠헨도 종류가 다양해서 고르는 재미가 있었네요.",
+    "rating": 5,
+    "author_type": "친구",
+    "season": "봄",
+    "visit_time": "오후 12시",
+    "created_at": "2026-03-04"
+  },
+  {
+    "review_id": "2902737-10",
+    "place_id": "2902737",
+    "text": "어영공원 앞이라 위치가 아주 좋네요. 글루텐 프리라 부담 없이 즐기기 좋습니다.",
+    "rating": 4,
+    "author_type": "가족",
+    "season": "여름",
+    "visit_time": "오후 2시",
+    "created_at": "2025-11-14"
+  },
+  {
+    "review_id": "2902737-11",
+    "place_id": "2902737",
+    "text": "좋았습니다.",
+    "rating": 5,
+    "author_type": "커플",
+    "season": "가을",
+    "visit_time": "오후 1시",
+    "created_at": "2026-05-23"
+  },
+  {
+    "review_id": "2902737-12",
+    "place_id": "2902737",
+    "text": "통창 뷰가 정말 예쁘네요. 제주 감귤란을 썼다니 더 특별하게 느껴졌어요.",
+    "rating": 5,
+    "author_type": "친구",
+    "season": "겨울",
+    "visit_time": "오후 11시",
+    "created_at": "2025-03-01"
+  },
+  {
+    "review_id": "2902737-13",
+    "place_id": "2902737",
+    "text": "다양한 바움쿠헨이 있어서 좋았어요. 해안도로 드라이브하다 방문하기 딱 좋은 위치입니다.",
+    "rating": 4,
+    "author_type": "커플",
+    "season": "봄",
+    "visit_time": "오후 3시",
+    "created_at": "2025-01-24"
+  },
+  {
+    "review_id": "2902737-14",
+    "place_id": "2902737",
+    "text": "생각보다 너무 붐벼서 쉬러 온 건지 사람 구경하러 온 건지 모르겠네요. 조용히 일하려던 계획은 실패입니다.",
+    "rating": 2,
+    "author_type": "혼자",
+    "season": "여름",
+    "visit_time": "토요일 오후 4시",
+    "created_at": "2026-06-16"
+  },
+  {
+    "review_id": "2902737-15",
+    "place_id": "2902737",
+    "text": "대귤대귤라떼 꼭 드셔보세요. 창밖 바다 풍경이랑 너무 잘 어울립니다.",
+    "rating": 5,
+    "author_type": "가족",
+    "season": "가을",
+    "visit_time": "오전 11시",
+    "created_at": "2026-06-20"
+  },
+  {
+    "review_id": "2902737-16",
+    "place_id": "2902737",
+    "text": "쌀로 만든 디저트라 맛이 깔끔해요. 주변 여행지랑도 가까워서 들르기 편해요.",
+    "rating": 4,
+    "author_type": "친구",
+    "season": "겨울",
+    "visit_time": "오후 2시",
+    "created_at": "2026-09-10"
+  },
+  {
+    "review_id": "2902737-17",
+    "place_id": "2902737",
+    "text": "무난하게 다녀오기 좋습니다.",
+    "rating": 3,
+    "author_type": "가족",
+    "season": "봄",
+    "visit_time": "오후 1시",
+    "created_at": "2026-05-04"
+  },
+  {
+    "review_id": "2902737-18",
+    "place_id": "2902737",
+    "text": "케이크류가 벌써 다 소진되어 아쉬웠어요. 주말에는 진짜 서둘러야 할 것 같아요.",
+    "rating": 3,
+    "author_type": "커플",
+    "season": "여름",
+    "visit_time": "토요일 오후 5시",
+    "created_at": "2026-07-08"
+  },
+  {
+    "review_id": "2902737-19",
+    "place_id": "2902737",
+    "text": "바다가 한눈에 들어오는 뷰 맛집! 디저트도 건강한 재료라 만족스러웠습니다.",
+    "rating": 5,
+    "author_type": "친구",
+    "season": "가을",
+    "visit_time": "오전 10시",
+    "created_at": "2024-11-07"
+  },
+  {
+    "review_id": "2902737-20",
+    "place_id": "2902737",
+    "text": "다양한 디저트와 제주 식재료 음료가 인상적입니다. 접근성이 좋아 다시 오고 싶네요.",
+    "rating": 4,
+    "author_type": "가족",
+    "season": "겨울",
+    "visit_time": "오후 3시",
+    "created_at": "2026-02-16"
+  },
+  {
+    "review_id": "2905314-01",
+    "place_id": "2905314",
+    "text": "협재해수욕장 바로 앞이라 위치가 정말 좋네요. 문어해물라면 비주얼이 사진이랑 똑같이 화려하게 나와서 만족스러웠어요.",
+    "rating": 5,
+    "author_type": "커플",
+    "season": "봄",
+    "visit_time": "오전 11시",
+    "created_at": "2025-09-11"
+  },
+  {
+    "review_id": "2905314-02",
+    "place_id": "2905314",
+    "text": "해산물이 정말 푸짐하게 들어있어서 국물 맛이 깊어요. 친구랑 같이 가기 딱 좋은 분위기입니다.",
+    "rating": 4,
+    "author_type": "친구",
+    "season": "가을",
+    "visit_time": "오후 1시",
+    "created_at": "2026-04-12"
+  },
+  {
+    "review_id": "2905314-03",
+    "place_id": "2905314",
+    "text": "맛은 있었지만 대기 시간이 너무 길어서 힘들었어요. 웨이팅 싫어하시면 추천하고 싶지 않네요.",
+    "rating": 2,
+    "author_type": "가족",
+    "season": "여름",
+    "visit_time": "오전 10시",
+    "created_at": "2025-11-20"
+  },
+  {
+    "review_id": "2905314-04",
+    "place_id": "2905314",
+    "text": "그저 그랬습니다.",
+    "rating": 3,
+    "author_type": "혼자",
+    "season": "겨울",
+    "visit_time": "오후 2시",
+    "created_at": "2026-09-01"
+  },
+  {
+    "review_id": "2905314-05",
+    "place_id": "2905314",
+    "text": "재료 소진으로 못 먹고 돌아왔습니다. 일찍 가야겠어요.",
+    "rating": 1,
+    "author_type": "친구",
+    "season": "봄",
+    "visit_time": "오후 3시",
+    "created_at": "2026-10-05"
+  },
+  {
+    "review_id": "2905314-06",
+    "place_id": "2905314",
+    "text": "골목이 좁아서 차 세우기 너무 불편했어요. 맛은 평범합니다.",
+    "rating": 2,
+    "author_type": "가족",
+    "season": "가을",
+    "visit_time": "오후 12시",
+    "created_at": "2025-08-28"
+  },
+  {
+    "review_id": "2905314-07",
+    "place_id": "2905314",
+    "text": "실내가 아기자기하고 편안한 분위기라 좋았어요. 해물라면 비주얼도 훌륭해서 기억에 남네요.",
+    "rating": 5,
+    "author_type": "커플",
+    "season": "여름",
+    "visit_time": "오전 11시",
+    "created_at": "2025-10-28"
+  },
+  {
+    "review_id": "2905314-08",
+    "place_id": "2905314",
+    "text": "해산물 진짜 신선해요. 시원한 국물 좋아하시면 꼭 들러보세요.",
+    "rating": 5,
+    "author_type": "혼자",
+    "season": "겨울",
+    "visit_time": "오전 10시",
+    "created_at": "2025-01-15"
+  },
+  {
+    "review_id": "2905314-09",
+    "place_id": "2905314",
+    "text": "그냥 평범한 라면집.",
+    "rating": 3,
+    "author_type": "친구",
+    "season": "여름",
+    "visit_time": "오후 1시",
+    "created_at": "2025-10-01"
+  },
+  {
+    "review_id": "2905314-10",
+    "place_id": "2905314",
+    "text": "협재해수욕장 구경하고 들르기 좋은 위치네요. 음식도 정성스럽게 나와서 대접받는 기분이었어요.",
+    "rating": 4,
+    "author_type": "커플",
+    "season": "봄",
+    "visit_time": "오후 12시",
+    "created_at": "2026-01-08"
+  },
+  {
+    "review_id": "2905314-11",
+    "place_id": "2905314",
+    "text": "단체로 가기엔 가게가 좁고 대기도 길어서 불편합니다. 소규모 인원으로 방문하는 걸 추천해요.",
+    "rating": 2,
+    "author_type": "가족",
+    "season": "겨울",
+    "visit_time": "오후 1시",
+    "created_at": "2024-12-03"
+  },
+  {
+    "review_id": "2905314-12",
+    "place_id": "2905314",
+    "text": "해산물 가득한 라면 맛있게 먹었습니다. 깔끔한 외관도 마음에 들었어요.",
+    "rating": 4,
+    "author_type": "친구",
+    "season": "가을",
+    "visit_time": "오전 11시",
+    "created_at": "2024-12-06"
+  },
+  {
+    "review_id": "2905314-13",
+    "place_id": "2905314",
+    "text": "한림공원 들렀다가 방문했는데 딱 좋네요. 직원분들도 친절하고 음식이 빨리 나와서 좋았어요.",
+    "rating": 5,
+    "author_type": "혼자",
+    "season": "봄",
+    "visit_time": "오후 2시",
+    "created_at": "2026-03-18"
+  },
+  {
+    "review_id": "2905314-14",
+    "place_id": "2905314",
+    "text": "비주얼 최고네요. 라면 위에 올라간 해산물 양이 정말 많아요.",
+    "rating": 5,
+    "author_type": "친구",
+    "season": "가을",
+    "visit_time": "오전 10시",
+    "created_at": "2025-06-01"
+  },
+  {
+    "review_id": "2905314-15",
+    "place_id": "2905314",
+    "text": "맛있게 잘 먹었습니다.",
+    "rating": 4,
+    "author_type": "가족",
+    "season": "여름",
+    "visit_time": "오후 12시",
+    "created_at": "2024-11-12"
+  },
+  {
+    "review_id": "2904508-01",
+    "place_id": "2904508",
+    "text": "비건 지향하는 친구와 방문했는데 홈메이드 비건버거가 정말 맛있었습니다. 환경을 생각하는 곳이라 의미 있는 소비를 한 것 같아 뿌듯하네요.",
+    "rating": 5,
+    "author_type": "친구",
+    "season": "봄",
+    "visit_time": "오후 2시",
+    "created_at": "2025-10-06"
+  },
+  {
+    "review_id": "2904508-02",
+    "place_id": "2904508",
+    "text": "그냥 그랬어요.",
+    "rating": 3,
+    "author_type": "혼자",
+    "season": "가을",
+    "visit_time": "오전 11시",
+    "created_at": "2025-06-03"
+  },
+  {
+    "review_id": "2904508-03",
+    "place_id": "2904508",
+    "text": "제주 여행 중에 건강한 채식 식사를 찾다가 왔는데 정말 아늑하고 평화로운 분위기라 혼자 사색하기 좋았습니다.",
+    "rating": 5,
+    "author_type": "혼자",
+    "season": "여름",
+    "visit_time": "오후 3시",
+    "created_at": "2026-06-04"
+  },
+  {
+    "review_id": "2904508-04",
+    "place_id": "2904508",
+    "text": "비건 음식에 관심이 많아 들렀는데 브레이크 타임 때문에 한참 기다렸네요. 시간 확인 꼭 하고 가세요.",
+    "rating": 3,
+    "author_type": "친구",
+    "season": "겨울",
+    "visit_time": "오후 4시",
+    "created_at": "2026-03-01"
+  },
+  {
+    "review_id": "2904508-05",
+    "place_id": "2904508",
+    "text": "고기 없는 식사는 상상도 못 하는 사람으로서 너무 아쉬웠어요. 메뉴 선택 폭이 너무 좁고 가격도 비싸요.",
+    "rating": 1,
+    "author_type": "가족",
+    "season": "봄",
+    "visit_time": "오후 1시",
+    "created_at": "2026-08-03"
+  },
+  {
+    "review_id": "2904508-06",
+    "place_id": "2904508",
+    "text": "제철 채소를 구매할 수 있어서 좋았습니다. 비건 샌드위치도 훌륭해요.",
+    "rating": 5,
+    "author_type": "친구",
+    "season": "가을",
+    "visit_time": "오후 2시",
+    "created_at": "2025-10-15"
+  },
+  {
+    "review_id": "2904508-07",
+    "place_id": "2904508",
+    "text": "공정무역 커피 맛이 괜찮네요. 환경을 고민하는 모토가 느껴져서 좋았습니다.",
+    "rating": 4,
+    "author_type": "혼자",
+    "season": "여름",
+    "visit_time": "오전 10시",
+    "created_at": "2025-11-14"
+  },
+  {
+    "review_id": "2904508-08",
+    "place_id": "2904508",
+    "text": "가격이 좀 있는 편이지만 건강한 브런치라 만족스러웠습니다.",
+    "rating": 4,
+    "author_type": "친구",
+    "season": "겨울",
+    "visit_time": "오후 2시",
+    "created_at": "2025-08-03"
+  },
+  {
+    "review_id": "2904508-09",
+    "place_id": "2904508",
+    "text": "별로임.",
+    "rating": 2,
+    "author_type": "가족",
+    "season": "봄",
+    "visit_time": "오후 6시",
+    "created_at": "2024-11-24"
+  },
+  {
+    "review_id": "2904508-10",
+    "place_id": "2904508",
+    "text": "비건 식료품도 팔고 유기농 차도 맛볼 수 있어서 채식주의자에게는 천국 같은 곳입니다.",
+    "rating": 5,
+    "author_type": "혼자",
+    "season": "가을",
+    "visit_time": "오후 4시",
+    "created_at": "2025-04-09"
+  },
+  {
+    "review_id": "2904508-11",
+    "place_id": "2904508",
+    "text": "환경 운동에 관심이 많은데 여기서 비건 클래스까지 운영한다니 꼭 참여해보고 싶네요.",
+    "rating": 5,
+    "author_type": "친구",
+    "season": "겨울",
+    "visit_time": "오후 3시",
+    "created_at": "2025-03-27"
+  },
+  {
+    "review_id": "2904508-12",
+    "place_id": "2904508",
+    "text": "아늑한 분위기에서 유기농 차 마시며 쉬기 좋습니다.",
+    "rating": 4,
+    "author_type": "커플",
+    "season": "봄",
+    "visit_time": "오후 5시",
+    "created_at": "2025-07-29"
+  },
+  {
+    "review_id": "2904508-13",
+    "place_id": "2904508",
+    "text": "일회용품을 쓰지 않는다는 점이 가장 마음에 들었습니다. 가치 있는 소비를 하는 기분이에요.",
+    "rating": 5,
+    "author_type": "혼자",
+    "season": "여름",
+    "visit_time": "오후 2시",
+    "created_at": "2025-11-08"
+  },
+  {
+    "review_id": "2904508-14",
+    "place_id": "2904508",
+    "text": "그저 그랬어요.",
+    "rating": 3,
+    "author_type": "커플",
+    "season": "가을",
+    "visit_time": "오후 1시",
+    "created_at": "2025-11-29"
+  },
+  {
+    "review_id": "2904508-15",
+    "place_id": "2904508",
+    "text": "육류 위주 식단 좋아하시는 분들은 비추천합니다. 저는 채식이라 정말 행복하게 먹었어요.",
+    "rating": 5,
+    "author_type": "친구",
+    "season": "봄",
+    "visit_time": "오전 11시",
+    "created_at": "2026-09-26"
+  },
+  {
+    "review_id": "2904508-16",
+    "place_id": "2904508",
+    "text": "옹포리에 이런 곳이 있는 줄 몰랐네요. 브런치 메뉴 구성이 탄탄하고 맛있습니다.",
+    "rating": 4,
+    "author_type": "친구",
+    "season": "겨울",
+    "visit_time": "오후 2시",
+    "created_at": "2025-12-01"
+  },
+  {
+    "review_id": "2904508-17",
+    "place_id": "2904508",
+    "text": "가격은 좀 비싼 편이라 자주 오기는 부담스럽네요.",
+    "rating": 3,
+    "author_type": "커플",
+    "season": "여름",
+    "visit_time": "오후 4시",
+    "created_at": "2026-07-29"
+  },
+  {
+    "review_id": "2904827-01",
+    "place_id": "2904827",
+    "text": "한옥 분위기가 너무 좋고 수제 한식 디저트가 정말 정갈해요. 곶감 말이 최고입니다.",
+    "rating": 5,
+    "author_type": "커플",
+    "season": "봄",
+    "visit_time": "오후 3시",
+    "created_at": "2026-04-22"
+  },
+  {
+    "review_id": "2904827-02",
+    "place_id": "2904827",
+    "text": "칠성라테 마셔봤는데 맛있네요. 정원 보면서 쉬기 좋아요.",
+    "rating": 4,
+    "author_type": "친구",
+    "season": "가을",
+    "visit_time": "오후 1시",
+    "created_at": "2025-06-15"
+  },
+  {
+    "review_id": "2904827-03",
+    "place_id": "2904827",
+    "text": "좋았다.",
+    "rating": 3,
+    "author_type": "혼자",
+    "season": "여름",
+    "visit_time": "오후 2시",
+    "created_at": "2025-01-21"
+  },
+  {
+    "review_id": "2904827-04",
+    "place_id": "2904827",
+    "text": "반려동물과 같이 갈 수 있어서 좋았어요. 약과도 맛있고 분위기가 고즈넉해요.",
+    "rating": 5,
+    "author_type": "가족",
+    "season": "가을",
+    "visit_time": "오후 4시",
+    "created_at": "2025-01-02"
+  },
+  {
+    "review_id": "2904827-05",
+    "place_id": "2904827",
+    "text": "사람이 너무 많아서 시끄럽고 좌석 간격도 좁아서 정신이 없었어요. 업무 보러 가기엔 별로네요.",
+    "rating": 2,
+    "author_type": "혼자",
+    "season": "겨울",
+    "visit_time": "오후 2시 30분",
+    "created_at": "2026-09-05"
+  },
+  {
+    "review_id": "2904827-06",
+    "place_id": "2904827",
+    "text": "동문시장 갔다가 들렀는데 꼬수미라테 독특하고 맛있어요. 정원이 예뻐요.",
+    "rating": 4,
+    "author_type": "친구",
+    "season": "봄",
+    "visit_time": "오후 5시",
+    "created_at": "2025-02-21"
+  },
+  {
+    "review_id": "2904827-07",
+    "place_id": "2904827",
+    "text": "주차가 너무 불편해요. 차 가지고 가기 힘드네요.",
+    "rating": 2,
+    "author_type": "커플",
+    "season": "여름",
+    "visit_time": "오후 3시",
+    "created_at": "2026-07-07"
+  },
+  {
+    "review_id": "2904827-08",
+    "place_id": "2904827",
+    "text": "그저 그랬음.",
+    "rating": 3,
+    "author_type": "가족",
+    "season": "봄",
+    "visit_time": "오후 1시",
+    "created_at": "2025-10-12"
+  },
+  {
+    "review_id": "2904827-09",
+    "place_id": "2904827",
+    "text": "한식 디저트 종류가 많아서 좋아요. 꽃차랑 호두정과 잘 먹고 갑니다.",
+    "rating": 5,
+    "author_type": "친구",
+    "season": "겨울",
+    "visit_time": "오후 4시",
+    "created_at": "2025-01-06"
+  },
+  {
+    "review_id": "2904827-10",
+    "place_id": "2904827",
+    "text": "삼성혈 구경하고 왔는데 한옥이라 그런지 편안하고 좋았어요.",
+    "rating": 5,
+    "author_type": "커플",
+    "season": "가을",
+    "visit_time": "오후 2시",
+    "created_at": "2026-07-19"
+  },
+  {
+    "review_id": "2904827-11",
+    "place_id": "2904827",
+    "text": "청보리 라테가 맛있네요. 작은 정원이 매력적이에요.",
+    "rating": 4,
+    "author_type": "혼자",
+    "season": "여름",
+    "visit_time": "오후 1시 30분",
+    "created_at": "2025-07-06"
+  },
+  {
+    "review_id": "2904827-12",
+    "place_id": "2904827",
+    "text": "단체로 가기엔 자리가 너무 좁고 불편해요. 추천하지 않습니다.",
+    "rating": 1,
+    "author_type": "가족",
+    "season": "봄",
+    "visit_time": "오후 3시",
+    "created_at": "2026-07-02"
+  },
+  {
+    "review_id": "2904827-13",
+    "place_id": "2904827",
+    "text": "고즈넉하니 분위기 최고. 곶감 말이 꼭 드셔보세요.",
+    "rating": 5,
+    "author_type": "친구",
+    "season": "겨울",
+    "visit_time": "오후 3시 30분",
+    "created_at": "2024-11-08"
+  },
+  {
+    "review_id": "2904827-14",
+    "place_id": "2904827",
+    "text": "제주 원도심 분위기랑 잘 어울리는 카페예요. 강아지랑 같이 가서 행복했어요.",
+    "rating": 5,
+    "author_type": "가족",
+    "season": "가을",
+    "visit_time": "오후 2시",
+    "created_at": "2026-04-03"
+  },
+  {
+    "review_id": "2904827-15",
+    "place_id": "2904827",
+    "text": "디저트가 정갈해요.",
+    "rating": 4,
+    "author_type": "커플",
+    "season": "봄",
+    "visit_time": "오후 1시",
+    "created_at": "2025-07-22"
+  },
+  {
+    "review_id": "2904827-16",
+    "place_id": "2904827",
+    "text": "좌석이 너무 붙어 있어서 대화하기가 좀 부담스러웠어요.",
+    "rating": 3,
+    "author_type": "혼자",
+    "season": "겨울",
+    "visit_time": "오후 2시",
+    "created_at": "2025-12-04"
+  },
+  {
+    "review_id": "2904827-17",
+    "place_id": "2904827",
+    "text": "주차가 힘들긴 한데 카페 내부 분위기가 너무 예뻐서 참을만해요.",
+    "rating": 4,
+    "author_type": "친구",
+    "season": "여름",
+    "visit_time": "오후 3시",
+    "created_at": "2025-04-23"
+  },
+  {
+    "review_id": "2904827-18",
+    "place_id": "2904827",
+    "text": "시그니처 음료들 다 괜찮고 한옥 감성이 좋아서 만족합니다.",
+    "rating": 5,
+    "author_type": "커플",
+    "season": "가을",
+    "visit_time": "오후 4시",
+    "created_at": "2026-04-10"
+  },
+  {
+    "review_id": "2863793-01",
+    "place_id": "2863793",
+    "text": "공항 근처라서 비행기 이착륙하는 거 보면서 커피 마시니까 정말 특별했어요. 매일 아침 직접 구운 빵이라 그런지 신선하고 맛있네요. 친구들이랑 오기 딱 좋습니다.",
+    "rating": 5,
+    "author_type": "친구",
+    "season": "봄",
+    "visit_time": "오전 11시",
+    "created_at": "2025-06-05"
+  },
+  {
+    "review_id": "2863793-02",
+    "place_id": "2863793",
+    "text": "용담해안도로 드라이브하다가 들렀는데 뷰가 정말 멋지네요. 더티 카이막 팡도르도 먹어봤는데 훌륭했습니다.",
+    "rating": 5,
+    "author_type": "커플",
+    "season": "가을",
+    "visit_time": "오후 3시",
+    "created_at": "2025-11-30"
+  },
+  {
+    "review_id": "2863793-03",
+    "place_id": "2863793",
+    "text": "빵이 맛있어서 좋았어요.",
+    "rating": 4,
+    "author_type": "혼자",
+    "season": "여름",
+    "visit_time": "오전 10시",
+    "created_at": "2025-09-10"
+  },
+  {
+    "review_id": "2863793-04",
+    "place_id": "2863793",
+    "text": "용담포구 근처라 코스로 짜기 좋았는데 사람이 너무 많네요. 특히 주말 오후에 갔더니 너무 소란스러워서 제대로 즐기기 어려웠습니다. 조용히 시간 보내고 싶은 분들께는 비추예요.",
+    "rating": 2,
+    "author_type": "가족",
+    "season": "겨울",
+    "visit_time": "오후 4시",
+    "created_at": "2025-11-18"
+  },
+  {
+    "review_id": "2863793-05",
+    "place_id": "2863793",
+    "text": "튀르키예산 카이막이 진짜 제대로네요. 공항이랑 가까워서 마지막 일정으로 들렀는데 너무 만족스러워요.",
+    "rating": 5,
+    "author_type": "친구",
+    "season": "여름",
+    "visit_time": "오후 1시",
+    "created_at": "2025-01-17"
+  },
+  {
+    "review_id": "2863793-06",
+    "place_id": "2863793",
+    "text": "오션뷰도 좋고 비행기 지나가는 풍경이 최고입니다. 파티시에님이 직접 굽는 빵이라 품질이 남다른 게 느껴져요.",
+    "rating": 5,
+    "author_type": "커플",
+    "season": "봄",
+    "visit_time": "오후 2시",
+    "created_at": "2025-12-18"
+  },
+  {
+    "review_id": "2863793-07",
+    "place_id": "2863793",
+    "text": "그저 그랬습니다.",
+    "rating": 3,
+    "author_type": "혼자",
+    "season": "가을",
+    "visit_time": "오후 5시",
+    "created_at": "2025-02-05"
+  },
+  {
+    "review_id": "2863793-08",
+    "place_id": "2863793",
+    "text": "용연계곡 구경하고 방문했는데 인기 창가 자리 경쟁이 너무 치열하네요. 자리 잡느라 조금 고생했지만 빵은 맛있었습니다.",
+    "rating": 4,
+    "author_type": "친구",
+    "season": "겨울",
+    "visit_time": "오후 2시",
+    "created_at": "2025-01-24"
+  },
+  {
+    "review_id": "2863793-09",
+    "place_id": "2863793",
+    "text": "가족들과 함께 방문했는데 카페 분위기가 참 감성적이에요. 용두암 보고 들르기 좋은 위치네요.",
+    "rating": 4,
+    "author_type": "가족",
+    "season": "봄",
+    "visit_time": "오전 11시",
+    "created_at": "2025-01-16"
+  },
+  {
+    "review_id": "2863793-10",
+    "place_id": "2863793",
+    "text": "당일 만든 빵만 파신다고 해서 믿음이 가요. 카이막 팡도르가 왜 유명한지 알겠네요.",
+    "rating": 5,
+    "author_type": "커플",
+    "season": "여름",
+    "visit_time": "오전 10시",
+    "created_at": "2025-01-20"
+  },
+  {
+    "review_id": "2863793-11",
+    "place_id": "2863793",
+    "text": "생각보다 별로였어요.",
+    "rating": 2,
+    "author_type": "혼자",
+    "season": "겨울",
+    "visit_time": "오후 1시",
+    "created_at": "2026-01-25"
+  },
+  {
+    "review_id": "2767900-01",
+    "place_id": "2767900",
+    "text": "용두암이랑 용연다리가 가까워서 같이 보기 너무 좋았어요. 밤에 조명 켜지니까 정말 예쁘네요.",
+    "rating": 5,
+    "author_type": "커플",
+    "season": "봄",
+    "visit_time": "야간",
+    "created_at": "2024-11-03"
+  },
+  {
+    "review_id": "2767900-02",
+    "place_id": "2767900",
+    "text": "공항 가기 전에 잠깐 들렀는데 적당하고 좋았습니다.",
+    "rating": 4,
+    "author_type": "혼자",
+    "season": "여름",
+    "visit_time": "오후",
+    "created_at": "2025-04-02"
+  },
+  {
+    "review_id": "2767900-03",
+    "place_id": "2767900",
+    "text": "생각보다 규모가 너무 작아서 금방 다 봤네요. 아쉽습니다.",
+    "rating": 2,
+    "author_type": "친구",
+    "season": "가을",
+    "visit_time": "오전",
+    "created_at": "2026-05-10"
+  },
+  {
+    "review_id": "2767900-04",
+    "place_id": "2767900",
+    "text": "가족들과 여행 마지막 날 방문했어요. 오밀조밀하게 잘 꾸며져 있어서 해안 보며 쉬기 괜찮네요.",
+    "rating": 4,
+    "author_type": "가족",
+    "season": "겨울",
+    "visit_time": "오후",
+    "created_at": "2025-03-16"
+  },
+  {
+    "review_id": "2767900-05",
+    "place_id": "2767900",
+    "text": "용연 다리 건너편으로 이어지는 산책로가 밤에 정말 화려해요. 조명이 압권입니다.",
+    "rating": 5,
+    "author_type": "커플",
+    "season": "여름",
+    "visit_time": "야간",
+    "created_at": "2025-07-20"
+  },
+  {
+    "review_id": "2767900-06",
+    "place_id": "2767900",
+    "text": "공원 자체가 작아서 크게 볼 건 없네요.",
+    "rating": 2,
+    "author_type": "친구",
+    "season": "봄",
+    "visit_time": "오후",
+    "created_at": "2024-11-25"
+  },
+  {
+    "review_id": "2767900-07",
+    "place_id": "2767900",
+    "text": "주말 낮에 갔더니 사람이 너무 많아서 혼잡하더라고요. 그래도 용머리 모양 기암괴석은 신기했습니다.",
+    "rating": 3,
+    "author_type": "가족",
+    "season": "가을",
+    "visit_time": "주말 낮",
+    "created_at": "2025-11-04"
+  },
+  {
+    "review_id": "2767900-08",
+    "place_id": "2767900",
+    "text": "여행 첫날 공항에서 내려서 바로 왔어요. 나무 벤치에 앉아서 쉬기 딱 좋아요.",
+    "rating": 4,
+    "author_type": "혼자",
+    "season": "겨울",
+    "visit_time": "오전",
+    "created_at": "2025-04-28"
+  },
+  {
+    "review_id": "2767900-09",
+    "place_id": "2767900",
+    "text": "조각상들도 있고 아기자기한 맛이 있네요. 도심 속에 이런 쉼터가 있어서 만족해요.",
+    "rating": 5,
+    "author_type": "가족",
+    "season": "봄",
+    "visit_time": "오전",
+    "created_at": "2026-02-22"
+  },
+  {
+    "review_id": "2767900-10",
+    "place_id": "2767900",
+    "text": "한곳에서 오래 머물고 싶은 분들께는 추천 안 해요. 너무 금방 끝나요.",
+    "rating": 2,
+    "author_type": "친구",
+    "season": "여름",
+    "visit_time": "오후",
+    "created_at": "2025-02-26"
+  },
+  {
+    "review_id": "2767900-11",
+    "place_id": "2767900",
+    "text": "야경 보러 갔는데 확실히 조명 덕분에 분위기가 달라지네요.",
+    "rating": 4,
+    "author_type": "커플",
+    "season": "가을",
+    "visit_time": "야간",
+    "created_at": "2026-01-04"
+  },
+  {
+    "review_id": "2767900-12",
+    "place_id": "2767900",
+    "text": "여행 코스 중간에 끼워 넣기 좋습니다.",
+    "rating": 3,
+    "author_type": "혼자",
+    "season": "겨울",
+    "visit_time": "오후",
+    "created_at": "2025-12-25"
+  },
+  {
+    "review_id": "2767900-13",
+    "place_id": "2767900",
+    "text": "용연 다리랑 용두암까지 한꺼번에 둘러볼 수 있어서 동선 짜기 편했어요.",
+    "rating": 5,
+    "author_type": "가족",
+    "season": "봄",
+    "visit_time": "오전",
+    "created_at": "2026-05-18"
+  },
+  {
+    "review_id": "2767900-14",
+    "place_id": "2767900",
+    "text": "주차 공간이 좀 좁아서 애먹었지만 야경은 예쁘네요.",
+    "rating": 3,
+    "author_type": "커플",
+    "season": "여름",
+    "visit_time": "야간",
+    "created_at": "2026-04-10"
+  },
+  {
+    "review_id": "2767900-15",
+    "place_id": "2767900",
+    "text": "산책하기엔 좋았으나 사람이 많아 혼잡했어요.",
+    "rating": 3,
+    "author_type": "친구",
+    "season": "가을",
+    "visit_time": "주말 낮",
+    "created_at": "2025-01-23"
+  },
+  {
+    "review_id": "127745-01",
+    "place_id": "127745",
+    "text": "공항이랑 정말 가까워서 도착하자마자 들렀어요. 계곡 물이랑 바닷물이 만나는 곳이라는데 정말 신비롭네요.",
+    "rating": 5,
+    "author_type": "친구",
+    "season": "봄",
+    "visit_time": "오후",
+    "created_at": "2025-05-23"
+  },
+  {
+    "review_id": "127745-02",
+    "place_id": "127745",
+    "text": "에메랄드빛 계곡이 너무 예뻐요. 용연구름다리에서 바라보는 풍경이 최고입니다.",
+    "rating": 5,
+    "author_type": "커플",
+    "season": "여름",
+    "visit_time": "오후",
+    "created_at": "2025-05-02"
+  },
+  {
+    "review_id": "127745-03",
+    "place_id": "127745",
+    "text": "밤에 가니까 형형색색 불빛이 켜져서 정말 아름다웠어요. 산책하기 정말 좋은 코스입니다.",
+    "rating": 5,
+    "author_type": "커플",
+    "season": "가을",
+    "visit_time": "저녁",
+    "created_at": "2026-07-27"
+  },
+  {
+    "review_id": "127745-04",
+    "place_id": "127745",
+    "text": "용연의 전설도 흥미롭고 선인들이 풍류를 즐겼다는 이야기가 이해가 가더라고요.",
+    "rating": 4,
+    "author_type": "혼자",
+    "season": "봄",
+    "visit_time": "오전",
+    "created_at": "2025-10-21"
+  },
+  {
+    "review_id": "127745-05",
+    "place_id": "127745",
+    "text": "규모가 생각보다 너무 작아서 금방 보고 나왔네요.",
+    "rating": 2,
+    "author_type": "가족",
+    "season": "여름",
+    "visit_time": "오후",
+    "created_at": "2026-08-14"
+  },
+  {
+    "review_id": "127745-06",
+    "place_id": "127745",
+    "text": "야경 보러 갔는데 사람이 너무 많아서 정신이 없었어요. 비추합니다.",
+    "rating": 1,
+    "author_type": "친구",
+    "season": "여름",
+    "visit_time": "저녁",
+    "created_at": "2025-10-06"
+  },
+  {
+    "review_id": "127745-07",
+    "place_id": "127745",
+    "text": "제주 올레 17코스 걷다가 들렀는데 잠시 쉬어가기 좋네요.",
+    "rating": 4,
+    "author_type": "혼자",
+    "season": "가을",
+    "visit_time": "오후",
+    "created_at": "2025-10-30"
+  },
+  {
+    "review_id": "127745-08",
+    "place_id": "127745",
+    "text": "그냥 평범해요.",
+    "rating": 3,
+    "author_type": "가족",
+    "season": "겨울",
+    "visit_time": "오전",
+    "created_at": "2026-01-22"
+  },
+  {
+    "review_id": "127745-09",
+    "place_id": "127745",
+    "text": "정자와 계곡의 조화가 한 폭의 그림 같아요. 친구들이랑 사진 찍기 좋아요.",
+    "rating": 5,
+    "author_type": "친구",
+    "season": "봄",
+    "visit_time": "오후",
+    "created_at": "2026-10-16"
+  },
+  {
+    "review_id": "127745-10",
+    "place_id": "127745",
+    "text": "밤에 산책 코스로 딱입니다. 숲이랑 호수가 잘 어우러져 있어요.",
+    "rating": 4,
+    "author_type": "커플",
+    "season": "여름",
+    "visit_time": "저녁",
+    "created_at": "2025-06-02"
+  },
+  {
+    "review_id": "127745-11",
+    "place_id": "127745",
+    "text": "좋았습니다.",
+    "rating": 4,
+    "author_type": "혼자",
+    "season": "겨울",
+    "visit_time": "오후",
+    "created_at": "2026-02-28"
+  },
+  {
+    "review_id": "127745-12",
+    "place_id": "127745",
+    "text": "역사적인 의미도 있고 주변에 용두암도 있어서 같이 둘러보기 좋네요.",
+    "rating": 4,
+    "author_type": "가족",
+    "season": "가을",
+    "visit_time": "오전",
+    "created_at": "2025-02-09"
+  },
+  {
+    "review_id": "127745-13",
+    "place_id": "127745",
+    "text": "활동적인 여행을 좋아하는데 여기는 너무 정적이라 제 취향은 아니네요.",
+    "rating": 2,
+    "author_type": "친구",
+    "season": "봄",
+    "visit_time": "오후",
+    "created_at": "2026-07-08"
+  },
+  {
+    "review_id": "127745-14",
+    "place_id": "127745",
+    "text": "에메랄드빛 물색이 정말 신비로워요. 제주 자연의 은은함을 느낄 수 있습니다.",
+    "rating": 5,
+    "author_type": "커플",
+    "season": "가을",
+    "visit_time": "오전",
+    "created_at": "2025-06-25"
+  },
+  {
+    "review_id": "127745-15",
+    "place_id": "127745",
+    "text": "야경이 멋지긴 한데 호수 규모가 작아서 기대를 너무 크게 하면 실망할 수 있어요.",
+    "rating": 3,
+    "author_type": "혼자",
+    "season": "여름",
+    "visit_time": "저녁",
+    "created_at": "2026-05-18"
+  },
+  {
+    "review_id": "127745-16",
+    "place_id": "127745",
+    "text": "공항에서 가까워 접근성은 좋으나 볼거리가 부족합니다.",
+    "rating": 2,
+    "author_type": "가족",
+    "season": "봄",
+    "visit_time": "오후",
+    "created_at": "2026-03-06"
+  },
+  {
+    "review_id": "126436-01",
+    "place_id": "126436",
+    "text": "백록담을 보러 갔는데 코스가 정말 길어서 힘들었어요. 하지만 울창한 숲길을 걸으니 마음이 정화되는 기분이라 좋았습니다.",
+    "rating": 4,
+    "author_type": "혼자",
+    "season": "봄",
+    "visit_time": "평일 오전",
+    "created_at": "2025-08-15"
+  },
+  {
+    "review_id": "126436-02",
+    "place_id": "126436",
+    "text": "사전 예약 시스템 때문에 여행 일정을 맞추기가 너무 번거롭고 힘들었네요. 추천하지 않습니다.",
+    "rating": 2,
+    "author_type": "가족",
+    "season": "여름",
+    "visit_time": "주말 오전",
+    "created_at": "2025-12-01"
+  },
+  {
+    "review_id": "126436-03",
+    "place_id": "126436",
+    "text": "친구들과 백록담 정상을 향해 도전했습니다. 탐방로가 잘 정비되어 있어서 걷기 편했어요.",
+    "rating": 5,
+    "author_type": "친구",
+    "season": "가을",
+    "visit_time": "평일 아침",
+    "created_at": "2025-02-09"
+  },
+  {
+    "review_id": "126436-04",
+    "place_id": "126436",
+    "text": "너무 길어요.",
+    "rating": 2,
+    "author_type": "커플",
+    "season": "겨울",
+    "visit_time": "평일 오후",
+    "created_at": "2025-06-09"
+  },
+  {
+    "review_id": "126436-05",
+    "place_id": "126436",
+    "text": "성판악 탐방로는 경사가 완만해서 좋지만 왕복 9시간은 정말 체력 소모가 큽니다. 가실 분들은 꼭 체력 관리하세요.",
+    "rating": 3,
+    "author_type": "혼자",
+    "season": "가을",
+    "visit_time": "평일 오전",
+    "created_at": "2025-09-10"
+  },
+  {
+    "review_id": "126436-06",
+    "place_id": "126436",
+    "text": "사전 예약하느라 고생했는데 결과적으로는 만족스러운 등산이었습니다.",
+    "rating": 4,
+    "author_type": "친구",
+    "season": "봄",
+    "visit_time": "평일 아침",
+    "created_at": "2026-05-22"
+  },
+  {
+    "review_id": "126436-07",
+    "place_id": "126436",
+    "text": "주말 이른 아침에 방문했는데 주차장이 너무 좁아서 차 세우기가 정말 어려웠습니다. 사람이 너무 많아서 정신이 없었어요.",
+    "rating": 1,
+    "author_type": "가족",
+    "season": "여름",
+    "visit_time": "주말 이른 아침",
+    "created_at": "2026-08-08"
+  },
+  {
+    "review_id": "126436-08",
+    "place_id": "126436",
+    "text": "좋았습니다.",
+    "rating": 5,
+    "author_type": "혼자",
+    "season": "가을",
+    "visit_time": "평일 오전",
+    "created_at": "2024-11-25"
+  },
+  {
+    "review_id": "126436-09",
+    "place_id": "126436",
+    "text": "울창한 숲이 울창해서 산책하기 좋았어요. 다만 코스가 너무 길어서 가족 단위로 가기엔 좀 무리가 있네요.",
+    "rating": 3,
+    "author_type": "가족",
+    "season": "봄",
+    "visit_time": "평일 오전",
+    "created_at": "2025-01-23"
+  },
+  {
+    "review_id": "126436-10",
+    "place_id": "126436",
+    "text": "백록담 정상을 향하는 가장 긴 코스라니 각오하고 가야 합니다. 사전 예약은 필수인 거 아시죠?",
+    "rating": 4,
+    "author_type": "친구",
+    "season": "겨울",
+    "visit_time": "평일 오전",
+    "created_at": "2026-03-26"
+  },
+  {
+    "review_id": "126436-11",
+    "place_id": "126436",
+    "text": "등산로 정비가 아주 잘 되어 있어서 걷기 좋았습니다. 혼자 사색하며 걷기 딱이었어요.",
+    "rating": 5,
+    "author_type": "혼자",
+    "season": "가을",
+    "visit_time": "평일 아침",
+    "created_at": "2025-01-18"
+  },
+  {
+    "review_id": "126436-12",
+    "place_id": "126436",
+    "text": "그저 그랬습니다.",
+    "rating": 3,
+    "author_type": "커플",
+    "season": "여름",
+    "visit_time": "평일 오후",
+    "created_at": "2024-11-19"
+  },
+  {
+    "review_id": "126436-13",
+    "place_id": "126436",
+    "text": "성판악은 경사가 완만하다는 점이 장점이지만 왕복 시간이 너무 길어 체력 안배가 필수입니다.",
+    "rating": 4,
+    "author_type": "친구",
+    "season": "봄",
+    "visit_time": "평일 오전",
+    "created_at": "2025-05-19"
+  },
+  {
+    "review_id": "126436-14",
+    "place_id": "126436",
+    "text": "공휴일에 갔더니 사람이 엄청나게 많네요. 사전 예약도 해야 하고 이동 시간이 길어서 좀 지쳤습니다.",
+    "rating": 2,
+    "author_type": "커플",
+    "season": "봄",
+    "visit_time": "공휴일 이른 아침",
+    "created_at": "2026-04-20"
+  },
+  {
+    "review_id": "126436-15",
+    "place_id": "126436",
+    "text": "숲길이 울창해서 힐링 그 자체였습니다. 친구들과 함께 완주해서 더 뜻깊었습니다.",
+    "rating": 5,
+    "author_type": "친구",
+    "season": "가을",
+    "visit_time": "평일 오전",
+    "created_at": "2025-04-22"
+  },
+  {
+    "review_id": "2751986-01",
+    "place_id": "2751986",
+    "text": "움직이는 공룡 모형이 정말 리얼해서 아이들이 시간 가는 줄 모르고 구경하네요. 가족 여행지로 최고입니다.",
+    "rating": 5,
+    "author_type": "가족",
+    "season": "봄",
+    "visit_time": "주말 오전",
+    "created_at": "2026-04-19"
+  },
+  {
+    "review_id": "2751986-02",
+    "place_id": "2751986",
+    "text": "날씨가 더워서 야외 구간은 좀 힘들었습니다. 실내 놀이터는 좋았어요.",
+    "rating": 3,
+    "author_type": "가족",
+    "season": "여름",
+    "visit_time": "오후",
+    "created_at": "2025-04-26"
+  },
+  {
+    "review_id": "2751986-03",
+    "place_id": "2751986",
+    "text": "좋았습니다.",
+    "rating": 4,
+    "author_type": "혼자",
+    "season": "가을",
+    "visit_time": "오전",
+    "created_at": "2025-11-05"
+  },
+  {
+    "review_id": "2751986-04",
+    "place_id": "2751986",
+    "text": "아이들이 동물 먹이 주기 체험을 정말 좋아해서 다음에도 또 방문하려고 합니다.",
+    "rating": 5,
+    "author_type": "가족",
+    "season": "가을",
+    "visit_time": "오전",
+    "created_at": "2026-02-01"
+  },
+  {
+    "review_id": "2751986-05",
+    "place_id": "2751986",
+    "text": "혼자 왔는데 공룡 구경하려니 좀 어색하네요. 가족 단위 손님이 너무 많아 복잡해요.",
+    "rating": 2,
+    "author_type": "혼자",
+    "season": "봄",
+    "visit_time": "주말 오전",
+    "created_at": "2026-04-06"
+  },
+  {
+    "review_id": "2751986-06",
+    "place_id": "2751986",
+    "text": "입장료가 비싼 편이라 조금 고민했지만 실내 놀이터가 있어서 아이들은 잘 놀았습니다.",
+    "rating": 4,
+    "author_type": "가족",
+    "season": "겨울",
+    "visit_time": "오후",
+    "created_at": "2026-02-25"
+  },
+  {
+    "review_id": "2751986-07",
+    "place_id": "2751986",
+    "text": "그저 그랬습니다.",
+    "rating": 3,
+    "author_type": "커플",
+    "season": "봄",
+    "visit_time": "오후",
+    "created_at": "2025-07-21"
+  },
+  {
+    "review_id": "2751986-08",
+    "place_id": "2751986",
+    "text": "움직이는 공룡 보면서 스탬프 미션 성공했어요! 가족끼리 가기 좋은 곳이네요.",
+    "rating": 5,
+    "author_type": "가족",
+    "season": "가을",
+    "visit_time": "오전",
+    "created_at": "2025-02-06"
+  },
+  {
+    "review_id": "2751986-09",
+    "place_id": "2751986",
+    "text": "여름에 야외 구간 돌아다니려니 너무 더워서 아이들이 지쳐하네요. 실내 위주로 보는 게 좋겠어요.",
+    "rating": 3,
+    "author_type": "가족",
+    "season": "여름",
+    "visit_time": "오후",
+    "created_at": "2025-04-15"
+  },
+  {
+    "review_id": "2751986-10",
+    "place_id": "2751986",
+    "text": "페인팅 존에서 아이가 정말 즐거워했어요. 창의력에 도움 될 듯요.",
+    "rating": 5,
+    "author_type": "가족",
+    "season": "봄",
+    "visit_time": "오전",
+    "created_at": "2024-12-04"
+  },
+  {
+    "review_id": "2751986-11",
+    "place_id": "2751986",
+    "text": "커플이 가기엔 가격 대비 볼거리가 부족한 느낌입니다. 온통 아이들뿐이에요.",
+    "rating": 2,
+    "author_type": "커플",
+    "season": "가을",
+    "visit_time": "공휴일 오후",
+    "created_at": "2025-10-12"
+  },
+  {
+    "review_id": "2751986-12",
+    "place_id": "2751986",
+    "text": "비 오는 날 실내 놀이터 덕분에 아이들이 신나게 놀았습니다. 날씨 상관없어서 좋네요.",
+    "rating": 5,
+    "author_type": "가족",
+    "season": "겨울",
+    "visit_time": "오전",
+    "created_at": "2026-03-29"
+  },
+  {
+    "review_id": "2751986-13",
+    "place_id": "2751986",
+    "text": "동물 먹이 주기 체험은 아이가 정말 좋아해서 기억에 남습니다.",
+    "rating": 4,
+    "author_type": "가족",
+    "season": "봄",
+    "visit_time": "오전",
+    "created_at": "2026-08-08"
+  },
+  {
+    "review_id": "2751986-14",
+    "place_id": "2751986",
+    "text": "입장료가 생각보다 너무 비싸서 조금 아쉬웠습니다.",
+    "rating": 2,
+    "author_type": "친구",
+    "season": "가을",
+    "visit_time": "오전",
+    "created_at": "2025-07-15"
+  },
+  {
+    "review_id": "2751986-15",
+    "place_id": "2751986",
+    "text": "그저 그렇네요.",
+    "rating": 3,
+    "author_type": "가족",
+    "season": "여름",
+    "visit_time": "오후",
+    "created_at": "2025-05-07"
+  },
+  {
+    "review_id": "2751986-16",
+    "place_id": "2751986",
+    "text": "제주 최대 규모라더니 공룡 모형도 많고 볼거리가 풍성해서 만족스러워요.",
+    "rating": 5,
+    "author_type": "가족",
+    "season": "가을",
+    "visit_time": "주말 오전",
+    "created_at": "2025-12-04"
+  },
+  {
+    "review_id": "2751986-17",
+    "place_id": "2751986",
+    "text": "가족 여행으로 오기에 이만한 곳이 없네요. 힐링 존에서 어른들도 좀 쉴 수 있었고요.",
+    "rating": 4,
+    "author_type": "가족",
+    "season": "봄",
+    "visit_time": "오전",
+    "created_at": "2026-03-03"
+  },
+  {
+    "review_id": "2751986-18",
+    "place_id": "2751986",
+    "text": "공휴일 오후에 갔더니 사람이 너무 많아서 북적거립니다. 여유롭게 보려면 평일이 나을 듯요.",
+    "rating": 3,
+    "author_type": "가족",
+    "season": "봄",
+    "visit_time": "공휴일 오후",
+    "created_at": "2026-07-05"
+  },
+  {
+    "review_id": "2751986-19",
+    "place_id": "2751986",
+    "text": "좋았습니다.",
+    "rating": 4,
+    "author_type": "가족",
+    "season": "여름",
+    "visit_time": "오후",
+    "created_at": "2025-04-10"
+  },
+  {
+    "review_id": "130088-01",
+    "place_id": "130088",
+    "text": "제주 교육의 역사를 시대별로 차근차근 둘러볼 수 있어서 좋았습니다. 무료로 관람할 수 있다는 점이 큰 장점이네요.",
+    "rating": 5,
+    "author_type": "혼자",
+    "season": "봄",
+    "visit_time": "오전 10시",
+    "created_at": "2025-12-26"
+  },
+  {
+    "review_id": "130088-02",
+    "place_id": "130088",
+    "text": "아이들과 함께 가서 체험 프로그램을 즐겼습니다. 다만 시설이 조금 오래된 느낌을 지울 수 없네요.",
+    "rating": 3,
+    "author_type": "가족",
+    "season": "여름",
+    "visit_time": "오후 2시",
+    "created_at": "2026-07-23"
+  },
+  {
+    "review_id": "130088-03",
+    "place_id": "130088",
+    "text": "그냥 그랬습니다.",
+    "rating": 3,
+    "author_type": "친구",
+    "season": "가을",
+    "visit_time": "오후 3시",
+    "created_at": "2024-11-29"
+  },
+  {
+    "review_id": "130088-04",
+    "place_id": "130088",
+    "text": "제주 교육의 흐름을 알고 싶다면 가볼 만해요. 상설 전시장이 4개나 있어서 볼거리가 꽤 됩니다.",
+    "rating": 4,
+    "author_type": "가족",
+    "season": "겨울",
+    "visit_time": "오전 11시",
+    "created_at": "2026-07-07"
+  },
+  {
+    "review_id": "130088-05",
+    "place_id": "130088",
+    "text": "전시해설 프로그램을 들으니 훨씬 이해가 잘 되었어요. 아이들에게 전통문화 체험을 시켜주기 딱 좋은 곳입니다.",
+    "rating": 5,
+    "author_type": "가족",
+    "season": "봄",
+    "visit_time": "오후 1시",
+    "created_at": "2025-05-02"
+  },
+  {
+    "review_id": "130088-06",
+    "place_id": "130088",
+    "text": "관광객을 위한 화려한 볼거리보다는 현지 학생들의 학습 위주 분위기라 커플 여행지로는 영 별로네요. 비추입니다.",
+    "rating": 2,
+    "author_type": "커플",
+    "season": "여름",
+    "visit_time": "오후 3시",
+    "created_at": "2026-03-30"
+  },
+  {
+    "review_id": "130088-07",
+    "place_id": "130088",
+    "text": "디오라마 기법으로 꾸며진 전시가 인상 깊었습니다. 옛날 학교 생활을 엿보는 재미가 쏠쏠해요.",
+    "rating": 4,
+    "author_type": "혼자",
+    "season": "가을",
+    "visit_time": "오전 10시",
+    "created_at": "2025-05-31"
+  },
+  {
+    "review_id": "130088-08",
+    "place_id": "130088",
+    "text": "무료라 부담 없이 들렀는데 내용은 생각보다 알찹니다. 선사시대부터 현대까지 교육 자료가 체계적이에요.",
+    "rating": 5,
+    "author_type": "친구",
+    "season": "겨울",
+    "visit_time": "오후 2시",
+    "created_at": "2026-08-30"
+  },
+  {
+    "review_id": "130088-09",
+    "place_id": "130088",
+    "text": "생각보다 별로였어요.",
+    "rating": 2,
+    "author_type": "친구",
+    "season": "봄",
+    "visit_time": "오후 4시",
+    "created_at": "2026-10-07"
+  },
+  {
+    "review_id": "130088-10",
+    "place_id": "130088",
+    "text": "주말 오후에 갔더니 학생들로 붐비더군요. 학습 분위기가 강해서 친구끼리 놀러 오기엔 적합하지 않은 것 같습니다.",
+    "rating": 2,
+    "author_type": "친구",
+    "season": "여름",
+    "visit_time": "오후 2시",
+    "created_at": "2024-11-11"
+  },
+  {
+    "review_id": "130088-11",
+    "place_id": "130088",
+    "text": "아이들이 옛날 놀이를 체험해보며 즐거워하는 모습을 보니 만족스러웠습니다. 가족 단위 방문객에게 강력 추천합니다.",
+    "rating": 5,
+    "author_type": "가족",
+    "season": "가을",
+    "visit_time": "오후 1시",
+    "created_at": "2026-09-26"
+  },
+  {
+    "review_id": "130088-12",
+    "place_id": "130088",
+    "text": "전시실 구성이 잘 되어 있어서 제주 교육의 과거를 이해하기 좋았습니다. 영상 전시도 생동감이 있네요.",
+    "rating": 4,
+    "author_type": "혼자",
+    "season": "겨울",
+    "visit_time": "오전 11시",
+    "created_at": "2026-09-28"
+  },
+  {
+    "review_id": "130088-13",
+    "place_id": "130088",
+    "text": "아이 교육 목적으로는 좋지만 시설 노후화가 좀 아쉽네요. 보수가 조금 필요해 보입니다.",
+    "rating": 3,
+    "author_type": "가족",
+    "season": "봄",
+    "visit_time": "오후 2시",
+    "created_at": "2025-06-01"
+  },
+  {
+    "review_id": "130088-14",
+    "place_id": "130088",
+    "text": "그저 그랬습니다.",
+    "rating": 3,
+    "author_type": "커플",
+    "season": "여름",
+    "visit_time": "오후 3시",
+    "created_at": "2025-01-21"
+  },
+  {
+    "review_id": "130088-15",
+    "place_id": "130088",
+    "text": "방학 기간 평일에 방문했더니 사람이 많았어요. 그래도 교육 자료가 방대해서 공부가 많이 되었습니다.",
+    "rating": 4,
+    "author_type": "가족",
+    "season": "가을",
+    "visit_time": "오후 2시",
+    "created_at": "2026-10-16"
+  },
+  {
+    "review_id": "130088-16",
+    "place_id": "130088",
+    "text": "관광지 느낌보다는 교육 기관의 성격이 강합니다. 차분하게 역사 공부를 하고 싶은 분들께 권해요.",
+    "rating": 4,
+    "author_type": "혼자",
+    "season": "겨울",
+    "visit_time": "오전 10시",
+    "created_at": "2025-05-28"
+  },
+  {
+    "review_id": "130088-17",
+    "place_id": "130088",
+    "text": "다 좋았는데 시설이 낡은 게 조금 걸리네요. 그래도 무료 입장이니 가벼운 마음으로 방문하기 좋습니다.",
+    "rating": 4,
+    "author_type": "가족",
+    "season": "봄",
+    "visit_time": "오전 11시",
+    "created_at": "2025-11-04"
+  },
+  {
+    "review_id": "130088-18",
+    "place_id": "130088",
+    "text": "기획 전시실도 있고 구경할 게 많아요. 가족끼리 오기에 딱 좋은 분위기입니다.",
+    "rating": 5,
+    "author_type": "가족",
+    "season": "여름",
+    "visit_time": "오후 1시",
+    "created_at": "2025-11-09"
+  },
+  {
+    "review_id": "130088-19",
+    "place_id": "130088",
+    "text": "역사 자료가 많아서 좋았습니다.",
+    "rating": 5,
+    "author_type": "혼자",
+    "season": "가을",
+    "visit_time": "오전 9시",
+    "created_at": "2025-01-21"
+  },
+  {
+    "review_id": "130088-20",
+    "place_id": "130088",
+    "text": "커플이 데이트하러 오기에는 분위기가 너무 학구적입니다. 재미를 기대한다면 다른 곳을 추천해요.",
+    "rating": 2,
+    "author_type": "커플",
+    "season": "겨울",
+    "visit_time": "오후 2시",
+    "created_at": "2024-12-28"
+  },
+  {
+    "review_id": "129894-01",
+    "place_id": "129894",
+    "text": "제주도의 형성과정과 민속문화를 한눈에 볼 수 있어서 아이들 교육에 정말 좋았어요. 마네킹이나 실물 자료들이 잘 갖춰져 있어서 제주 사람들의 옛 삶을 이해하기 편했네요.",
+    "rating": 5,
+    "author_type": "가족",
+    "season": "봄",
+    "visit_time": "오전",
+    "created_at": "2024-10-21"
+  },
+  {
+    "review_id": "129894-02",
+    "place_id": "129894",
+    "text": "전시 동선이 깔끔하고 체계적이라 혼자 조용히 둘러보기 딱 좋았습니다. 특히 로비의 참고래 골격 표본이 인상적이었어요.",
+    "rating": 4,
+    "author_type": "혼자",
+    "season": "가을",
+    "visit_time": "오후",
+    "created_at": "2025-05-28"
+  },
+  {
+    "review_id": "129894-03",
+    "place_id": "129894",
+    "text": "가격도 저렴하고 제주 역사를 파악하기엔 괜찮았어요. 그냥 좋았습니다.",
+    "rating": 4,
+    "author_type": "친구",
+    "season": "겨울",
+    "visit_time": "오전",
+    "created_at": "2025-06-20"
+  },
+  {
+    "review_id": "129894-04",
+    "place_id": "129894",
+    "text": "전시가 너무 정적이라 아이들이 지루해하네요. 활동적인 체험을 원한다면 비추천입니다.",
+    "rating": 2,
+    "author_type": "가족",
+    "season": "여름",
+    "visit_time": "주말 오후",
+    "created_at": "2024-11-11"
+  },
+  {
+    "review_id": "129894-05",
+    "place_id": "129894",
+    "text": "제주 자연 생태랑 민속문화를 종합적으로 볼 수 있어서 유익했습니다. 시설이 조금 낡은 감은 있지만 관람하는 데는 큰 지장이 없었어요.",
+    "rating": 4,
+    "author_type": "커플",
+    "season": "봄",
+    "visit_time": "오전",
+    "created_at": "2025-02-09"
+  },
+  {
+    "review_id": "129894-06",
+    "place_id": "129894",
+    "text": "혼자 제주 공부하러 왔는데 알차고 좋네요.",
+    "rating": 5,
+    "author_type": "혼자",
+    "season": "가을",
+    "visit_time": "오후",
+    "created_at": "2026-04-13"
+  },
+  {
+    "review_id": "129894-07",
+    "place_id": "129894",
+    "text": "전시물이 체계적이고 동선이 정말 편리해서 관람하기 좋았어요. 실감 영상으로 제주의 가치를 확인하니 감회가 새롭더라고요.",
+    "rating": 5,
+    "author_type": "가족",
+    "season": "겨울",
+    "visit_time": "오전",
+    "created_at": "2026-03-27"
+  },
+  {
+    "review_id": "129894-08",
+    "place_id": "129894",
+    "text": "전체적으로 너무 올드한 느낌이 많이 납니다. 좀 더 현대적인 체험을 기대했는데 아쉬워요.",
+    "rating": 2,
+    "author_type": "친구",
+    "season": "여름",
+    "visit_time": "평일 낮",
+    "created_at": "2025-10-17"
+  },
+  {
+    "review_id": "129894-09",
+    "place_id": "129894",
+    "text": "제주인들의 일생과 의식주를 알 수 있어서 좋았어요. 입장료 대비 훌륭한 곳입니다.",
+    "rating": 5,
+    "author_type": "가족",
+    "season": "봄",
+    "visit_time": "오후",
+    "created_at": "2025-12-04"
+  },
+  {
+    "review_id": "129894-10",
+    "place_id": "129894",
+    "text": "실내라 쾌적하고 제주의 자연자원을 보기엔 부족함이 없었습니다.",
+    "rating": 4,
+    "author_type": "혼자",
+    "season": "가을",
+    "visit_time": "오전",
+    "created_at": "2024-10-26"
+  },
+  {
+    "review_id": "129894-11",
+    "place_id": "129894",
+    "text": "방학 때 갔더니 사람이 너무 많아서 제대로 보기가 힘들었네요. 조용할 때 다시 가보고 싶어요.",
+    "rating": 3,
+    "author_type": "가족",
+    "season": "겨울",
+    "visit_time": "평일 낮",
+    "created_at": "2024-10-31"
+  },
+  {
+    "review_id": "129894-12",
+    "place_id": "129894",
+    "text": "그저 그랬어요.",
+    "rating": 3,
+    "author_type": "친구",
+    "season": "여름",
+    "visit_time": "오후",
+    "created_at": "2025-02-18"
+  },
+  {
+    "review_id": "129894-13",
+    "place_id": "129894",
+    "text": "가족끼리 와서 제주 형성사 배우기 좋았어요. 동선이 잘 짜여 있어 관람이 편했습니다.",
+    "rating": 4,
+    "author_type": "가족",
+    "season": "봄",
+    "visit_time": "주말 오후",
+    "created_at": "2024-12-22"
+  },
+  {
+    "review_id": "130461-01",
+    "place_id": "130461",
+    "text": "제주의 역사 흐름을 시대별로 아주 자세하게 볼 수 있어서 유익했어요. 탐라문화에 대해 깊이 알게 되어 좋았습니다.",
+    "rating": 5,
+    "author_type": "가족",
+    "season": "봄",
+    "visit_time": "오전 10시",
+    "created_at": "2025-03-16"
+  },
+  {
+    "review_id": "130461-02",
+    "place_id": "130461",
+    "text": "학술적인 내용이 많아서 조금 지루하게 느껴질 수 있습니다. 활동적인 것을 좋아하는 분들에겐 추천하지 않아요.",
+    "rating": 2,
+    "author_type": "친구",
+    "season": "여름",
+    "visit_time": "오후 2시",
+    "created_at": "2026-01-28"
+  },
+  {
+    "review_id": "130461-03",
+    "place_id": "130461",
+    "text": "무료입장이라 부담 없이 방문했습니다. 전시 환경이 정말 쾌적하고 깔끔하네요.",
+    "rating": 5,
+    "author_type": "혼자",
+    "season": "가을",
+    "visit_time": "오후 1시",
+    "created_at": "2024-12-30"
+  },
+  {
+    "review_id": "130461-04",
+    "place_id": "130461",
+    "text": "그냥 그랬어요.",
+    "rating": 3,
+    "author_type": "커플",
+    "season": "겨울",
+    "visit_time": "오후 3시",
+    "created_at": "2025-07-09"
+  },
+  {
+    "review_id": "130461-05",
+    "place_id": "130461",
+    "text": "선사시대부터 조선시대까지 유물이 정말 알차게 전시되어 있네요. 가족과 함께 오기 정말 좋은 문화공간입니다.",
+    "rating": 5,
+    "author_type": "가족",
+    "season": "봄",
+    "visit_time": "오전 11시",
+    "created_at": "2024-11-20"
+  },
+  {
+    "review_id": "130461-06",
+    "place_id": "130461",
+    "text": "혼자 제주 역사 공부하러 다녀왔습니다. 깊이 있는 자료들이 많아서 시간 가는 줄 몰랐네요.",
+    "rating": 4,
+    "author_type": "혼자",
+    "season": "여름",
+    "visit_time": "오후 2시",
+    "created_at": "2026-07-21"
+  },
+  {
+    "review_id": "130461-07",
+    "place_id": "130461",
+    "text": "생각보다 전시가 전문적이라 이해하기 어려웠고 너무 정적인 분위기라 제 취향은 아니었습니다.",
+    "rating": 2,
+    "author_type": "친구",
+    "season": "가을",
+    "visit_time": "오후 4시",
+    "created_at": "2025-03-11"
+  },
+  {
+    "review_id": "130461-08",
+    "place_id": "130461",
+    "text": "입장료가 무료라니 대박! 관리도 잘 되어 있고 유익한 시간 보냈습니다.",
+    "rating": 5,
+    "author_type": "가족",
+    "season": "겨울",
+    "visit_time": "오전 10시",
+    "created_at": "2025-07-26"
+  },
+  {
+    "review_id": "130461-09",
+    "place_id": "130461",
+    "text": "좋았어요.",
+    "rating": 4,
+    "author_type": "혼자",
+    "season": "봄",
+    "visit_time": "오후 1시",
+    "created_at": "2025-01-15"
+  },
+  {
+    "review_id": "130461-10",
+    "place_id": "130461",
+    "text": "특별전도 열리고 있어서 볼거리가 풍성했습니다. 다만 대중교통으로 가기엔 조금 불편하네요.",
+    "rating": 4,
+    "author_type": "친구",
+    "season": "여름",
+    "visit_time": "오후 2시",
+    "created_at": "2025-12-11"
+  },
+  {
+    "review_id": "130461-11",
+    "place_id": "130461",
+    "text": "탐라문화의 독특함을 느낄 수 있는 곳입니다. 아이들과 함께 역사를 배우기에 이만한 곳이 없네요.",
+    "rating": 5,
+    "author_type": "가족",
+    "season": "가을",
+    "visit_time": "오전 10시",
+    "created_at": "2024-11-01"
+  },
+  {
+    "review_id": "130461-12",
+    "place_id": "130461",
+    "text": "전시실이 깔끔하고 쾌적합니다. 무료로 운영되는 점이 참 좋습니다.",
+    "rating": 4,
+    "author_type": "커플",
+    "season": "겨울",
+    "visit_time": "오후 3시",
+    "created_at": "2025-04-10"
+  },
+  {
+    "review_id": "130461-13",
+    "place_id": "130461",
+    "text": "활동적인 걸 선호하는 편이라 저에겐 너무 정적이었어요.",
+    "rating": 2,
+    "author_type": "친구",
+    "season": "봄",
+    "visit_time": "오후 2시",
+    "created_at": "2026-10-04"
+  },
+  {
+    "review_id": "130461-14",
+    "place_id": "130461",
+    "text": "제주라는 지역의 정체성을 파악하기에 아주 좋은 박물관입니다.",
+    "rating": 5,
+    "author_type": "혼자",
+    "season": "여름",
+    "visit_time": "오전 11시",
+    "created_at": "2026-04-08"
+  },
+  {
+    "review_id": "130461-15",
+    "place_id": "130461",
+    "text": "내용이 매우 학술적입니다. 아이들이 조금 어려워할 수도 있을 것 같아요.",
+    "rating": 3,
+    "author_type": "가족",
+    "season": "가을",
+    "visit_time": "오후 4시",
+    "created_at": "2025-09-04"
+  },
+  {
+    "review_id": "130461-16",
+    "place_id": "130461",
+    "text": "방학 때 갔더니 사람이 너무 많아서 관람하기 힘들었어요. 평일에 가는 게 좋을 듯.",
+    "rating": 3,
+    "author_type": "가족",
+    "season": "겨울",
+    "visit_time": "오후 3시",
+    "created_at": "2026-01-14"
+  },
+  {
+    "review_id": "130461-17",
+    "place_id": "130461",
+    "text": "그저 그랬습니다.",
+    "rating": 3,
+    "author_type": "커플",
+    "season": "봄",
+    "visit_time": "오후 1시",
+    "created_at": "2026-05-29"
+  },
+  {
+    "review_id": "130461-18",
+    "place_id": "130461",
+    "text": "제주 역사 문화 유산을 체계적으로 둘러볼 수 있어 좋았습니다. 쾌적한 실내 관람 만족합니다.",
+    "rating": 5,
+    "author_type": "혼자",
+    "season": "여름",
+    "visit_time": "오전 10시",
+    "created_at": "2025-09-01"
+  },
+  {
+    "review_id": "1556005-01",
+    "place_id": "1556005",
+    "text": "그리스 신화에 대해 쉽게 배울 수 있어 유익했고 아이들이 특히 좋아했어요. 의상 체험도 색달랐습니다.",
+    "rating": 5,
+    "author_type": "가족",
+    "season": "여름",
+    "visit_time": "평일 오전",
+    "created_at": "2025-08-20"
+  },
+  {
+    "review_id": "1556005-02",
+    "place_id": "1556005",
+    "text": "전시물이 다 가짜라는 점이 좀 실망스러웠습니다. 진품을 기대하고 갔는데 아쉽네요.",
+    "rating": 2,
+    "author_type": "혼자",
+    "season": "봄",
+    "visit_time": "평일 오후",
+    "created_at": "2026-06-23"
+  },
+  {
+    "review_id": "1556005-03",
+    "place_id": "1556005",
+    "text": "규모가 생각보다 작아서 금방 둘러봤어요. 입장료가 조금 비싸게 느껴지네요.",
+    "rating": 2,
+    "author_type": "커플",
+    "season": "가을",
+    "visit_time": "평일 오후",
+    "created_at": "2026-02-16"
+  },
+  {
+    "review_id": "1556005-04",
+    "place_id": "1556005",
+    "text": "아이들과 함께 가서 신화 공부도 하고 의상도 입어보니 즐거운 시간 보냈습니다.",
+    "rating": 4,
+    "author_type": "가족",
+    "season": "여름",
+    "visit_time": "주말 오후",
+    "created_at": "2024-12-17"
+  },
+  {
+    "review_id": "1556005-05",
+    "place_id": "1556005",
+    "text": "그저 그랬습니다.",
+    "rating": 3,
+    "author_type": "친구",
+    "season": "겨울",
+    "visit_time": "평일 오전",
+    "created_at": "2024-11-16"
+  },
+  {
+    "review_id": "1556005-06",
+    "place_id": "1556005",
+    "text": "조용한 관람을 원했는데 박물관 내 체험이 많아 다소 시끌벅적해서 집중하기 어려웠어요.",
+    "rating": 2,
+    "author_type": "혼자",
+    "season": "봄",
+    "visit_time": "평일 오전",
+    "created_at": "2026-05-30"
+  },
+  {
+    "review_id": "1556005-07",
+    "place_id": "1556005",
+    "text": "체험 프로그램이 많아서 지루할 틈이 없었네요. 특히 가면 만들기 체험이 재밌었습니다.",
+    "rating": 5,
+    "author_type": "친구",
+    "season": "가을",
+    "visit_time": "주말 오후",
+    "created_at": "2025-05-21"
+  },
+  {
+    "review_id": "1556005-08",
+    "place_id": "1556005",
+    "text": "전시물 재현도가 꽤 괜찮았고 설명이 잘 되어 있어 신화 내용을 이해하기 좋았어요.",
+    "rating": 4,
+    "author_type": "가족",
+    "season": "봄",
+    "visit_time": "평일 오후",
+    "created_at": "2025-02-21"
+  },
+  {
+    "review_id": "1556005-09",
+    "place_id": "1556005",
+    "text": "시설이 조금 오래된 느낌이 들긴 하지만 체험하며 즐기기엔 충분했습니다.",
+    "rating": 3,
+    "author_type": "친구",
+    "season": "여름",
+    "visit_time": "방학 평일 낮",
+    "created_at": "2025-03-18"
+  },
+  {
+    "review_id": "1556005-10",
+    "place_id": "1556005",
+    "text": "아테네 시민권 발급 체험해보니 신기하고 재밌네요. 가족 단위 관람객에게 추천합니다.",
+    "rating": 5,
+    "author_type": "가족",
+    "season": "겨울",
+    "visit_time": "주말 오후",
+    "created_at": "2024-12-20"
+  },
+  {
+    "review_id": "1556005-11",
+    "place_id": "1556005",
+    "text": "별로였어요.",
+    "rating": 2,
+    "author_type": "커플",
+    "season": "여름",
+    "visit_time": "주말 오후",
+    "created_at": "2025-11-07"
+  },
+  {
+    "review_id": "1556005-12",
+    "place_id": "1556005",
+    "text": "루브르나 바티칸의 유명 작품들을 재현해놓은 걸 볼 수 있어 신선했습니다.",
+    "rating": 4,
+    "author_type": "친구",
+    "season": "봄",
+    "visit_time": "평일 오전",
+    "created_at": "2026-09-21"
+  },
+  {
+    "review_id": "1556005-13",
+    "place_id": "1556005",
+    "text": "그리스 마을 구성이 독특하고 좋았어요. 여러 관을 도는 재미가 있네요.",
+    "rating": 4,
+    "author_type": "가족",
+    "season": "가을",
+    "visit_time": "평일 오후",
+    "created_at": "2026-06-16"
+  },
+  {
+    "review_id": "1556005-14",
+    "place_id": "1556005",
+    "text": "그냥 평범했어요.",
+    "rating": 3,
+    "author_type": "혼자",
+    "season": "겨울",
+    "visit_time": "평일 오후",
+    "created_at": "2026-07-18"
+  },
+  {
+    "review_id": "1556005-15",
+    "place_id": "1556005",
+    "text": "전시물 설명이 상세해서 교육적으로 괜찮은 박물관인 것 같아요.",
+    "rating": 4,
+    "author_type": "가족",
+    "season": "여름",
+    "visit_time": "방학 평일 낮",
+    "created_at": "2024-12-30"
+  },
+  {
+    "review_id": "1556005-16",
+    "place_id": "1556005",
+    "text": "다양한 체험 전시가 마련되어 있어 관람객이 직접 참여할 수 있다는 점이 큰 장점이네요.",
+    "rating": 5,
+    "author_type": "친구",
+    "season": "봄",
+    "visit_time": "주말 오후",
+    "created_at": "2025-01-12"
+  },
+  {
+    "review_id": "1556005-17",
+    "place_id": "1556005",
+    "text": "박물관 규모는 작지만 알차게 구성되어 있습니다.",
+    "rating": 3,
+    "author_type": "커플",
+    "season": "가을",
+    "visit_time": "평일 오전",
+    "created_at": "2025-05-30"
   }
 ]
