@@ -55,11 +55,13 @@ def test_feedback_replace_visit_changes_only_that_block(fake_llm, fake_search) -
     out = apply_feedback(state)
     after = out["itinerary"]
     changed = [(d.day, v.place_id) for d in after.days for v in d.visits if v.changed]
-    assert len(changed) == 1 and changed[0][0] == 1
-    assert changed[0][1] != target.place_id
-    assert catalog.places()[changed[0][1]].category == catalog.places()[target.place_id].category
+    # 교체로 새 검증 실패가 생기면 같은 일차 안에서만 부분 수리가 더 바꿀 수 있다
+    assert changed and all(day == 1 for day, _ in changed)
+    day1_after = [v.place_id for v in after.days[0].visits]
+    assert target.place_id not in day1_after
+    assert any(catalog.places()[pid].category == catalog.places()[target.place_id].category for _, pid in changed)
     assert [v.place_id for v in after.days[1].visits] == [v.place_id for v in before.days[1].visits]  # 다른 일차는 그대로
-    assert changed[0][1] in out["review_summaries"]
+    assert any(pid in out["review_summaries"] for _, pid in changed)
     assert "1일차 2번째 방문" in out["notice"] and "바꿨어요" in out["notice"]  # 무엇이 바뀌었는지 알려 준다
 
 
