@@ -144,11 +144,15 @@ def build_place(
 
 
 def fetch_places(
-    only: set[str] | None = None, skip_ids: set[str] = frozenset(), add: int | None = None  # type: ignore[assignment]
+    only: set[str] | None = None,
+    skip_ids: set[str] = frozenset(),  # type: ignore[assignment]
+    add: int | None = None,
+    area: str | None = None,
 ) -> list[Place]:
     """PLAN에 따라 장소를 수집한다. only로 계획 이름을 제한하고, skip_ids에 있는 장소는 건너뛴다.
 
     add가 있으면 계획의 목표 개수 대신 이 수만큼 새로 담는다 (이미 가진 장소 위에 추가할 때 쓴다).
+    area가 있으면(예: 서귀포시) 주소에 그 구역이 들어 있는 후보만 담는다.
     """
     client = TourApiClient()
     raw_dump: dict[str, list[dict[str, Any]]] = {}
@@ -157,6 +161,8 @@ def fetch_places(
         if only and plan.label not in only:
             continue
         candidates = fetch_candidates(client, plan)
+        if area:
+            candidates = [it for it in candidates if area in (it.get("addr1") or "")]
         raw_dump[plan.label] = candidates
         target = add if add is not None else plan.target
         picked = 0
@@ -172,7 +178,7 @@ def fetch_places(
         logger.info("%s: 후보 %d개 중 %d/%d개 선정", plan.label, len(candidates), picked, target)
     raw_dir = get_settings().data_dir / "raw"
     raw_dir.mkdir(parents=True, exist_ok=True)
-    suffix = "_" + "_".join(sorted(only)) if only else ""
+    suffix = ("_" + "_".join(sorted(only)) if only else "") + (f"_{area}" if area else "")
     (raw_dir / f"places_raw{suffix}.json").write_text(json.dumps(raw_dump, ensure_ascii=False, indent=2), encoding="utf-8")
     return places
 
@@ -187,13 +193,14 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--only", nargs="+", choices=[p.label for p in PLAN], help="이 계획만 수집해 기존 파일에 추가")
     parser.add_argument("--add", type=int, help="--only와 함께: 계획의 목표 대신 이 수만큼 새 장소를 추가")
+    parser.add_argument("--area", choices=["제주시", "서귀포시"], help="주소에 이 구역이 들어 있는 장소만 수집")
     args = parser.parse_args()
 
     out = get_settings().data_dir / "places.json"
     existing: list[Place] = []
     if args.only and out.exists():
         existing = [Place(**p) for p in json.loads(out.read_text(encoding="utf-8"))]
-    fetched = fetch_places(set(args.only) if args.only else None, {p.id for p in existing}, args.add)
+    fetched = fetch_places(set(args.only) if args.only else None, {p.id for p in existing}, args.add, args.area)
     places = [*existing, *fetched]
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps([p.model_dump() for p in places], ensure_ascii=False, indent=2), encoding="utf-8")
