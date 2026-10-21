@@ -157,7 +157,15 @@ def build_index() -> Collection:
     except Exception:  # 처음 만들 때는 컬렉션이 없다
         pass
     collection = client.create_collection(
-        COLLECTION_NAME, metadata={"hnsw:space": "cosine", "embedding_model": settings.embedding_model}
+        COLLECTION_NAME,
+        # 청크가 1,000개를 넘으면 기본 임계값에서 쓰는 도중 HNSW 파일 기록이 깨져 다른 프로세스가 열지 못했다(1,510청크, chromadb 1.5.9).
+        # 임계값을 청크 수보다 크게 둬서 쓰기 도중 디스크 동기화가 일어나지 않게 한다.
+        metadata={
+            "hnsw:space": "cosine",
+            "hnsw:batch_size": 10000,
+            "hnsw:sync_threshold": 10000,
+            "embedding_model": settings.embedding_model,
+        },
     )
     for start in range(0, len(ids), 200):
         sl = slice(start, start + 200)
