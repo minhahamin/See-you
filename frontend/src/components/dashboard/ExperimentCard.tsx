@@ -63,7 +63,17 @@ export default function ExperimentCard({ experiments, source, isSample }: Props)
           <ResponsiveContainer width="100%" height={220}>
             <BarChart data={data} margin={{ top: 8, right: 8, left: -16, bottom: 0 }}>
               <CartesianGrid vertical={false} stroke="#F6E3EA" />
-              <XAxis dataKey="version" interval={0} tickFormatter={shortLabel} tickLine={false} axisLine={false} tick={{ fontSize: 12, fill: '#9CA3AF' }} />
+              <XAxis
+                dataKey="version"
+                interval={0}
+                tickFormatter={shortLabel}
+                tickLine={false}
+                axisLine={false}
+                angle={-30}
+                textAnchor="end"
+                height={56}
+                tick={{ fontSize: 12, fill: '#9CA3AF' }}
+              />
               <YAxis tickLine={false} axisLine={false} tick={{ fontSize: 12, fill: '#9CA3AF' }} />
               <Tooltip
                 cursor={{ fill: 'rgba(238,123,166,0.08)' }}
