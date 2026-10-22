@@ -16,3 +16,6 @@ backend/data/*.sqlite
 node_modules/
 dist/
 .playwright-mcp/
+
+# Obsidian 볼트 설정
+docs/vault/.obsidian/
